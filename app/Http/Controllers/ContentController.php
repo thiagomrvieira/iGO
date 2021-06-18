@@ -17,7 +17,29 @@ class ContentController extends Controller
     public function show($content_area)
     {   
         $content = Content::where('content_area', $content_area)->first();
-        return view('backoffice.web-content.content-edit')->with('content', $content);
+        return view('backoffice.web-content.content-edit')->with('content', $content)
+                                                          ->with('content_area', $content_area);
+    }
+
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        $content = new Content;
+        $content->title = $request->title;
+        $content->content = $request->content;
+        $content->content_area = $request->content_area;
+        $request->active == 'on' ? $content->active = 1 : $content->active = 0;
+        $content->save();
+
+        return back();
+        
     }
 
     /**
@@ -29,8 +51,6 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        // dd($request->all());
-        // $content->update($request->all());
         $content->title = $request->title;
         $content->content = $request->content;
         $request->active == 'on' ? $content->active = 1 : $content->active = 0;

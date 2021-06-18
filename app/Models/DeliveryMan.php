@@ -9,7 +9,7 @@ class DeliveryMan extends Model
 {
     use HasFactory;
     
-    protected $table = 'delivery_man';
+    protected $table = 'deliverymen';
     protected $fillable = [
        'id',
        'name',

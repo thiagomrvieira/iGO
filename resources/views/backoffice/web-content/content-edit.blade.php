@@ -29,32 +29,39 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('content.update', ['content' => $content]) }}">
+                        @if (isset($content))
+                            <form class="form-horizontal" method="POST" action="{{ route('content.update', ['content' => $content]) }}">
+                                {{ method_field('PATCH') }}
+                        @else
+                            <form class="form-horizontal" method="POST" action="{{ route('content.store') }}">
+                        @endif
                             @csrf
-                            {{ method_field('PATCH') }}
                             
+                            <input type="hidden" name="content_area" value="{{$content_area ?? null}}">
+
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Título</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Título da área" value="{{$content->title ?? null}}">
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Conteúdo</label>
                                 <div class="col-sm-10">
                                     <textarea id="summernote" name="content">
-                                        {!! $content->content !!}
+                                        {!! $content->content ?? null !!}
                                     </textarea>                                
                                 </div>
                             </div>
-                           
+                        
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                  <div class="form-check">
+                                <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="active" name="active"
-                                        {{ $content->active == 1 ? 'checked' : null }}>
+                                        {{ (isset($content->active) && $content->active == 1) ? 'checked' : null }}>
                                     <label class="form-check-label" for="active">Conteúdo ativo</label>
-                                  </div>
+                                </div>
                                 </div>
                             </div>
 

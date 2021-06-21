@@ -112,19 +112,19 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Nome</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{ $deliveryman->name ?? null}}">
+                                <input  type="text" required class="form-control" id="name" name="name" placeholder="Nome" value="{{ $deliveryman->name ?? null}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ $deliveryman->email ?? null}}">
+                                <input type="email" required class="form-control" id="email" name="email" placeholder="Email" value="{{ $deliveryman->email ?? null}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="mobile_phone_number" class="col-sm-2 col-form-label">Telemóvel</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="mobile_phone_number" name="mobile_phone_number" placeholder="987 654 321" value="{{ $deliveryman->mobile_phone_number ?? null}}">
+                                <input type="text" required class="form-control" id="mobile_phone_number" name="mobile_phone_number" placeholder="987 654 321" value="{{ $deliveryman->mobile_phone_number ?? null}}">
                             </div>
                         </div>
                     </form>

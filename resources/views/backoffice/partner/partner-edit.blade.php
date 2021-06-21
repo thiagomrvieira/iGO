@@ -98,10 +98,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="category" class="col-sm-2 col-form-label">Categoria</label>
+                                        <label for="category_id" class="col-sm-2 col-form-label">Categoria</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="category" name="category" placeholder="categoria" value="{{ $partner->category_id ?? null}}">
+                                            <select class="form-control" id="category_id" name="category_id">
+                                                @if (isset($partnerCategories) && count($partnerCategories) > 0)
+                                                    @foreach ($partnerCategories as $category)
+                                                        <option value="{{ $category->id}}" 
+                                                            {{ $partner->category_id == $category->id ? 'selected': ''}}> 
+                                                            {{ $category->name}} 
+                                                        </option>
+                                                    @endforeach
+                                                @else
+                                                    <option disabled selected value="0"> Sem categorias cadastradas </option>
+                                                @endif
+                                            </select>
                                         </div>
+                                        
                                     </div>
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label">Responsavel</label>

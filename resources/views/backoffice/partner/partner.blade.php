@@ -112,27 +112,37 @@
                     <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('partner.store') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">Nome</label>
+                            <label for="company_name" class="col-sm-2 col-form-label">Empresa</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{ $partner->name ?? null}}">
+                                <input type="text" required class="form-control" id="company_name" name="company_name" placeholder="Nome da empresa" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Responsável</label>
+                            <div class="col-sm-10">
+                                <input type="text" required class="form-control" id="name" name="name" placeholder="Nome do responsável" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ $partner->email ?? null}}">
+                                <input type="email" required class="form-control" id="email" name="email" placeholder="Email" >
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="company_name" class="col-sm-2 col-form-label">Empresa</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Nome da empresa" value="{{ $partner->mobile_phone_number ?? null}}">
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="category_id" class="col-sm-2 col-form-label">Categoria</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="category_id" name="category_id" placeholder="987 654 321" value="{{ $partner->mobile_phone_number ?? null}}">
+                                <select required class="form-control" id="category_id" name="category_id">
+                                    @if (isset($partnerCategories) && count($partnerCategories) > 0)
+                                        <option selected value="0"> Selecione uma categoria </option>
+                                        @foreach ($partnerCategories as $category)
+                                            <option value="{{ $category->id}}"> {{ $category->name}} </option>
+                                        @endforeach
+                                    @else
+                                        <option selected value="0"> Sem categorias cadastradas </option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                     </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Partner;
+use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
@@ -14,11 +15,12 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = [];
-        if ( count(Partner::all()) > 0 ) {
-            $partners = Partner::all();
-        }
-        return view('backoffice.partner.partner')->with('partners', $partners);
+        
+        $partners = (count(Partner::all()) > 0 ) ? Partner::all() : [];
+        $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
+        
+        return view('backoffice.partner.partner')->with('partners', $partners)
+                                                 ->with('partnerCategories', $partnerCategories);
     }
 
     /**
@@ -62,7 +64,9 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        return view('backoffice.partner.partner-edit')->with('partner', $partner);
+        $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
+        return view('backoffice.partner.partner-edit')->with('partner', $partner)
+                                                      ->with('partnerCategories', $partnerCategories);
     }
 
     /**

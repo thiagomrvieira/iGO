@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeliveryManController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PartnerCategoryController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\FrontOfficeController;
 
@@ -26,5 +27,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('/deliveryman', DeliveryManController::class);
     Route::resource('/content', ContentController::class);
     Route::resource('/partner', PartnerController::class);
+    Route::resource('/category', PartnerCategoryController::class);
 
 });

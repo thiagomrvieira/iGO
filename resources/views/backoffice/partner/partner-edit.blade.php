@@ -173,41 +173,44 @@
                                     @csrf
                                     {{ method_field('PATCH') }}
 
+                                    {{-- Input de controle para o metodo update --}}
+                                    <input type="hidden" name="addressData" value="true">
+
                                     <div class="form-group row">
-                                        <label for="inputAddressLine1" class="col-sm-2 col-form-label">Morada</label>
+                                        <label for="line_1" class="col-sm-2 col-form-label">Morada</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputAddressLine1" placeholder="Linha 1" {{ $partner->address->line_1 ?? null}}>
+                                            <input type="text" class="form-control" id="line_1" name="line_1" placeholder="Linha 1" value="{{ $partner->address->line_1 ?? null}}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAddressLine2" class="col-sm-2 col-form-label"></label>
+                                        <label for="line_2" class="col-sm-2 col-form-label"></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputAddressLine2" placeholder="Linha 2" {{ $partner->address->line_2 ?? null}}>
+                                            <input type="text" class="form-control" id="line_2" name="line_2" placeholder="Linha 2" value="{{ $partner->address->line_2 ?? null}}" >
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="inputCounty" class="col-sm-2 col-form-label">Concelho</label>
+                                        <label for="county" class="col-sm-2 col-form-label">Concelho</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputCounty" placeholder="Concelho" {{ $partner->address->county_id ?? null}}>
+                                            <input type="text" class="form-control" id="county" name="county" placeholder="Concelho" value="{{ $partner->address->county ?? null}}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputCity" class="col-sm-2 col-form-label">Cidade</label>
+                                        <label for="city" class="col-sm-2 col-form-label">Cidade</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputCity" placeholder="Cidade" {{ $partner->address->city_id ?? null}}>
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="Cidade" value="{{ $partner->address->city ?? null}}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPostalCode" class="col-sm-2 col-form-label">Código postal</label>
+                                        <label for="post_code" class="col-sm-2 col-form-label">Código postal</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputPostalCode" placeholder="Código postal" {{ $partner->address->post_code ?? null}}>
+                                            <input type="text" class="form-control" id="post_code" name="post_code" placeholder="Código postal" value="{{ $partner->address->post_code ?? null}}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputCountry" class="col-sm-2 col-form-label">País</label>
+                                        <label for="country" class="col-sm-2 col-form-label">País</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputCountry" placeholder="País" {{ $partner->address->country_id ?? null}}>
+                                            <input type="text" class="form-control" id="country" name="country" placeholder="País" value="{{ $partner->address->country ?? null}}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">

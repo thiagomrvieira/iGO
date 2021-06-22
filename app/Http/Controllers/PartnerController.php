@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Partner;
 use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
+use App\Http\Traits\AddressTrait;
+
 
 class PartnerController extends Controller
 {
+    use AddressTrait;
     /**
      * Display a listing of the resource.
      *
@@ -82,6 +85,11 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $partner->update($request->all());
+        if (!is_null($request->addressData)) { 
+            $address = $this->getAddressRequest($request, $partner->address_id); 
+            $partner->address_id = $address->id;
+            $partner->save();
+        }
         return back();
     }
 

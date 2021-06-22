@@ -22,4 +22,12 @@ class Partner extends Model
        'category_id',
        'active'
     ];
+
+    /**
+     * Get the address associated with the partner.
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }

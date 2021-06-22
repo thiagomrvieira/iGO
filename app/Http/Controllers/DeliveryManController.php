@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryMan;
 use Illuminate\Http\Request;
+use App\Http\Traits\AddressTrait;
+
 
 class DeliveryManController extends Controller
 {
+    use AddressTrait;
     /**
      * Display a listing of the resource.
      *
@@ -76,6 +79,11 @@ class DeliveryManController extends Controller
     public function update(Request $request, DeliveryMan $deliveryman)
     {
         $deliveryman->update($request->all());
+        if (!is_null($request->addressData)) { 
+            $address = $this->getAddressRequest($request, $deliveryman->address_id); 
+            $deliveryman->address_id = $address->id;
+            $deliveryman->save();
+        }
         return back();
     }
 

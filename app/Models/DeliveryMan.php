@@ -30,4 +30,12 @@ class DeliveryMan extends Model
     ];
 
 
+    /**
+     * Get the address associated with the deliveryman.
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
 }

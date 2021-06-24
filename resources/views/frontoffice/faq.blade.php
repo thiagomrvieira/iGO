@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FAQs</title>
-</head>
-<body>
-    FAQs
-</body>
-</html>
+@extends('frontoffice.layouts.guest.app')
+
+@section('content')
+
+    @isset($faq)
+        <strong>
+            {{ $faq->title ?? null }}
+        </strong>
+        <br><br>
+        {!! $faq->content ?? null !!}
+    @endisset
+
+@endsection

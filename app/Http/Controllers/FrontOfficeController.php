@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Content;
 
 class FrontOfficeController extends Controller
 {
@@ -11,15 +12,18 @@ class FrontOfficeController extends Controller
     }
 
     public function showAboutPage() {
-        return view('frontoffice.about');
+        $about = Content::where('content_area', 'about')->first() ?? [] ;
+        return view('frontoffice.about')->with('about', $about);
     }
 
     public function showFaqPage() {
-        return view('frontoffice.faq');
+        $faq = Content::where('content_area', 'faq')->first() ?? [] ;
+        return view('frontoffice.faq')->with('faq', $faq);
     }
 
     public function showConditionsPage() {
-        return view('frontoffice.conditions');
+        $conditions = Content::where('content_area', 'conditions')->first() ?? [] ;
+        return view('frontoffice.conditions')->with('conditions', $conditions);
     }
     
 }

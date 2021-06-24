@@ -72,6 +72,12 @@
                     <p>Termos e condições</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('content.show', ['content' => 'contacts']) }}" class="nav-link">
+                    <i class="nav-icon fas fa-pencil-alt"></i>
+                    <p>Contactos</p>
+                  </a>
+                </li>
               </ul>
             </li>
 

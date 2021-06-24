@@ -15,6 +15,7 @@ Route::get('/', [FrontOfficeController::class, 'showHomePage']);
 Route::get('/about', [FrontOfficeController::class, 'showAboutPage']);
 Route::get('/faq', [FrontOfficeController::class, 'showFaqPage']);
 Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage']);
+Route::get('/contact', [FrontOfficeController::class, 'showContactsPage']);
 
 #   ROUTES FOR BACKOFICE/ADMIN
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

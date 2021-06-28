@@ -49,14 +49,16 @@ class PartnerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly (from home) resource in storage.
      *
-     * @param  \App\Models\Partner  $partner
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Partner $partner)
+    public function createPartnerFromHome(Request $request)
     {
-        //
+        $partner = Partner::create($request->resource);
+        return response()->json([$request->all()]);
+
     }
 
     /**

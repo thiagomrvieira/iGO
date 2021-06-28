@@ -48,14 +48,16 @@ class DeliveryManController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly (from home) resource in storage.
      *
-     * @param  \App\Models\DeliveryMan  $deliveryMan
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(DeliveryMan $deliveryMan)
+    public function createDelManFromHome(Request $request)
     {
-        //
+        $deliveryman = DeliveryMan::create($request->resource);
+        // return response()->json([$request->all()]);
+
     }
 
     /**

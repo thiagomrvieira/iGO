@@ -11,63 +11,89 @@
 
         {{-- Form column --}}
         <div class="col-6">
+            <div class="alert alert-success" role="alert"
+                v-if="partnerCreated.company_name">
+                <h4 class="alert-heading">Olá, @{{ partnerCreated.name }}!</h4>
+                <p>O pré-cadasto da <b> @{{ partnerCreated.company_name }} </b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+            </div>
+
             <form id="partnerCreation" method="POST">
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'name')" type="text" class="form-control" v-model="partner.name" id="name" name="name" placeholder="Nome">
-                    <small v-if="partnerErrors.includes('name')" id="nameHelp" class="text-danger">
+                    <input  type="text" class="form-control" id="name" name="name" placeholder="Nome"
+                        @change="removeClassError('partnerCreation', 'name')" v-model="partner.name">
+                    <small id="nameHelp" class="text-danger"
+                        v-if="partnerErrors.includes('name')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'email')" type="email" class="form-control" v-model="partner.email" id="email" name="email" placeholder="Email">
-                    <small v-if="partnerErrors.includes('email')" id="emailHelp" class="text-danger">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                        @change="removeClassError('partnerCreation', 'email')" v-model="partner.email">
+                    <small id="emailHelp" class="text-danger"
+                        v-if="partnerErrors.includes('email')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'line_1')" type="text" class="form-control" v-model="partner.line_1" id="line_1" name="line_1" placeholder="Morada">
-                    <small v-if="partnerErrors.includes('line_1')" id="line_1Help" class="text-danger">
+                    <input type="text" class="form-control" id="line_1" name="line_1" placeholder="Morada"
+                        @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
+                    <small id="line_1Help" class="text-danger"
+                        v-if="partnerErrors.includes('line_1')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'county')" type="text" class="form-control" v-model="partner.county" id="county" name="county" placeholder="Bairro">
-                    <small v-if="partnerErrors.includes('county')" id="countyHelp" class="text-danger">
+                    <input  type="text" class="form-control" id="county" name="county" placeholder="Bairro"
+                        @change="removeClassError('partnerCreation', 'county')" v-model="partner.county">
+                    <small id="countyHelp" class="text-danger"
+                        v-if="partnerErrors.includes('county')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'city')" type="text" class="form-control" v-model="partner.city" id="city" name="city" placeholder="Província">
-                    <small v-if="partnerErrors.includes('city')" id="cityHelp" class="text-danger">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Província"
+                        @change="removeClassError('partnerCreation', 'city')" v-model="partner.city">
+                    <small id="cityHelp" class="text-danger"
+                        v-if="partnerErrors.includes('city')" >
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'phone_number')" type="text" class="form-control" v-model="partner.phone_number" id="phone_number" name="phone_number" placeholder="Telefone">
-                    <small v-if="partnerErrors.includes('phone_number')" id="phone_numberHelp" class="text-danger">
+                    <input  type="text" class="form-control"  id="phone_number" name="phone_number" placeholder="Telefone"
+                        @change="removeClassError('partnerCreation', 'phone_number')" v-model="partner.phone_number">
+                    <small id="phone_numberHelp" class="text-danger"
+                        v-if="partnerErrors.includes('phone_number')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'mobile_phone_number')" type="text" class="form-control" v-model="partner.mobile_phone_number" id="mobile_phone_number" name="mobile_phone_number" placeholder="Telemóvel">
-                    <small v-if="partnerErrors.includes('mobile_phone_number')" id="mobile_phone_numberHelp" class="text-danger">
+                    <input  type="text" class="form-control"  id="mobile_phone_number" name="mobile_phone_number" placeholder="Telemóvel"
+                        @change="removeClassError('partnerCreation', 'mobile_phone_number')" v-model="partner.mobile_phone_number"> 
+                    <small id="mobile_phone_numberHelp" class="text-danger"
+                        v-if="partnerErrors.includes('mobile_phone_number')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'company_name')" type="text" class="form-control" v-model="partner.company_name" id="company_name" name="company_name" placeholder="Estabelecimento">
-                    <small v-if="partnerErrors.includes('company_name')" id="company_nameHelp" class="text-danger">
+                    <input  type="text" class="form-control" id="company_name" name="company_name" placeholder="Estabelecimento"
+                        @change="removeClassError('partnerCreation', 'company_name')" v-model="partner.company_name">
+                    <small id="company_nameHelp" class="text-danger"
+                        v-if="partnerErrors.includes('company_name')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <input @change="removeClassError('partnerCreation', 'tax_number')" type="text" class="form-control" v-model="partner.tax_number" id="tax_number" name="tax_number" placeholder="NIF">
-                    <small v-if="partnerErrors.includes('tax_number')" id="tax_numberHelp" class="text-danger">
+                    <input  type="text" class="form-control" id="tax_number" name="tax_number" placeholder="NIF"
+                        @change="removeClassError('partnerCreation', 'tax_number')" v-model="partner.tax_number">
+                    <small id="tax_numberHelp" class="text-danger"
+                        v-if="partnerErrors.includes('tax_number')">
                         Campo obrigatório
                     </small>  
                 </div>
                 <div class="mb-2">
-                    <select @change="removeClassError('partnerCreation', 'category_id')" v-model="partner.category_id" id="category_id" name="category_id" class="form-select">
+                    <select id="category_id" name="category_id" class="form-select"
+                        @change="removeClassError('partnerCreation', 'category_id')" v-model="partner.category_id">
+                        
                         <option value="" disabled selected>Categoria</option>
 
                         @foreach ($partnerCategories as $category)
@@ -75,7 +101,10 @@
                         @endforeach
                     </select>
                 </div>
-                <button class="btn btn-primary" @click="getFormRequest('partnerCreation', $event)">Enviar</button>
+                <button class="btn btn-primary" 
+                    @click="getFormRequest('partnerCreation', $event)">
+                    Enviar
+                </button>
             </form>
         </div>
         
@@ -83,26 +112,41 @@
         <div class="row mt-4 mb-4">
             {{-- Form column --}}
             <div class="col-6">
+                <div class="alert alert-success" role="alert"
+                    v-if="deliverymanCreated">
+                    <h4 class="alert-heading">Olá, @{{ deliverymanCreated }}!</h4>
+                    <p>O seu pré-cadasto foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+                </div>
+                  
                 <form id="deliverymanCreation" method="POST">
                     <div class="mb-2">
-                        <input @change="removeClassError('deliverymanCreation', 'name')" type="text" class="form-control" v-model="deliveryman.name" id="name" placeholder="Nome" >
-                        <small v-if="deliverymanErrors.includes('name')" id="nameHelp" class="text-danger">
+                        <input type="text" class="form-control" id="name" placeholder="Nome" 
+                            @change="removeClassError('deliverymanCreation', 'name')" v-model="deliveryman.name">
+                        <small id="nameHelp" class="text-danger"
+                            v-if="deliverymanErrors.includes('name')">
                             Campo obrigatório
                         </small>      
                     </div>
                     <div class="mb-2">
-                        <input @change="removeClassError('deliverymanCreation', 'email')" type="email" class="form-control" v-model="deliveryman.email" id="email" placeholder="Email">
-                        <small v-if="deliverymanErrors.includes('email')" id="nameHelp" class="text-danger">
+                        <input  type="email" class="form-control"  id="email" placeholder="Email"
+                            @change="removeClassError('deliverymanCreation', 'email')" v-model="deliveryman.email">
+                        <small id="nameHelp" class="text-danger"
+                            v-if="deliverymanErrors.includes('email')">
                             Campo obrigatório
                         </small>     
                     </div>
                     <div class="mb-2">
-                        <input @change="removeClassError('deliverymanCreation', 'mobile_phone_number')" type="text" class="form-control" v-model="deliveryman.mobile_phone_number" id="mobile_phone_number" placeholder="Telemóvel">
-                        <small v-if="deliverymanErrors.includes('mobile_phone_number')" id="nameHelp" class="text-danger">
+                        <input type="text" class="form-control" id="mobile_phone_number" placeholder="Telemóvel"
+                            @change="removeClassError('deliverymanCreation', 'mobile_phone_number')" v-model="deliveryman.mobile_phone_number">
+                        <small id="nameHelp" class="text-danger"
+                            v-if="deliverymanErrors.includes('mobile_phone_number')">
                             Campo obrigatório
                         </small>     
                     </div>
-                    <button class="btn btn-primary"  @click="getFormRequest('deliverymanCreation', $event)"> Enviar</button>
+                    <button class="btn btn-primary" 
+                        @click="getFormRequest('deliverymanCreation', $event)"> 
+                        Enviar
+                    </button>
                 </form>
             </div>
             
@@ -124,7 +168,7 @@
             el: '#app',
 
             data: {
-                
+
                 partner: {
                     name: '',
                     email: '',
@@ -149,6 +193,11 @@
                 formAction: '',
                 partnerErrors: [],
                 deliverymanErrors: [],
+                deliverymanCreated: false,
+                partnerCreated: {
+                    name: null,
+                    company_name: null,
+                },
                 
             },
 
@@ -194,14 +243,20 @@
                     axios.post(this.formAction, {
                         resource: this.resource,
                     }).then(response => {
-                        this.response = JSON.stringify(response, null, 2)
-                        console.log(response)
+                        if (Object.keys(response.data.resource).length > 6) {
+                            this.partnerCreated.name = (response.status == 201) ?  response.data.resource.name : null;
+                            this.partnerCreated.company_name = (response.status == 201) ?  response.data.resource.company_name : null;
+                        } else {
+                            this.deliverymanCreated = (response.status == 201) ?  response.data.resource.name : null;
+                        }
                         this.cleanInputs(this.resource);
                     })
                 },
 
                 //  Clean form inputs after requests
                 cleanInputs(resource){
+                    this.formAction = '';
+                    
                     Object.keys(resource).forEach(key => {
                         resource[key] = '';
                     });

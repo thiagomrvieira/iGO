@@ -57,8 +57,7 @@ class PartnerController extends Controller
     public function createPartnerFromHome(Request $request)
     {
         $partner = Partner::create($request->resource);
-        return response()->json([$request->all()]);
-
+        return response()->json(['resource' => $partner], 201); 
     }
 
     /**

@@ -56,8 +56,7 @@ class DeliveryManController extends Controller
     public function createDelManFromHome(Request $request)
     {
         $deliveryman = DeliveryMan::create($request->resource);
-        // return response()->json([$request->all()]);
-
+        return response()->json(['resource' => $deliveryman], 201); 
     }
 
     /**

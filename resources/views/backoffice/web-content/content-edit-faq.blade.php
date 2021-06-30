@@ -83,7 +83,6 @@
                             <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
                                 Criar registo
                             </button>
-                            {{-- <a href="{{ route('deliveryman.create') }}" class="btn btn-primary btn-sm float-right"> Criar registo</a> --}}
                         </div>
                     </div>
                 @else
@@ -94,6 +93,59 @@
                 @endif
             </div>
         </div>
+    </div>
+    
+    {{-- Modal de criação de conteúdo --}}
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Criação de itens de FAQ</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('content.store') }}">
+                        @csrf
+                        
+                        <input type="hidden" name="content_area" value="{{$content_area ?? null}}">
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 col-form-label">Título</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Título da área" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 col-form-label">Conteúdo</label>
+                            <div class="col-sm-10">
+                                <textarea id="summernote" name="content">
+                                    
+                                </textarea>                                
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="active" name="active">
+                                <label class="form-check-label" for="active">Conteúdo ativo</label>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary" form="formCreation">Criar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
     {{-- Modal de confirmação de remoção --}}

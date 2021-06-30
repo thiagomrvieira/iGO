@@ -71,14 +71,9 @@
                                     <form id="form-update-status" class="form-horizontal" method="POST" action="">
                                         @csrf
                                         {{ method_field('PATCH') }}
-                                        
-                                        {{-- @if (is_null($delMan->approved_at))
-                                            <input type="hidden" name="approved_at" value="{{date('Y/m/d H:i:s')}}">
-                                        @endif --}}
                                         <input type="hidden" name="active"  id="statusUpdate">
                                         <input type="hidden" name="title"   id="titleUpdate">
                                         <input type="hidden" name="content" id="contentUpdate">
-                                        
                                     </form>
 
                                 </tbody>
@@ -100,17 +95,36 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal de confirmação de remoção --}}
+    <div class="modal fade" id="modal-confirm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Deseja remover este conteúdo?</p>
+                    <form class="form-horizontal" id="formDelete" method="POST" action="">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger" form="formDelete">Remover</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('jquery')
     <script type="text/javascript">
         
-        // Seta action do modal de confirmação de remoção de utilizador
-        // $(document).on("click", ".openDeleteDialog", function () {
-        //     var delManId = $(this).data('delman-id');
-        //     var action = `/admin/deliveryman/${delManId}`;
-        //     $('#formDelete').attr('action', action );
-        // });
+        // Seta action do modal de confirmação de remoção de FAQ
+        $(document).on("click", ".openDeleteDialog", function () {
+            var faqId = $(this).data('faq-id');
+            var action = `/admin/content/${faqId}`;
+            $('#formDelete').attr('action', action );
+        });
 
         // Atualiza o status do FAQ
         $(document).on("click", ".updateStatus", function () {

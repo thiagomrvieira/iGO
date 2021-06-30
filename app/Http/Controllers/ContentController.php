@@ -67,4 +67,18 @@ class ContentController extends Controller
         return back();
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Content  $content
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Content $content)
+    {
+        if($content) {
+            $content->delete();
+        }
+        return back();
+    }
+
 }

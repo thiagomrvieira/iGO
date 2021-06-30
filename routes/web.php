@@ -26,10 +26,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     })->name('admin');
     
     Route::resource('/deliveryman', DeliveryManController::class);
-
     Route::resource('/content', ContentController::class);
     Route::resource('/partner', PartnerController::class);
-
     Route::resource('/category', PartnerCategoryController::class);
 
 });

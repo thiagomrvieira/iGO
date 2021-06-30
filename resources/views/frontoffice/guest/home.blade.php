@@ -163,6 +163,7 @@
 @endsection
 
 @section('vue-instance')
+
     <script type="text/javascript">
         new Vue({
             el: '#app',

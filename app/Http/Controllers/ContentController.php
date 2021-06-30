@@ -9,16 +9,24 @@ class ContentController extends Controller
 {
     
     /**
-     * Display the specified resource.
+     * Display the specified resource in a (backoffice) edit view.
      *
      * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
     public function show($content_area)
     {   
-        $content = Content::where('content_area', $content_area)->first();
-        return view('backoffice.web-content.content-edit')->with('content', $content)
-                                                          ->with('content_area', $content_area);
+        if ($content_area == 'faq') {
+            $content = Content::where('content_area', $content_area)->get();
+            return view('backoffice.web-content.content-edit-faq')->with('content', $content)
+                                                                  ->with('content_area', $content_area);
+        } else {
+            $content = Content::where('content_area', $content_area)->first();
+            return view('backoffice.web-content.content-edit')->with('content', $content)
+                                                              ->with('content_area', $content_area);
+        }
+        
+        
     }
 
     

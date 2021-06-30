@@ -19,8 +19,8 @@ class FrontOfficeController extends Controller
     }
 
     public function showFaqPage() {
-        $faq = Content::where('content_area', 'faq')->first() ?? [] ;
-        return view('frontoffice.guest.faq')->with('faq', $faq);
+        $content = Content::where('content_area', 'faq')->get() ?? [] ;
+        return view('frontoffice.guest.faq')->with('content', $content);
     }
 
     public function showConditionsPage() {

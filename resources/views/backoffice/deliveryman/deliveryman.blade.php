@@ -166,7 +166,7 @@
         // Seta action do modal de confirmação de remoção de utilizador
         $(document).on("click", ".openDeleteDialog", function () {
             var delManId = $(this).data('delman-id');
-            var action = `/admin/deliveryman/${delManId}`;
+            var action   = `/admin/deliveryman/${delManId}`;
             $('#formDelete').attr('action', action );
         });
 
@@ -174,7 +174,7 @@
         $(document).on("click", ".updateStatus", function () {
             event.preventDefault();
             var delManId = $(this).data('delman-id');
-            var action = `/admin/deliveryman/${delManId}`;
+            var action   = `/admin/deliveryman/${delManId}`;
             $('#form-update-status').attr('action', action ).submit();
         });
         

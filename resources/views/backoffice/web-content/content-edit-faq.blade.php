@@ -189,7 +189,7 @@
         
         // Seta action do modal de confirmação de remoção de FAQ
         $(document).on("click", ".openDeleteDialog", function () {
-            var faqId = $(this).data('faq-id');
+            var faqId  = $(this).data('faq-id');
             var action = `/admin/content/${faqId}`;
             $('#formDelete').attr('action', action );
         });
@@ -212,11 +212,11 @@
 
         // Carrega conteúdo e seta action do modal edição de FAQ
         $(document).on("click", ".openEditDialog", function () {
-            var faqId = $(this).data('faq-id');
-            var faqTitle = $(this).data('faq-title');
+            var faqId      = $(this).data('faq-id');
+            var faqTitle   = $(this).data('faq-title');
             var faqContent = $(this).data('faq-content');
-            var faqStatus = $(this).data('faq-status') == 1 ? true : false;
-            var action = `/admin/content/${faqId}`;
+            var faqStatus  = $(this).data('faq-status') == 1 ? true : false;
+            var action     = `/admin/content/${faqId}`;
 
             $('#titleEdit').val(faqTitle);
             $('#summernote').summernote('pasteHTML', faqContent);
@@ -225,8 +225,6 @@
             
             $('#formCreation').attr('action', action );
             $('#formCreation').append('{{ method_field("PATCH") }}');    
-
-
         });
 
         // Limpa dados do modal

@@ -10,7 +10,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
                     <li class="breadcrumb-item active">Editor de conteúdo</li>
-                    <li class="breadcrumb-item active"></li>
+                    <li class="breadcrumb-item active">FAQs</li>
                 </ol>
             </div>
         </div>
@@ -43,8 +43,18 @@
                                         <tr>
                                             <td>{{ $faq->id ?? null}}</td>
                                             <td>{{ $faq->title ?? null}}</td>
-                                            <td>{{ substr($faq->content, strpos($faq->content,'">') + 2, 40) . '...' ?? null}}</td>
-                                            <td>{{ !$faq->active ? 'Inativa' : 'Ativa'}}</td>
+                                            {{-- <td>{{ substr($faq->content, strpos($faq->content,'">') + 2, 40) . '...' ?? null}}</td> --}}
+                                            <td>
+                                                <a class="openEditDialog" href="#"
+                                                    data-toggle="modal" data-target="#modal-lg"
+                                                    data-faq-id="{{ $faq->id }}"
+                                                    data-faq-title="{{ $faq->title }}"
+                                                    data-faq-content="{{ $faq->content }}"
+                                                    data-faq-status="{{ $faq->active }}">
+                                                    Ver conteúdo
+                                                </a>
+                                            </td>
+                                            <td>{{ !$faq->active ? 'Inativo' : 'Ativo'}}</td>
                                             <td>
                                                 <a class="mr-1 updateStatus" href="#" 
                                                     data-faq-id="{{ $faq->id }}"
@@ -53,9 +63,15 @@
                                                     data-faq-status="{{ $faq->active }}">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                <a href="{{ route('deliveryman.edit', ['deliveryman' => $faq] ) }}">
+                                                <a class="openEditDialog" href="#"
+                                                    data-toggle="modal" data-target="#modal-lg"
+                                                    data-faq-id="{{ $faq->id }}"
+                                                    data-faq-title="{{ $faq->title }}"
+                                                    data-faq-content="{{ $faq->content }}"
+                                                    data-faq-status="{{ $faq->active }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
+
                                                 <a class="ml-1 openDeleteDialog" href="#" data-faq-id="{{ $faq->id }}" 
                                                     data-toggle="modal" 
                                                     data-target="#modal-confirm">
@@ -100,7 +116,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Criação de itens de FAQ</h4>
+                    <h4 class="modal-title">FAQs</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -114,7 +130,7 @@
                         <div class="form-group row">
                             <label for="title" class="col-sm-2 col-form-label">Título</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Título da área" value="">
+                                <input type="text" class="form-control" id="titleEdit" name="title" placeholder="Título da área" value="">
                             </div>
                         </div>
 
@@ -130,7 +146,7 @@
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="active" name="active">
+                                <input type="checkbox" class="form-check-input" id="statusEdit" name="active">
                                 <label class="form-check-label" for="active">Conteúdo ativo</label>
                             </div>
                             </div>
@@ -193,6 +209,32 @@
             $('#statusUpdate').val(faqStatus);
             $('#form-update-status').attr('action', action ).submit();
         });
+
+        // Carrega conteúdo e seta action do modal edição de FAQ
+        $(document).on("click", ".openEditDialog", function () {
+            var faqId = $(this).data('faq-id');
+            var faqTitle = $(this).data('faq-title');
+            var faqContent = $(this).data('faq-content');
+            var faqStatus = $(this).data('faq-status') == 1 ? true : false;
+            var action = `/admin/content/${faqId}`;
+
+            $('#titleEdit').val(faqTitle);
+            $('#summernote').summernote('pasteHTML', faqContent);
+
+            (faqStatus == true) ? $('#statusEdit').prop('checked', true) : $('#statusEdit').removeAttr('checked');
+            
+            $('#formCreation').attr('action', action );
+            $('#formCreation').append('{{ method_field("PATCH") }}');    
+
+
+        });
+
+        // Limpa dados do modal
+        $('#modal-lg').on('hidden.bs.modal', function () {
+            $('#summernote').summernote('reset');
+            $(this).find('form').trigger('reset');
+            $(this).removeData();
+        })
         
     </script>
 @endsection

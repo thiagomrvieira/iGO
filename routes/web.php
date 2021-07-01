@@ -11,7 +11,7 @@ require __DIR__.'/auth.php';
 
 
 #   ROUTES FOR FRONTOFFICE
-Route::get('/', [FrontOfficeController::class, 'showHomePage']);
+Route::get('/', [FrontOfficeController::class, 'showHomePage'])->name('home');
 Route::get('/about', [FrontOfficeController::class, 'showAboutPage']);
 Route::get('/faq', [FrontOfficeController::class, 'showFaqPage']);
 Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage']);

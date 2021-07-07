@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('admin') }}" class="brand-link">
       <img src="{{ asset('assets-backoffice/dist/img/iGOLogo.png') }}" alt="iGO Logo" class="brand-image img-circle" style="opacity: .8 ; max-height: 42px; margin-left: 0.6rem;">
-      <span class="brand-text font-weight-light">É só pedir!</span>
+      <span class="brand-text font-weight-light">{{ __('backoffice/sidebar.slogan') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -16,7 +16,7 @@
               <a href="{{ route('deliveryman.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-shipping-fast"></i>
                 <p>
-                  Estafetas
+                  {{ __('backoffice/sidebar.deliverymen') }}
                 </p>
               </a>
             </li>
@@ -25,7 +25,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-store"></i>
                 <p>
-                  Aderentes
+                  {{ __('backoffice/sidebar.partners') }}
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -33,13 +33,13 @@
                 <li class="nav-item">
                   <a href="{{ route('partner.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>Pré-cadasto</p>
+                    <p> {{ __('backoffice/sidebar.preregistation') }} </p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('category.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>Categorias</p>
+                    <p> {{ __('backoffice/sidebar.categories') }} </p>
                   </a>
                 </li>
               </ul>
@@ -49,7 +49,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chalkboard"></i>
                 <p>
-                  Conteúdo do site
+                  {{ __('backoffice/sidebar.websitecontent') }}
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -57,25 +57,25 @@
                 <li class="nav-item">
                   <a href="{{ route('content.show', ['content' => 'about']) }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>Sobre nós</p>
+                    <p> {{ __('backoffice/sidebar.about') }} </p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('content.show', ['content' => 'faq']) }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>FAQs</p>
+                    <p>{{ __('backoffice/sidebar.faqs') }}</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('content.show', ['content' => 'conditions']) }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>Termos e condições</p>
+                    <p>{{ __('backoffice/sidebar.conditions') }}</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('content.show', ['content' => 'contacts']) }}" class="nav-link">
                     <i class="nav-icon fas fa-pencil-alt"></i>
-                    <p>Contactos</p>
+                    <p>{{ __('backoffice/sidebar.contacts') }}</p>
                   </a>
                 </li>
               </ul>

@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Categoria de Aderentes</h1>
+                <h1 class="m-0">{{ __('backoffice/partners.partnerCategory') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('partner.index') }}">Aderentes</a></li>
-                    <li class="breadcrumb-item active">Categorias</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">{{ __('backoffice/partners.home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('partner.index') }}">{{ __('backoffice/partners.partners') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('backoffice/partners.categories') }}</li>
 
                 </ol>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card card-outline card-info">
                     <div class="card-header">
                         <h3 class="card-title">
-                            Criar categoria
+                            {{ __('backoffice/partners.createCategoryCard.cardTitle') }}
                         </h3>
                     </div>
                     <div class="card-body">
@@ -33,14 +33,14 @@
                             @csrf
                             
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label">Nome</label>
+                                <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.createCategoryCard.name') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nome da categoria">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('backoffice/partners.createCategoryCard.categoryName') }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="description" class="col-sm-2 col-form-label">Descrição</label>
+                                <label for="description" class="col-sm-2 col-form-label">{{ __('backoffice/partners.createCategoryCard.description') }}</label>
                                 <div class="col-sm-10">
                                     <textarea name="description" class="form-control"></textarea>                                
                                 </div>
@@ -51,14 +51,14 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="active" name="active"
                                         {{ (isset($content->active) && $content->active == 1) ? 'checked' : null }}>
-                                    <label class="form-check-label" for="active">Conteúdo ativo</label>
+                                    <label class="form-check-label" for="active">{{ __('backoffice/partners.createCategoryCard.activeContent') }}</label>
                                 </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Salvar</button>
+                                    <button type="submit" class="btn btn-danger">{{ __('backoffice/partners.createCategoryCard.saveButton') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -73,7 +73,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Lista categoria de aderentes</h3>
+                        <h3 class="card-title">{{ __('backoffice/partners.categoryListCard.cardTitle') }}</h3>
                     </div>
 
                     <div class="card-body table-responsive p-0">
@@ -82,11 +82,11 @@
                             @if (isset($partnerCategories) && count($partnerCategories) > 0)
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Descrição</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
+                                        <th>{{ __('backoffice/partners.categoryListCard.id')          }}</th>
+                                        <th>{{ __('backoffice/partners.categoryListCard.name')        }}</th>
+                                        <th>{{ __('backoffice/partners.categoryListCard.description') }}</th>
+                                        <th>{{ __('backoffice/partners.categoryListCard.status')      }}</th>
+                                        <th>{{ __('backoffice/partners.categoryListCard.actions')     }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,7 +97,11 @@
                                         <td>{{ $category->id ?? null}}</td>
                                         <td>{{ $category->name ?? null}}</td>
                                         <td>{{ $category->description ?? null}}</td>
-                                        <td>{{ !$category->active ? 'Inativa' : 'Ativa'}}</td>
+                                        <td>{{ !$category->active ?
+                                                __('backoffice/partners.categoryListCard.inactive') : 
+                                                __('backoffice/partners.categoryListCard.active'  ) 
+                                            }}
+                                        </td>
                                         <td>
                                             <a class="mr-1 updateStatus" href="#" 
                                                 data-category-id="{{ $category->id }}" 
@@ -150,15 +154,15 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Deseja remover esta categoria?</p>
+                    <p>{{ __('backoffice/partners.modalRemove.modalTitle') }}</p>
                     <form class="form-horizontal" id="formDelete" method="POST" action="{{-- route('partner.destroy', ['partner' => $partner] ) --}}">
                         @csrf
                         {{ method_field('DELETE') }}
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">Remover</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalRemove.close')  }} </button>
+                    <button type="submit" class="btn btn-danger"  form="formDelete">   {{ __('backoffice/partners.modalRemove.remove') }} </button>
                 </div>
             </div>
         </div>

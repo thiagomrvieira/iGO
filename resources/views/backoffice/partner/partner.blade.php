@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Aderentes</h1>
+                <h1 class="m-0">{{ __('backoffice/partners.partners') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Aderentes</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">{{ __('backoffice/partners.home') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('backoffice/partners.partners') }}</li>
                 </ol>
             </div>
         </div>
@@ -23,20 +23,20 @@
                 @if (isset($partners) && count($partners) > 0)
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de pré-registo de aderentes</h3>
+                            <h3 class="card-title">{{ __('backoffice/partners.prePartnerList') }}</h3>
                         </div>
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Empresa</th>
-                                        <th>Responsável</th>
-                                        <th>E-mail</th>
-                                        <th>Telemóvel</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
+                                        <th>{{ __('backoffice/partners.id') }}</th>
+                                        <th>{{ __('backoffice/partners.company') }}</th>
+                                        <th>{{ __('backoffice/partners.responsible') }}</th>
+                                        <th>{{ __('backoffice/partners.email') }}</th>
+                                        <th>{{ __('backoffice/partners.mobilePhoneNumber') }}</th>
+                                        <th>{{ __('backoffice/partners.status') }}</th>
+                                        <th>{{ __('backoffice/partners.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,7 +47,7 @@
                                             <td>{{ $partner->name ?? null}}</td>
                                             <td>{{ $partner->email ?? null}}</td>
                                             <td>{{ $partner->mobile_phone_number ?? null}}</td>
-                                            <td>{{ !$partner->active ? 'Inativa' : 'Ativa'}}</td>
+                                            <td>{{ !$partner->active ? __('backoffice/partners.active') : __('backoffice/partners.inactive') }}</td>
                                             <td>
                                                 <a class="mr-1 updateStatus" href="#" data-partner-id="{{ $partner->id }}">
                                                     <i class="fas fa-check"></i>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="card-footer clearfix">
                             <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                                Criar registo
+                                {{ __('backoffice/partners.createUser') }}
                             </button>
                             {{-- <a href="{{ route('partner.create') }}" class="btn btn-primary btn-sm float-right"> Criar registo</a> --}}
                         </div>
@@ -91,7 +91,7 @@
                 @else
                     <div class="callout callout-info">
                         <i class="far fa-frown"></i>
-                        Parece que não temos o que exibir por aqui. <a href="#" data-toggle="modal" data-target="#modal-lg"> Clique para adicionar um novo aderente.</a>
+                        {{ __('backoffice/partners.noData') }} <a href="#" data-toggle="modal" data-target="#modal-lg"> {{ __('backoffice/partners.clickAddData') }}</a>
                     </div>
                 @endif
             </div>
@@ -103,7 +103,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Pré-registo - Aderentes</h4>
+                    <h4 class="modal-title">{{ __('backoffice/partners.modalCreate.modalTitle') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,35 +112,35 @@
                     <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('partner.store') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="company_name" class="col-sm-2 col-form-label">Empresa</label>
+                            <label for="company_name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.company') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" required class="form-control" id="company_name" name="company_name" placeholder="Nome da empresa" >
+                                <input type="text" required class="form-control" id="company_name" name="company_name" placeholder="{{ __('backoffice/partners.modalCreate.company') }}" >
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">Responsável</label>
+                            <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.responsible') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" required class="form-control" id="name" name="name" placeholder="Nome do responsável" >
+                                <input type="text" required class="form-control" id="name" name="name" placeholder="{{ __('backoffice/partners.modalCreate.responsible') }}" >
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <label for="email" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.email') }}</label>
                             <div class="col-sm-10">
-                                <input type="email" required class="form-control" id="email" name="email" placeholder="Email" >
+                                <input type="email" required class="form-control" id="email" name="email" placeholder="{{ __('backoffice/partners.modalCreate.email') }}" >
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="category_id" class="col-sm-2 col-form-label">Categoria</label>
+                            <label for="category_id" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.category') }}</label>
                             <div class="col-sm-10">
                                 <select required class="form-control" id="category_id" name="category_id">
                                     @if (isset($partnerCategories) && count($partnerCategories) > 0)
-                                        <option selected value="0"> Selecione uma categoria </option>
+                                        <option selected value="0"> {{ __('backoffice/partners.modalCreate.selectCategory') }} </option>
                                         @foreach ($partnerCategories as $category)
                                             <option value="{{ $category->id}}"> {{ $category->name}} </option>
                                         @endforeach
                                     @else
-                                        <option selected value="0"> Sem categorias cadastradas </option>
+                                        <option selected value="0"> {{ __('backoffice/partners.modalCreate.noCategory') }} </option>
                                     @endif
                                 </select>
                             </div>
@@ -148,8 +148,8 @@
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary" form="formCreation">Criar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalCreate.close') }}</button>
+                    <button type="submit" class="btn btn-primary" form="formCreation">{{ __('backoffice/partners.modalCreate.create') }}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -162,15 +162,15 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Deseja remover este utilizador?</p>
+                    <p>{{ __('backoffice/partners.modalRemove.modalTitle') }}</p>
                     <form class="form-horizontal" id="formDelete" method="POST" action="{{-- route('partner.destroy', ['partner' => $partner] ) --}}">
                         @csrf
                         {{ method_field('DELETE') }}
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">Remover</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalRemove.close') }}</button>
+                    <button type="submit" class="btn btn-danger" form="formDelete">{{ __('backoffice/partners.modalRemove.remove') }}</button>
                 </div>
             </div>
         </div>

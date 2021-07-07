@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Editor de conteúdo</h1>
+                <h1 class="m-0">{{ __('backoffice/webContent.contentEditor')  }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Editor de conteúdo</li>
-                    <li class="breadcrumb-item active">FAQs</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">{{ __('backoffice/webContent.home')  }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('backoffice/webContent.contentEditor')  }}</li>
+                    <li class="breadcrumb-item active">{{ __('backoffice/webContent.contentType.faqs')  }}</li>
                 </ol>
             </div>
         </div>
@@ -24,18 +24,18 @@
                 @if (isset($content) && count($content) > 0)
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">FAQs</h3>
+                            <h3 class="card-title">{{ __('backoffice/webContent.contentType.faqs')  }}</h3>
                         </div>
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Título</th>
-                                        <th>Conteúdo</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
+                                        <th>{{ __('backoffice/webContent.id')      }}</th>
+                                        <th>{{ __('backoffice/webContent.title')   }}</th>
+                                        <th>{{ __('backoffice/webContent.content') }}</th>
+                                        <th>{{ __('backoffice/webContent.status')  }}</th>
+                                        <th>{{ __('backoffice/webContent.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,10 +51,14 @@
                                                     data-faq-title="{{ $faq->title }}"
                                                     data-faq-content="{{ $faq->content }}"
                                                     data-faq-status="{{ $faq->active }}">
-                                                    Ver conteúdo
+                                                    {{ __('backoffice/webContent.seeContent') }}
                                                 </a>
                                             </td>
-                                            <td>{{ !$faq->active ? 'Inativo' : 'Ativo'}}</td>
+                                            <td>{{ !$faq->active ? 
+                                                    __('backoffice/webContent.inactive') : 
+                                                    __('backoffice/webContent.active')
+                                                }}
+                                            </td>
                                             <td>
                                                 <a class="mr-1 updateStatus" href="#" 
                                                     data-faq-id="{{ $faq->id }}"
@@ -97,14 +101,15 @@
                         </div>
                         <div class="card-footer clearfix">
                             <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                                Criar registo
+                                {{ __('backoffice/webContent.createFaq') }}
                             </button>
                         </div>
                     </div>
                 @else
                     <div class="callout callout-info">
                         <i class="far fa-frown"></i>
-                        Parece que não temos o que exibir por aqui. <a href="#" data-toggle="modal" data-target="#modal-lg"> Clique para criar um novo item de FAQ</a>
+                        {{ __('backoffice/webContent.noData') }} <a href="#" data-toggle="modal" data-target="#modal-lg">{{ __('backoffice/webContent.clickAddData') }}</a>
+                        {{-- Parece que não temos o que exibir por aqui. <a href="#" data-toggle="modal" data-target="#modal-lg"> Clique para criar um novo item de FAQ</a> --}}
                     </div>
                 @endif
             </div>
@@ -116,7 +121,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">FAQs</h4>
+                    <h4 class="modal-title">{{ __('backoffice/webContent.contentType.faqs') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -128,14 +133,14 @@
                         <input type="hidden" name="content_area" value="{{$content_area ?? null}}">
 
                         <div class="form-group row">
-                            <label for="title" class="col-sm-2 col-form-label">Título</label>
+                            <label for="title" class="col-sm-2 col-form-label">{{ __('backoffice/webContent.title') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="titleEdit" name="title" placeholder="Título da área" value="">
+                                <input type="text" class="form-control" id="titleEdit" name="title" placeholder="{{ __('backoffice/webContent.title') }}" value="">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="title" class="col-sm-2 col-form-label">Conteúdo</label>
+                            <label for="title" class="col-sm-2 col-form-label">{{ __('backoffice/webContent.content') }}</label>
                             <div class="col-sm-10">
                                 <textarea id="summernote" name="content">
                                     
@@ -147,7 +152,7 @@
                             <div class="offset-sm-2 col-sm-10">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="statusEdit" name="active">
-                                <label class="form-check-label" for="active">Conteúdo ativo</label>
+                                <label class="form-check-label" for="active">{{ __('backoffice/webContent.activeContent') }}</label>
                             </div>
                             </div>
                         </div>
@@ -155,8 +160,8 @@
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary" form="formCreation">Criar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/webContent.close') }}</button>
+                    <button type="submit" class="btn btn-primary" form="formCreation">{{ __('backoffice/webContent.create') }}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

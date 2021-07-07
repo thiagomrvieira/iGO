@@ -5,7 +5,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('admin') }}" class="nav-link">Home</a>
+      <a href="{{ route('admin') }}" class="nav-link">{{ __('backoffice/navbar.home') }}</a>
     </li>
     {{-- <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">Contact</a>
@@ -21,7 +21,7 @@
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item nav-logout">
-          <i class="fas fa-sign-out-alt"></i> Logout
+          <i class="fas fa-sign-out-alt"></i> {{ __('backoffice/navbar.logout') }}
         </a>
         
       </div>

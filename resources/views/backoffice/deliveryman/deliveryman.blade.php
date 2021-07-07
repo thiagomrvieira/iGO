@@ -45,37 +45,32 @@
                                             <td>{{ $delMan->name ?? null}}</td>
                                             <td>{{ $delMan->email ?? null}}</td>
                                             <td>{{ $delMan->mobile_phone_number ?? null}}</td>
-                                            <td>{{ !$delMan->active ? __('backoffice/deliverymen.active') : __('backoffice/deliverymen.inactive') }} </td>
+                                            <td>{{ !$delMan->active ? __('backoffice/deliverymen.inactive') : __('backoffice/deliverymen.active') }} </td>
                                             <td>
                                                 <a class="mr-1 updateStatus" href="#" data-delman-id="{{ $delMan->id }}">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                
                                                 <a href="{{ route('deliveryman.edit', ['deliveryman' => $delMan] ) }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                                 <a class="ml-1 openDeleteDialog" href="#" data-delman-id="{{ $delMan->id }}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#modal-confirm">
-                                                    
+                                                    data-toggle="modal" data-target="#modal-confirm">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
-                                                
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
 
-                                        {{-- hidden form for updating status --}}
-                                        <form id="form-update-status" class="form-horizontal" method="POST" action="">
-                                            @csrf
-                                            {{ method_field('PATCH') }}
-                                            
-                                            @if (is_null($delMan->approved_at))
-                                                <input type="hidden" name="approved_at" value="{{date('Y/m/d H:i:s')}}">
-                                            @endif
-                                            <input type="hidden" name="active" value="1">
-                                        </form>
-
+                                    {{-- hidden form for updating status --}}
+                                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'form-update-status', 'method' => 'post' ]) !!}
+                                        @csrf
+                                        {{ method_field('PATCH') }}
+                                        
+                                        @if (is_null($delMan->approved_at))
+                                            {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}
+                                        @endif
+                                        {!! Form::hidden('active', 1 ) !!}
+                                    {!! Form::close() !!}
                                 </tbody>
                             </table>
                         </div>
@@ -83,7 +78,6 @@
                             <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
                                 {{ __('backoffice/deliverymen.createUser') }}
                             </button>
-                            {{-- <a href="{{ route('deliveryman.create') }}" class="btn btn-primary btn-sm float-right"> Criar registo</a> --}}
                         </div>
                     </div>
                 @else
@@ -107,31 +101,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('deliveryman.store') }}">
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'deliveryman.store', 'method' => 'post' ]) !!}
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.modalCreate.name') }}</label>
+                            {!! Form::label('name', __('backoffice/deliverymen.modalCreate.name'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input  type="text" required class="form-control" id="name" name="name" placeholder="Nome" value="{{ $deliveryman->name ?? null}}">
+                                {!! Form::text('name', $deliveryman->name ?? null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.name') ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.modalCreate.email') }}</label>
+                            {!! Form::label('email', __('backoffice/deliverymen.modalCreate.email'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="email" required class="form-control" id="email" name="email" placeholder="Email" value="{{ $deliveryman->email ?? null}}">
+                                {!! Form::text('email', $deliveryman->email ?? null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.email')] ) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="mobile_phone_number" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.modalCreate.mobilePhoneNumber') }}</label>
+                            {!! Form::label('mobile_phone_number', __('backoffice/deliverymen.modalCreate.mobilePhoneNumber'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="text" required class="form-control" id="mobile_phone_number" name="mobile_phone_number" placeholder="987 654 321" value="{{ $deliveryman->mobile_phone_number ?? null}}">
+                                {!! Form::text('mobile_phone_number', $deliveryman->email ?? null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/deliverymen.modalCreate.close') }}</button>
-                    <button type="submit" class="btn btn-primary" form="formCreation">{{ __('backoffice/deliverymen.modalCreate.create') }}</button>
+                    {!! Form::submit(__('backoffice/deliverymen.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalCreate.create'), ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formCreation']) !!}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -145,14 +140,16 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <p>{{ __('backoffice/deliverymen.modalRemove.modalTitle') }}</p>
-                    <form class="form-horizontal" id="formDelete" method="POST" action="{{-- route('deliveryman.destroy', ['deliveryman' => $delMan] ) --}}">
+                    
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formDelete', 'method' => 'post' ]) !!}
                         @csrf
                         {{ method_field('DELETE') }}
-                    </form>
+                    {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/deliverymen.modalRemove.close') }}</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">{{ __('backoffice/deliverymen.modalRemove.remove') }}</button>
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger' , 'form' => 'formDelete'   ]) !!}
                 </div>
             </div>
         </div>

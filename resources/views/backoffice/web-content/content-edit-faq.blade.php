@@ -174,15 +174,15 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Deseja remover este conteúdo?</p>
+                    <p>{{ __('backoffice/webContent.modalRemove.modalTitle') }}</p>
                     <form class="form-horizontal" id="formDelete" method="POST" action="">
                         @csrf
                         {{ method_field('DELETE') }}
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">Remover</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/webContent.modalRemove.close') }}</button>
+                    <button type="submit" class="btn btn-danger" form="formDelete">    {{ __('backoffice/webContent.modalRemove.remove') }}</button>
                 </div>
             </div>
         </div>

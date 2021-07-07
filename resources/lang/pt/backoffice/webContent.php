@@ -38,6 +38,12 @@
         'close'        => "Fechar",
         'create'       => "Criar",
 
+        'modalRemove' => [ 
+            'modalTitle' => "Deseja remover este conteúdo?",
+            'close' => "Fechar",
+            'remove' => "Remover",
+        ],
+
 
         
 

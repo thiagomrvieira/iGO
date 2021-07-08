@@ -11,7 +11,6 @@
                     <li class="breadcrumb-item"><a href="{{ route('admin') }}">{{ __('backoffice/partners.home') }}</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('partner.index') }}">{{ __('backoffice/partners.partners') }}</a></li>
                     <li class="breadcrumb-item active">{{ __('backoffice/partners.categories') }}</li>
-
                 </ol>
             </div>
         </div>
@@ -29,40 +28,37 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('category.store') }}">
+                        {!! Form::open(['class' => 'form-horizontal', 'route' => 'category.store', 'method' => 'post' ]) !!}  
                             @csrf
-                            
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.createCategoryCard.name') }}</label>
+                                {!! Form::label('name',  __('backoffice/partners.createCategoryCard.name'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('backoffice/partners.createCategoryCard.categoryName') }}">
+                                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('backoffice/partners.createCategoryCard.categoryName'), 'required' ]) !!}
                                 </div>
                             </div>
-
                             <div class="form-group row">
-                                <label for="description" class="col-sm-2 col-form-label">{{ __('backoffice/partners.createCategoryCard.description') }}</label>
+                                {!! Form::label('description',  __('backoffice/partners.createCategoryCard.description'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                 <div class="col-sm-10">
-                                    <textarea name="description" class="form-control"></textarea>                                
+                                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="active" name="active"
-                                        {{ (isset($content->active) && $content->active == 1) ? 'checked' : null }}>
-                                    <label class="form-check-label" for="active">{{ __('backoffice/partners.createCategoryCard.activeContent') }}</label>
-                                </div>
+                                    <div class="form-check">
+                                        {!! Form::checkbox('active', null, false, ['class' => 'form-check-input']) !!}
+                                        {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!}
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">{{ __('backoffice/partners.createCategoryCard.saveButton') }}</button>
+                                    {!! Form::submit(__('backoffice/partners.createCategoryCard.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
+
                     <div class="card-footer">
                     </div>
                 </div>
@@ -108,17 +104,10 @@
                                                 data-category-status="{{ $category->active }}">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            
-                                            {{-- <a href="{{ route('category.edit', ['category' => $category] ) }}">
-                                                <i class="far fa-edit"></i>
-                                            </a> --}}
                                             <a class="ml-1 openDeleteDialog" href="#" data-category-id="{{ $category->id }}" 
-                                                data-toggle="modal" 
-                                                data-target="#modal-confirm">
-                                                
+                                                data-toggle="modal"  data-target="#modal-confirm">
                                                 <i class="far fa-trash-alt"></i>
                                             </a>
-                                            
                                         </td>
                                     </tr>
                                 @endforeach
@@ -126,21 +115,17 @@
 
 
                             {{-- hidden form for updating status --}}
-                            <form id="form-update-status" class="form-horizontal" method="POST" action="">
+                            {!! Form::open(['class' => 'form-horizontal', 'id' => 'form-update-status', 'method' => 'post' ]) !!}  
                                 @csrf
                                 {{ method_field('PATCH') }}
-                                
-                                <input type="hidden" name="active" id="update-active">
-                            </form>
+                                {!! Form::hidden('active', null, ['id' => 'update-active'] ) !!} 
+                            {!! Form::close() !!}
 
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        {{-- <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                            Criar registo
-                        </button> --}}
-                        {{-- <a href="{{ route('partner.create') }}" class="btn btn-primary btn-sm float-right"> Criar registo</a> --}}
+
                     </div>
                 </div>
                
@@ -155,14 +140,15 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <p>{{ __('backoffice/partners.modalRemove.modalTitle') }}</p>
-                    <form class="form-horizontal" id="formDelete" method="POST" action="{{-- route('partner.destroy', ['partner' => $partner] ) --}}">
+                    {{-- <form class="form-horizontal" id="formDelete" method="POST" action="route('partner.destroy', ['partner' => $partner] )"> --}}
+                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'formDelete', 'method' => 'post' ]) !!}  
                         @csrf
                         {{ method_field('DELETE') }}
-                    </form>
-                </div>
+                    {!! Form::close() !!}
+                    </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalRemove.close')  }} </button>
-                    <button type="submit" class="btn btn-danger"  form="formDelete">   {{ __('backoffice/partners.modalRemove.remove') }} </button>
+                    {!! Form::submit(__('backoffice/partners.modalRemove.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/partners.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger',  'form' => 'formDelete']) !!}
                 </div>
             </div>
         </div>

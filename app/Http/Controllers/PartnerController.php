@@ -20,7 +20,7 @@ class PartnerController extends Controller
     {
         
         $partners = (count(Partner::all()) > 0 ) ? Partner::all() : [];
-        $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
+        $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? PartnerCategory::where('active', 1)->get() : [];
         
         return view('backoffice.partner.partner')->with('partners', $partners)
                                                  ->with('partnerCategories', $partnerCategories);

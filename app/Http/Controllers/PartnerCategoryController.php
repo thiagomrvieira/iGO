@@ -84,11 +84,14 @@ class PartnerCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PartnerCategory  $partnerCategory
+     * @param  \App\Models\PartnerCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PartnerCategory $partnerCategory)
+    public function destroy(PartnerCategory $category)
     {
-        //
+        if($category) {
+            $category->delete();
+        }
+        return redirect()->route('category.index');
     }
 }

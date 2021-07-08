@@ -49,24 +49,22 @@
                             </li>
                         </ul>
                         @if ($partner->active == false)
-                            <form class="form-horizontal" method="POST" action="{{ route('partner.update', ['partner' => $partner]) }}">
+                            {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}
                                 @csrf
                                 {{ method_field('PATCH') }}
-                                
                                 @if (is_null($partner->approved_at))
-                                    <input type="hidden" name="approved_at" value="{{date('Y/m/d H:i:s')}}">
+                                    {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!} 
                                 @endif
-
-                                <input type="hidden" name="active" value="1">
-                                <button type="submit"class="btn btn-primary btn-block"><b>{{ __('backoffice/partners.activeAccount') }}</b></button>
-                            </form>
+                                {!! Form::hidden('active', 1 ) !!}
+                                {!! Form::submit(__('backoffice/partners.activeAccount'),  ['type' => 'submit', 'class' => 'btn btn-primary btn-block' ]) !!}
+                            {!! Form::close() !!}
                         @else
-                            <form class="form-horizontal" method="POST" action="{{ route('partner.update', ['partner' => $partner]) }}">
+                            {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}
                                 @csrf
                                 {{ method_field('PATCH') }}
-                                <input type="hidden" name="active" value="0">
-                                <button type="submit" class="btn btn-danger btn-block"><b>{{ __('backoffice/partners.deactiveAccount') }}</b></button>
-                            </form>
+                                {!! Form::hidden('active', 0 ) !!}
+                                {!! Form::submit(__('backoffice/partners.deactiveAccount'),  ['type' => 'submit', 'class' => 'btn btn-danger btn-block' ]) !!}
+                            {!! Form::close() !!}
                         @endif
                     </div>
                 </div>
@@ -87,138 +85,136 @@
                             
                             {{-- TAB COMPANY --}}
                             <div class="active tab-pane" id="company">
-                                <form class="form-horizontal" method="POST" action="{{ route('partner.update', ['partner' => $partner]) }}">
+                                {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}      
                                     @csrf
                                     {{ method_field('PATCH') }}
                                     
                                     <div class="form-group row">
-                                        <label for="company_name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.company') }}</label>
+                                        {!! Form::label('company_name', __('backoffice/partners.companyDataTab.company'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="{{ __('backoffice/partners.companyDataTab.companyName') }}" value="{{ $partner->company_name ?? null}}">
+                                            {!! Form::text('company_name', $partner->company_name ?? null, ['class' => 'form-control', 
+                                                                                                            'placeholder' => __('backoffice/partners.companyDataTab.companyName')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="category_id" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.category') }}</label>
+                                        {!! Form::label('category_id', __('backoffice/partners.companyDataTab.category'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <select class="form-control" id="category_id" name="category_id">
-                                                @if (isset($partnerCategories) && count($partnerCategories) > 0)
-                                                    @foreach ($partnerCategories as $category)
-                                                        <option value="{{ $category->id}}" 
-                                                            {{ $partner->category_id == $category->id ? 'selected': ''}}> 
-                                                            {{ $category->name}} 
-                                                        </option>
-                                                    @endforeach
-                                                @else
-                                                    <option disabled selected value="0"> {{ __('backoffice/partners.companyDataTab.noCategories') }} </option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.responsible') }}</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('backoffice/partners.companyDataTab.name') }}" value="{{ $partner->name ?? null}}">
+                                            {!! Form::select('category_id', $partnerCategories->pluck('name', 'id'), $partner->category_id, ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.email') }}</label>
+                                        {!! Form::label('name', __('backoffice/partners.companyDataTab.category'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ __('backoffice/partners.companyDataTab.email') }}" value="{{ $partner->email ?? null}}">
+                                            {!! Form::text('name', $partner->company_name ?? null, ['class' => 'form-control', 
+                                                                                                    'placeholder' => __('backoffice/partners.companyDataTab.name')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="phone_number" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.phone') }}</label>
+                                        {!! Form::label('email',__('backoffice/partners.companyDataTab.email'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="345 567 678" value="{{ $partner->phone_number ?? null}}">
+                                            {!! Form::text('email', $partner->email ?? null, ['class' => 'form-control', 
+                                                                                              'placeholder' => __('backoffice/partners.companyDataTab.email') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="mobile_phone_number" class="col-sm-2 col-form-label">{{ __('backoffice/partners.companyDataTab.mobilePhone') }}</label>
+                                        {!! Form::label('phone_number',__('backoffice/partners.companyDataTab.phone'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="mobile_phone_number" name="mobile_phone_number" placeholder="987 654 321" value="{{ $partner->mobile_phone_number ?? null}}">
+                                            {!! Form::text('phone_number', $partner->phone_number ?? null, ['class' => 'form-control', 
+                                                                                                            'placeholder' => __('backoffice/partners.companyDataTab.phone') ]) !!}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        {!! Form::label('mobile_phone_number',__('backoffice/partners.companyDataTab.mobilePhone'), ['class' => 'col-sm-2 col-form-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::text('mobile_phone_number', $partner->mobile_phone_number ?? null, ['class' => 'form-control', 
+                                                                                                                          'placeholder' => __('backoffice/partners.companyDataTab.mobilePhone') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/partners.saveButton') }}</button>
+                                            {!! Form::submit(__('backoffice/partners.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
                             
                             {{-- TAB DOCUMENTS --}}
                             <div class="tab-pane" id="documents">
-                                <form class="form-horizontal" method="POST" action="{{ route('partner.update', ['partner' => $partner]) }}">
+                                {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}      
                                     @csrf
                                     {{ method_field('PATCH') }}
 
                                     <div class="form-group row">
-                                        <label for="tax_number" class="col-sm-2 col-form-label">{{ __('backoffice/partners.docDataTab.taxNumber') }}</label>
+                                        {{-- <label for="tax_number" class="col-sm-2 col-form-label">{{ __('backoffice/partners.docDataTab.taxNumber') }}</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="tax_number" name="tax_number" placeholder="L123456" value="{{ $partner->tax_number ?? null}}">
+                                        </div> --}}
+                                        {!! Form::label('tax_number',__('backoffice/partners.docDataTab.taxNumber'), ['class' => 'col-sm-2 col-form-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::text('tax_number', $partner->tax_number ?? null, ['class' => 'form-control', 'placeholder' => 'L123456' ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/partners.saveButton') }}</button>
+                                            {!! Form::submit(__('backoffice/partners.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
                             
                             {{-- TAB ADDRESS --}}
                             <div class="tab-pane" id="address">
-                                <form class="form-horizontal" method="POST" action="{{ route('partner.update', ['partner' => $partner]) }}">
+                                {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                                'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}  
                                     @csrf
                                     {{ method_field('PATCH') }}
 
                                     {{-- Input de controle para o metodo update --}}
-                                    <input type="hidden" name="addressData" value="true">
+                                    {!! Form::hidden('addressData', true ) !!}
 
                                     <div class="form-group row">
-                                        <label for="line_1" class="col-sm-2 col-form-label">{{ __('backoffice/partners.addressDataTab.tabTitle') }}</label>
+                                        {!! Form::label('line_1', __('backoffice/partners.addressDataTab.address'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="line_1" name="line_1" placeholder="{{ __('backoffice/partners.addressDataTab.lineOne') }}" value="{{ $partner->address->line_1 ?? null}}" >
+                                            {!! Form::text('line_1', $partner->address->line_1 ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/partners.addressDataTab.lineOne') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="line_2" class="col-sm-2 col-form-label"></label>
+                                        {!! Form::label('line_2', ' ',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="line_2" name="line_2" placeholder="{{ __('backoffice/partners.addressDataTab.lineTwo') }}" value="{{ $partner->address->line_2 ?? null}}" >
+                                            {!! Form::text('line_2', $partner->address->line_2 ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/partners.addressDataTab.lineTwo') ]) !!}
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="county" class="col-sm-2 col-form-label">{{ __('backoffice/partners.addressDataTab.county') }}</label>
+                                        {!! Form::label('county',  __('backoffice/partners.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="county" name="county" placeholder="{{ __('backoffice/partners.addressDataTab.county') }}" value="{{ $partner->address->county ?? null}}" >
+                                            {!! Form::text('county', $partner->address->county ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.county') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="city" class="col-sm-2 col-form-label">{{ __('backoffice/partners.addressDataTab.city') }}</label>
+                                        {!! Form::label('city',  __('backoffice/partners.addressDataTab.city'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="{{ __('backoffice/partners.addressDataTab.city') }}" value="{{ $partner->address->city ?? null}}" >
+                                            {!! Form::text('city', $partner->address->city ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.city') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="post_code" class="col-sm-2 col-form-label">{{ __('backoffice/partners.addressDataTab.postalCode') }}</label>
+                                        {!! Form::label('post_code',  __('backoffice/partners.addressDataTab.postalCode'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="post_code" name="post_code" placeholder="{{ __('backoffice/partners.addressDataTab.postalCode') }}" value="{{ $partner->address->post_code ?? null}}" >
+                                            {!! Form::text('post_code', $partner->address->post_code ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.postalCode') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="country" class="col-sm-2 col-form-label">{{ __('backoffice/partners.addressDataTab.country') }}</label>
+                                        {!! Form::label('country',  __('backoffice/partners.addressDataTab.country'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="country" name="country" placeholder="{{ __('backoffice/partners.addressDataTab.country') }}" value="{{ $partner->address->country ?? null}}" >
+                                            {!! Form::text('country', $partner->address->country ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.country') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/partners.saveButton') }}</button>
+                                            {!! Form::submit(__('backoffice/partners.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
 
                         </div>

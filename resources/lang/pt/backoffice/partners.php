@@ -117,7 +117,7 @@
         ],
 
         'modalRemove' => [ 
-            'modalTitle' => "Deseja remover esta categoria?",
+            'modalTitle' => "Deseja remover este item?",
             'close' => "Fechar",
             'remove' => "Remover",
         ],

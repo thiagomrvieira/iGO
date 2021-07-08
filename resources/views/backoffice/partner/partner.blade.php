@@ -47,45 +47,38 @@
                                             <td>{{ $partner->name ?? null}}</td>
                                             <td>{{ $partner->email ?? null}}</td>
                                             <td>{{ $partner->mobile_phone_number ?? null}}</td>
-                                            <td>{{ !$partner->active ? __('backoffice/partners.active') : __('backoffice/partners.inactive') }}</td>
+                                            <td>{{ !$partner->active ? __('backoffice/partners.inactive') : __('backoffice/partners.active') }}</td>
                                             <td>
                                                 <a class="mr-1 updateStatus" href="#" data-partner-id="{{ $partner->id }}">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                
                                                 <a href="{{ route('partner.edit', ['partner' => $partner] ) }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                                 <a class="ml-1 openDeleteDialog" href="#" data-partner-id="{{ $partner->id }}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#modal-confirm">
-                                                    
+                                                    data-toggle="modal"  data-target="#modal-confirm">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
-                                                
                                             </td>
                                         </tr>
-                                        @endforeach
-
-                                        {{-- hidden form for updating status --}}
-                                        <form id="form-update-status" class="form-horizontal" method="POST" action="">
-                                            @csrf
-                                            {{ method_field('PATCH') }}
-                                            
-                                            @if (is_null($partner->approved_at))
-                                                <input type="hidden" name="approved_at" value="{{date('Y/m/d H:i:s')}}">
-                                            @endif
-                                            <input type="hidden" name="active" value="1">
-                                        </form>
+                                    @endforeach
+                                       
+                                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'form-update-status', 'method' => 'post' ]) !!}
+                                        @csrf
+                                        {{ method_field('PATCH') }}
+                                        
+                                        @if (is_null($partner->approved_at))
+                                            {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}
+                                        @endif
+                                        {!! Form::hidden('active', 1 ) !!}
+                                    {!! Form::close() !!}
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer clearfix">
-                            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                                {{ __('backoffice/partners.createUser') }}
-                            </button>
-                            {{-- <a href="{{ route('partner.create') }}" class="btn btn-primary btn-sm float-right"> Criar registo</a> --}}
+                            {!! Form::submit(__('backoffice/partners.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
+                                                                                     'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
                         </div>
                     </div>
                 @else
@@ -109,47 +102,38 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('partner.store') }}">
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'partner.store', 'method' => 'post' ]) !!}
                         @csrf
                         <div class="form-group row">
-                            <label for="company_name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.company') }}</label>
+                            {!! Form::label('company_name', __('backoffice/partners.modalCreate.company'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="text" required class="form-control" id="company_name" name="company_name" placeholder="{{ __('backoffice/partners.modalCreate.company') }}" >
+                                {!! Form::text('company_name', null,  ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.company') ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.responsible') }}</label>
+                            {!! Form::label('name', __('backoffice/partners.modalCreate.responsible'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="text" required class="form-control" id="name" name="name" placeholder="{{ __('backoffice/partners.modalCreate.responsible') }}" >
+                                {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.responsible') ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.email') }}</label>
+                            {!! Form::label('email', __('backoffice/partners.modalCreate.email'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="email" required class="form-control" id="email" name="email" placeholder="{{ __('backoffice/partners.modalCreate.email') }}" >
+                                {!! Form::text('email', null, ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.email') ]) !!}
                             </div>
                         </div>
-                        
                         <div class="form-group row">
-                            <label for="category_id" class="col-sm-2 col-form-label">{{ __('backoffice/partners.modalCreate.category') }}</label>
+                            {!! Form::label('category_id', __('backoffice/partners.modalCreate.category'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <select required class="form-control" id="category_id" name="category_id">
-                                    @if (isset($partnerCategories) && count($partnerCategories) > 0)
-                                        <option selected value="0"> {{ __('backoffice/partners.modalCreate.selectCategory') }} </option>
-                                        @foreach ($partnerCategories as $category)
-                                            <option value="{{ $category->id}}"> {{ $category->name}} </option>
-                                        @endforeach
-                                    @else
-                                        <option selected value="0"> {{ __('backoffice/partners.modalCreate.noCategory') }} </option>
-                                    @endif
-                                </select>
+                                {!! Form::select('category_id', $partnerCategories->pluck('name', 'id'), null, ['placeholder' => __('backoffice/partners.modalCreate.category'), 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
-                    </form>
-                </div>
+                    {!! Form::close() !!}
+                    </div>
+
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalCreate.close') }}</button>
-                    <button type="submit" class="btn btn-primary" form="formCreation">{{ __('backoffice/partners.modalCreate.create') }}</button>
+                    {!! Form::submit(__('backoffice/partners.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/partners.modalCreate.create'), ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formCreation']) !!}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -163,14 +147,14 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <p>{{ __('backoffice/partners.modalRemove.modalTitle') }}</p>
-                    <form class="form-horizontal" id="formDelete" method="POST" action="{{-- route('partner.destroy', ['partner' => $partner] ) --}}">
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formDelete', 'method' => 'post' ]) !!}
                         @csrf
                         {{ method_field('DELETE') }}
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/partners.modalRemove.close') }}</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">{{ __('backoffice/partners.modalRemove.remove') }}</button>
+                    {!! Form::submit(__('backoffice/partners.modalRemove.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/partners.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger' , 'form' => 'formDelete'   ]) !!}
                 </div>
             </div>
         </div>

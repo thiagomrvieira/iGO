@@ -48,25 +48,30 @@
                                 <b>{{ __('backoffice/deliverymen.totalDelivers')  }}</b> <a class="float-right">0</a>
                             </li>
                         </ul>
+                        
                         @if ($deliveryman->active == false)
-                            <form class="form-horizontal" method="POST" action="{{ route('deliveryman.update', ['deliveryman' => $deliveryman]) }}">
+                            {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                            'route' => array('deliveryman.update', ['deliveryman' => $deliveryman]), 'method' => 'post' ]) !!}
                                 @csrf
                                 {{ method_field('PATCH') }}
                                 
                                 @if (is_null($deliveryman->approved_at))
-                                    <input type="hidden" name="approved_at" value="{{date('Y/m/d H:i:s')}}">
+                                    {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!} 
                                 @endif
+                                {!! Form::hidden('active', 1 ) !!}
+                                {!! Form::submit(__('backoffice/deliverymen.activeAccount'),  ['type' => 'submit', 'class' => 'btn btn-primary btn-block' ]) !!}
 
-                                <input type="hidden" name="active" value="1">
-                                <button type="submit"class="btn btn-primary btn-block"><b>{{ __('backoffice/deliverymen.activeAccount')  }}</b></button>
-                            </form>
+                            {!! Form::close() !!}
                         @else
-                            <form class="form-horizontal" method="POST" action="{{ route('deliveryman.update', ['deliveryman' => $deliveryman]) }}">
+                            {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                            'route' => array('deliveryman.update', ['deliveryman' => $deliveryman]), 'method' => 'post' ]) !!}  
                                 @csrf
                                 {{ method_field('PATCH') }}
-                                <input type="hidden" name="active" value="0">
-                                <button type="submit" class="btn btn-danger btn-block"><b>{{ __('backoffice/deliverymen.deactiveAccount')  }}</b></button>
-                            </form>
+
+                                {!! Form::hidden('active', 0 ) !!}
+                                {!! Form::submit(__('backoffice/deliverymen.deactiveAccount'),  ['type' => 'submit', 'class' => 'btn btn-danger btn-block' ]) !!}
+
+                            {!! Form::close() !!}
                         @endif
                     </div>
                 </div>
@@ -87,160 +92,166 @@
                             
                             {{-- TAB PERSONAL --}}
                             <div class="active tab-pane" id="personal">
-                                <form class="form-horizontal" method="POST" action="{{ route('deliveryman.update', ['deliveryman' => $deliveryman]) }}">
+                                
+                                {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                                'route' => array('deliveryman.update', ['deliveryman' => $deliveryman]), 'method' => 'post' ]) !!}  
                                     @csrf
                                     {{ method_field('PATCH') }}
                                     
                                     {{-- Input de controle para o metodo update --}}
-                                    <input type="hidden" name="personalData" value="true">
+                                    {!! Form::hidden('personalData', true ) !!}
 
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.personalDataTab.name')  }}</label>
+                                        {!! Form::label('name', __('backoffice/deliverymen.personalDataTab.name'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{ $deliveryman->name ?? null}}">
+                                            {!! Form::text('name', $deliveryman->name ?? null, ['class' => 'form-control', 
+                                                                                                'placeholder' => __('backoffice/deliverymen.personalDataTab.name')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="birth_date" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.personalDataTab.birthDate')  }}</label>
+                                        {!! Form::label('birth_date', __('backoffice/deliverymen.personalDataTab.birthDate'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ $deliveryman->birth_date ?? null}}">
+                                            {!! Form::date('birth_date', $deliveryman->birth_date ?? null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="nacionality" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.personalDataTab.nacionality')  }}</label>
+                                        {!! Form::label('nacionality', __('backoffice/deliverymen.personalDataTab.nacionality'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="nacionality" placeholder="{{ __('backoffice/deliverymen.personalDataTab.nacionality')  }}" name="nacionality" value="{{ $deliveryman->nacionality ?? null}}">
+                                            {!! Form::text('nacionality', $deliveryman->nacionality ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.personalDataTab.nacionality')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="email" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.personalDataTab.email')  }}</label>
+                                        {!! Form::label('email', __('backoffice/deliverymen.personalDataTab.email'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ __('backoffice/deliverymen.personalDataTab.email')  }}" value="{{ $deliveryman->email ?? null}}">
+                                            {!! Form::text('email', $deliveryman->email ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.personalDataTab.email')]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="mobile_phone_number" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.personalDataTab.mobilePhone')  }}</label>
+                                        {!! Form::label('mobile_phone_number', __('backoffice/deliverymen.modalCreate.mobilePhoneNumber'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="mobile_phone_number" name="mobile_phone_number" placeholder="987 654 321" value="{{ $deliveryman->mobile_phone_number ?? null}}">
+                                            {!! Form::text('mobile_phone_number', $deliveryman->mobile_phone_number ?? null, ['class' => 'form-control', 'placeholder' => '987 654 321'] ) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/deliverymen.saveButton')  }}</button>
+                                            {!! Form::submit(__('backoffice/deliverymen.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
+
                             </div>
                             
                             {{-- TAB DOCUMENTS --}}
                             <div class="tab-pane" id="documents">
-                                <form class="form-horizontal" method="POST" action="{{ route('deliveryman.update', ['deliveryman' => $deliveryman]) }}">
+                                {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                                'route' => array('deliveryman.update', ['deliveryman' => $deliveryman]), 'method' => 'post' ]) !!}  
                                     @csrf
                                     {{ method_field('PATCH') }}
 
                                     <div class="form-group row">
-                                        <label for="identity_card_number" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.docDataTab.idCardNumber')  }}</label>
+                                        {!! Form::label('identity_card_number', __('backoffice/deliverymen.docDataTab.idCardNumber'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="identity_card_number" name="identity_card_number" placeholder="L123456" value="{{ $deliveryman->identity_card_number ?? null}}">
+                                            {!! Form::text('identity_card_number', $deliveryman->identity_card_number ?? null, ['class' => 'form-control', 'placeholder' => 'L1234561'] ) !!}
+                                        </div>
+                                    </div> 
+                                    <div class="form-group row">
+                                        {!! Form::label('tax_number', __('backoffice/deliverymen.docDataTab.taxNumber'), ['class' => 'col-sm-2 col-form-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::text('tax_number', $deliveryman->tax_number ?? null, ['class' => 'form-control', 'placeholder' => 'M98754'] ) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tax_number" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.docDataTab.taxNumber')  }}</label>
+                                        {!! Form::label('social_insurance_number', __('backoffice/deliverymen.docDataTab.socialInsurance'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="tax_number" name="tax_number" placeholder="M98754" value="{{ $deliveryman->tax_number ?? null}}">
+                                            {!! Form::text('social_insurance_number', $deliveryman->social_insurance_number ?? null, ['class' => 'form-control', 'placeholder' => '654987'] ) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="social_insurance_number" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.docDataTab.socialInsurance')  }}</label>
+                                        {!! Form::label('driving_license_name', __('backoffice/deliverymen.docDataTab.drivingLicense'), ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="social_insurance_number" name="social_insurance_number" placeholder="654987" value="{{ $deliveryman->social_insurance_number ?? null}}">
+                                            {!! Form::text('driving_license_name', $deliveryman->driving_license_name ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.docDataTab.name')] ) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="driving_license_name" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.docDataTab.drivingLicense')  }}</label>
+                                        {!! Form::label('driving_license_number', ' ', ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="driving_license_name" name="driving_license_name" placeholder="{{ __('backoffice/deliverymen.docDataTab.name')  }}" value="{{ $deliveryman->driving_license_name ?? null}}">
+                                            {!! Form::text('driving_license_number', $deliveryman->driving_license_number ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.docDataTab.number') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="driving_license_number" class="col-sm-2 col-form-label"></label>
+                                        {!! Form::label('bank_account_name', __('backoffice/deliverymen.docDataTab.bankAccount'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="driving_license_number" name="driving_license_number" placeholder="{{ __('backoffice/deliverymen.docDataTab.number')  }}" value="{{ $deliveryman->driving_license_number ?? null}}">
+                                            {!! Form::text('bank_account_name', $deliveryman->bank_account_name ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.docDataTab.name') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="bank_account_name" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.docDataTab.bankAccount')  }}</label>
+                                        {!! Form::label('bank_account_number', ' ',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="bank_account_name"  name="bank_account_name" placeholder="{{ __('backoffice/deliverymen.docDataTab.name')  }}" value="{{ $deliveryman->bank_account_name ?? null}}">
+                                            {!! Form::text('bank_account_number', $deliveryman->bank_account_number ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.docDataTab.number') ]) !!}
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="bank_account_number" class="col-sm-2 col-form-label"></label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="bank_account_number" name="bank_account_number" placeholder="{{ __('backoffice/deliverymen.docDataTab.number')  }}" value="{{ $deliveryman->bank_account_number ?? null}}">
-                                        </div>
-                                    </div>
-
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/deliverymen.saveButton')  }}</button>
+                                            {!! Form::submit(__('backoffice/deliverymen.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
+
                             </div>
                             
                             {{-- TAB ADDRESS --}}
                             <div class="tab-pane" id="address">
-                                <form class="form-horizontal" method="POST" action="{{ route('deliveryman.update', ['deliveryman' => $deliveryman]) }}">
+                                {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 
+                                                'route' => array('deliveryman.update', ['deliveryman' => $deliveryman]), 'method' => 'post' ]) !!}  
                                     @csrf
                                     {{ method_field('PATCH') }}
 
                                     {{-- Input de controle para o metodo update --}}
-                                    <input type="hidden" name="addressData" value="true">
+                                    {!! Form::hidden('addressData', true ) !!}
 
                                     <div class="form-group row">
-                                        <label for="line_1" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.addressDataTab.address')  }}</label>
+                                        {!! Form::label('line_1', __('backoffice/deliverymen.addressDataTab.address'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="line_1" name="line_1" placeholder="{{ __('backoffice/deliverymen.addressDataTab.lineOne')  }}" value="{{ $deliveryman->address->line_1 ?? null}}" >
+                                            {!! Form::text('line_1', $deliveryman->address->line_1 ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.addressDataTab.lineOne') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="line_2" class="col-sm-2 col-form-label"></label>
+                                        {!! Form::label('line_2', ' ',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="line_2" name="line_2" placeholder="{{ __('backoffice/deliverymen.addressDataTab.lineTwo')  }}" value="{{ $deliveryman->address->line_2 ?? null}}" >
+                                            {!! Form::text('line_2', $deliveryman->address->line_2 ?? null, ['class' => 'form-control', 'placeholder' => __('backoffice/deliverymen.addressDataTab.lineTwo') ]) !!}
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="county" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.addressDataTab.county')  }}</label>
+                                        {!! Form::label('county',  __('backoffice/deliverymen.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="county" name="county" placeholder="{{ __('backoffice/deliverymen.addressDataTab.county')  }}" value="{{ $deliveryman->address->county ?? null}}" >
+                                            {!! Form::text('county', $deliveryman->address->county ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.county') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="city" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.addressDataTab.city')  }}</label>
+                                        {!! Form::label('city',  __('backoffice/deliverymen.addressDataTab.city'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="{{ __('backoffice/deliverymen.addressDataTab.city')  }}" value="{{ $deliveryman->address->city ?? null}}" >
+                                            {!! Form::text('city', $deliveryman->address->city ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.city') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="post_code" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.addressDataTab.postalCode')  }}</label>
+                                        {!! Form::label('post_code',  __('backoffice/deliverymen.addressDataTab.postalCode'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="post_code" name="post_code" placeholder="{{ __('backoffice/deliverymen.addressDataTab.postalCode')  }}" value="{{ $deliveryman->address->post_code ?? null}}" >
+                                            {!! Form::text('post_code', $deliveryman->address->post_code ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.postalCode') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="country" class="col-sm-2 col-form-label">{{ __('backoffice/deliverymen.addressDataTab.country')  }}</label>
+                                        {!! Form::label('country',  __('backoffice/deliverymen.addressDataTab.country'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="country" name="country" placeholder="{{ __('backoffice/deliverymen.addressDataTab.country')  }}" value="{{ $deliveryman->address->country ?? null}}" >
+                                            {!! Form::text('country', $deliveryman->address->country ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.country') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">{{ __('backoffice/deliverymen.saveButton')  }}</button>
+                                            {!! Form::submit(__('backoffice/deliverymen.saveButton'), ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
 
                         </div>

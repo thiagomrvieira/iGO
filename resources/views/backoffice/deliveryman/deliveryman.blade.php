@@ -75,9 +75,8 @@
                             </table>
                         </div>
                         <div class="card-footer clearfix">
-                            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                                {{ __('backoffice/deliverymen.createUser') }}
-                            </button>
+                            {!! Form::submit(__('backoffice/deliverymen.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
+                                                                                        'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
                         </div>
                     </div>
                 @else

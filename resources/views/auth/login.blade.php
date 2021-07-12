@@ -2,9 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <!--<x-application-logo class="w-20 h-20 fill-current text-gray-500" />-->
                 <img src="{{ asset('assets-backoffice/dist/img/iGOLogo.png') }}" alt="iGO Logo" class="brand-image img-circle" style="max-height: 100px;">
-
             </a>
         </x-slot>
 
@@ -13,21 +11,19 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
+       
+        {!! Form::open(['route' => 'login', 'method' => 'post' ]) !!}
             @csrf
 
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('backoffice/login.email')" />
-
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('backoffice/login.password')" />
-
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
@@ -54,6 +50,6 @@
                     {{ __('backoffice/login.login') }}
                 </x-button>
             </div>
-        </form>
+        {!! Form::close() !!}
     </x-auth-card>
 </x-guest-layout>

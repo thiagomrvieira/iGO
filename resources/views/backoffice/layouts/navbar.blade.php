@@ -29,6 +29,6 @@
   </ul>
 </nav>
 
-<form id="form-logout" method="POST" action="{{ route('logout') }}">
+{!! Form::open(['id' => 'form-logout', 'route' => 'logout', 'method' => 'post' ]) !!}
   @csrf
-</form>
+{!! Form::close() !!}

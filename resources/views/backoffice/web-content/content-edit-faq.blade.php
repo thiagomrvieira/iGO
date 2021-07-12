@@ -79,7 +79,6 @@
                                                 <a class="ml-1 openDeleteDialog" href="#" data-faq-id="{{ $faq->id }}" 
                                                     data-toggle="modal" 
                                                     data-target="#modal-confirm">
-                                                    
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                                 
@@ -88,28 +87,27 @@
                                     @endforeach
 
                                     {{-- hidden form for updating status --}}
-                                    <form id="form-update-status" class="form-horizontal" method="POST" action="">
+                                    {!! Form::open(['id' => 'form-update-status', 'class' => 'form-horizontal', 'method' => 'post']) !!}
                                         @csrf
                                         {{ method_field('PATCH') }}
-                                        <input type="hidden" name="active"  id="statusUpdate">
-                                        <input type="hidden" name="title"   id="titleUpdate">
-                                        <input type="hidden" name="content" id="contentUpdate">
-                                    </form>
+                                        {!! Form::hidden('active',  null, ['id' => 'statusUpdate'])  !!}
+                                        {!! Form::hidden('title',   null, ['id' => 'titleUpdate'])   !!}
+                                        {!! Form::hidden('content', null, ['id' => 'contentUpdate']) !!}
+                                    {!! Form::close() !!}
+
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer clearfix">
-                            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-lg">
-                                {{ __('backoffice/webContent.createFaq') }}
-                            </button>
+                            {!! Form::submit(__('backoffice/webContent.createFaq'), ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right',
+                                                                                     'data-toggle' => 'modal',  'data-target' => '#modal-lg']) !!}
                         </div>
                     </div>
                 @else
                     <div class="callout callout-info">
                         <i class="far fa-frown"></i>
                         {{ __('backoffice/webContent.noData') }} <a href="#" data-toggle="modal" data-target="#modal-lg">{{ __('backoffice/webContent.clickAddData') }}</a>
-                        {{-- Parece que não temos o que exibir por aqui. <a href="#" data-toggle="modal" data-target="#modal-lg"> Clique para criar um novo item de FAQ</a> --}}
                     </div>
                 @endif
             </div>
@@ -127,41 +125,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="formCreation" method="POST" action="{{ route('content.store') }}">
+                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'formCreation', 'route' => 'content.store', 'method' => 'post' ]) !!}
                         @csrf
-                        
-                        <input type="hidden" name="content_area" value="{{$content_area ?? null}}">
-
+                        {!! Form::hidden('content_area', $content_area ?? null ) !!}
                         <div class="form-group row">
-                            <label for="title" class="col-sm-2 col-form-label">{{ __('backoffice/webContent.title') }}</label>
+                            {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="titleEdit" name="title" placeholder="{{ __('backoffice/webContent.title') }}" value="">
+                                {!! Form::text('title', null, ['id' => 'titleEdit', 'class' => 'form-control', 'required', 
+                                                               'placeholder' =>  __('backoffice/webContent.title') ]) !!}
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="title" class="col-sm-2 col-form-label">{{ __('backoffice/webContent.content') }}</label>
+                            {!! Form::label('content',  __('backoffice/webContent.content'),  ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                <textarea id="summernote" name="content">
-                                    
-                                </textarea>                                
+                                {!! Form::textarea('content',  null, ['id' => 'summernote', 'class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                             </div>
                         </div>
-                    
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="statusEdit" name="active">
-                                <label class="form-check-label" for="active">{{ __('backoffice/webContent.activeContent') }}</label>
-                            </div>
+                                <div class="form-check">
+                                    {!! Form::checkbox('active', null, false, ['id' => 'statusEdit', 'class' => 'form-check-input']) !!}
+                                    {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!}
+                                </div>
                             </div>
                         </div>
-                        
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/webContent.close') }}</button>
-                    <button type="submit" class="btn btn-primary" form="formCreation">{{ __('backoffice/webContent.create') }}</button>
+                    {!! Form::submit(__('backoffice/webContent.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/webContent.create'), ['type' => 'submit', 'class' => 'btn btn-primary', 'form' => 'formCreation' ]) !!}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -175,14 +167,15 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <p>{{ __('backoffice/webContent.modalRemove.modalTitle') }}</p>
-                    <form class="form-horizontal" id="formDelete" method="POST" action="">
+                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'formDelete', 'method' => 'post' ]) !!}
                         @csrf
                         {{ method_field('DELETE') }}
-                    </form>
+                    {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('backoffice/webContent.modalRemove.close') }}</button>
-                    <button type="submit" class="btn btn-danger" form="formDelete">    {{ __('backoffice/webContent.modalRemove.remove') }}</button>
+                    {!! Form::submit(__('backoffice/webContent.modalRemove.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/webContent.modalRemove.remove'),  ['type' => 'submit', 'class' => 'btn btn-danger', 'form' => 'formDelete']) !!}
                 </div>
             </div>
         </div>
@@ -224,7 +217,7 @@
             var action     = `/admin/content/${faqId}`;
 
             $('#titleEdit').val(faqTitle);
-            $('#summernote').summernote('pasteHTML', faqContent);
+            $('#summernote').summernote('code', faqContent);
 
             (faqStatus == true) ? $('#statusEdit').prop('checked', true) : $('#statusEdit').removeAttr('checked');
             

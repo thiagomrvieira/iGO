@@ -7,7 +7,7 @@ use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
 use App\Http\Requests\PartnerStoreRequest;
-
+use App\Http\Requests\PartnerStoreFromHomeRequest;
 
 class PartnerController extends Controller
 {
@@ -55,7 +55,7 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createPartnerFromHome(Request $request)
+    public function createPartnerFromHome(PartnerStoreFromHomeRequest $request)
     {
         $partner = Partner::create($request->resource);
         return response()->json(['resource' => $partner], 201); 

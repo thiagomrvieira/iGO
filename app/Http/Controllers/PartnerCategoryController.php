@@ -7,6 +7,7 @@ use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\PartnerCategoryStoreRequest;
 
+
 class PartnerCategoryController extends Controller
 {
     /**

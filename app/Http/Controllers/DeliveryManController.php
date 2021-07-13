@@ -6,6 +6,7 @@ use App\Models\DeliveryMan;
 use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
 use App\Http\Requests\DeliverymanStoreRequest;
+use App\Http\Requests\DeliverymanStoreFromHomeRequest;
 
 
 class DeliveryManController extends Controller
@@ -54,7 +55,7 @@ class DeliveryManController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createDelManFromHome(Request $request)
+    public function createDelManFromHome(DeliverymanStoreFromHomeRequest $request)
     {
         $deliveryman = DeliveryMan::create($request->resource);
         return response()->json(['resource' => $deliveryman], 201); 

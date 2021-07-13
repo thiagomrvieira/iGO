@@ -14,6 +14,15 @@
                 </ol>
             </div>
         </div>
+
+        {{-- Show alerts --}}
+        @if(session()->has('message'))
+            <div class="alert {{session('alert') ?? 'alert-info'}} alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ session('message') }}
+            </div>
+        @endif
+
     </div>
 @endsection
 

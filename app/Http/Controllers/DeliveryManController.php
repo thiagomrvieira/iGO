@@ -45,7 +45,8 @@ class DeliveryManController extends Controller
     public function store(DeliverymanStoreRequest $request)
     {
         $deliveryman = DeliveryMan::create($request->all());
-        return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman]);
+        return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman])
+                         ->with(['message' => 'Estafeta criado com sucesso!', 'alert' => 'alert-success']);
         
     }
 

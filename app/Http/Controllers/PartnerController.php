@@ -46,7 +46,8 @@ class PartnerController extends Controller
     public function store(PartnerStoreRequest $request)
     {
         $partner = Partner::create($request->all());
-        return redirect()->route('partner.edit', ['partner' => $partner]);
+        return redirect()->route('partner.edit', ['partner' => $partner])
+                         ->with(['message' => 'Aderente criado com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**

@@ -45,7 +45,7 @@ class PartnerCategoryController extends Controller
         $request->active == 'on' ? $category->active = 1 : $category->active = 0;
         $category->save();
 
-        return back();
+        return back()->with(['message' => 'Categoria criada com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 @section('content-header')
     <div class="container-fluid">
+        {{-- Breadcrumbs --}}
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">{{ __('backoffice/partners.partnerCategory') }}</h1>
@@ -14,7 +15,8 @@
                 </ol>
             </div>
         </div>
-
+        
+        {{-- Show errors --}}
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -24,6 +26,15 @@
                 @endforeach
             </div>
         @endif
+
+        {{-- Show alerts --}}
+        @if(session()->has('message'))
+            <div class="alert {{session('alert') ?? 'alert-info'}} alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ session('message') }}
+            </div>
+        @endif
+
     </div>
 @endsection
 

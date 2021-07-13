@@ -93,7 +93,7 @@ class PartnerController extends Controller
             $partner->address_id = $address->id;
             $partner->save();
         }
-        return back();
+        return back()->with(['message' => 'Aderente editado com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**

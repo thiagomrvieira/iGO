@@ -80,7 +80,7 @@ class PartnerCategoryController extends Controller
     public function update(Request $request, PartnerCategory $category)
     {
         $category->update($request->all());
-        return back();
+        return back()->with(['message' => 'Categoria atualizada com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**
@@ -94,6 +94,6 @@ class PartnerCategoryController extends Controller
         if($category) {
             $category->delete();
         }
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['message' => 'Categoria removida com sucesso!', 'alert' => 'alert-success']);
     }
 }

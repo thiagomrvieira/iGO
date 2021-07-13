@@ -2,6 +2,7 @@
 
 @section('content-header')
     <div class="container-fluid">
+        {{-- Breadcrumbs --}}
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">{{ __('backoffice/partners.editPartner') }}</h1>
@@ -14,7 +15,7 @@
                 </ol>
             </div>
         </div>
-        
+
         {{-- Show alerts --}}
         @if(session()->has('message'))
             <div class="alert {{session('alert') ?? 'alert-info'}} alert-dismissible">

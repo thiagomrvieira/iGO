@@ -88,7 +88,7 @@ class DeliveryManController extends Controller
             $deliveryman->address_id = $address->id;
             $deliveryman->save();
         }
-        return back();
+        return back()->with(['message' => 'Estafeta editado com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**

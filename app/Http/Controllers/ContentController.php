@@ -46,7 +46,7 @@ class ContentController extends Controller
         $request->active == 'on' ? $content->active = 1 : $content->active = 0;
         $content->save();
 
-        return back();
+        return back()->with(['message' => 'Conteúdo criado com sucesso!', 'alert' => 'alert-success']);
         
     }
 
@@ -64,7 +64,7 @@ class ContentController extends Controller
         $request->active == 'on' ? $content->active = 1 : $content->active = 0;
         $content->save();
 
-        return back();
+        return back()->with(['message' => 'Conteúdo editado com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**
@@ -78,7 +78,7 @@ class ContentController extends Controller
         if($content) {
             $content->delete();
         }
-        return back();
+        return back()->with(['message' => 'Conteúdo removido com sucesso!', 'alert' => 'alert-success']);
     }
 
 }

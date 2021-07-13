@@ -6,6 +6,7 @@ use App\Models\Partner;
 use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
+use App\Http\Requests\PartnerStoreRequest;
 
 
 class PartnerController extends Controller
@@ -42,7 +43,7 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PartnerStoreRequest $request)
     {
         $partner = Partner::create($request->all());
         return redirect()->route('partner.edit', ['partner' => $partner]);

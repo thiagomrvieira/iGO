@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DeliveryMan;
 use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
+use App\Http\Requests\DeliverymanStoreRequest;
 
 
 class DeliveryManController extends Controller
@@ -40,7 +41,7 @@ class DeliveryManController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeliverymanStoreRequest $request)
     {
         $deliveryman = DeliveryMan::create($request->all());
         return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Partner;
 use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\PartnerCategoryStoreRequest;
 
 class PartnerCategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class PartnerCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PartnerCategoryStoreRequest $request)
     {
         $category = new PartnerCategory;
         $category->name = $request->name;

@@ -28,6 +28,8 @@ class DeliveryMan extends Model
        'approved_at',
        'active'
     ];
+    protected $primaryKey = 'id';
+
 
 
     /**

@@ -87,8 +87,15 @@
                             </table>
                         </div>
                         <div class="card-footer clearfix">
-                            {!! Form::submit(__('backoffice/partners.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
+                            {{-- Pagination --}}
+                            <div class="float-left">
+                                {{ $partners->links() }}
+                            </div>
+                            {{-- Button for creation --}}
+                            <div class="float-right">
+                                {!! Form::submit(__('backoffice/partners.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
                                                                                      'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
+                            </div>
                         </div>
                     </div>
                 @else

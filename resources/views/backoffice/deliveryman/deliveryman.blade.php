@@ -86,10 +86,18 @@
                                     {!! Form::close() !!}
                                 </tbody>
                             </table>
+
                         </div>
                         <div class="card-footer clearfix">
-                            {!! Form::submit(__('backoffice/deliverymen.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
-                                                                                        'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
+                            {{-- Pagination --}}
+                            <div class="float-left">
+                                {{ $deliveryMen->links() }}
+                            </div>
+                            {{-- Button for creation --}}
+                            <div class="float-right">
+                                {!! Form::submit(__('backoffice/deliverymen.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
+                                                                                            'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
+                            </div>
                         </div>
                     </div>
                 @else
@@ -98,6 +106,7 @@
                         {{ __('backoffice/deliverymen.noData') }} <a href="#" data-toggle="modal" data-target="#modal-lg">{{ __('backoffice/deliverymen.clickAddData') }}</a>
                     </div>
                 @endif
+                
             </div>
         </div>
     </div>

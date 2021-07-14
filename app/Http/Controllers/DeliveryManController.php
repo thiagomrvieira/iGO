@@ -21,7 +21,7 @@ class DeliveryManController extends Controller
     {
         $deliveryMen = [];
         if ( count(DeliveryMan::all()) > 0 ) {
-            $deliveryMen = DeliveryMan::all();
+            $deliveryMen = DeliveryMan::orderby('id', 'desc')->simplePaginate(10);
         }
         return view('backoffice.deliveryman.deliveryman')->with('deliveryMen', $deliveryMen);
     }

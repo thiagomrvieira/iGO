@@ -29,4 +29,6 @@ class DeliverymanStoreFromHomeRequest extends FormRequest
             '*.mobile_phone_number' => 'required|',
         ];
     }
+
+    
 }

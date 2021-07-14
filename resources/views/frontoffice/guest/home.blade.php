@@ -11,10 +11,19 @@
 
         {{-- Form column --}}
         <div class="col-6">
+
+            {{-- Show success message --}}
             <div class="alert alert-success" role="alert"
                 v-if="partnerCreated.company_name">
                 <h4 class="alert-heading">Olá, @{{ partnerCreated.name }}!</h4>
                 <p>O pré-cadasto da <b> @{{ partnerCreated.company_name }} </b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+            </div>
+
+            {{-- Show validation error --}}
+            <div class="alert alert-danger" role="alert"
+                v-if="partnrValidationError">
+                <h4 class="alert-heading">Erro!</h4>
+                <p>  @{{ partnrValidationErrorMessage }} </p>
             </div>
 
             <form id="partnerCreation" method="POST">
@@ -112,10 +121,19 @@
         <div class="row mt-4 mb-4">
             {{-- Form column --}}
             <div class="col-6">
+
+                {{-- Show success message --}}
                 <div class="alert alert-success" role="alert"
                     v-if="deliverymanCreated">
                     <h4 class="alert-heading">Olá, @{{ deliverymanCreated }}!</h4>
                     <p>O seu pré-cadasto foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+                </div>
+                
+                {{-- Show validation error --}}
+                <div class="alert alert-danger" role="alert"
+                    v-if="delManValidationError">
+                    <h4 class="alert-heading">Erro!</h4>
+                    <p>  @{{ delManValidationErrorMessage }} </p>
                 </div>
                   
                 <form id="deliverymanCreation" method="POST">
@@ -199,7 +217,11 @@
                     name: null,
                     company_name: null,
                 },
-                
+
+                delManValidationError: false,
+                delManValidationErrorMessage: '',
+                partnrValidationError: false,
+                partnrValidationErrorMessage: '',
             },
 
             methods: {
@@ -243,7 +265,8 @@
                 submitForm() {
                     axios.post(this.formAction, {
                         resource: this.resource,
-                    }).then(response => {
+                    })
+                    .then(response => {
                         if (Object.keys(response.data.resource).length > 6) {
                             this.partnerCreated.name = (response.status == 201) ?  response.data.resource.name : null;
                             this.partnerCreated.company_name = (response.status == 201) ?  response.data.resource.company_name : null;
@@ -252,6 +275,16 @@
                         }
                         this.cleanInputs(this.resource);
                     })
+                    .catch((error) => {
+                        console.log(Object.keys(this.resource).length); 
+                        if (Object.keys(this.resource).length > 3) {
+                            this.partnrValidationError = true;
+                            this.partnrValidationErrorMessage = "Não foi possível cadastar o aderente com os dados informados";
+                        } else {
+                            this.delManValidationError = true;
+                            this.delManValidationErrorMessage = "Não foi possível cadastar o estafeta com os dados informados";
+                        }
+                    });
                 },
 
                 //  Clean form inputs after requests
@@ -267,9 +300,14 @@
                 removeClassError(form, inputId){
                     $(`#${form} #${inputId}`).removeClass('is-invalid');
                     if (form == 'deliverymanCreation') {
-                        this.deliverymanErrors = this.deliverymanErrors.filter(item => item !== inputId)
+                        this.deliverymanErrors = this.deliverymanErrors.filter(item => item !== inputId);
+                        this.delManValidationError = false;
+                        this.delManValidationErrorMessage = '';
+                        
                     } else {
-                        this.partnerErrors = this.partnerErrors.filter(item => item !== inputId)
+                        this.partnerErrors = this.partnerErrors.filter(item => item !== inputId);
+                        this.partnrValidationError = false;
+                        this.partnrValidationErrorMessage = '';
                     }
 
                 }

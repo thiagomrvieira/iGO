@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentTable extends Migration
+class CreateWebContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateContentTable extends Migration
      */
     public function up()
     {
-        Schema::create('content', function (Blueprint $table) {
+        Schema::create('webcontents', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->longText('content');
             $table->string('content_area')->nullable();
-            $table->boolean('active')->default(true);
             $table->integer('created_by')->nullable();
             $table->timestamps();
 
@@ -32,6 +29,6 @@ class CreateContentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content');
+        Schema::dropIfExists('webcontents');
     }
 }

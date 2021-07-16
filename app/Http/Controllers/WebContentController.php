@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Content;
+use App\Models\WebContent;
 use Illuminate\Http\Request;
+use App\Http\Traits\ModelTranslationTrait;
 
-class ContentController extends Controller
+
+class WebContentController extends Controller
 {
-    
+    use ModelTranslationTrait;
+
     /**
      * Display the specified resource in a (backoffice) edit view.
      *
@@ -16,17 +19,17 @@ class ContentController extends Controller
      */
     public function show($content_area)
     {   
+        
+        $content = WebContent::where('content_area', $content_area)->first();
+        $view    = 'backoffice.web-content.content-edit';
+
         if ($content_area == 'faq') {
-            $content = Content::where('content_area', $content_area)->get();
-            return view('backoffice.web-content.content-edit-faq')->with('content', $content)
-                                                                  ->with('content_area', $content_area);
-        } else {
-            $content = Content::where('content_area', $content_area)->first();
-            return view('backoffice.web-content.content-edit')->with('content', $content)
-                                                              ->with('content_area', $content_area);
+            $content = WebContent::where('content_area', $content_area)->get();
+            $view    = 'backoffice.web-content.content-edit-faq';
         }
-        
-        
+            
+        return view($view)->with('content', $content)
+                          ->with('content_area', $content_area);
     }
 
     
@@ -38,16 +41,9 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-
-        $content = new Content;
-        $content->title = $request->title;
-        $content->content = $request->content;
-        $content->content_area = $request->content_area;
-        $request->active == 'on' ? $content->active = 1 : $content->active = 0;
-        $content->save();
-
+        $data = $this->prepareDataForWebContentTranslation($request);
+        $content = WebContent::create($data);
         return back()->with(['message' => 'Conteúdo criado com sucesso!', 'alert' => 'alert-success']);
-        
     }
 
     /**
@@ -57,13 +53,10 @@ class ContentController extends Controller
      * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
-    {
-        $content->title = $request->title;
-        $content->content = $request->content;
-        $request->active == 'on' ? $content->active = 1 : $content->active = 0;
-        $content->save();
-
+    public function update(Request $request, WebContent $content)
+    {   
+        $data = $this->prepareDataForWebContentTranslation($request);
+        $content->update($data);
         return back()->with(['message' => 'Conteúdo editado com sucesso!', 'alert' => 'alert-success']);
     }
 
@@ -73,7 +66,7 @@ class ContentController extends Controller
      * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
+    public function destroy(WebContent $content)
     {
         if($content) {
             $content->delete();

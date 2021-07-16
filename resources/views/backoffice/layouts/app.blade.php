@@ -106,8 +106,9 @@
 
   <script>
     $(function () {
-      // Summernote
-      $('#summernote').summernote()
+      // Summernote WYSIWYG editor
+      $('#summernote').summernote();
+      $('.summernote').summernote();
       
       $(document).on("click", ".nav-logout", function () {
         event.preventDefault();

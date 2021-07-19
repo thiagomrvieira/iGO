@@ -8,12 +8,11 @@ trait ModelTranslationTrait {
     
     # Prepare data to the format for translation in update method
     public function updateWebContentTranslate($request){
-        
         $language     = $request->language;
         $content_area = $request->content_area;
         $title        = $request->title;
         $content      = $request->content;
-        $active       = !$request->active ? 0 : 1;
+        $active       = !$request->active || $request->active== "off" ? 0 : 1;
 
         $data = [
             'content_area' => $content_area,
@@ -23,7 +22,7 @@ trait ModelTranslationTrait {
                 'active'  => $active,
             ],
         ];
-
+        
         return $data;
     }
 

@@ -55,7 +55,6 @@ class WebContentController extends Controller
      */
     public function update(Request $request, WebContent $content)
     {   
-        
         $data = $this->updateWebContentTranslate($request);
         $content->update($data);
         return back()->with(['message' => 'Conteúdo editado com sucesso!', 'alert' => 'alert-success']);

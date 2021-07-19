@@ -81,6 +81,7 @@
                                                 </a>
                                                 <a class="openEditDialog" href="#"
                                                     data-toggle="modal" data-target="#modal-lg"
+                                                    data-faq-id="{{ $faq->id }}"
                                                     data-faq-title-pt="{{ $faq->translate('pt')->title }}"
                                                     data-faq-content-pt="{{ $faq->translate('pt')->content }}"
                                                     data-faq-status-pt="{{ $faq->translate('pt')->active }}"
@@ -107,6 +108,9 @@
                                         {!! Form::hidden('active',  null, ['id' => 'statusUpdate'])  !!}
                                         {!! Form::hidden('title',   null, ['id' => 'titleUpdate'])   !!}
                                         {!! Form::hidden('content', null, ['id' => 'contentUpdate']) !!}
+                                        {!! Form::hidden('content_area', $content_area ?? null ) !!}
+                                        {!! Form::hidden('language', Lang::locale() ?? null ) !!}
+
                                     {!! Form::close() !!}
 
 

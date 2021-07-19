@@ -2,6 +2,11 @@
 
 @section('content')
 
+{{-- @php
+    App::setLocale('en');
+@endphp --}}
+
+
     <div class="container">
         <div class="panel-group" id="accordion">
             @php

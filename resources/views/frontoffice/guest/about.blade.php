@@ -2,6 +2,10 @@
 
 @section('content')
 
+{{-- @php
+    App::setLocale('en');
+@endphp --}}
+
     @isset($about)
         <strong>
             {{ $about->title ?? null }}

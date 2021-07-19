@@ -60,22 +60,30 @@
                                     <div class="form-group row">
                                         {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('title', $content->translate('pt')->title ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                            {!! Form::text('title', isset($content) ? 
+                                                                        $content->translate('pt')->title ?? null : 
+                                                                        null, 
+                                                            ['class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         {!! Form::label('content',  __('backoffice/webContent.content'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::textarea('content', $content->translate('pt')->content ?? null, ['class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                            {!! Form::textarea('content', isset($content) ?  
+                                                                            $content->translate('pt')->content ?? null : 
+                                                                            null, 
+                                                                ['class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                                         </div>
                                     </div>
                             
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <div class="form-check">
-                                                {!! Form::checkbox('active', null, (isset($content->translate('pt')->active) && $content->translate('pt')->active == 1) ? 'checked' : false, 
-                                                    ['class' => 'form-check-input']) !!}
+                                                {!! Form::checkbox('active', null, isset($content) ? 
+                                                                                      ($content->translate('pt')->active && $content->translate('pt')->active == 1) ? 'checked' : false : 
+                                                                                      null, 
+                                                                    ['class' => 'form-check-input']) !!}
                                                 {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!}
                                             </div>
                                         </div>
@@ -106,23 +114,30 @@
                                         {{-- {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!} --}}
                                         {!! Form::label('title',  'Title',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('title', $content->translate('en')->title ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                            {!! Form::text('title', isset($content) ?
+                                                                        $content->translate('en')->title ?? null :
+                                                                        null,
+                                                                    ['class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         {!! Form::label('content',  'Content',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::textarea('content', $content->translate('en')->content ?? null, ['class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                            {!! Form::textarea('content', isset($content) ?
+                                                                            $content->translate('en')->content ?? null : 
+                                                                            null,
+                                                                ['class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                                         </div>
                                     </div>
                             
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <div class="form-check">
-                                                {!! Form::checkbox('active', null, (isset($content->translate('en')->active) && $content->translate('en')->active == 1) ? 'checked' : false, 
-                                                    ['class' => 'form-check-input']) !!}
-                                                {{-- {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!} --}}
+                                                {!! Form::checkbox('active', null, isset($content) ?
+                                                                                        $content->translate('en')->active && $content->translate('en')->active == 1 ? 'checked' : false :
+                                                                                        null, 
+                                                                    ['class' => 'form-check-input']) !!}
                                                 {!! Form::label('active',  'Active content',  ['class' => 'form-check-label']) !!}
                                             </div>
                                         </div>

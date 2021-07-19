@@ -41,7 +41,7 @@ class WebContentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->prepareDataForWebContentTranslation($request);
+        $data = $this->createWebContentTranslate($request);
         $content = WebContent::create($data);
         return back()->with(['message' => 'Conteúdo criado com sucesso!', 'alert' => 'alert-success']);
     }
@@ -55,7 +55,8 @@ class WebContentController extends Controller
      */
     public function update(Request $request, WebContent $content)
     {   
-        $data = $this->prepareDataForWebContentTranslation($request);
+        
+        $data = $this->updateWebContentTranslate($request);
         $content->update($data);
         return back()->with(['message' => 'Conteúdo editado com sucesso!', 'alert' => 'alert-success']);
     }

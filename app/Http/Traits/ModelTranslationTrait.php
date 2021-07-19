@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 trait ModelTranslationTrait {
     
-    # Prepare data to the format for translation
-    public function prepareDataForWebContentTranslation($request){
+    # Prepare data to the format for translation in update method
+    public function updateWebContentTranslate($request){
         
         $language     = $request->language;
         $content_area = $request->content_area;
@@ -24,6 +24,26 @@ trait ModelTranslationTrait {
             ],
         ];
 
+        return $data;
+    }
+
+    # Prepare data to the format for translation in store/save/create method
+    public function createWebContentTranslate($request){
+        
+        $data    = $this->updateWebContentTranslate($request);
+        $title   = $request->title;
+        $content = $request->content;
+        $newLang = $request->language == 'en' ? 'pt': 'en'; 
+
+        $newData = [
+            $newLang => [
+                'title'   => $title,
+                'content' => $content,
+                'active'  => 0,
+            ],
+        ];
+        
+        $data = array_merge($data, $newData);
         return $data;
     }
     

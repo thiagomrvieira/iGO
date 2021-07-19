@@ -57,9 +57,12 @@
                                                 <a class="openEditDialog" href="#"
                                                     data-toggle="modal" data-target="#modal-lg"
                                                     data-faq-id="{{ $faq->id }}"
-                                                    data-faq-title="{{ $faq->title }}"
-                                                    data-faq-content="{{ $faq->content }}"
-                                                    data-faq-status="{{ $faq->active }}">
+                                                    data-faq-title-pt="{{ $faq->translate('pt')->title }}"
+                                                    data-faq-content-pt="{{ $faq->translate('pt')->content }}"
+                                                    data-faq-status-pt="{{ $faq->translate('pt')->active }}"
+                                                    data-faq-title-en="{{ $faq->translate('en')->title }}"
+                                                    data-faq-content-en="{{ $faq->translate('en')->content }}"
+                                                    data-faq-status-en="{{ $faq->translate('en')->active }}">
                                                     {{ __('backoffice/webContent.seeContent') }}
                                                 </a>
                                             </td>
@@ -78,10 +81,12 @@
                                                 </a>
                                                 <a class="openEditDialog" href="#"
                                                     data-toggle="modal" data-target="#modal-lg"
-                                                    data-faq-id="{{ $faq->id }}"
-                                                    data-faq-title="{{ $faq->title }}"
-                                                    data-faq-content="{{ $faq->content }}"
-                                                    data-faq-status="{{ $faq->active }}">
+                                                    data-faq-title-pt="{{ $faq->translate('pt')->title }}"
+                                                    data-faq-content-pt="{{ $faq->translate('pt')->content }}"
+                                                    data-faq-status-pt="{{ $faq->translate('pt')->active }}"
+                                                    data-faq-title-en="{{ $faq->translate('en')->title }}"
+                                                    data-faq-content-en="{{ $faq->translate('en')->content }}"
+                                                    data-faq-status-en="{{ $faq->translate('en')->active }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
 
@@ -129,41 +134,103 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __('backoffice/webContent.contentType.faqs') }}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <ul class="nav nav-pills float-right">
+                        <li class="nav-item btn-xs"><a class="nav-link active" href="#portuguese"  data-toggle="tab"> PT </a> </li>
+                        <li class="nav-item btn-xs"><a class="nav-link"        href="#english"     data-toggle="tab"> EN </a> </li>
+                    </ul>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'formCreation', 'route' => 'content.store', 'method' => 'post' ]) !!}
-                        @csrf
-                        {!! Form::hidden('content_area', $content_area ?? null ) !!}
-                        <div class="form-group row">
-                            {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::text('title', null, ['id' => 'titleEdit', 'class' => 'form-control', 'required', 
-                                                               'placeholder' =>  __('backoffice/webContent.title') ]) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            {!! Form::label('content',  __('backoffice/webContent.content'),  ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::textarea('content',  null, ['id' => 'summernote', 'class' => 'form-control', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                                <div class="form-check">
-                                    {!! Form::checkbox('active', null, false, ['id' => 'statusEdit', 'class' => 'form-check-input']) !!}
-                                    {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!}
+                    <div class="tab-content">
+
+                        {{-- TAB PANEL / FORM FOR PORTUGUESE --}}
+                        <div class="active tab-pane" id="portuguese">
+                            {!! Form::open(['class' => 'form-horizontal formCreation', 'route' => 'content.store', 'method' => 'post' ]) !!}
+                                @csrf
+                                {!! Form::hidden('content_area', $content_area ?? null ) !!}
+                                {!! Form::hidden('language', 'pt' ) !!}
+
+                                <div class="form-group row">
+                                    {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!}
+                                    <div class="col-sm-10">
+                                        {!! Form::text('title', null, ['id' => 'titleEditPt', 'class' => 'form-control', 'required', 
+                                                                    'placeholder' =>  __('backoffice/webContent.title') ]) !!}
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    {!! Form::label('content',  __('backoffice/webContent.content'),  ['class' => 'col-sm-2 col-form-label']) !!}
+                                    <div class="col-sm-10">
+                                        {!! Form::textarea('content',  null, ['id' => 'contentEditPt', 'class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <div class="form-check">
+                                            {!! Form::checkbox('active', null, false, ['id' => 'statusEditPt', 'class' => 'form-check-input']) !!}
+                                            {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="float-left">
+                                    {!! Form::submit(__('backoffice/webContent.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                                </div>
+                                <div class="float-right">
+                                    {!! Form::submit('Save', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+                                </div>
+                            {!! Form::close() !!}
                         </div>
-                    {!! Form::close() !!}
+
+                        
+                        {{-- TAB PANEL / FORM FOR ENGLISH --}}
+                        <div class="tab-pane" id="english">
+                            {!! Form::open(['class' => 'form-horizontal formCreation', 'route' => 'content.store', 'method' => 'post' ]) !!}
+                                @csrf
+                                {!! Form::hidden('content_area', $content_area ?? null ) !!}
+                                {!! Form::hidden('language', 'en' ) !!}
+
+                                <div class="form-group row">
+                                    {{-- {!! Form::label('title',  __('backoffice/webContent.title'),  ['class' => 'col-sm-2 col-form-label']) !!} --}}
+                                    {!! Form::label('title',  'Title',  ['class' => 'col-sm-2 col-form-label']) !!}
+                                    <div class="col-sm-10">
+                                        {!! Form::text('title', null, ['id' => 'titleEditEn', 'class' => 'form-control', 'required', 
+                                                                       'placeholder' =>  __('backoffice/webContent.title') ]) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{-- {!! Form::label('content',  __('backoffice/webContent.content'),  ['class' => 'col-sm-2 col-form-label']) !!} --}}
+                                    {!! Form::label('content',  'Content',  ['class' => 'col-sm-2 col-form-label']) !!}
+                                    <div class="col-sm-10">
+                                        {!! Form::textarea('content',  null, ['id' => 'contentEditEn',  'class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <div class="form-check">
+                                            {!! Form::checkbox('active', null, false, ['id' => 'statusEditEn', 'class' => 'form-check-input']) !!}
+                                            {{-- {!! Form::label('active',  __('backoffice/partners.createCategoryCard.activeContent'),  ['class' => 'form-check-label']) !!} --}}
+                                            {!! Form::label('active',  'Active content',  ['class' => 'form-check-label']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="float-left">
+                                    {!! Form::submit(__('backoffice/webContent.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
+                                </div>
+                                <div class="float-right">
+                                    {!! Form::submit('Save', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+                                </div>
+
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+
                 </div>
-                <div class="modal-footer justify-content-between">
+               
+                {{-- <div class="modal-footer justify-content-between">
                     {!! Form::submit(__('backoffice/webContent.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
                     {!! Form::submit(__('backoffice/webContent.create'), ['type' => 'submit', 'class' => 'btn btn-primary', 'form' => 'formCreation' ]) !!}
-                </div>
+                </div> --}}
             </div>
             <!-- /.modal-content -->
         </div>
@@ -219,26 +286,47 @@
 
         // Carrega conteúdo e seta action do modal edição de FAQ
         $(document).on("click", ".openEditDialog", function () {
-            var faqId      = $(this).data('faq-id');
-            var faqTitle   = $(this).data('faq-title');
-            var faqContent = $(this).data('faq-content');
-            var faqStatus  = $(this).data('faq-status') == 1 ? true : false;
-            var action     = `/admin/content/${faqId}`;
-
-            $('#titleEdit').val(faqTitle);
-            $('#summernote').summernote('code', faqContent);
-
-            (faqStatus == true) ? $('#statusEdit').prop('checked', true) : $('#statusEdit').removeAttr('checked');
+            var faqId        = $(this).data('faq-id');
+            // PT
+            var faqTitlePt   = $(this).data('faq-title-pt');
+            var faqContentPt = $(this).data('faq-content-pt');
+            var faqStatusPt  = $(this).data('faq-status-pt') == 1 ? true : false;
+            // EN
+            var faqTitleEn   = $(this).data('faq-title-en');
+            var faqContentEn = $(this).data('faq-content-en');
+            var faqStatusEn  = $(this).data('faq-status-en') == 1 ? true : false;
             
-            $('#formCreation').attr('action', action );
-            $('#formCreation').append('{{ method_field("PATCH") }}');    
+            var action       = `/admin/content/${faqId}`;
+
+            // PT
+            $('#titleEditPt').val(faqTitlePt);
+            $('#contentEditPt').summernote('code', faqContentPt);
+            (faqStatusPt == true) ? $('#statusEditPt').prop('checked', true) : $('#statusEditPt').removeAttr('checked');
+
+            // EN
+            $('#titleEditEn').val(faqTitleEn);
+            $('#contentEditEn').summernote('code', faqContentEn);
+            (faqStatusEn == true) ? $('#statusEditEn').prop('checked', true) : $('#statusEditEn').removeAttr('checked');
+            
+            $('.formCreation').attr('action', action );
+            $('.formCreation').append('{{ method_field("PATCH") }}');    
+
+            
+
         });
 
         // Limpa dados do modal
         $('#modal-lg').on('hidden.bs.modal', function () {
-            $('#summernote').summernote('reset');
+            $('.summernote').summernote('reset');
+            $('#contentEditPt').summernote('reset');
+            $('#contentEditEn').summernote('reset');
+            
             $(this).find('form').trigger('reset');
             $(this).removeData();
+            
+            var action = "{{ route('content.store') }}";
+            $('.formCreation').attr('action', action );
+            $('.formCreation').append('{{ method_field("POST") }}');    
         })
         
     </script>

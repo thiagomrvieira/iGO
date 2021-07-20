@@ -34,9 +34,8 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                src="{{ asset('assets-backoffice/dist/img/deliveryman01.png')}}"
-                                alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" alt="User profile picture"
+                                src="{{ asset('assets-backoffice/dist/img/profile.png')}}">
                         </div>
                         
                         <h3 class="profile-username text-center">{{ $deliveryman->name ?? null}}</h3>

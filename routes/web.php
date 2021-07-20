@@ -34,3 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 Route::post('/deliveryman/store', [DeliveryManController::class, 'createDelManFromHome'])->name('deliveryman.store.home');
 Route::post('/partner/store', [PartnerController::class, 'createPartnerFromHome'])->name('partner.store.home');
+
+Route::get('/admin/test', [PartnerController::class, 'test'])->name('admin.route')->middleware('admin');
+Route::get('/partner/test', [PartnerController::class, 'test'])->name('partner.route')->middleware('partner');
+Route::get('/deliveryman/test', [PartnerController::class, 'test'])->name('deliveryman.route')->middleware('deliveryman');

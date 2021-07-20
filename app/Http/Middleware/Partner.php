@@ -20,6 +20,6 @@ class Partner
             return $next($request);
         }
    
-        return redirect('/')->with('error',"Only admin can access!");
+        return redirect('/partner')->with('error',"Only admin can access!");
     }
 }

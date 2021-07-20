@@ -25,6 +25,7 @@ class DeliveryMan extends Model
        'driving_license_number',
        'bank_account_name',
        'bank_account_number',
+       'user_id',
        'approved_at',
        'active'
     ];

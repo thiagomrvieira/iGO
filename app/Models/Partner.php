@@ -20,6 +20,7 @@ class Partner extends Model
        'company_name',
        'tax_number',
        'category_id',
+       'user_id',
        'active'
     ];
 

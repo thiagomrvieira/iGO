@@ -25,6 +25,7 @@ class CreatePartnersTable extends Migration
             $table->integer('category_id');
             $table->dateTime('approved_at')->nullable();
             $table->boolean('active')->default(false);
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

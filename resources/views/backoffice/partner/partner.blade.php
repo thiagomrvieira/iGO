@@ -142,7 +142,9 @@
                         <div class="form-group row">
                             {!! Form::label('category_id', __('backoffice/partners.modalCreate.category'), ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::select('category_id', $partnerCategories->pluck('name', 'id'), null, ['placeholder' => __('backoffice/partners.modalCreate.category'), 'class' => 'form-control', 'required']) !!}
+                                @if (count($partnerCategories) > 0)
+                                    {!! Form::select('category_id', $partnerCategories->pluck('name', 'id'), null, ['placeholder' => __('backoffice/partners.modalCreate.category'), 'class' => 'form-control', 'required']) !!}
+                                @endif
                             </div>
                         </div>
                     {!! Form::close() !!}

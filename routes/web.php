@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeliveryManController;
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\PartnerCategoryController;
-use App\Http\Controllers\WebContentController;
-use App\Http\Controllers\FrontOfficeController;
+use App\Http\Controllers\Web\DeliveryManController;
+use App\Http\Controllers\Web\PartnerController;
+use App\Http\Controllers\Web\PartnerCategoryController;
+use App\Http\Controllers\Web\WebContentController;
+use App\Http\Controllers\Web\FrontOfficeController;
 
 require __DIR__.'/auth.php';
 

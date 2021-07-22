@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\WebContent;
 use Illuminate\Http\Request;
 use App\Http\Traits\ModelTranslationTrait;
+use App\Http\Controllers\Controller;
 
 
 class WebContentController extends Controller

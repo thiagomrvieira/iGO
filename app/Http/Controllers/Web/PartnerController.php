@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Partner;
 use App\Models\PartnerCategory;
@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
 use App\Http\Requests\PartnerStoreRequest;
 use App\Http\Requests\PartnerStoreFromHomeRequest;
+use App\Http\Controllers\Controller;
+
 
 class PartnerController extends Controller
 {

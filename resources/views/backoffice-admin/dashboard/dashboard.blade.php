@@ -1,4 +1,4 @@
-@extends('backoffice.layouts.app')
+@extends('backoffice-admin.layouts.app')
 
 @section('content-header')
     <div class="container-fluid">

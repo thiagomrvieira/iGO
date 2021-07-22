@@ -22,11 +22,11 @@ class WebContentController extends Controller
     {   
         
         $content = WebContent::where('content_area', $content_area)->first();
-        $view    = 'backoffice.web-content.content-edit';
+        $view    = 'backoffice-admin.web-content.content-edit';
 
         if ($content_area == 'faq') {
             $content = WebContent::where('content_area', $content_area)->get();
-            $view    = 'backoffice.web-content.content-edit-faq';
+            $view    = 'backoffice-admin.web-content.content-edit-faq';
         }
             
         return view($view)->with('content', $content)

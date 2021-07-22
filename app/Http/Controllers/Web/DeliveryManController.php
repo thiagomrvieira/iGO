@@ -24,7 +24,7 @@ class DeliveryManController extends Controller
         if ( count(DeliveryMan::all()) > 0 ) {
             $deliveryMen = DeliveryMan::orderby('id', 'desc')->simplePaginate(10);
         }
-        return view('backoffice.deliveryman.deliveryman')->with('deliveryMen', $deliveryMen);
+        return view('backoffice-admin.deliveryman.deliveryman')->with('deliveryMen', $deliveryMen);
     }
 
     /**
@@ -34,7 +34,7 @@ class DeliveryManController extends Controller
      */
     public function create()
     {
-        return view('backoffice.deliveryman.deliveryman-create');
+        return view('backoffice-admin.deliveryman.deliveryman-create');
     }
 
     /**
@@ -71,7 +71,7 @@ class DeliveryManController extends Controller
      */
     public function edit(DeliveryMan $deliveryman)
     {
-        return view('backoffice.deliveryman.deliveryman-edit')->with('deliveryman', $deliveryman);
+        return view('backoffice-admin.deliveryman.deliveryman-edit')->with('deliveryman', $deliveryman);
     }
 
     /**

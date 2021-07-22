@@ -19,7 +19,7 @@ class PartnerCategoryController extends Controller
     public function index()
     {
         $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
-        return view('backoffice.partner.partner-categories')->with('partnerCategories', $partnerCategories);
+        return view('backoffice-admin.partner.partner-categories')->with('partnerCategories', $partnerCategories);
     }
 
     /**

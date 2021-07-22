@@ -32,15 +32,15 @@
   <div class="wrapper">
     
     <!-- Preloader -->
-    @component('backoffice.layouts.preloader')
+    @component('backoffice-admin.layouts.preloader')
     @endcomponent
     
     <!-- Navbar -->
-    @component('backoffice.layouts.navbar')
+    @component('backoffice-admin.layouts.navbar')
     @endcomponent
     
     <!-- Main Sidebar Container -->
-    @component('backoffice.layouts.sidebar')
+    @component('backoffice-admin.layouts.sidebar')
     @endcomponent
     
     <!-- Content Wrapper. Contains page content -->
@@ -57,7 +57,7 @@
       
     </div>
     
-    @component('backoffice.layouts.footer')
+    @component('backoffice-admin.layouts.footer')
     @endcomponent
     
     <!-- Control Sidebar -->

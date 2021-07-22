@@ -25,7 +25,7 @@ class PartnerController extends Controller
         $partners = (count(Partner::all()) > 0 ) ? Partner::orderby('id', 'desc')->simplePaginate(10) : [];
         $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? PartnerCategory::where('active', 1)->get() : [];
         
-        return view('backoffice.partner.partner')->with('partners', $partners)
+        return view('backoffice-admin.partner.partner')->with('partners', $partners)
                                                  ->with('partnerCategories', $partnerCategories);
     }
 
@@ -76,7 +76,7 @@ class PartnerController extends Controller
         $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? 
                                     PartnerCategory::where('active', 1)->get() : [];
                                     
-        return view('backoffice.partner.partner-edit')->with('partner', $partner)
+        return view('backoffice-admin.partner.partner-edit')->with('partner', $partner)
                                                       ->with('partnerCategories', $partnerCategories);
     }
 

@@ -14,6 +14,17 @@ use App\Http\Controllers\Controller;
 class PartnerController extends Controller
 {
     use AddressTrait;
+    
+    /**
+     * Display the login view for admin
+     *
+     * @return \Inertia\Response
+     */
+    public function login()
+    {
+        return view('backoffice-partner.partner.login');
+    }
+    
     /**
      * Display a listing of the resource.
      *

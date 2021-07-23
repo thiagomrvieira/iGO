@@ -19,7 +19,6 @@ class Partner
         if(auth()->user()->is_partner == 1){
             return $next($request);
         }
-   
-        return redirect('/partner')->with('error',"Only admin can access!");
+        return redirect('/partner/login')->with('error',"Only Partner can access!");
     }
 }

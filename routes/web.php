@@ -42,6 +42,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 #   ROUTES FOR BACKOFICE/PARTNER
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
     Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
+    Route::get('/businessdata',  [BackofficePartnerController::class, 'createBusinessData'])->name('partner.createBusiness.data');
+    Route::post('/businessdata', [BackofficePartnerController::class, 'storeBusinessData' ])->name('partner.storeBusiness.data');
 
     
 

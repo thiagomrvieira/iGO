@@ -40,4 +40,12 @@ class Partner extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the Category that owns the Partner profile.
+     */
+    public function category()
+    {
+        return $this->belongsTo(PartnerCategory::class);
+    }
 }

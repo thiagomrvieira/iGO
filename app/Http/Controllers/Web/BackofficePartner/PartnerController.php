@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\BackofficePartner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,7 @@ class PartnerController extends Controller
     public function index()
     {
         if (Auth::user()->partner->first_login) {   
-            return $this->welcome(Auth::user()->partner);
+            return $this->welcome();
         }
         return $this->dashboard();
     }
@@ -43,14 +44,31 @@ class PartnerController extends Controller
         return 'Dashboard';
     }
     
+    
+
+    /**
+     * Show the form for creating business data.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function welcome()
+    {
+        return view('backoffice-partner.welcome');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function welcome($partner)
+    public function createBusinessData()
     {
-        return view('backoffice-partner.welcome')->with('partner', $partner);
+        // $pt = Partner::first();
+        // dd($pt->user->name);
+        // dd($pt->category->name);
+        $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? PartnerCategory::where('active', 1)->get() : [];
+        
+        return view('backoffice-partner.business-data')->with('partnerCategories', $partnerCategories);
     }
 
     /**
@@ -59,9 +77,9 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeBusinessData(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

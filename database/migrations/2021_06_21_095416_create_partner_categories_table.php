@@ -16,7 +16,7 @@ class CreatePartnerCategoriesTable extends Migration
         Schema::create('partner_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('slug')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

@@ -1,5 +1,11 @@
 @extends('backoffice-partner.layouts.app')
 
+@php
+    if(Auth::user()->partner) {
+        $partner = Auth::user()->partner;
+    }
+@endphp
+
 @section('navbar')
     <!-- Image and text -->
     <nav class="navbar navbar-light bg-light">
@@ -15,7 +21,7 @@
 @endsection
 
 @section('content')
-    <div class="container center">
+    <div class="container">
         <h4>Bem-vindo!</h4>
         <p>Está a um passo de se tornar parceiro iGO  <br>
            Preencha as informações em falta e bom negócio
@@ -26,6 +32,7 @@
             <li>Enviar para revisão</li>
             <li>Validação de perfil</li>
         </ol>
-        <button class="btn btn-primary">Iniciar</button>
+        {{-- <button class="btn btn-primary">Iniciar</button> --}}
+        <a href="{{ route('partner.createBusiness.data') }}" class="btn btn-primary">Iniciar</a>
     </div>
 @endsection

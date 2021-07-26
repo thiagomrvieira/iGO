@@ -41,4 +41,11 @@ class DeliveryMan extends Model
         return $this->belongsTo(Address::class);
     }
 
+    /**
+     * Get the user that owns the DeliveryMan profile.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

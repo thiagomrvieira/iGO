@@ -43,4 +43,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the DeliveryMan associated with the user.
+     */
+    public function deliveryman()
+    {
+        return $this->hasOne(DeliveryMan::class);
+    }
+
+    /**
+     * Get the Partner associated with the user.
+     */
+    public function partner()
+    {
+        return $this->hasOne(Partner::class);
+    }
 }

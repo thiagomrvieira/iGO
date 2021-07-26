@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web\BackofficePartner;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PartnerController extends Controller
 {
@@ -19,23 +21,36 @@ class PartnerController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Check if its the first login
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        if (Auth::user()->partner->first_login) {   
+            return $this->welcome(Auth::user()->partner);
+        }
+        return $this->dashboard();
     }
-
+    
+    /**
+     * Display the Dashboard view
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        return 'Dashboard';
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function welcome($partner)
     {
-        //
+        return view('backoffice-partner.welcome')->with('partner', $partner);
     }
 
     /**

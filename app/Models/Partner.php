@@ -21,14 +21,23 @@ class Partner extends Model
        'tax_number',
        'category_id',
        'user_id',
-       'active'
+       'active',
+       'first_login'
     ];
 
     /**
-     * Get the address associated with the partner.
+     * Get the Address associated with the partner.
      */
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * Get the user that owns the Partner profile.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

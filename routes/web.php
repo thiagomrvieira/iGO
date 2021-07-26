@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\DeliveryManController;
 use App\Http\Controllers\Web\PartnerController;
+use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
 use App\Http\Controllers\Web\PartnerCategoryController;
 use App\Http\Controllers\Web\WebContentController;
 use App\Http\Controllers\Web\FrontOfficeController;
@@ -40,10 +41,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 
 #   ROUTES FOR BACKOFICE/PARTNER
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
+    Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
+
     
-    Route::get('/', function () {
-        return 'PARTNER';
-    });
 
 });
 

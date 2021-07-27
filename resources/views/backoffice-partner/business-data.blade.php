@@ -1,11 +1,25 @@
 @extends('backoffice-partner.layouts.app')
 
 @php
-    if(Auth::user()->partner) {
-        $partner = Auth::user()->partner;
+    $partner = Auth::user()->partner ?? null;
     
-        // $partnerTest = App\Models\Partner::where('id', Auth::user()->partner->id)->get();
-    }
+    $workTime = [
+        '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', 
+        '00:70', '08:00', '09:00', '10:00', '11:00', '12:00',  
+        '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
+        '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', 
+    ];
+    
+    $workDays = [ 
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+        'holiday',
+    ];
 @endphp
 
 {{-- @dump($partner->subCategories) --}}
@@ -33,6 +47,7 @@
         @csrf
         <div class="accordion" id="accordionBusinessData">
             
+            {{-- Category item--}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -46,6 +61,7 @@
                 </div>
             </div>
 
+            {{-- Subcategory item--}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -56,7 +72,7 @@
                     <div class="accordion-body">
                         @foreach ($categories as $category)
                             <div class="form-check">
-                                {!! Form::checkbox($category->slug, null, ['class' => 'form-check-input']) !!}
+                                {!! Form::checkbox($category->slug, null, false, ['class' => 'form-check-input']) !!}
                                 {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
                             </div>
                         @endforeach
@@ -64,6 +80,7 @@
                 </div>
             </div>
 
+            {{--  Schedules item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -80,846 +97,77 @@
                                 Horário:
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Segunda
-                                    </label>
+
+                        @foreach ($workDays as $workday)
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-check">
+                                        {!! Form::checkbox($workday, null, false, ['class' => 'form-check-input']) !!}
+                                        {!! Form::label($workday, $workday, ['class' => 'form-check-label']) !!}
+                                    </div>
                                 </div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                {!! Form::checkbox($workday.'-morning', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-morning', 'Manhã', ['class' => 'form-check-label']) !!}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-10 ">
+                                            <div class="form-inline">
+                                                {{ Form::time($workday.'-morning-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                às
+                                                {{ Form::time($workday.'-morning-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                {!! Form::checkbox($workday.'-afternoon', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-afternoon', 'Tarde', ['class' => 'form-check-label']) !!}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-10 ">
+                                            <div class="form-inline">
+                                                {{ Form::time($workday.'-afternoon-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                às
+                                                {{ Form::time($workday.'-afternoon-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                {!! Form::checkbox($workday.'-evening', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-evening', 'Noite', ['class' => 'form-check-label']) !!}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-10 ">
+                                            <div class="form-inline">
+                                                {{ Form::time($workday.'-evening-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                às
+                                                {{ Form::time($workday.'-evening-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
                             </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
+                            <hr>
+                        @endforeach
                         
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Terça
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Quarta
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Quinta
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Sexta
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Sábado
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Domingo
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                    <label class="form-check-label" for="burger">
-                                        Feriados
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Manhã
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Tarde
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="burger">
-                                            <label class="form-check-label" for="burger">
-                                                Noite
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10 ">
-                                        <div class="form-inline">
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            às
-                                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                        <hr>
                     </div>
                 </div>
             </div>

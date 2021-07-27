@@ -11,13 +11,13 @@
     ];
     
     $workDays = [ 
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
         'holiday',
     ];
 @endphp
@@ -171,7 +171,8 @@
                     </div>
                 </div>
             </div>
-
+            
+            {{--  Average time item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -180,22 +181,24 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionBusinessData">
                     <div class="accordion-body">
+                        
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline1">0 - 30 minutos</label>
+                            {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '0 - 30 minutos', ['class' => 'form-check-label']) !!}
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline2">30 - 45 minutos</label>
+                            {!! Form::radio('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '30 - 45 minutos', ['class' => 'form-check-label']) !!}
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline2">45 - 60 minutos</label>
+                            {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '45 - 60 minutos', ['class' => 'form-check-label']) !!}
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{--  Images item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFive">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -205,20 +208,20 @@
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionBusinessData">
                     <div class="accordion-body">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Fotografia capa</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label']) !!}
+                            {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Fotografia #1</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
+                            {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Fotografia #2</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
+                            {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Fotografia #3</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
+                            {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input']) !!}
                         </div>
                     </div>
                 </div>

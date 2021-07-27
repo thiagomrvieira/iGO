@@ -22,10 +22,10 @@ class CreatePartnersTable extends Migration
             $table->string('mobile_phone_number')->nullable();
             $table->string('company_name');
             $table->string('tax_number')->nullable();
-            $table->integer('category_id');
             $table->dateTime('approved_at')->nullable();
             $table->boolean('active')->default(false);
             $table->foreignId('user_id')->nullable()->constrained();
+            $table->integer('category_id')->nullable();
             $table->boolean('first_login')->default(true);
             $table->timestamps();
         });

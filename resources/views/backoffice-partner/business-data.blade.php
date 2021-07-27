@@ -3,10 +3,13 @@
 @php
     if(Auth::user()->partner) {
         $partner = Auth::user()->partner;
+    
         // $partnerTest = App\Models\Partner::where('id', Auth::user()->partner->id)->get();
     }
 @endphp
-    {{-- @dump($partnerTest) --}}
+
+{{-- @dump($partner->subCategories) --}}
+{{-- @dump($partner->mainCategory->name) --}}
 
 @section('navbar')
     <!-- Image and text -->
@@ -33,7 +36,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <strong>Categoria:</strong> &nbsp; {{$partner->category->name}}
+                    <strong>Categoria:</strong> &nbsp; {{$partner->mainCategory->name}}
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBusinessData">
@@ -51,24 +54,12 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionBusinessData">
                     <div class="accordion-body">
-                        @foreach ($partnerCategories as $category)
+                        @foreach ($categories as $category)
                             <div class="form-check">
                                 {!! Form::checkbox($category->slug, null, ['class' => 'form-check-input']) !!}
                                 {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
                             </div>
                         @endforeach
-                       
-
-                        {{-- <div class="form-check">
-                            {!! Form::checkbox('pasta', null, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('pasta', 'Hamburgueres', ['class' => 'form-check-label']) !!}
-                        </div>
-
-                        <div class="form-check">
-                            {!! Form::checkbox('sushi', null, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('sushi', 'Hamburgueres', ['class' => 'form-check-label']) !!}
-                        </div> --}}
-
                     </div>
                 </div>
             </div>

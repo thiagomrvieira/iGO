@@ -42,10 +42,20 @@ class Partner extends Model
     }
 
     /**
-     * Get the Category that owns the Partner profile.
+     * Get all Categories that owns the Partner profile.
      */
-    public function category()
+    public function subCategories()
     {
-        return $this->belongsTo(PartnerCategory::class);
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * Get the main Category that owns the Partner profile.
+     */
+    public function mainCategory()
+    {
+        // return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id',);
+
     }
 }

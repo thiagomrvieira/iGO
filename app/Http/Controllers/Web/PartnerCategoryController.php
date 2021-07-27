@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Partner;
-use App\Models\PartnerCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\PartnerCategoryStoreRequest;
+use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Controllers\Controller;
 
 
-class PartnerCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class PartnerCategoryController extends Controller
      */
     public function index()
     {
-        $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
+        $partnerCategories = (count(Category::all()) > 0 ) ? Category::all() : [];
         return view('backoffice-admin.partner.partner-categories')->with('partnerCategories', $partnerCategories);
     }
 
@@ -38,9 +38,9 @@ class PartnerCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PartnerCategoryStoreRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
-        $category = new PartnerCategory;
+        $category = new Category;
         $category->name = $request->name;
         $category->description = $request->description;
         $request->active == 'on' ? $category->active = 1 : $category->active = 0;
@@ -52,10 +52,10 @@ class PartnerCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PartnerCategory  $partnerCategory
+     * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function show(PartnerCategory $partnerCategory)
+    public function show(Category $Category)
     {
         //
     }
@@ -63,10 +63,10 @@ class PartnerCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PartnerCategory  $partnerCategory
+     * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function edit(PartnerCategory $partnerCategory)
+    public function edit(Category $Category)
     {
         //
     }
@@ -75,10 +75,10 @@ class PartnerCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PartnerCategory  $partnerCategory
+     * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PartnerCategory $category)
+    public function update(Request $request, Category $category)
     {
         $category->update($request->all());
         return back()->with(['message' => 'Categoria atualizada com sucesso!', 'alert' => 'alert-success']);
@@ -87,10 +87,10 @@ class PartnerCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PartnerCategory  $category
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PartnerCategory $category)
+    public function destroy(Category $category)
     {
         if($category) {
             $category->delete();

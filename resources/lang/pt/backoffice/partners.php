@@ -90,7 +90,7 @@
 
         // Partner Categories Fields -----------------------------------
         
-        'partnerCategory' => "Categoria de Aderentes",
+        'Category' => "Categoria de Aderentes",
         'partners'        => "Aderentes",
         'categories'      => "Categorias",
         'home'            => "Início",

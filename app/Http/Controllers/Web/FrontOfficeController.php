@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Models\WebContent;
-use App\Models\PartnerCategory;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 
 
 class FrontOfficeController extends Controller
 {
     public function showHomePage() {
-        $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? PartnerCategory::where('active', 1)->get() : [];
+        $partnerCategories = (count(Category::where('active', 1)->get()) > 0 ) ? Category::where('active', 1)->get() : [];
         return view('frontoffice.guest.home')->with('partnerCategories', $partnerCategories);
     }
 

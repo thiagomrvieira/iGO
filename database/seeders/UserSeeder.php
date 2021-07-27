@@ -29,7 +29,8 @@ class UserSeeder extends Seeder
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
             'company_name'   => 'iGO Delivery',
-            'category_id'    => 1,
+            'category_id'    => 2,
+            'user_id'        => 1,
         ]);
 
         User::create([

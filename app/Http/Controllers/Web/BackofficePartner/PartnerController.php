@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\BackofficePartner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
-use App\Models\PartnerCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,12 +63,12 @@ class PartnerController extends Controller
      */
     public function createBusinessData()
     {
-        // $pt = Partner::first();
-        // dd($pt->user->name);
-        // dd($pt->category->name);
-        $partnerCategories = (count(PartnerCategory::where('active', 1)->get()) > 0 ) ? PartnerCategory::where('active', 1)->get() : [];
+        $partner = Auth::user()->partner;
+        $partnerCategory = $partner->mainCategory;
+        $categories = (count(Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get()) > 0 ) ? 
+                             Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() : [];
         
-        return view('backoffice-partner.business-data')->with('partnerCategories', $partnerCategories);
+        return view('backoffice-partner.business-data')->with('categories', $categories);
     }
 
     /**

@@ -62,7 +62,7 @@
             </div>
 
             {{-- Subcategory item--}}
-            <div class="accordion-item"> 
+            <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Subcategorias*
@@ -111,16 +111,16 @@
                                         
                                         <div class="col-2">
                                             <div class="form-check">
-                                                {!! Form::checkbox($workday.'Morning', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Morning', 'Manhã', ['class' => 'form-check-label']) !!}
+                                                {!! Form::checkbox($workday.'-morning', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-morning', 'Manhã', ['class' => 'form-check-label']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-10 ">
                                             <div class="form-inline">
-                                                {{ Form::time($workday.'MorningOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-morning-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                                 às
-                                                {{ Form::time($workday.'MorningClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-morning-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                             </div>
                                             
                                         </div>
@@ -129,16 +129,16 @@
                                         
                                         <div class="col-2">
                                             <div class="form-check">
-                                                {!! Form::checkbox($workday.'Afternoon', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Afternoon', 'Tarde', ['class' => 'form-check-label']) !!}
+                                                {!! Form::checkbox($workday.'-afternoon', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-afternoon', 'Tarde', ['class' => 'form-check-label']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-10 ">
                                             <div class="form-inline">
-                                                {{ Form::time($workday.'AfternoonOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-afternoon-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                                 às
-                                                {{ Form::time($workday.'AfternoonClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-afternoon-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                             </div>
                                             
                                         </div>
@@ -147,16 +147,16 @@
                                         
                                         <div class="col-2">
                                             <div class="form-check">
-                                                {!! Form::checkbox($workday.'Evening', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Evening', 'Noite', ['class' => 'form-check-label']) !!}
+                                                {!! Form::checkbox($workday.'-evening', null, false, ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($workday.'-evening', 'Noite', ['class' => 'form-check-label']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-10 ">
                                             <div class="form-inline">
-                                                {{ Form::time($workday.'EveningOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-evening-opening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                                 às
-                                                {{ Form::time($workday.'EveningClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
+                                                {{ Form::time($workday.'-evening-closing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
                                             </div>
                                             
                                         </div>

@@ -22,7 +22,8 @@ class Partner extends Model
        'category_id',
        'user_id',
        'active',
-       'first_login'
+       'first_login',
+       'average_order_time',
     ];
 
     /**

@@ -98,9 +98,9 @@ class PartnerController extends Controller
 
         // Store Images 
         $this->UploadPartnerImage($request);   
+
+        return redirect()->route('partner.createProduct.data');
     }
-    
-    
     
 
     /**

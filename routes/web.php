@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\DeliveryManController;
 use App\Http\Controllers\Web\PartnerController;
 use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
+use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficeProductController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\WebContentController;
 use App\Http\Controllers\Web\FrontOfficeController;
@@ -42,10 +43,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 #   ROUTES FOR BACKOFICE/PARTNER
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
     Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
+    
     Route::get('/businessdata',  [BackofficePartnerController::class, 'createBusinessData'])->name('partner.createBusiness.data');
     Route::post('/businessdata', [BackofficePartnerController::class, 'storeBusinessData' ])->name('partner.storeBusiness.data');
 
-    
+    Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
+    Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 
 });
 

@@ -20,7 +20,7 @@ trait ImagesTrait {
 
         foreach ($imagesTypes as $imgType) {
             if ($image = $request->file('image-'.$imgType)) {
-                $destinationPath = 'images/partner';
+                $destinationPath = 'images/partner/' .$partnerImages->partner_id . '/';
                 $imgName = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imgName);
                 
@@ -30,5 +30,22 @@ trait ImagesTrait {
         }
         
         return $partnerImages->save();
+    }
+
+    # Upload image and return the name
+    public function UploadProductImage($request) 
+    {
+
+        $partner_id  = Auth::user()->partner->id;
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/partner/'. $partner_id .'/products' ;
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            
+            return $imgName;
+        }
+        
+        return false;
     }
 }

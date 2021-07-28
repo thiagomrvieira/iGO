@@ -43,7 +43,8 @@
 <div class="container">
     
     <h4>Business data</h4>
-    {!! Form::open(['class' => '',  'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 'method' => 'post']) !!}
+    {!! Form::open(['class'  => '', 'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 
+                    'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
         @csrf
         <div class="accordion" id="accordionBusinessData">
             

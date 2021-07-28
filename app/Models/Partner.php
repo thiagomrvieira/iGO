@@ -59,4 +59,13 @@ class Partner extends Model
         return $this->hasOne(Category::class, 'id', 'category_id',);
 
     }
+
+    /**
+     * Get the Images that owns the Partner profile.
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+
+    }
 }

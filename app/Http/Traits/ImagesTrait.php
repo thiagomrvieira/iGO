@@ -7,29 +7,38 @@ use Illuminate\Support\Facades\Auth;
 
 
 trait ImagesTrait {
-    
+        
+    # Upload partner images and update in database
     public function UploadPartnerImage($request) 
     {
         $imagesTypes = [
             'cover', '01', '02', '03',
         ];
+        
         $i = 0;
 
-        $partnerImages = new Image;
-        $partnerImages->partner_id  = Auth::user()->partner->id;
+        $partnerImages = [
+            'partner_id'  => Auth::user()->partner->id,
+        ];
 
         foreach ($imagesTypes as $imgType) {
             if ($image = $request->file('image-'.$imgType)) {
-                $destinationPath = 'images/partner/' .$partnerImages->partner_id . '/';
+                $destinationPath = 'images/partner/' . Auth::user()->partner->id . '/';
                 $imgName = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imgName);
-                
-                $partnerImages->{"image_".$imgType} = $imgName;
+
+                $partnerImages["image_$imgType"] = $imgName;
+
                 $i++;    
             }
         }
         
-        return $partnerImages->save();
+        $newPartnerImages = Image::updateOrCreate([
+            'partner_id' => Auth::user()->partner->id,
+        ], $partnerImages);
+        
+        return $newPartnerImages;
+        
     }
 
     # Upload image and return the name

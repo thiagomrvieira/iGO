@@ -87,168 +87,243 @@
                 </div>
             </div>
 
-            {{-- Subcategory item--}}
+            {{-- Product category item--}}
             <div class="accordion-item"> 
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Subcategorias*
+                        Ementa(categorias)*
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
-                        @foreach ($categories as $category)
-                            <div class="form-check">
-                                {!! Form::checkbox($category->slug, null, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
-                            </div>
-                        @endforeach
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Entradas', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Bebidas', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Pratos principais', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Sobremesas', ['class' => 'form-check-label']) !!}
+                        </div>
+
+                        {!! Form::label('available', 'Deseja colocar o prato na secção de destaques?', 
+                                                                        ['class' => 'form-check-label']) !!}
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 1, false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            {!! Form::radio('available', 0, false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            {{--  Schedules item --}}
+            {{--  Side dishes item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Horários*
+                        Acompanhamentos*
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-4">
-                                Dias:
-                            </div>
-                            <div class="col-8">
-                                Horário:
-                            </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Arroz', ['class' => 'form-check-label']) !!}
                         </div>
-
-                        @foreach ($workDays as $workday)
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-check">
-                                        {!! Form::checkbox($workday, null, false, ['class' => 'form-check-input']) !!}
-                                        {!! Form::label($workday, $workday, ['class' => 'form-check-label']) !!}
-                                    </div>
-                                </div>
-                                <div class="col-8">
-                                    <div class="row">
-                                        
-                                        <div class="col-2">
-                                            <div class="form-check">
-                                                {!! Form::checkbox($workday.'Morning', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Morning', 'Manhã', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="col-10 ">
-                                            <div class="form-inline">
-                                                {{ Form::time($workday.'MorningOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                                às
-                                                {{ Form::time($workday.'MorningClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        
-                                        <div class="col-2">
-                                            <div class="form-check">
-                                                {!! Form::checkbox($workday.'Afternoon', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Afternoon', 'Tarde', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="col-10 ">
-                                            <div class="form-inline">
-                                                {{ Form::time($workday.'AfternoonOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                                às
-                                                {{ Form::time($workday.'AfternoonClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        
-                                        <div class="col-2">
-                                            <div class="form-check">
-                                                {!! Form::checkbox($workday.'Evening', null, false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label($workday.'Evening', 'Noite', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                        </div>
-
-                                        <div class="col-10 ">
-                                            <div class="form-inline">
-                                                {{ Form::time($workday.'EveningOpening', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                                às
-                                                {{ Form::time($workday.'EveningClosing', null, ['class' => 'custom-select my-1 mr-sm-2']) }}
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            
-                            </div>
-                            <hr>
-                        @endforeach
-                        
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Salada', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Legumes', ['class' => 'form-check-label']) !!}
+                        </div>
                     </div>
                 </div>
             </div>
             
-            {{--  Average time item --}}
+            {{--  Souce item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Tempo médio de preparação do pedido*
+                        Molhos*
                     </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Maionese', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Pesto', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Vinagrete', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Mostarda', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Holandês', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Ketchup', ['class' => 'form-check-label']) !!}
+                        </div>
+
+                        {!! Form::label('available', 'O seu prato tem picante?', 
+                                                                        ['class' => 'form-check-label']) !!}
                         <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
-                            {!! Form::label('avgtime', '0 - 30 minutos', ['class' => 'form-check-label']) !!}
+                            {!! Form::radio('available', 1, false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
-                            {!! Form::label('avgtime', '30 - 45 minutos', ['class' => 'form-check-label']) !!}
+                            {!! Form::radio('available', 0, false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
                         </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                            {!! Form::label('avgtime', '45 - 60 minutos', ['class' => 'form-check-label']) !!}
-                        </div>
+
+
                     </div>
                 </div>
             </div>
 
-            {{--  Images item --}}
+            {{--  Allergens item --}}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFive">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Imagens*
+                        Alergénios*
                     </button>
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
-                        <div class="form-group">
-                            {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label']) !!}
-                            {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input']) !!}
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Glúten', ['class' => 'form-check-label']) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
-                            {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input']) !!}
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Peixe', ['class' => 'form-check-label']) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
-                            {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input']) !!}
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Lactose', ['class' => 'form-check-label']) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
-                            {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input']) !!}
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Mostarda', ['class' => 'form-check-label']) !!}
                         </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Tremoço', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Amendoins', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Frutos de casca rija', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Sementes sésamo', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Moluscos', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Ovos', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Soja', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Aipo', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Dióxido de enxofre e sulfitos', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Não tem', ['class' => 'form-check-label']) !!}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{--  Campaign item --}}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Campanhas
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionProductData">
+                    <div class="accordion-body">
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', 'Novidade', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::radio('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '30% de desconto', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '2 por 1', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '50% de desconto', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                            {!! Form::label('avgtime', '20% de desconto', ['class' => 'form-check-label']) !!}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{--  Campaign item --}}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Notas especiais
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionProductData">
+                    <div class="accordion-body">
+                        <div class="custom-control custom-control-inline">
+                            {!! Form::textarea('avgtime',  NULL, ['class' => 'form-control', 
+                                                                  'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
+                            
+                        </div>
+                        
+
                     </div>
                 </div>
             </div>

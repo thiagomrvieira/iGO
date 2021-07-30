@@ -50,6 +50,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
     Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
     Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 
+
+
 });
 
 #   ROUTES FOR BACKOFICE/DELIVERYMAN

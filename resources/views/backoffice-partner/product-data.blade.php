@@ -40,6 +40,16 @@
 @section('content')
 <div class="container">
     
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <h4>Product data</h4>
     {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'partner.storeProduct.data', 
                     'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
@@ -51,12 +61,12 @@
             
             {{-- Product name item--}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h2 class="accordion-header" id="headingProduct">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
                     Nome do prato*
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionProductData">
+                <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="form-group">
                             {!! Form::label('image', 'Inserir foto*', ['class' => 'form-check-label']) !!}
@@ -89,12 +99,12 @@
 
             {{-- Product category item--}}
             <div class="accordion-item"> 
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h2 class="accordion-header" id="headingCategory">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
                         Ementa(categorias)*
                     </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionProductData">
+                <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-radio custom-control-inline">
                             {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
@@ -130,12 +140,12 @@
 
             {{--  Side dishes item --}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h2 class="accordion-header" id="headingSide">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSide" aria-expanded="false" aria-controls="collapseSide">
                         Acompanhamentos*
                     </button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionProductData">
+                <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
                             {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
@@ -155,12 +165,12 @@
             
             {{--  Souce item --}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <h2 class="accordion-header" id="headingSouce">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSouce" aria-expanded="false" aria-controls="collapseSouce">
                         Molhos*
                     </button>
                 </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProductData">
+                <div id="collapseSouce" class="accordion-collapse collapse" aria-labelledby="headingSouce" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         
                         <div class="custom-control custom-control-inline">
@@ -206,12 +216,12 @@
 
             {{--  Allergens item --}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <h2 class="accordion-header" id="headingAllergen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAllergen" aria-expanded="false" aria-controls="collapseAllergen">
                         Alergénios*
                     </button>
                 </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionProductData">
+                <div id="collapseAllergen" class="accordion-collapse collapse" aria-labelledby="headingAllergen" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
                             {!! Form::checkbox('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
@@ -274,14 +284,42 @@
                 </div>
             </div>
 
+            {{--  Extras item --}}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingExtra">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExtra" aria-expanded="false" aria-controls="collapseExtra">
+                        Extras
+                    </button>
+                </h2>
+                <div id="collapseExtra" class="accordion-collapse collapse" aria-labelledby="headingExtra" data-bs-parent="#accordionProductData">
+                    <div class="accordion-body">
+                        <div class="custom-control custom-control-inline">
+                            <div class="row">
+                                <div class="col-6">
+                                    {!! Form::text('extraName', null, ['class' => 'form-control', 'placeholder' => 'Extra #1']) !!}
+                                </div>
+                                <div class="col-4">
+                                    {!! Form::number('extraPrice', null, ['class' => 'form-control', 'placeholder' => 'Custo*', 
+                                                                                                'min' => 1, 'step' => 'any']) !!}
+                                </div>
+                                <div class="col-2">
+                                    Icon 1
+                                    Icon 2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{--  Campaign item --}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingEight">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                <h2 class="accordion-header" id="headingCampaign">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCampaign" aria-expanded="false" aria-controls="collapseCampaign">
                         Campanhas
                     </button>
                 </h2>
-                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionProductData">
+                <div id="collapseCampaign" class="accordion-collapse collapse" aria-labelledby="headingCampaign" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
                             {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
@@ -308,22 +346,20 @@
                 </div>
             </div>
 
-            {{--  Campaign item --}}
+            {{--  Notes item --}}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingNine">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                <h2 class="accordion-header" id="headingNote">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNote" aria-expanded="false" aria-controls="collapseNote">
                         Notas especiais
                     </button>
                 </h2>
-                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionProductData">
+                <div id="collapseNote" class="accordion-collapse collapse" aria-labelledby="headingNote" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
-                            {!! Form::textarea('avgtime',  NULL, ['class' => 'form-control', 
-                                                                  'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
+                            {!! Form::textarea('note',  NULL, ['class' => 'form-control', 
+                                                               'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
                             
                         </div>
-                        
-
                     </div>
                 </div>
             </div>

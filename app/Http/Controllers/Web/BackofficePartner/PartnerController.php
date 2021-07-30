@@ -10,6 +10,7 @@ use App\Models\SchedulePartner;
 
 use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\BusinessDataTrait;
+use App\Http\Requests\BusinessDataRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,8 +86,9 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeBusinessData(Request $request)
-    {
+    public function storeBusinessData(BusinessDataRequest $request)
+    {   
+
         // Store subcategories 
         $this->storeSubcategories($request);
 

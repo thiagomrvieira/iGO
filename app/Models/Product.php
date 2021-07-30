@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
        'partner_id',
        'image', 
@@ -15,5 +16,14 @@ class Product extends Model
        'description', 
        'price', 
        'available', 
+       'note', 
     ];
+
+    /**
+     * Get the extras for the product.
+     */
+    public function extras()
+    {
+        return $this->hasMany(Extra::class);
+    }
 }

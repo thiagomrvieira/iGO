@@ -51,7 +51,7 @@
     @endif
 
     <h4>Product data</h4>
-    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'partner.storeProduct.data', 
+    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'product.store', 
                     'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
         @csrf
         

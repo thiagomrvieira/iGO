@@ -5,7 +5,7 @@ use App\Http\Controllers\Web\DeliveryManController;
 use App\Http\Controllers\Web\PartnerController;
 use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
 use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficeProductController;
-use App\Http\Controllers\Web\CategoryController;
+// use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\WebContentController;
 use App\Http\Controllers\Web\FrontOfficeController;
 
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::resource('/deliveryman', DeliveryManController::class);
     Route::resource('/content',     WebContentController::class);
     Route::resource('/partner',     PartnerController::class);
-    Route::resource('/category',    CategoryController::class);
+    // Route::resource('/category',    CategoryController::class);
 
 });
 
@@ -47,8 +47,10 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
     Route::get('/businessdata',  [BackofficePartnerController::class, 'createBusinessData'])->name('partner.createBusiness.data');
     Route::post('/businessdata', [BackofficePartnerController::class, 'storeBusinessData' ])->name('partner.storeBusiness.data');
 
-    Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
-    Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
+    Route::resource('/product',   BackofficeProductController::class);
+
+    // Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
+    // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 
 
 

@@ -20,17 +20,29 @@ class ProductController extends Controller
     use ImagesTrait;
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $products = Product::orderBy('created_at', 'DESC')->get();
+        return view ('backoffice-partner.product.products')->with('products', $products);
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function createProductData()
+    public function create()
     {
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
         $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-        return view('backoffice-partner.product-data')->with('categories', $categories);
+        return view('backoffice-partner.product.create')->with('categories', $categories);
     }
 
     /**
@@ -39,9 +51,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeProductData(ProductDataRequest $request)
+    public function store(ProductDataRequest $request)
     {
-
+        
         $product = Product::create([
             'partner_id'  => $request->partner_id,
             'image'       => $this->UploadProductImage($request),
@@ -60,7 +72,9 @@ class ProductController extends Controller
             ]);
         }
 
-        // return redirect()->route('partner.dashboard');
+        return redirect()->route('product.index');
 
     }
+
+
 }

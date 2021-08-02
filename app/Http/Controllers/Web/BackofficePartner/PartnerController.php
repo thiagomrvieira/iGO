@@ -102,7 +102,7 @@ class PartnerController extends Controller
         $this->UploadPartnerImage($request);   
         
 
-        return redirect()->route('partner.createProduct.data');
+        return redirect()->route('product.create');
     }
     
 

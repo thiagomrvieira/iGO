@@ -52,7 +52,7 @@
 
     <h4>All products view</h4>
 
-    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'product.store', 
+    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
                     'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
         @csrf
         
@@ -102,20 +102,30 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div style="float: left;">
+                                        @if ($product->image)
+                                            <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                alt="Product Image" height="90px">
+                                            <br>
+                                        @endif
                                         <strong>{{$product->name}}</strong>
                                         <p>{{ Str::limit($product->description, 60, '...') }}</p>
                                         <p>{{$product->price}}€</p>
                                     </div>
                                     <div style="float: right;">
+                                        
                                         <div id="pen">
-                                            pen
+                                            <a href="{{ route('products.edit', ['product' => $product] ) }}">
+                                                pen
+                                            </a>
                                         </div>
+
                                         <div id="trash">
                                             trash
                                         </div>
                                         <div id="plus">
                                             plus
                                         </div>
+
                                     </div>
                                     
                                 </div>

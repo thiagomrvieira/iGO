@@ -19,6 +19,12 @@ class Product extends Model
        'note', 
     ];
 
+    protected $casts = [
+        'price' => 'float',
+    ];
+
+    protected $with = [ 'extras' ];
+
     /**
      * Get the extras for the product.
      */

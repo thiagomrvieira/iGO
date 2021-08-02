@@ -72,7 +72,45 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
+
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Product $product)
+    {
+
+        $partner = Auth::user()->partner;
+        $partnerCategory = $partner->mainCategory;
+
+        $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        return view('backoffice-partner.product.create', [
+            'categories' => $categories,
+            'product' => $product
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Product $product)
+    {
+        $product->update($request->all());
+
+        if ($request->image) {
+            $product->update(['image' => $this->UploadProductImage($request)]);
+        }
+
+        return redirect()->route('products.index');
 
     }
 

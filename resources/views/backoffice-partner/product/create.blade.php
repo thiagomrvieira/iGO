@@ -50,11 +50,11 @@
         </div>
     @endif
 
-    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => ($product ? array('products.update', ['product' => $product]) : 'products.store'), 
+    {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => (isset($product) ? array('products.update', ['product' => $product]) : 'products.store'), 
                     'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
         @csrf
 
-        {{ $product ? method_field('PATCH') : null}}
+        {{ isset($product) ? method_field('PATCH') : null}}
         {!! Form::hidden('partner_id', $partner->id ) !!} 
 
         <div class="accordion" id="accordionProductData">
@@ -69,33 +69,35 @@
                 <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="form-group">
-                            @if ($product->image)
+                            @if (isset($product) && $product->image)
                                 <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
                                     alt="Product Image" height="90px">
                                 <br>
                             @endif
-                            {!! Form::label('image', $product->image ? 'Alterar foto*' : 'Inserir foto*', ['class' => 'form-check-label']) !!}
+                            {!! Form::label('image', isset($product) && $product->image ? 'Alterar foto*' : 'Inserir foto*', ['class' => 'form-check-label']) !!}
                             {!! Form::file ('image', null, false,     ['class' => 'form-check-input']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::text('name', $product->name ?? null, ['class' => 'form-control', 'placeholder' => 'Nome do prato*']) !!}
+                            {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null, 
+                                          ['class' => 'form-control', 'placeholder' => 'Nome do prato*']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::textarea('description', $product->description ?? null, ['class' => 'form-control', 'placeholder' => 'Descrição do prato*']) !!}
+                            {!! Form::textarea('description', (isset($product) && $product->description) ? $product->description : null, 
+                                              ['class' => 'form-control', 'placeholder' => 'Descrição do prato*']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::number('price', number_format($product->price,2) ?? null, ['class' => 'form-control', 'placeholder' => 'Custo*', 
-                                                             'min' => 1, 'step' => 'any']) !!}
+                            {!! Form::number('price', (isset($product) && $product->price) ? number_format($product->price,2) : null, 
+                                            ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                         </div>
                         
                         {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}
 
                         <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 1, ($product->available == 1 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::radio('available', 1, ( isset($product) && $product->available == 1 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
                             {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 0, ($product->available == 0 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
+                            {!! Form::radio('available', 0, ( isset($product) && $product->available == 0 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
                             {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
                         </div>
                     </div>
@@ -300,7 +302,7 @@
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
                             <div class="row">
-                                @if (count($product->extras) > 0 )
+                                @if (isset($product) && count($product->extras) > 0 )
                                     @foreach ($product->extras as $extra)
                                         <div class="col-6">
                                             {!! Form::text('extraName', $extra->name, ['class' => 'form-control', 'placeholder' => 'Extra #1']) !!}
@@ -314,8 +316,21 @@
                                             Icon 2
                                         </div>
                                     @endforeach    
-                                    <a href="#">Adicionar Extra</a>
+                                @else
+                                    <div class="col-6">
+                                        {!! Form::text('extraName', null, ['class' => 'form-control', 'placeholder' => 'Extra #1']) !!}
+                                    </div>
+                                    <div class="col-4">
+                                        {!! Form::number('extraPrice', null , ['class' => 'form-control', 'placeholder' => 'Custo*', 
+                                                                                                        'min' => 1, 'step' => 'any']) !!}
+                                    </div>
+                                    <div class="col-2">
+                                        Icon 1
+                                        Icon 2
+                                    </div>
                                 @endif
+                                <a href="#">Adicionar Extra</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -366,8 +381,8 @@
                 <div id="collapseNote" class="accordion-collapse collapse" aria-labelledby="headingNote" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
                         <div class="custom-control custom-control-inline">
-                            {!! Form::textarea('note',  $product->note ?? null, ['class' => 'form-control', 
-                                                               'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
+                            {!! Form::textarea('note', (isset($product) && $product->note) ? $product->note : null, 
+                                              ['class' => 'form-control', 'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
                             
                         </div>
                     </div>
@@ -375,7 +390,7 @@
             </div>
         </div>
     {!! Form::close() !!}
-    @if ($product)
+    @if (isset($product))
         {!! Form::submit('Salvar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData'   ]) !!}
     @else
         {!! Form::submit('Próximo', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData'   ]) !!}

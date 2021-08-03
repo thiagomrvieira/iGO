@@ -114,5 +114,19 @@ class ProductController extends Controller
 
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Product  $deliveryMan
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Product $product)
+    {
+        if($product) {
+            $product->delete();
+        }
+        return redirect()->route('products.index');
+    }
+
 
 }

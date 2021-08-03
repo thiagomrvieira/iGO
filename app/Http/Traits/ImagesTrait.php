@@ -8,6 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 trait ImagesTrait {
         
+    # Upload partner cover image in database
+    public function UpdatePartnerCoverImage($request) 
+    {
+    
+        $image = $request->file('image_cover');
+        $destinationPath = 'images/partner/' . Auth::user()->partner->id . '/';
+        $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $imgName);
+        $image_cover = $imgName;
+        
+        $newPartnerImages = Image::updateOrCreate([
+            'partner_id' => Auth::user()->partner->id,
+        ],['image_cover' => $image_cover]);
+        
+        return $newPartnerImages;   
+        
+    }
+
     # Upload partner images and update in database
     public function UploadPartnerImage($request) 
     {
@@ -23,6 +41,7 @@ trait ImagesTrait {
 
         foreach ($imagesTypes as $imgType) {
             if ($image = $request->file('image-'.$imgType)) {
+                dd('entrou mais');
                 $destinationPath = 'images/partner/' . Auth::user()->partner->id . '/';
                 $imgName = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imgName);

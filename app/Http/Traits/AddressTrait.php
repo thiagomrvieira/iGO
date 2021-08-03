@@ -10,8 +10,11 @@ trait AddressTrait {
     #   Get the request and define the method to be used
     public function getAddressRequest(Request $request, $resourceId) { 
         
-        $checkAddress = Address::where('id', $resourceId)->first();
+        // $checkAddress = Address::where('id', $resourceId)->first();
+        $checkAddress = Address::where('user_id', $resourceId)->first();
         
+        // dd('entrou');
+
         if (is_null($checkAddress)) {
             $address = $this->createAdress($request);
         } else {

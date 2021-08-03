@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Partner extends Model
 {
@@ -31,7 +32,8 @@ class Partner extends Model
      */
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        // return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class, 'user_id', 'id');
     }
 
     /**
@@ -65,7 +67,7 @@ class Partner extends Model
      */
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasOne(Image::class);
 
     }
 }

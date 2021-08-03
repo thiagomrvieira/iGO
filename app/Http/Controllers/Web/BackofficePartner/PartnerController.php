@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\SchedulePartner;
 
 use App\Http\Traits\ImagesTrait;
+use App\Http\Traits\AddressTrait;
 use App\Http\Traits\BusinessDataTrait;
 use App\Http\Requests\BusinessDataRequest;
 
@@ -20,6 +21,7 @@ class PartnerController extends Controller
 {
     use ImagesTrait;
     use BusinessDataTrait;
+    use AddressTrait;
 
     /**
      * Display the login view for admin
@@ -120,12 +122,14 @@ class PartnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partner $partner)
+    public function edit()
     {
-        //
+        $partner = Auth::user()->partner;
+        return view('backoffice-partner.partner.profile', [
+            'partner' => $partner,
+        ]);
     }
 
     /**
@@ -137,7 +141,27 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
-        //
+
+        $partner->update([
+            'name'                => $request->name,
+            'email'               => $request->email,
+            'phone_number'        => $request->phone,
+            'mobile_phone_number' => $request->mobile,
+            'tax_number'          => $request->tax,
+            'first_login'         => 0,
+        ]);
+
+        if (!is_null($request->line_1) || !is_null($request->county) || !is_null($request->city) || !is_null($request->post_code)) { 
+            $address = $this->getAddressRequest($request, $partner->id); 
+        }
+
+        if (!is_null($request->image_cover) ) { 
+            $image = $this->UpdatePartnerCoverImage($request);   
+        }
+
+
+        return redirect()->route('partner.profile.edit');
+
     }
 
     /**

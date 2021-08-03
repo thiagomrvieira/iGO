@@ -49,6 +49,10 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
 
     Route::resource('/products',   BackofficeProductController::class);
 
+    Route::get('/profile',  [BackofficePartnerController::class, 'edit'])->name('partner.profile.edit');
+    Route::patch('/profile/{partner}', [BackofficePartnerController::class, 'update'])->name('partner.profile.update');
+
+
     // Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
     // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 

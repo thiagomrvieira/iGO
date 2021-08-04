@@ -14,8 +14,17 @@
 <body>
 
     @yield('navbar')
-    
-    @yield('content')
+
+    <div class="row">
+        <div class="col-2">
+            @component('backoffice-partner.layouts.sidebar')
+            @endcomponent
+        </div>
+        <div class="col-8">
+            @yield('content')
+        </div>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>

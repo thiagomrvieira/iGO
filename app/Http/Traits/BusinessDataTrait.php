@@ -17,24 +17,28 @@ trait BusinessDataTrait {
      */
     public function storeSubcategories($request)
     {
+        # Get the authenticated partner and the partner category
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
+        # Get all categories and pluck the slug column 
         $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get();
         $catSlugs = $categories->pluck('slug');
 
         # Check if the categories slug exists in $request and set array $catIdsForUpdate
-        $catIdsForUpdate = [];
+        $catIdsForUpdate = $partner->subCategories->pluck('category_id')->toArray();
+        
+        # Check if the $request has a slug from category and push into catIdsForUpdate
         foreach ($catSlugs as $slug) {
             if( $request->$slug){
                 $catId = $categories->where('slug', $slug)->first();
                 array_push($catIdsForUpdate, $catId->id);
             }
         }
-        
+
         # Update categories in pivot table
         if ($catIdsForUpdate != []) {
-            $partner->subCategories()->sync($catIdsForUpdate);
+            $partner->subCategories()->sync(array_filter($catIdsForUpdate));
         }
 
         return true;

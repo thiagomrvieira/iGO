@@ -83,7 +83,8 @@
                     <div class="accordion-body">
                         @foreach ($categories as $category)
                             <div class="form-check">
-                                {!! Form::checkbox($category->slug, null, false, ['class' => 'form-check-input']) !!}
+                                {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, 
+                                    ['class' => 'form-check-input']) !!}
                                 {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
                             </div>
                         @endforeach
@@ -240,7 +241,8 @@
         </div>
     {!! Form::close() !!}
     
-    {!! Form::submit('Seguinte', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formBusinessData'   ]) !!}
+    {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar', 
+                    ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formBusinessData'   ]) !!}
 
 </div>
 @endsection

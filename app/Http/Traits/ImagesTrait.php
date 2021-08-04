@@ -41,7 +41,6 @@ trait ImagesTrait {
 
         foreach ($imagesTypes as $imgType) {
             if ($image = $request->file('image-'.$imgType)) {
-                dd('entrou mais');
                 $destinationPath = 'images/partner/' . Auth::user()->partner->id . '/';
                 $imgName = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imgName);

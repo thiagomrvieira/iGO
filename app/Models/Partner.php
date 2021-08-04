@@ -28,6 +28,13 @@ class Partner extends Model
     ];
 
     /**
+     * Retrieve these relations when instance created
+     */
+    protected $with = [
+        'subCategories',
+    ];
+
+    /**
      * Get the Address associated with the partner.
      */
     public function address()

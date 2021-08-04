@@ -91,6 +91,8 @@ class PartnerController extends Controller
     public function storeBusinessData(BusinessDataRequest $request)
     {   
 
+        // dd($request->all());
+        
         // Store subcategories 
         $this->storeSubcategories($request);
 

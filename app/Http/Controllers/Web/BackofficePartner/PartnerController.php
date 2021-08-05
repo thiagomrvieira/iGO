@@ -154,7 +154,7 @@ class PartnerController extends Controller
         ]);
 
         if (!is_null($request->line_1) || !is_null($request->county) || !is_null($request->city) || !is_null($request->post_code)) { 
-            $address = $this->getAddressRequest($request, $partner->id); 
+            $address = $this->getAddressRequest($request, $partner->user->id); 
         }
 
         if (!is_null($request->image_cover) ) { 

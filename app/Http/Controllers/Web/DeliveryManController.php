@@ -85,9 +85,7 @@ class DeliveryManController extends Controller
     {
         $deliveryman->update($request->all());
         if (!is_null($request->addressData)) { 
-            $address = $this->getAddressRequest($request, $deliveryman->address_id); 
-            $deliveryman->address_id = $address->id;
-            $deliveryman->save();
+            $address = $this->getAddressRequest($request, $deliveryman->user->id); 
         }
         return back()->with(['message' => 'Estafeta editado com sucesso!', 'alert' => 'alert-success']);
     }

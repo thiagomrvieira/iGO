@@ -184,6 +184,7 @@
 
                                     {{-- Input de controle para o metodo update --}}
                                     {!! Form::hidden('addressData', true ) !!}
+                                    {!! Form::hidden('user_id', $partner->user->id ) !!}
 
                                     <div class="form-group row">
                                         {!! Form::label('line_1', __('backoffice/partners.addressDataTab.address'),  ['class' => 'col-sm-2 col-form-label']) !!}

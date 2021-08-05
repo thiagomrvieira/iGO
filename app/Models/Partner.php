@@ -40,7 +40,7 @@ class Partner extends Model
     public function address()
     {
         // return $this->hasOne(Address::class);
-        return $this->hasOne(Address::class, 'user_id', 'id');
+        return $this->hasOne(Address::class, 'user_id', 'user_id');
     }
 
     /**

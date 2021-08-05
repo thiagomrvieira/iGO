@@ -103,9 +103,7 @@ class PartnerController extends Controller
     {
         $partner->update($request->all());
         if (!is_null($request->addressData)) { 
-            $address = $this->getAddressRequest($request, $partner->address_id); 
-            $partner->address_id = $address->id;
-            $partner->save();
+            $address = $this->getAddressRequest($request, $partner->user->id); 
         }
         return back()->with(['message' => 'Aderente editado com sucesso!', 'alert' => 'alert-success']);
     }

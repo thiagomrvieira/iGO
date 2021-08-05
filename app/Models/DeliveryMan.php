@@ -38,7 +38,7 @@ class DeliveryMan extends Model
      */
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(Address::class, 'user_id', 'user_id');
     }
 
     /**

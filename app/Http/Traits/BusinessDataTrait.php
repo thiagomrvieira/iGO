@@ -2,7 +2,7 @@
 
 namespace App\Http\Traits;
 
-use App\Models\Category;
+use App\Models\PartnerCategory;
 use App\Models\Partner;
 use App\Models\SchedulePartner;
 
@@ -22,7 +22,7 @@ trait BusinessDataTrait {
         $partnerCategory = $partner->mainCategory;
 
         # Get all categories and pluck the slug column 
-        $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get();
+        $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get();
         $catSlugs = $categories->pluck('slug');
 
         # Check if the categories slug exists in $request and set array $catIdsForUpdate

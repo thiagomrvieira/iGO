@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        {!! Form::label('name', __('backoffice/partners.companyDataTab.category'), ['class' => 'col-sm-2 col-form-label']) !!}
+                                        {!! Form::label('name', 'Nome', ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
                                             {!! Form::text('name', $partner->company_name ?? null, ['class' => 'form-control', 
                                                                                                     'placeholder' => __('backoffice/partners.companyDataTab.name')]) !!}

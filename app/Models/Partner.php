@@ -56,7 +56,9 @@ class Partner extends Model
      */
     public function subCategories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(PartnerCategory::class, 'category_partner', 'partner_id', 'category_id');
+        // return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+
     }
 
     /**
@@ -65,7 +67,7 @@ class Partner extends Model
     public function mainCategory()
     {
         // return $this->hasOne(Category::class);
-        return $this->hasOne(Category::class, 'id', 'category_id',);
+        return $this->hasOne(PartnerCategory::class, 'id', 'category_id');
 
     }
 

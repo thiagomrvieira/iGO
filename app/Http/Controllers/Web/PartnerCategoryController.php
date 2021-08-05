@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Partner;
-use App\Models\Category;
+use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\PartnerCategoryStoreRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 
-class CategoryController extends Controller
+
+class PartnerCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $partnerCategories = (count(Category::all()) > 0 ) ? Category::all() : [];
+        $partnerCategories = (count(PartnerCategory::all()) > 0 ) ? PartnerCategory::all() : [];
         return view('backoffice-admin.partner.partner-categories')->with('partnerCategories', $partnerCategories);
     }
 
@@ -38,13 +40,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(PartnerCategoryStoreRequest $request)
     {
-        $category = new Category;
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $request->active == 'on' ? $category->active = 1 : $category->active = 0;
-        $category->save();
+
+        $category = PartnerCategory::firstOrCreate(
+            ['name' => $request->name],
+            ['name'      => $request->name, 
+             'slug'      => Str::slug($request->name, '-'),
+             'active'    => $request->active == 'on' ? 1 : 0,
+             'parent_id' => $request->parent_id ,
+            ]
+        );
 
         return back()->with(['message' => 'Categoria criada com sucesso!', 'alert' => 'alert-success']);
     }
@@ -55,7 +61,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $Category)
+    public function show(PartnerCategory $Category)
     {
         //
     }
@@ -66,7 +72,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $Category)
+    public function edit(PartnerCategory $Category)
     {
         //
     }
@@ -78,7 +84,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, PartnerCategory $category)
     {
         $category->update($request->all());
         return back()->with(['message' => 'Categoria atualizada com sucesso!', 'alert' => 'alert-success']);
@@ -90,7 +96,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(PartnerCategory $category)
     {
         if($category) {
             $category->delete();

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Partner;
-use App\Models\Category;
+use App\Models\PartnerCategory;
 use Illuminate\Http\Request;
 use App\Http\Traits\AddressTrait;
 use App\Http\Requests\PartnerStoreRequest;
@@ -34,7 +34,8 @@ class PartnerController extends Controller
     {
         
         $partners = (count(Partner::all()) > 0 ) ? Partner::orderby('id', 'desc')->simplePaginate(10) : [];
-        $partnerCategories = (count(Category::where('active', 1)->get()) > 0 ) ? Category::where('active', 1)->get() : [];
+        $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
+                                                                    PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
         
         return view('backoffice-admin.partner.partner')->with('partners', $partners)
                                                  ->with('partnerCategories', $partnerCategories);
@@ -84,8 +85,8 @@ class PartnerController extends Controller
     public function edit(Partner $partner)
     {
 
-        $partnerCategories = (count(Category::where('active', 1)->get()) > 0 ) ? 
-                                    Category::where('active', 1)->get() : [];
+        $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
+                                    PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
                                     
         return view('backoffice-admin.partner.partner-edit')->with('partner', $partner)
                                                       ->with('partnerCategories', $partnerCategories);

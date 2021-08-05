@@ -10,7 +10,7 @@ use App\Http\Requests\ProductDataRequest;
 
 
 use App\Models\Partner;
-use App\Models\Category;
+use App\Models\PartnerCategory;
 use App\Models\Product;
 use App\Models\Extra;
 
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
-        $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
         return view('backoffice-partner.product.create')->with('categories', $categories);
     }
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
-        $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
         return view('backoffice-partner.product.create', [
             'categories' => $categories,
             'product' => $product

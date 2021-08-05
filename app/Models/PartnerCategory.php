@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class PartnerCategory extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = [
        'id',
        'name',
-       'description',
+       'slug',
        'parent_id',
        'active'
     ];
@@ -24,5 +24,13 @@ class Category extends Model
     public function partner()
     {
         return $this->belongsToMany(Partner::class);
+    }
+
+    /**
+     * Get the Parent Category.
+     */
+    public function parent()
+    {
+        return $this->hasOne(PartnerCategory::class, 'id', 'parent_id');
     }
 }

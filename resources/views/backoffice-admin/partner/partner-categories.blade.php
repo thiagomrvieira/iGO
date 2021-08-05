@@ -41,7 +41,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-outline card-info">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -58,13 +58,20 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                {!! Form::label('description',  __('backoffice/partners.createCategoryCard.description'),  ['class' => 'col-sm-2 col-form-label']) !!}
+                                {!! Form::label('parent_id', 'Categoria pai', ['class' => 'col-sm-2 col-form-label']) !!}
                                 <div class="col-sm-10">
-                                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-                                </div>
+                                    {!! Form::select('parent_id', $partnerCategories->where('parent_id', null)->pluck('name', 'id'), null, 
+                                                    ['class' => 'form-control', 'disabled' => 'true', 'placeholder' => 'Seleciona uma categoria']) !!}
+                                </div> 
                             </div>
                         
                             <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <div class="form-check">
+                                        {!! Form::checkbox('isMain', null, true,   ['class' => 'form-check-input', 'id' => 'isMain']) !!}
+                                        {!! Form::label('active',  'É principal',  ['class' => 'form-check-label']) !!}
+                                    </div>
+                                </div>
                                 <div class="offset-sm-2 col-sm-10">
                                     <div class="form-check">
                                         {!! Form::checkbox('active', null, false, ['class' => 'form-check-input']) !!}
@@ -101,7 +108,7 @@
                                     <tr>
                                         <th>{{ __('backoffice/partners.categoryListCard.id')          }}</th>
                                         <th>{{ __('backoffice/partners.categoryListCard.name')        }}</th>
-                                        <th>{{ __('backoffice/partners.categoryListCard.description') }}</th>
+                                        <th>{{ 'Categoria pai' }}</th>
                                         <th>{{ __('backoffice/partners.categoryListCard.status')      }}</th>
                                         <th>{{ __('backoffice/partners.categoryListCard.actions')     }}</th>
                                     </tr>
@@ -113,7 +120,7 @@
                                     <tr>
                                         <td>{{ $category->id ?? null}}</td>
                                         <td>{{ $category->name ?? null}}</td>
-                                        <td>{{ $category->description ?? null}}</td>
+                                        <td>{!! $category->parent->name ?? '<b>É principal</b>'!!}</td>
                                         <td>{{ !$category->active ?
                                                 __('backoffice/partners.categoryListCard.inactive') : 
                                                 __('backoffice/partners.categoryListCard.active'  ) 
@@ -201,5 +208,13 @@
             $('#form-update-status').attr('action', action ).submit();
         });
         
+        // Ativa o select para seleção de categoria pai
+        $(document).on("click", "#isMain", function () {
+            if ($('#isMain').is(":checked")) {
+                $('#parent_id').attr('disabled', 'disabled');
+            }else {
+                $('#parent_id').removeAttr('disabled');
+            }
+        });
     </script>
 @endsection

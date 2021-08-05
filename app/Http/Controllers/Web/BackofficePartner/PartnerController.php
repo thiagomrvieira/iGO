@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web\BackofficePartner;
 use App\Http\Controllers\Controller;
 
 use App\Models\Partner;
-use App\Models\Category;
+use App\Models\PartnerCategory;
 use App\Models\SchedulePartner;
 
 use App\Http\Traits\ImagesTrait;
@@ -78,7 +78,7 @@ class PartnerController extends Controller
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
-        $categories = Category::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
         return view('backoffice-partner.business-data')->with('categories', $categories);
     }
 
@@ -91,7 +91,7 @@ class PartnerController extends Controller
     public function storeBusinessData(BusinessDataRequest $request)
     {   
 
-        // dd($request->all());
+        //  dd($request->all());
         
         // Store subcategories 
         $this->storeSubcategories($request);

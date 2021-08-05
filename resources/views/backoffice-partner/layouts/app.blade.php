@@ -16,10 +16,14 @@
     @yield('navbar')
 
     <div class="row">
-        <div class="col-2">
-            @component('backoffice-partner.layouts.sidebar')
-            @endcomponent
-        </div>
+
+        @if(Request::route()->getName() != "login.partner")
+            <div class="col-2">
+                @component('backoffice-partner.layouts.sidebar')
+                @endcomponent
+            </div>
+        @endif
+
         <div class="col-8">
             @yield('content')
         </div>

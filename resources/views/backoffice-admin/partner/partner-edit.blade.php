@@ -34,9 +34,13 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                src="{{ asset('assets-backoffice/dist/img/store.png')}}"
-                                alt="User profile picture">
+                            @if (isset($partner->images->image_cover))
+                                <img class="profile-user-img img-fluid img-circle"
+                                    src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="User profile picture">
+                            @else
+                                <img class="profile-user-img img-fluid img-circle"
+                                    src="{{ asset('assets-backoffice/dist/img/store.png')}}" alt="User profile picture">
+                            @endif
                         </div>
                         
                         <h3 class="profile-username text-center">{{ $partner->company_name ?? null}}</h3>
@@ -114,7 +118,7 @@
                                     <div class="form-group row">
                                         {!! Form::label('name', 'Nome', ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('name', $partner->company_name ?? null, ['class' => 'form-control', 
+                                            {!! Form::text('name', $partner->name ?? null, ['class' => 'form-control', 
                                                                                                     'placeholder' => __('backoffice/partners.companyDataTab.name')]) !!}
                                         </div>
                                     </div>

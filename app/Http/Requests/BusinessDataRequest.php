@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BusinessDataRequest extends FormRequest
 {
@@ -23,11 +24,18 @@ class BusinessDataRequest extends FormRequest
      */
     public function rules()
     {
+        $partner  = Auth::user()->partner;
+
+        $imgcover = $partner->images->image_cover ? '': 'required';
+        $img01    = $partner->images->image_01    ? '': 'required';
+        $img02    = $partner->images->image_02    ? '': 'required';
+        $img03    = $partner->images->image_03    ? '': 'required';
+
         return [
-            'image-cover' => 'required|file|mimes:jpg,png,jpeg',
-            'image-01'    => 'required|file|mimes:jpg,png,jpeg',
-            'image-02'    => 'required|file|mimes:jpg,png,jpeg',
-            'image-03'    => 'required|file|mimes:jpg,png,jpeg',
+            'image-cover' => $imgcover.'|file|mimes:jpg,png,jpeg',
+            'image-01'    => $img01.   '|file|mimes:jpg,png,jpeg',
+            'image-02'    => $img02.   '|file|mimes:jpg,png,jpeg',
+            'image-03'    => $img03.   '|file|mimes:jpg,png,jpeg',
         ];
     }
 }

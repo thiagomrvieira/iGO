@@ -44,14 +44,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
     Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
     
-    Route::get('/businessdata',  [BackofficePartnerController::class, 'createBusinessData'])->name('partner.createBusiness.data');
-    Route::post('/businessdata', [BackofficePartnerController::class, 'storeBusinessData' ])->name('partner.storeBusiness.data');
-
-    Route::resource('/products',   BackofficeProductController::class);
+    Route::get('/business',  [BackofficePartnerController::class, 'createBusinessData'])->name('partner.createBusiness.data');
+    Route::post('/business', [BackofficePartnerController::class, 'storeBusinessData' ])->name('partner.storeBusiness.data');
 
     Route::get('/profile',  [BackofficePartnerController::class, 'edit'])->name('partner.profile.edit');
     Route::patch('/profile/{partner}', [BackofficePartnerController::class, 'update'])->name('partner.profile.update');
-
+    
+    Route::resource('/products',   BackofficeProductController::class);
 
     // Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
     // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');

@@ -216,17 +216,19 @@
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionBusinessData">
                         <div class="accordion-body">
-                            
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('avgtime', '0-30', $partner->average_order_time == '0-30' ? true : false, 
+                                               ['class' => 'form-check-input']) !!}
                                 {!! Form::label('avgtime', '0 - 30 minutos', ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('avgtime', '30-45', $partner->average_order_time == '30-45' ? true : false, 
+                                               ['class' => 'form-check-input']) !!}
                                 {!! Form::label('avgtime', '30 - 45 minutos', ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('avgtime', '45-60', $partner->average_order_time == '45-60' ? true : false, 
+                                                ['class' => 'form-check-input']) !!}
                                 {!! Form::label('avgtime', '45 - 60 minutos', ['class' => 'form-check-label']) !!}
                             </div>
                         </div>

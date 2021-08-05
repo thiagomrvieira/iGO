@@ -77,4 +77,12 @@ class Partner extends Model
         return $this->hasOne(Image::class);
 
     }
+
+    /**
+     * Get the Schedule associated with the partner.
+     */
+    public function schedule()
+    {
+        return $this->hasMany(SchedulePartner::class);
+    }
 }

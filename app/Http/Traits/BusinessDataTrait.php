@@ -49,7 +49,7 @@ trait BusinessDataTrait {
      */
     public function storeSchedule($request)
     {
-        
+
         $workDays = [ 
             'monday',
             'tuesday',
@@ -67,11 +67,16 @@ trait BusinessDataTrait {
             'evening',
         ];
         
-        $partner = Auth::user()->partner;
+        # Get the authenticated partner and the partner schedule
+        $partner  = Auth::user()->partner;
+        $schedule = $partner->schedule; 
 
+        # Set values for update Or Create SchedulePartner
         foreach ($workDays as $workDay) {
+            # Check if checkbox for workdays (monday, tuesday, etc) is checked 
             if ($request->$workDay) {
                 foreach ($workPeriods as $workPeriod) {
+
                     if ($request->{$workDay.ucfirst($workPeriod)}) {
                         ${"schedule".$workDay.ucfirst($workPeriod)} = SchedulePartner::updateOrCreate([
                             'day'        => $workDay,
@@ -86,6 +91,20 @@ trait BusinessDataTrait {
                             'partner_id' => $partner->id,
                         ]);
                     }
+
+                    # Check if the values exists and the inputs is null and remove them
+                    if ($schedule->where('day', $workDay)->where('period', $workPeriod)->count() > 0 && 
+                       !$request->{$workDay.ucfirst($workPeriod)."Opening"}) 
+                    {
+                        $schedule->where('day', $workDay)->where('period', $workPeriod)->first()->delete();
+                    }
+                }
+            
+            # Remove schedules for workday (monday, tuesday, etc) if checkbox is unchecked 
+            }else {
+                $scheduleToRemove = $schedule->where('day', $workDay);
+                foreach ($scheduleToRemove as $remove) {
+                    $remove->delete();
                 }
             }
         }

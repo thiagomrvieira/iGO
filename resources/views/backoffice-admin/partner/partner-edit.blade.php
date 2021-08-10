@@ -66,7 +66,8 @@
                                 @csrf
                                 {{ method_field('PATCH') }}
                                 @if (is_null($partner->approved_at))
-                                    {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!} 
+                                    {{-- {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}  --}}
+                                    {!! Form::hidden('approved_at', Carbon::now() ) !!} 
                                 @endif
                                 {!! Form::hidden('active', 1 ) !!}
                                 {!! Form::submit(__('backoffice/partners.activeAccount'),  ['type' => 'submit', 'class' => 'btn btn-primary btn-block' ]) !!}

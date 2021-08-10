@@ -25,6 +25,7 @@ class Partner extends Model
        'active',
        'first_login',
        'average_order_time',
+       'approved_at'
     ];
 
     /**

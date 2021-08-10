@@ -10,6 +10,7 @@ use App\Http\Requests\PartnerStoreRequest;
 use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserTrait;
+use Carbon\Carbon;
 
 class PartnerController extends Controller
 {
@@ -112,11 +113,10 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
-        // dd($request->all());
 
         # Update partner values
         $partner->update($request->all());
-        
+
         # Set user as Active/Inactive
         $partner->user()->update(array('active' => $request->active));
 

@@ -26,10 +26,10 @@ class BusinessDataRequest extends FormRequest
     {
         $partner  = Auth::user()->partner;
 
-        $imgcover = $partner->images->image_cover ? '': 'required';
-        $img01    = $partner->images->image_01    ? '': 'required';
-        $img02    = $partner->images->image_02    ? '': 'required';
-        $img03    = $partner->images->image_03    ? '': 'required';
+        $imgcover = isset($partner->images->image_cover) ? '': 'required';
+        $img01    = isset($partner->images->image_01)    ? '': 'required';
+        $img02    = isset($partner->images->image_02)    ? '': 'required';
+        $img03    = isset($partner->images->image_03)    ? '': 'required';
 
         return [
             'image-cover' => $imgcover.'|file|mimes:jpg,png,jpeg',

@@ -53,7 +53,8 @@ class ProductController extends Controller
      */
     public function store(ProductDataRequest $request)
     {
-        
+        $partner = Auth::user()->partner;
+
         $product = Product::create([
             'partner_id'  => $request->partner_id,
             'image'       => $this->UploadProductImage($request),
@@ -72,6 +73,9 @@ class ProductController extends Controller
             ]);
         }
 
+        if ($partner->first_login == 1) {
+            return redirect()->route('partner.profile.edit');
+        }
         return redirect()->route('products.index');
 
     }

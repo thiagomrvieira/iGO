@@ -245,22 +245,33 @@
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionBusinessData">
                         <div class="accordion-body">
-                            <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
+                            @if (isset($partner->images->image_cover))
+                                <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
+                            @endif
                             <div class="form-group">
                                 {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label']) !!}
                                 {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input']) !!}
                             </div>
-                            <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_01)}}" alt="" height="90px">
+
+                            @if (isset($partner->images->image_01))
+                                <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_01)}}" alt="" height="90px">
+                            @endif
                             <div class="form-group">
                                 {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
                                 {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input']) !!}
                             </div>
-                            <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_02)}}" alt="" height="90px">
+
+                            @if (isset($partner->images->image_02))
+                                <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_02)}}" alt="" height="90px">
+                            @endif
                             <div class="form-group">
                                 {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
                                 {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input']) !!}
                             </div>
-                            <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_03)}}" alt="" height="90px">
+
+                            @if (isset($partner->images->image_03))
+                                <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_03)}}" alt="" height="90px">
+                            @endif
                             <div class="form-group">
                                 {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
                                 {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input']) !!}

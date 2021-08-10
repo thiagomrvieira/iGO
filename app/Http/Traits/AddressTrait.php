@@ -13,7 +13,7 @@ trait AddressTrait {
         // dd($checkAddress);
         
         if (is_null($checkAddress)) {
-            $address = $this->createAdress($request);
+            $address = $this->createAdress($request, $resourceId);
         } else {
             $address = $this->updateAdress($request, $checkAddress);
         }
@@ -21,9 +21,11 @@ trait AddressTrait {
     }
     
     #   Create addresses from DeliveryManController and PartnerController
-    public function createAdress(Request $request) {
-        // dd($request->all());
-        $address = Address::create($request->all());
+    public function createAdress(Request $request, $user_id) {
+        $resource = $request->all();
+        $resource['user_id'] = $user_id;
+
+        $address = Address::create($resource);
         return $address;
     }
 

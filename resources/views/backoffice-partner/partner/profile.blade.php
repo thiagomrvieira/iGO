@@ -91,6 +91,9 @@
                             <div class="form-group mb-1">
                                 {!! Form::text('post_code', $partner->address->post_code ?? null, ['class' => 'form-control', 'placeholder' => 'NIF*']) !!}
                             </div>
+                            <div class="form-group mb-1">
+                                {!! Form::text('country', $partner->address->country ?? null, ['class' => 'form-control', 'placeholder' => 'País*']) !!}
+                            </div>
                         </div>
                     </div>
                 </div>

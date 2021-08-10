@@ -29,7 +29,7 @@ class CreatePartnersTable extends Migration
             $table->boolean('first_login')->default(true);
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

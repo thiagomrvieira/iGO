@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 trait AddressTrait {
     
     #   Get the request and define the method to be used
-    public function getAddressRequest(Request $request, $resourceId) { 
+    public function getAddressRequest($request, $resourceId) { 
         $checkAddress = Address::where('user_id', $resourceId)->first();
-        // dd($checkAddress);
+        
+        // dd(is_array($request));
         
         if (is_null($checkAddress)) {
-            $address = $this->createAdress($request, $resourceId);
+            # Check if the data is an array - Sent from home
+            if (is_array($request)) {
+                $address = $this->createAdressFromHome($request, $resourceId);
+            } else {
+                $address = $this->createAdress($request, $resourceId);
+            }
+            
         } else {
             $address = $this->updateAdress($request, $checkAddress);
         }
@@ -33,5 +40,16 @@ trait AddressTrait {
     public function updateAdress(Request $request, Address $address) {
         $address->update($request->all());
         return $address;
+    }
+
+    #   Create addresses from home
+    public function createAdressFromHome($request, $user_id) {
+        $resource = $request;
+        $resource['user_id'] = $user_id;
+       
+        $address = Address::create($resource);
+
+        return $address;
+
     }
 }

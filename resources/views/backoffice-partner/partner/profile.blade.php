@@ -89,7 +89,7 @@
                                 {!! Form::text('mobile', $partner->mobile_phone_number ?? null, ['class' => 'form-control', 'placeholder' => 'Telemóvel*']) !!}
                             </div>
                             <div class="form-group mb-1">
-                                {!! Form::text('post_code', $partner->address->post_code ?? null, ['class' => 'form-control', 'placeholder' => 'NIF*']) !!}
+                                {!! Form::text('post_code', $partner->address->post_code ?? null, ['class' => 'form-control', 'placeholder' => 'Codigo postal*']) !!}
                             </div>
                             <div class="form-group mb-1">
                                 {!! Form::text('country', $partner->address->country ?? null, ['class' => 'form-control', 'placeholder' => 'País*']) !!}

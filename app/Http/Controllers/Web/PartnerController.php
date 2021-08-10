@@ -84,6 +84,11 @@ class PartnerController extends Controller
 
         # Create Partner 
         $partner = Partner::create($resource);
+
+        # Create address
+        // dd($request->all());
+        $address = $this->getAddressRequest($request->resource, $user->id); 
+        
         
         return response()->json(['resource' => $partner], 201); 
     }

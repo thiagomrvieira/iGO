@@ -20,8 +20,8 @@ class CreateAddressesTable extends Migration
             $table->string('line_2')->nullable();
             $table->string('county');
             $table->string('city');
-            $table->string('post_code');
-            $table->string('country');
+            $table->string('post_code')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
         });
     }

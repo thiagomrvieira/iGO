@@ -112,7 +112,14 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
+        // dd($request->all());
+
+        # Update partner values
         $partner->update($request->all());
+        
+        # Set user as Active/Inactive
+        $partner->user()->update(array('active' => $request->active));
+
         if (!is_null($request->addressData)) { 
             $address = $this->getAddressRequest($request, $partner->user->id); 
         }

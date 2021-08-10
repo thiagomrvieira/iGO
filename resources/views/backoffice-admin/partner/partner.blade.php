@@ -59,7 +59,8 @@
                                             <td>{{ $partner->mobile_phone_number ?? null}}</td>
                                             <td>{{ !$partner->active ? __('backoffice/partners.inactive') : __('backoffice/partners.active') }}</td>
                                             <td>
-                                                <a class="mr-1 updateStatus" href="#" data-partner-id="{{ $partner->id }}">
+                                                <a class="mr-1 updateStatus" href="#" data-partner-id="{{ $partner->id }} "
+                                                    data-partner-active="{{ $partner->active }} ">
                                                     <i class="fas fa-check"></i>
                                                 </a>
                                                 <a href="{{ route('partner.edit', ['partner' => $partner] ) }}">
@@ -80,7 +81,9 @@
                                         @if (is_null($partner->approved_at))
                                             {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}
                                         @endif
-                                        {!! Form::hidden('active', 1 ) !!}
+                                        
+                                        {!! Form::hidden('active', 0, ['id' => 'active'] ) !!}
+                                       
                                     {!! Form::close() !!}
 
                                 </tbody>
@@ -195,7 +198,9 @@
         $(document).on("click", ".updateStatus", function () {
             event.preventDefault();
             var partnerId = $(this).data('partner-id');
+            var active = $(this).data('partner-active');
             var action = `/admin/partner/${partnerId}`;
+            $('#active').val(active == 1 ? 0 : 1);
             $('#form-update-status').attr('action', action ).submit();
         });
         

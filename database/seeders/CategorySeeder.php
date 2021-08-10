@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Category;
+use App\Models\PartnerCategory;
 
 class CategorySeeder extends Seeder
 {
@@ -14,21 +14,21 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $parentCategory = Category::create([
+        $parentCategory = PartnerCategory::create([
             'name'      => 'Alimentos',
             'slug'      => 'alimentos',
             'parent_id' => null,
             'active'    => 1,
         ]);
 
-        Category::create([
+        PartnerCategory::create([
             'name'      => 'Sushi',
             'slug'      => 'sushi',
             'parent_id' => $parentCategory->id,
             'active'    => 1,
         ]);
 
-        Category::create([
+        PartnerCategory::create([
             'name'      => 'Brasileira',
             'slug'      => 'brasileira',
             'parent_id' => $parentCategory->id,

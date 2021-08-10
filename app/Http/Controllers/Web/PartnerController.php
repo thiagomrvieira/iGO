@@ -9,11 +9,11 @@ use App\Http\Traits\AddressTrait;
 use App\Http\Requests\PartnerStoreRequest;
 use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
-
+use App\Http\Traits\UserTrait;
 
 class PartnerController extends Controller
 {
-    use AddressTrait;
+    use AddressTrait, UserTrait;
     
     /**
      * Display the login view for admin
@@ -72,7 +72,18 @@ class PartnerController extends Controller
      */
     public function createPartnerFromHome(PartnerStoreFromHomeRequest $request)
     {
-        $partner = Partner::create($request->resource);
+        # Set variable for resource creation 
+        $resource = $request->resource;
+
+        # Create user
+        $user = $this->createUserFromHome($resource);
+
+        # Get the user id and set value in array 
+        $resource['user_id'] = $user->id ?? null;
+
+        # Create Partner 
+        $partner = Partner::create($resource);
+        
         return response()->json(['resource' => $partner], 201); 
     }
 

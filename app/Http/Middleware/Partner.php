@@ -16,9 +16,11 @@ class Partner
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->is_partner == 1){
+        if (auth()->user()->is_partner == 1 && auth()->user()->active == true) {
             return $next($request);
         }
-        return redirect('/partner/login')->with('error',"Only Partner can access!");
+
+        return redirect()->route('partner.login')->withErrors(['Only Partner can access this area!']);
+
     }
 }

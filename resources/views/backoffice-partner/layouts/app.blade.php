@@ -16,8 +16,7 @@
     @yield('navbar')
 
     <div class="row">
-
-        @if(Request::route()->getName() != "login.partner")
+        @if(Request::route()->getName() != "partner.login")
             <div class="col-2">
                 @component('backoffice-partner.layouts.sidebar')
                 @endcomponent

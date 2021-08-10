@@ -3,6 +3,17 @@
 @section('content')
     <div class="container">
         <h2>Login Aderente</h2>
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
         {!! Form::open(['route' => 'login', 'method' => 'post' ]) !!}
             @csrf
             <div class="form-group">

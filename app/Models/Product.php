@@ -11,6 +11,7 @@ class Product extends Model
     
     protected $fillable = [
        'partner_id',
+       'category_id',
        'image', 
        'name', 
        'description', 
@@ -39,5 +40,13 @@ class Product extends Model
     public function partner()
     {
         return $this->belongsTo(Partner::class);
+    }
+
+    /**
+     * Get the product category
+     */
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 }

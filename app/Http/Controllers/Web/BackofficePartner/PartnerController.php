@@ -143,6 +143,8 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
+        # Get the first_login flag before update
+        $itWastheFirstLogin = Auth::user()->partner->first_login;   
 
         $partner->update([
             'name'                => $request->name,
@@ -153,15 +155,20 @@ class PartnerController extends Controller
             'first_login'         => 0,
         ]);
 
-
+        # Check in address inputs and call update method 
         if (!is_null($request->line_1) || !is_null($request->county) || !is_null($request->city) || !is_null($request->post_code)) { 
             $address = $this->getAddressRequest($request, $partner->user->id); 
         }
 
+        # Check if input image has value
         if (!is_null($request->image_cover) ) { 
             $image = $this->UpdatePartnerCoverImage($request);   
         }
 
+        # Check if first_login flag is true
+        if ($itWastheFirstLogin == 1) {
+            return redirect()->route('partner.dashboard');
+        }
 
         return redirect()->route('partner.profile.edit');
 

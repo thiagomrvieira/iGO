@@ -32,4 +32,12 @@ class Product extends Model
     {
         return $this->hasMany(Extra::class);
     }
+
+    /**
+     * Get the partner that owns the Partner profile.
+     */
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
+    }
 }

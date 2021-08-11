@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\BackofficePartner;
 use App\Http\Controllers\Controller;
 
 use App\Models\Partner;
+use App\Models\Product;
 use App\Models\PartnerCategory;
 use App\Models\SchedulePartner;
 
@@ -53,7 +54,15 @@ class PartnerController extends Controller
      */
     public function dashboard()
     {
-        return 'Dashboard';
+        # Get total
+        $totalProducts = Product::where('partner_id', Auth::user()->partner->id)->count();
+        #Get last entry
+        $lastProductEntry = Product::where('partner_id', Auth::user()->partner->id)->latest('created_at')->first();
+    
+        return view('backoffice-partner.dashboard.dashboard', [
+            'totalProducts'    => $totalProducts,
+            'lastProductEntry' => $lastProductEntry,
+        ]);
     }
     
     

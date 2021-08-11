@@ -13,7 +13,7 @@ use App\Models\Partner;
 use App\Models\PartnerCategory;
 use App\Models\Product;
 use App\Models\Extra;
-
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -41,8 +41,13 @@ class ProductController extends Controller
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
+        $productCategories = ProductCategory::where('active', true)->get();
+
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-        return view('backoffice-partner.product.create')->with('categories', $categories);
+        return view('backoffice-partner.product.create', [
+            'categories'        => $categories,
+            'productCategories' => $productCategories,
+        ]);
     }
 
     /**
@@ -62,6 +67,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price'       => $request->price,
             'available'   => $request->available,
+            'category_id' => $request->category_id,
             'note'        => $request->note,
         ]);
 
@@ -92,10 +98,14 @@ class ProductController extends Controller
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
+        $productCategories = ProductCategory::where('active', true)->get();
+
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        
         return view('backoffice-partner.product.create', [
-            'categories' => $categories,
-            'product' => $product
+            'product'           => $product,
+            'categories'        => $categories,
+            'productCategories' => $productCategories,
         ]);
     }
 
@@ -108,6 +118,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
         $product->update($request->all());
 
         if ($request->image) {

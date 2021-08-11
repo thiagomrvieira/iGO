@@ -113,22 +113,19 @@
                 </h2>
                 <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('available', 'Entradas', ['class' => 'form-check-label']) !!}
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('available', 'Bebidas', ['class' => 'form-check-label']) !!}
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('available', 'Pratos principais', ['class' => 'form-check-label']) !!}
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            {!! Form::radio('available', 1, false, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('available', 'Sobremesas', ['class' => 'form-check-label']) !!}
-                        </div>
+                        
+                        {{-- List product categories --}}
+                        @if (isset($productCategories))
+                            @foreach ($productCategories as $prodCategory)
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('category_id', $prodCategory->id, ( isset($product) && $product->category_id == $prodCategory->id ? true : false) ?? false, 
+                                                    ['class' => 'form-check-input', 'id' => $prodCategory->slug]) !!}
+                                    {!! Form::label('category_id', $prodCategory->name,      ['class' => 'form-check-label']) !!}
+                                </div>
+                            @endforeach
+                        @endif
+                        
+                        
 
                         {!! Form::label('available', 'Deseja colocar o prato na secção de destaques?', 
                                                                         ['class' => 'form-check-label']) !!}

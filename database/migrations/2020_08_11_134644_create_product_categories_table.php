@@ -16,6 +16,10 @@ class CreateProductCategoriesTable extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            
+            $table->unsignedBigInteger('partner_category_id');
+            $table->foreign('partner_category_id')->references('id')->on('categories');
+
             $table->string('slug')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();

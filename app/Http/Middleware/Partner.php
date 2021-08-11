@@ -16,7 +16,9 @@ class Partner
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->is_partner == 1 && auth()->user()->active == true) {
+        // dd($request->user());
+
+        if (auth()->user()->is_partner == 1 && auth()->user()->active == 1) {
             return $next($request);
         }
 

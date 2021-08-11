@@ -41,8 +41,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 
 
 #   ROUTES FOR BACKOFICE/PARTNER
-Route::get('/partner/login',  [BackofficePartnerController::class, 'login'])->name('partner.login');
-
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
     Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
     

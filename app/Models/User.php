@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'active',
         'is_admin',
         'is_partner',
         'is_deliveryman',

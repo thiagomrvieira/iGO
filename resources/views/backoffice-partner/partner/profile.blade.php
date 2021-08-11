@@ -102,7 +102,8 @@
             </div>
         {!! Form::close() !!}
        
-        {!! Form::submit('Próximo', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProfileData']) !!}
+        {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar',  
+                        ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProfileData']) !!}
 
     </div>
 @endsection

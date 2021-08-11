@@ -14,6 +14,7 @@ trait UserTrait {
             'name'           => $request['name'], 
             'email'          => $request['email'],
             'password'       => bcrypt($this->generatePassWord($request)),
+            // 'password'       => $this->generatePassWord($request),
             'active'         => false,
             'is_admin'       => false,
             'is_partner'     => true,

@@ -52,11 +52,11 @@
 
         <h4>All products view</h4>
 
-        {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
+        {{-- {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
                         'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
             @csrf
             
-            {!! Form::hidden('partner_id', $partner->id ) !!} 
+            {!! Form::hidden('partner_id', $partner->id ) !!}  --}}
 
             <div class="accordion" id="accordionProducts">
                 
@@ -169,10 +169,12 @@
                 </div>
 
             </div>
-        {!! Form::close() !!}
+        {{-- {!! Form::close() !!} --}}
         
-        {!! Form::submit('Adicionar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData']) !!}
-
+        {{-- {!! Form::submit('Adicionar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData']) !!} --}}
+        <a class="btn btn-primary" href="{{ route('products.create') }}">
+            pen
+        </a>
     </div>
 
     {{-- Modal de confirmação de remoção --}}

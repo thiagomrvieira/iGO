@@ -25,11 +25,14 @@ Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');
 
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
+                ->middleware('guest');
+
 Route::get('/partner/login', [PartnerController::class, 'login'])
                 ->middleware('guest')
-                ->name('login.partner');
+                ->name('partner.login');
 
-Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/partner/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
 
 /*

@@ -27,6 +27,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('created_at', 'DESC')->get();
+
+        // dd($products->pluck('category.name'));
         return view ('backoffice-partner.product.products')->with('products', $products);
     }
 
@@ -101,7 +103,7 @@ class ProductController extends Controller
         $productCategories = ProductCategory::where('active', true)->get();
 
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-        
+
         return view('backoffice-partner.product.create', [
             'product'           => $product,
             'categories'        => $categories,

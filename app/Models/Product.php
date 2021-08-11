@@ -24,7 +24,7 @@ class Product extends Model
         'price' => 'float',
     ];
 
-    protected $with = [ 'extras' ];
+    protected $with = [ 'extras', 'category' ];
 
     /**
      * Get the extras for the product.

@@ -74,22 +74,62 @@
                     </div>
                 </div>
 
-                {{-- Appetizer item--}}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingAppetizer">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAppetizer" aria-expanded="false" aria-controls="collapseAppetizer">
-                            Entradas
-                        </button>
-                    </h2>
-                    <div id="collapseAppetizer" class="accordion-collapse collapse" aria-labelledby="headingAppetizer" data-bs-parent="#accordionProducts">
-                        <div class="accordion-body">
-                            
+                {{-- List Product Categories --}}
+                @foreach ($products->unique('category')->pluck('category') as $productCategory)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id='{{ "heading" . $productCategory->slug}}'>
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target='{{ "#collapse".$productCategory->slug}}'  aria-expanded="false" aria-controls='{{"collapse".$productCategory->slug}}'>
+                                {{$productCategory->name}}
+                            </button>
+                        </h2>
+                        <div id='{{"collapse".$productCategory->slug}}' class="accordion-collapse collapse" aria-labelledby='{{"heading".$productCategory->slug}}' data-bs-parent="#accordionProducts">
+                            <div class="accordion-body">
+                                {{-- List Products --}}
+                                @foreach ($products->where('category_id', $productCategory->id) as $product)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div style="float: left;">
+                                                @if ($product->image)
+                                                    <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                        alt="Product Image" height="90px">
+                                                    <br>
+                                                @endif
+                                                <strong>{{$product->name}}</strong>
+                                                <p>{{ Str::limit($product->description, 60, '...') }}</p>
+                                                <p>{{$product->price}}€</p>
+                                            </div>
+                                            <div style="float: right;">
+                                                
+                                                <div id="pen">
+                                                    <a href="{{ route('products.edit', ['product' => $product] ) }}">
+                                                        pen
+                                                    </a>
+                                                </div>
+
+                                                <div id="trash">
+                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        trash
+                                                    </a>
+                                                </div>
+                                                <div id="plus">
+                                                    plus
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+                
 
                 {{-- Main dishes item--}}
-                <div class="accordion-item">
+                {{-- <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMain">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMain" aria-expanded="true" aria-controls="collapseMain">
                         Pratos Principais
@@ -137,11 +177,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 
 
                 {{-- Dessert item--}}
-                <div class="accordion-item">
+                {{-- <div class="accordion-item">
                     <h2 class="accordion-header" id="headingDessert">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDessert" aria-expanded="false" aria-controls="collapseDessert">
                             Sobremesas
@@ -152,10 +192,10 @@
                             
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Drink item--}}
-                <div class="accordion-item">
+                {{-- <div class="accordion-item">
                     <h2 class="accordion-header" id="headingDrink">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDrink" aria-expanded="false" aria-controls="collapseDrink">
                             Bebidas*
@@ -166,14 +206,14 @@
                             
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         {{-- {!! Form::close() !!} --}}
         
         {{-- {!! Form::submit('Adicionar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData']) !!} --}}
         <a class="btn btn-primary" href="{{ route('products.create') }}">
-            pen
+            Adicionar produto
         </a>
     </div>
 

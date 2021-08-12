@@ -54,77 +54,12 @@ class PartnerController extends Controller
      */
     public function dashboard()
     {
-        # Get the products that owns the partner
-        $products = Product::where('partner_id', Auth::user()->partner->id);
-        
-        # Get total
-        $totalProducts = $products->count();
-        # Get last entry
-        $lastProductEntry = $products->latest('created_at')->first();
-        
 
-        # Get all side dishes
-        $sideDishes =  Product::where('partner_id', Auth::user()->partner->id)
-                                        ->whereHas('category', function($q){
-            $q->where('slug', 'entradas');
-        });
-        # Get total side dishes
-        $totalSideDishes = $sideDishes->count();
-        # Get the last Side Dish entry
-        $lastSDEntry = $sideDishes->latest('created_at')->first();
+        $products = Product::where('partner_id', Auth::user()->partner->id)
+                            ->orderBy('created_at', 'DESC')->get();
 
-        # Get all main dishes
-        $mainDishes = Product::where('partner_id', Auth::user()->partner->id)
-                                        ->whereHas('category', function($q){
-            $q->where('slug', 'pratos-principais');
-        });
-        # Get total side dishes
-        $totalMainDishes = $mainDishes->count();
-        # Get the last Main Dish entry
-        $lastMainEntry = $mainDishes->latest('created_at')->first();
-
-        # Get all Desserts
-        $desserts = Product::where('partner_id', Auth::user()->partner->id)
-                                    ->whereHas('category', function($q){
-            $q->where('slug', 'sobremesas');
-        });
-        # Get total Desserts
-        $totalDesserts = $desserts->count();
-        # Get the last Dessert entry
-        $lastDessertEntry = $mainDishes->latest('created_at')->first();
-
-
-        # Get all Drinks
-        $drinks = Product::where('partner_id', Auth::user()->partner->id)
-                                    ->whereHas('category', function($q){
-            $q->where('slug', 'bebidas');
-        });
-        # Get total Drinks
-        $totalDrinks = $drinks->count();
-        # Get the last Drinks entry
-        $lastDrinkEntry = $drinks->latest('created_at')->first();
-
-        
         return view('backoffice-partner.dashboard.dashboard', [
-            'products'         => $products,
-            'totalProducts'    => $totalProducts,
-            'lastProductEntry' => $lastProductEntry,
-            
-            'sideDishes'       => $sideDishes,
-            'totalSideDishes'  => $totalSideDishes,
-            'lastSDEntry'      => $lastSDEntry,
-            
-            'mainDishes'       => $mainDishes,
-            'lastMainEntry'    => $lastMainEntry,
-            'totalMainDishes'  => $totalMainDishes,
-
-            'desserts'         => $desserts,
-            'lastDessertEntry' => $lastDessertEntry,
-            'totalDesserts'    => $totalDesserts,
-            
-            'drinks'           => $drinks,
-            'lastDrinkEntry'   => $lastDrinkEntry,
-            'totalDrinks'      => $totalDrinks,
+            'products' => $products,
         ]);
     }
     

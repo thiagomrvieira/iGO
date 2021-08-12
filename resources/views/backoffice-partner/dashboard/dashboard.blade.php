@@ -1,14 +1,5 @@
 @extends('backoffice-partner.layouts.app')
 
-@php
-    $partner = Auth::user()->partner ?? null;
-    
-   
-@endphp
-
-{{-- @dump($partner->subCategories) --}}
-{{-- @dump($partner->mainCategory->name) --}}
-
 @section('navbar')
     <!-- Image and text -->
     <nav class="navbar navbar-light bg-light">
@@ -41,11 +32,11 @@
             <div class="row">
                 <div class="col-6">
                     <h6>
-                        <b>{{$totalProducts}}</b> Produtos inseridos
+                        <b>{{ $products->count() }}</b> Produtos inseridos
                     </h6>
                     <p>
                         Última entrada <br>
-                        {{$lastProductEntry->created_at ?? null}}
+                        {{ $products->first()->created_at ?? null }}
                     </p>
                     <hr>
 
@@ -59,42 +50,43 @@
             <div class="row">
                 <div class="col-6">
                     <h6>
-                        <b>{{$totalSideDishes}}</b> Entradas
+                        <b>{{ $products->where('category.slug', 'entradas')->count() }}</b> Entradas
                     </h6>
                     <p>
                         Última entrada <br>
-                        {{$lastSDEntry->created_at ?? null}}
+                        {{ $products->where('category.slug', 'entradas')->first()->created_at ?? null }}
                     </p>
                     <hr>
                 </div>
                 <div class="col-6">
-                    <h6><b>{{$totalMainDishes}}</b> Pratos principais</h6>
+                    <h6><b>{{ $products->where('category.slug', 'pratos-principais')->count() }}</b> Pratos principais</h6> 
                     <p>
                         Última entrada <br>
-                        {{$lastMainEntry->created_at ?? null}}
+                        {{ $products->where('category.slug', 'pratos-principais')->first()->created_at ?? null }} 
                     </p>
                     <hr>
                 </div>
             </div>
-
+        
+            
             <div class="row">
                 <div class="col-6">
-                    <h6><b>{{$totalDesserts}}</b> Sobremesas</h6>
+                    <h6><b>{{ $products->where('category.slug', 'sobremesas')->count() }}</b> Sobremesas</h6>
                     <p>
                         Última entrada <br>
-                        {{$lastDessertEntry->created_at ?? null}}
+                        {{ $products->where('category.slug', 'sobremesas')->first()->created_at ?? null }}
                     </p>
                     <hr>
                 </div>
                 <div class="col-6">
-                    <h6><b>{{$totalDrinks}}</b> Bebidas</h6>
+                    <h6><b>{{ $products->where('category.slug', 'bebidas')->count() }}</b> Bebidas</h6>
                     <p>
                         Última entrada <br>
-                        {{$lastDrinkEntry->created_at ?? null}}
+                        {{ $products->where('category.slug', 'bebidas')->first()->created_at ?? null }}
                     </p>
                     <hr>
 
-                </div>
+                </div> 
             </div>
         
 
@@ -103,23 +95,6 @@
 
 @section('jquery')
     <script type="text/javascript">
-        
-        // Uncheck checkboxes for period if checkbox for DAY is unchecked
-        // $(document).on("click", ".checkDay", function () {
-        //     var day = $(this).data('day');
-            
-        //     $('.check' + day).prop('checked', false).removeAttr('checked');
-        //     $('.input' + day).val('');
-              
-        // });
-
-        // // Remove values from inputs if checkbox for PERIOD is unchecked
-        // $(document).on("click", ".checkPeriod", function () {
-        //     var id = $(this).attr('id');
-        //     if (!$('#' + id).is(":checked")) {
-        //         $('.input' + id).val('');
-        //     };
-        // });
         
     </script>
 @endsection

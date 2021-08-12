@@ -64,7 +64,8 @@ class PartnerController extends Controller
         
 
         # Get all side dishes
-        $sideDishes = $products->whereHas('category', function($q){
+        $sideDishes =  Product::where('partner_id', Auth::user()->partner->id)
+                                        ->whereHas('category', function($q){
             $q->where('slug', 'entradas');
         });
         # Get total side dishes
@@ -72,9 +73,9 @@ class PartnerController extends Controller
         # Get the last Side Dish entry
         $lastSDEntry = $sideDishes->latest('created_at')->first();
 
-
         # Get all main dishes
-        $mainDishes = $products->whereHas('category', function($q){
+        $mainDishes = Product::where('partner_id', Auth::user()->partner->id)
+                                        ->whereHas('category', function($q){
             $q->where('slug', 'pratos-principais');
         });
         # Get total side dishes
@@ -82,9 +83,9 @@ class PartnerController extends Controller
         # Get the last Main Dish entry
         $lastMainEntry = $mainDishes->latest('created_at')->first();
 
-
         # Get all Desserts
-        $desserts = $products->whereHas('category', function($q){
+        $desserts = Product::where('partner_id', Auth::user()->partner->id)
+                                    ->whereHas('category', function($q){
             $q->where('slug', 'sobremesas');
         });
         # Get total Desserts
@@ -94,12 +95,13 @@ class PartnerController extends Controller
 
 
         # Get all Drinks
-        $drinks = $products->whereHas('category', function($q){
+        $drinks = Product::where('partner_id', Auth::user()->partner->id)
+                                    ->whereHas('category', function($q){
             $q->where('slug', 'bebidas');
         });
-        # Get total Desserts
+        # Get total Drinks
         $totalDrinks = $drinks->count();
-        # Get the last Dessert entry
+        # Get the last Drinks entry
         $lastDrinkEntry = $drinks->latest('created_at')->first();
 
         

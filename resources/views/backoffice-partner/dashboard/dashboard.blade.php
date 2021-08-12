@@ -45,7 +45,7 @@
                     </h6>
                     <p>
                         Última entrada <br>
-                        {{$lastProductEntry->created_at}}
+                        {{$lastProductEntry->created_at ?? null}}
                     </p>
                     <hr>
 
@@ -58,25 +58,40 @@
 
             <div class="row">
                 <div class="col-6">
-                    <h6>Entradas</h6>
+                    <h6>
+                        <b>{{$totalSideDishes}}</b> Entradas
+                    </h6>
+                    <p>
+                        Última entrada <br>
+                        {{$lastSDEntry->created_at ?? null}}
+                    </p>
                     <hr>
-
                 </div>
                 <div class="col-6">
-                    <h6>Pratos principais</h6>
+                    <h6><b>{{$totalMainDishes}}</b> Pratos principais</h6>
+                    <p>
+                        Última entrada <br>
+                        {{$lastMainEntry->created_at ?? null}}
+                    </p>
                     <hr>
-
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-6">
-                    <h6>Sobremesas</h6>
+                    <h6><b>{{$totalDesserts}}</b> Sobremesas</h6>
+                    <p>
+                        Última entrada <br>
+                        {{$lastDessertEntry->created_at ?? null}}
+                    </p>
                     <hr>
-
                 </div>
                 <div class="col-6">
-                    <h6>Bebidas</h6>
+                    <h6><b>{{$totalDrinks}}</b> Bebidas</h6>
+                    <p>
+                        Última entrada <br>
+                        {{$lastDrinkEntry->created_at ?? null}}
+                    </p>
                     <hr>
 
                 </div>

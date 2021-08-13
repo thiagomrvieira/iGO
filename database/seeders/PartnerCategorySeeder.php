@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\PartnerCategory;
 
-class CategorySeeder extends Seeder
+class PartnerCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.

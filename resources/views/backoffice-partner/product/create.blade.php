@@ -304,15 +304,16 @@
                                 @foreach ($product->extras as $extra)
                                     <div class="row mb-2">
                                         <div class="col-6">
-                                            {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1']) !!}
+                                            {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 
+                                                                                        'placeholder' => 'Extra #1', 'disabled']) !!}
                                         </div>
                                         <div class="col-4">
                                             {!! Form::number('extraPrice1', number_format($extra->price,2), ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 
-                                                                                                            'min' => 1, 'step' => 'any']) !!}
+                                                                                                             'min' => 1, 'step' => 'any', 'disabled']) !!}
                                         </div>
                                         <div class="col-2">
-                                            Icon 1
-                                            Icon 2
+                                            <a href="#" class="editExtra">Edit</a>
+                                            <a href="#" class="removeExtra">Remove</a>
                                         </div>
                                     </div>
                                 @endforeach    
@@ -326,8 +327,8 @@
                                                                                                         'min' => 1, 'step' => 'any']) !!}
                                     </div>
                                     <div class="col-2">
-                                        Icon 1
-                                        Icon 2
+                                        <a href="#" class="editExtra">Edit</a>
+                                        <a href="#" class="removeExtra">Remove</a>
                                     </div>
                                 </div>
                             @endif
@@ -421,8 +422,8 @@
                                                                                'min' => 1, 'step' => 'any']) !!}
                                     </div>
                                     <div class="col-2">
-                                        Icon 1
-                                        Icon 2
+                                        <a href="#" class="editExtra">Edit</a>
+                                        <a href="#" class="removeExtra">Remove</a>
                                     </div>
                                 </div> `;
             
@@ -448,8 +449,8 @@
 
             for (let i = 0; i < key.length; i++) {
                 extras.push({
-                    name: key[i], 
-                    price:  val[i]
+                    name:  key[i], 
+                    price: val[i]
                 });
                 
             }
@@ -462,6 +463,10 @@
             
         });
         
-        
+        // Remove disabled property from inputs
+        $(document).on("click", ".editExtra", function (event) {    
+            event.preventDefault();
+            $(this).closest('.row').find('input').removeAttr("disabled");
+        });
     </script>
 @endsection

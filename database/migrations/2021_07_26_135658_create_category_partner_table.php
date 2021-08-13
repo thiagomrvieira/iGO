@@ -16,7 +16,11 @@ class CreateCategoryPartnerTable extends Migration
         Schema::create('category_partner', function (Blueprint $table) {
             $table->id();
             $table->foreignId('partner_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            // $table->foreignId('category_id')->constrained();
+
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('partner_categories');
+
 
             $table->timestamps();
         });

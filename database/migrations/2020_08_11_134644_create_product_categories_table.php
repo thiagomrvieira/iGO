@@ -18,7 +18,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('name');
             
             $table->unsignedBigInteger('partner_category_id');
-            $table->foreign('partner_category_id')->references('id')->on('categories');
+            $table->foreign('partner_category_id')->references('id')->on('partner_categories');
 
             $table->string('slug')->nullable();
             $table->boolean('active')->default(false);

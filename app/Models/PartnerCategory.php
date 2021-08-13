@@ -9,7 +9,7 @@ class PartnerCategory extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
+    protected $table = 'partner_categories';
     protected $fillable = [
        'id',
        'name',

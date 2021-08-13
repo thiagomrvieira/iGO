@@ -60,8 +60,10 @@ class ProductController extends Controller
      */
     public function store(ProductDataRequest $request)
     {
+
         $partner = Auth::user()->partner;
 
+        # Create a new Product
         $product = Product::create([
             'partner_id'  => $request->partner_id,
             'image'       => $this->UploadProductImage($request),
@@ -72,18 +74,23 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'note'        => $request->note,
         ]);
-
-        if ($request->extraName) {
-            $extra = Extra::create([
-                'product_id' => $product->id,
-                'name'       => $request->extraName,
-                'price'      => $request->extraPrice,
-            ]);
+        
+        # Check if input extras has value and Create extra model
+        if ($request->extras) {
+            foreach (json_decode($request->extras) as $extras) {
+                $extra = Extra::create([
+                    'product_id' => $product->id,
+                    'name'       => $extras->name,
+                    'price'      => $extras->price,
+                ]);
+            }
         }
 
+        # Check if it's the first login and redirect to next step from 'welcome' flow
         if ($partner->first_login == 1) {
             return redirect()->route('partner.profile.edit');
         }
+
         return redirect()->route('products.index');
 
     }
@@ -120,11 +127,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-
+        # Update product values
         $product->update($request->all());
 
+        # Check if input image has value and update
         if ($request->image) {
             $product->update(['image' => $this->UploadProductImage($request)]);
+        }
+
+        # Check if input extras has value and Update extra model
+        if ($request->extras) {
+            foreach (json_decode($request->extras) as $extras) {
+                $extra = Extra::updateOrCreate([
+                    'product_id' => $product->id,
+                    'name'       => $extras->name,
+                ],[
+                    'product_id' => $product->id,
+                    'name'       => $extras->name,
+                    'price'      => $extras->price,
+                ]);
+            }
         }
 
         return redirect()->route('products.index');

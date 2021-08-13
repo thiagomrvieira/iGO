@@ -295,41 +295,45 @@
                         Extras
                     </button>
                 </h2>
+                {!! Form::hidden('extras', null, ['id' => 'extras'] ) !!} 
+
                 <div id="collapseExtra" class="accordion-collapse collapse" aria-labelledby="headingExtra" data-bs-parent="#accordionProductData">
                     <div class="accordion-body">
-                        <div class="custom-control custom-control-inline">
-                            <div class="row">
-                                @if (isset($product) && count($product->extras) > 0 )
-                                    @foreach ($product->extras as $extra)
+                        <div class="custom-control custom-control-inline" id="extrasContent">
+                            @if (isset($product) && count($product->extras) > 0 )
+                                @foreach ($product->extras as $extra)
+                                    <div class="row mb-2">
                                         <div class="col-6">
-                                            {!! Form::text('extraName', $extra->name, ['class' => 'form-control', 'placeholder' => 'Extra #1']) !!}
+                                            {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1']) !!}
                                         </div>
                                         <div class="col-4">
-                                            {!! Form::number('extraPrice', number_format($extra->price,2), ['class' => 'form-control', 'placeholder' => 'Custo*', 
+                                            {!! Form::number('extraPrice1', number_format($extra->price,2), ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 
                                                                                                             'min' => 1, 'step' => 'any']) !!}
                                         </div>
                                         <div class="col-2">
                                             Icon 1
                                             Icon 2
                                         </div>
-                                    @endforeach    
-                                @else
+                                    </div>
+                                @endforeach    
+                            @else
+                                <div class="row mb-2">
                                     <div class="col-6">
-                                        {!! Form::text('extraName', null, ['class' => 'form-control', 'placeholder' => 'Extra #1']) !!}
+                                        {!! Form::text('extraName1', null, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1']) !!}
                                     </div>
                                     <div class="col-4">
-                                        {!! Form::number('extraPrice', null , ['class' => 'form-control', 'placeholder' => 'Custo*', 
+                                        {!! Form::number('extraPrice1', null , ['class' => 'form-control inputExtraPrice ', 'placeholder' => 'Custo*', 
                                                                                                         'min' => 1, 'step' => 'any']) !!}
                                     </div>
                                     <div class="col-2">
                                         Icon 1
                                         Icon 2
                                     </div>
-                                @endif
-                                <a href="#">Adicionar Extra</a>
+                                </div>
+                            @endif
                                 
-                            </div>
                         </div>
+                        <a href="#" id="addExtra">Adicionar Extra</a>
                     </div>
                 </div>
             </div>
@@ -388,10 +392,76 @@
         </div>
     {!! Form::close() !!}
     @if (isset($product))
-        {!! Form::submit('Salvar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData'   ]) !!}
+        {!! Form::submit('Salvar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
     @else
-        {!! Form::submit('Próximo', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData'   ]) !!}
+        {!! Form::submit('Próximo', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
     @endif
 
 </div>
+@endsection
+
+@section('jquery')
+    <script type="text/javascript">
+        
+        var count = "{{isset($product->extras) ? $product->extras->count() : 1}}";
+
+        // Add new extra item
+        $(document).on("click", "#addExtra", function (event) {
+            event.preventDefault();
+            
+            count++;
+            var newInputExtra = `<div class="row mb-2">
+                                    <div class="col-6">
+                                        {!! Form::text('extraName${count}', null, ['class' => 'form-control inputExtraName', 
+                                                                           'placeholder' => 'Extra #${count}']) !!}
+                                    </div>
+                                    <div class="col-4">
+                                        {!! Form::number('extraPrice${count}', null , ['class' => 'form-control inputExtraPrice', 
+                                                                               'placeholder' => 'Custo*', 
+                                                                               'min' => 1, 'step' => 'any']) !!}
+                                    </div>
+                                    <div class="col-2">
+                                        Icon 1
+                                        Icon 2
+                                    </div>
+                                </div> `;
+            
+            $("#extrasContent").append(newInputExtra);
+            
+        });
+
+        // Get extra items and send them to an input as an array
+        $(document).on("click", "#submitFormProductData", function (event) {
+            event.preventDefault();
+            
+            var extras  = [];
+            var key     = [];
+            var val     = [];
+
+            $('.inputExtraName').each(function() { 
+                key.push( $(this).val() );
+            });
+            
+            $('.inputExtraPrice').each(function() { 
+                val.push( $(this).val() );
+            });
+
+            for (let i = 0; i < key.length; i++) {
+                extras.push({
+                    name: key[i], 
+                    price:  val[i]
+                });
+                
+            }
+
+            $('.inputExtraName').prop('disabled', true);
+            $('.inputExtraPrice').prop('disabled', true);
+
+            $('#extras').val(JSON.stringify(extras));
+            $("#formProductData").submit();
+            
+        });
+        
+        
+    </script>
 @endsection

@@ -168,4 +168,18 @@ class ProductController extends Controller
     }
 
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeExtra(Request $request)
+    {
+        $extra = '';
+        if($extra = Extra::where('id', $request['id'])->where('product_id', $request['product_id'])->first()) {
+            $extra->delete();
+        }
+        return $extra;
+    }
 }

@@ -54,6 +54,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
 
     Route::get('/dashboard',  [BackofficePartnerController::class, 'dashboard'])->name('partner.dashboard');
 
+    Route::post('/extra/remove', [BackofficeProductController::class, 'removeExtra' ])->name('extra.remove');
+    
 
     // Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
     // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');

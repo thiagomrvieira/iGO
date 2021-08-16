@@ -14,6 +14,7 @@ use App\Models\PartnerCategory;
 use App\Models\Product;
 use App\Models\Extra;
 use App\Models\ProductCategory;
+use App\Models\Side;
 
 class ProductController extends Controller
 {
@@ -44,11 +45,14 @@ class ProductController extends Controller
         $partnerCategory = $partner->mainCategory;
 
         $productCategories = ProductCategory::where('active', true)->get();
-
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+
+        $sides = Side::where('category_id', $partnerCategory->id)->get();
+
         return view('backoffice-partner.product.create', [
             'categories'        => $categories,
             'productCategories' => $productCategories,
+            'sides'             => $sides,
         ]);
     }
 

@@ -142,7 +142,7 @@
                     </div>
                 </div>
 
-                {{--  Side dishes item --}}
+                {{--  Side Product item --}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSide">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSide" aria-expanded="false" aria-controls="collapseSide">
@@ -151,18 +151,16 @@
                     </h2>
                     <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Arroz', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Salada', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Legumes', ['class' => 'form-check-label']) !!}
-                            </div>
+                            
+                            @forelse ($sides as $side)
+                                <div class="custom-control custom-control-inline">
+                                    {!! Form::checkbox($side->slug, 0, false, ['class' => 'form-check-input']) !!}
+                                    {!! Form::label($side->slug, $side->name, ['class' => 'form-check-label']) !!}
+                                </div>
+                            @empty
+                                Sem side
+                            @endforelse
+                            
                         </div>
                     </div>
                 </div>

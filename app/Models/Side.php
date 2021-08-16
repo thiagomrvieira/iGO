@@ -10,8 +10,10 @@ class Side extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
         'name',
+        'category_id',
+        'slug',
+        'active',
     ];
 
     /**

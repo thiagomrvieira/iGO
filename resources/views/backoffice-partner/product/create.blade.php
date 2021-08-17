@@ -153,9 +153,19 @@
                     <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
                             
+                            {{-- @dump($product->sides->pluck('side_id')->toArray()) --}}
+                           
+
                             @forelse ($sides as $side)
+                                @php
+                                    $checked = false;
+                                    if (isset($product)) {
+                                        $checked = in_array($side->id, $product->sides->pluck('id')->toArray()) ? true : false;
+                                    }
+                                @endphp
+
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, null, false, ['class' => 'form-check-input inputSide', 'id' => $side->slug]) !!}
+                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input inputSide', 'id' => $side->slug]) !!}
                                     {!! Form::label($side->slug, $side->name,    ['class' => 'form-check-label']) !!}
                                 </div>
                             @empty

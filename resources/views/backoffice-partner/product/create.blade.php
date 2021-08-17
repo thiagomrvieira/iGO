@@ -439,9 +439,7 @@
         $(document).on("click", "#submitFormProductData", function (event) {
             event.preventDefault();
             getExtraInputs();
-            // getSideInputs();
             $("#formProductData").submit();
-            
         });
 
         // Get extra items and send them to an input as an array
@@ -472,20 +470,6 @@
             $('#extras').val(JSON.stringify(extras));
         }
         
-        // Get side items and send them to an input as an array
-        // function getSideInputs() {
-        //     var sides = [];
-            
-        //     $('.inputSide').each(function() { 
-        //         sides.push({
-        //             name:  $(this).attr('name'),
-        //             val: $(this).is(':checked') ? 1 : 0,
-        //         });
-        //     });
-            
-        //     $('.inputSide').prop('disabled', true);
-        //     $('#sides').val(JSON.stringify(sides));
-        }
         // Remove disabled property from inputs
         $(document).on("click", ".editExtra", function (event) {    
             event.preventDefault();

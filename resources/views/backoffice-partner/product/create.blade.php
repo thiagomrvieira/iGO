@@ -162,7 +162,7 @@
                                 @endphp
 
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input inputSide', 'id' => $side->slug]) !!}
+                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input', 'id' => $side->slug]) !!}
                                     {!! Form::label($side->slug, $side->name,    ['class' => 'form-check-label']) !!}
                                 </div>
                             @empty
@@ -173,7 +173,7 @@
                     </div>
                 </div>
                 
-                {{--  Souce item --}}
+                {{--  Sauce item --}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSouce">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSouce" aria-expanded="false" aria-controls="collapseSouce">
@@ -183,42 +183,35 @@
                     <div id="collapseSouce" class="accordion-collapse collapse" aria-labelledby="headingSouce" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
                             
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Maionese', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Pesto', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Vinagrete', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Mostarda', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Holandês', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('available', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Ketchup', ['class' => 'form-check-label']) !!}
-                            </div>
+                            @forelse ($sauces as $sauce)
+                                @php
+                                    $checked = false;
+                                    if (isset($product)) {
+                                        $checked = in_array($sauce->id, $product->sauces->pluck('id')->toArray()) ? true : false;
+                                    }
+                                @endphp
+                                
+                                @unless ($sauce->slug == 'picante')
+                                    <div class="custom-control custom-control-inline">
+                                        {!! Form::checkbox($sauce->slug, null, $checked, ['class' => 'form-check-input', 'id' => $sauce->slug]) !!}
+                                        {!! Form::label($sauce->slug, $sauce->name,      ['class' => 'form-check-label']) !!}
+                                    </div>
+                                @endunless
+                                
+                            @empty
+                                Sem Sauce
+                            @endforelse
 
-                            {!! Form::label('available', 'O seu prato tem picante?', 
-                                                                            ['class' => 'form-check-label']) !!}
+                            {!! Form::label('picante', 'O seu prato tem picante?', 
+                                                                     ['class' => 'form-check-label']) !!}
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 1, false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('picante', 1, false, ['class' => 'form-check-input']) !!}
+                                {!! Form::label('picante', 'Sim',    ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 0, false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('picante', 0, false, ['class' => 'form-check-input']) !!}
+                                {!! Form::label('picante', 'Não',    ['class' => 'form-check-label']) !!}
                             </div>
-
 
                         </div>
                     </div>

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PartnerCategorySeeder::class);
         $this->call(ProductCategorySeeder::class);
         $this->call(SideSeeder::class);
+        $this->call(SauceSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

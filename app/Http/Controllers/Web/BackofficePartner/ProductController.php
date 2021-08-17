@@ -16,6 +16,7 @@ use App\Models\PartnerCategory;
 use App\Models\Product;
 use App\Models\Extra;
 use App\Models\ProductCategory;
+use App\Models\Sauce;
 use App\Models\Side;
 
 class ProductController extends Controller
@@ -43,19 +44,26 @@ class ProductController extends Controller
      */
     public function create()
     {
+        # Get User/Partner and his main category
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
 
+        # Get Product and Partner categories
         $productCategories = ProductCategory::where('active', true)->get();
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-
+        
+        # Get Side products
         $sides = Side::where('category_id', $partnerCategory->id)
                      ->where('active', 1)->get();
+        # Get Sauces
+        $sauces = Sauce::where('category_id', $partnerCategory->id)
+                       ->where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'categories'        => $categories,
             'productCategories' => $productCategories,
             'sides'             => $sides,
+            'sauces'            => $sauces,
         ]);
     }
 
@@ -86,18 +94,24 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-
+        # Get User/Partner and his main category
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
-
+        
+        # Get Product and Partner categories
         $productCategories = ProductCategory::where('active', true)->get();
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-
+        
+        # Get Side products
         $sides = Side::where('category_id', $partnerCategory->id)
                      ->where('active', 1)->get();
+        # Get Sauces
+        $sauces = Sauce::where('category_id', $partnerCategory->id)
+                       ->where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'sides'             => $sides,
+            'sauces'            => $sauces,
             'product'           => $product,
             'categories'        => $categories,
             'productCategories' => $productCategories,

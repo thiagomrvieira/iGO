@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\ImagesTrait;
+use App\Http\Traits\ProductTrait;
+
 use App\Http\Requests\ProductDataRequest;
 
 
@@ -18,7 +20,7 @@ use App\Models\Side;
 
 class ProductController extends Controller
 {
-    use ImagesTrait;
+    use ImagesTrait, ProductTrait;
 
     /**
      * Display a listing of the resource.
@@ -65,31 +67,8 @@ class ProductController extends Controller
      */
     public function store(ProductDataRequest $request)
     {
-
         $partner = Auth::user()->partner;
-
-        # Create a new Product
-        $product = Product::create([
-            'partner_id'  => $request->partner_id,
-            'image'       => $this->UploadProductImage($request),
-            'name'        => $request->name,
-            'description' => $request->description,
-            'price'       => $request->price,
-            'available'   => $request->available,
-            'category_id' => $request->category_id,
-            'note'        => $request->note,
-        ]);
-        
-        # Check if input extras has value and Create extra model
-        if ($request->extras) {
-            foreach (json_decode($request->extras) as $extras) {
-                $extra = Extra::create([
-                    'product_id' => $product->id,
-                    'name'       => $extras->name,
-                    'price'      => $extras->price,
-                ]);
-            }
-        }
+        $this->createProduct($request);
 
         # Check if it's the first login and redirect to next step from 'welcome' flow
         if ($partner->first_login == 1) {
@@ -97,7 +76,6 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index');
-
     }
 
      /**

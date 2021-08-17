@@ -149,18 +149,19 @@
                             Acompanhamentos*
                         </button>
                     </h2>
+
                     <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
                             
                             @forelse ($sides as $side)
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, 0, false, ['class' => 'form-check-input']) !!}
-                                    {!! Form::label($side->slug, $side->name, ['class' => 'form-check-label']) !!}
+                                    {!! Form::checkbox($side->slug, null, false, ['class' => 'form-check-input inputSide', 'id' => $side->slug]) !!}
+                                    {!! Form::label($side->slug, $side->name,    ['class' => 'form-check-label']) !!}
                                 </div>
                             @empty
                                 Sem side
                             @endforelse
-                            
+
                         </div>
                     </div>
                 </div>
@@ -434,10 +435,17 @@
             
         });
 
-        // Get extra items and send them to an input as an array
+        // Prepare data after submit
         $(document).on("click", "#submitFormProductData", function (event) {
             event.preventDefault();
+            getExtraInputs();
+            // getSideInputs();
+            $("#formProductData").submit();
             
+        });
+
+        // Get extra items and send them to an input as an array
+        function getExtraInputs() {
             var extras  = [];
             var key     = [];
             var val     = [];
@@ -462,17 +470,29 @@
             $('.inputExtraPrice').prop('disabled', true);
 
             $('#extras').val(JSON.stringify(extras));
-            $("#formProductData").submit();
-            
-        });
+        }
         
+        // Get side items and send them to an input as an array
+        // function getSideInputs() {
+        //     var sides = [];
+            
+        //     $('.inputSide').each(function() { 
+        //         sides.push({
+        //             name:  $(this).attr('name'),
+        //             val: $(this).is(':checked') ? 1 : 0,
+        //         });
+        //     });
+            
+        //     $('.inputSide').prop('disabled', true);
+        //     $('#sides').val(JSON.stringify(sides));
+        }
         // Remove disabled property from inputs
         $(document).on("click", ".editExtra", function (event) {    
             event.preventDefault();
             $(this).closest('.row').find('input').removeAttr("disabled");
         });
 
-        // Seta action do modal de confirmação de remoção de utilizador
+        // Seta action do modal de confirmação de remoção de Extra
         $(document).on("click", ".removeExtra", function (event) {
             event.preventDefault();
             
@@ -497,5 +517,9 @@
             });
             
         });
+
+
+
+
     </script>
 @endsection

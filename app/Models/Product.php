@@ -53,8 +53,10 @@ class Product extends Model
      /**
      * Get the Side Product (eg.: Side Dish )
      */
-    public function side()
+    public function sides()
     {
-        return $this->hasMany(Side::class);
+        return $this->belongsToMany(Side::class, 'product_side');
+        // return $this->belongsToMany(Side::class, 'product_side', 'product_id', 'side_id');
+
     }
 }

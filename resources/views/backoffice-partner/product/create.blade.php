@@ -153,9 +153,6 @@
                     <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
                             
-                            {{-- @dump($product->sides->pluck('side_id')->toArray()) --}}
-                           
-
                             @forelse ($sides as $side)
                                 @php
                                     $checked = false;

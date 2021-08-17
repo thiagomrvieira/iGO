@@ -42,7 +42,10 @@ trait ProductTrait {
     private function createExtraProduct($request, $product) 
     {
         foreach (json_decode($request->extras) as $extras) {
-            $extra = Extra::create([
+            $extra = Extra::updateOrCreate([
+                'product_id' => $product->id,
+                'name'       => $extras->name,
+            ],[
                 'product_id' => $product->id,
                 'name'       => $extras->name,
                 'price'      => $extras->price,
@@ -77,6 +80,29 @@ trait ProductTrait {
         }
 
         return true;
+    }
+    
+    /**
+     * Update an existing Product.
+     */
+    public function updateProduct($request, $product) 
+    {
+        # Update product values
+        $product->update($request->all());
+
+        # Check if input image has value and update
+        if ($request->image) {
+            $product->update(['image' => $this->UploadProductImage($request)]);
+        }
+
+        # Check if input extras has value and Update extra model
+        if ($request->extras) {
+            $this->createExtraProduct($request, $product);
+        }
+
+        # Create the relation between Product and Side 
+        $this->storeSideProduct($request, $product);
+
     }
 
 }

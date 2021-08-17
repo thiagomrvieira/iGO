@@ -113,27 +113,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        # Update product values
-        $product->update($request->all());
+        $this->updateProduct($request, $product);
 
-        # Check if input image has value and update
-        if ($request->image) {
-            $product->update(['image' => $this->UploadProductImage($request)]);
-        }
-
-        # Check if input extras has value and Update extra model
-        if ($request->extras) {
-            foreach (json_decode($request->extras) as $extras) {
-                $extra = Extra::updateOrCreate([
-                    'product_id' => $product->id,
-                    'name'       => $extras->name,
-                ],[
-                    'product_id' => $product->id,
-                    'name'       => $extras->name,
-                    'price'      => $extras->price,
-                ]);
-            }
-        }
+        
 
         return redirect()->route('products.index');
 

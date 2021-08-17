@@ -50,13 +50,19 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
-     /**
+    /**
      * Get the Side Product (eg.: Side Dish )
      */
     public function sides()
     {
         return $this->belongsToMany(Side::class, 'product_side');
-        // return $this->belongsToMany(Side::class, 'product_side', 'product_id', 'side_id');
+    }
 
+    /**
+     * Get Sauces
+     */
+    public function sauces()
+    {
+        return $this->belongsToMany(Sauce::class, 'product_sauce');
     }
 }

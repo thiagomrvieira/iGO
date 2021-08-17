@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 
 use App\Models\Product;
 use App\Models\Extra;
+use App\Models\Sauce;
 use App\Models\Side;
 
 use Illuminate\Http\Request;
@@ -33,6 +34,9 @@ trait ProductTrait {
 
         # Create the relation between Product and Side 
         $this->storeSideProduct($request, $product);
+        
+        # Create the relation between Product and Sauce 
+        $this->storeSauceProduct($request, $product);
         
     }
     
@@ -103,6 +107,37 @@ trait ProductTrait {
         # Create the relation between Product and Side 
         $this->storeSideProduct($request, $product);
 
+        # Create the relation between Product and Sauce 
+        $this->storeSauceProduct($request, $product);
+    }
+
+    /**
+     * Persist Sauce product in pivot table.
+     */
+    private function storeSauceProduct($request, $product)
+    {
+
+        # Get all Sauces and pluck the slug column 
+        $sauces = Sauce::where('active', 1)->get();
+        $sauceSlugs = $sauces->pluck('slug');
+
+        # Check if the categories slug exists in $request and set array $sauceIdsForUpdate
+        $sauceIdsForUpdate = $product->sauces->pluck('sauce_id')->toArray();
+        
+        # Check if the $request has a slug from Sauce and push into sauceIdsForUpdate
+        foreach ($sauceSlugs as $slug) {
+            if( $request->$slug){
+                $sauceId = $sauces->where('slug', $slug)->first();
+                array_push($sauceIdsForUpdate, $sauceId->id);
+            }
+        }
+
+        # Update Sauces in pivot table
+        if ($sauceIdsForUpdate != []) {
+            $product->sauces()->sync(array_filter($sauceIdsForUpdate));
+        }
+
+        return true;
     }
 
 }

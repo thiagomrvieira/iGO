@@ -184,6 +184,7 @@
                         <div class="accordion-body">
                             
                             @forelse ($sauces as $sauce)
+                                {{-- Set 'checked' for checkboxes --}}
                                 @php
                                     $checked = false;
                                     if (isset($product)) {
@@ -202,15 +203,23 @@
                                 Sem Sauce
                             @endforelse
 
+                            {{-- Set the value of 'Picante' input --}}
+                            @php
+                                $pepper = false;
+                                if (isset($product)) {
+                                    $pepper = $product->sauces->where('slug', 'picante')->count() > 0 ? true : false;
+                                }
+                            @endphp
+
                             {!! Form::label('picante', 'O seu prato tem picante?', 
-                                                                     ['class' => 'form-check-label']) !!}
+                                                                        ['class' => 'form-check-label']) !!}
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('picante', 1, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('picante', 'Sim',    ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('picante', 1, $pepper,  ['class' => 'form-check-input']) !!}
+                                {!! Form::label('picante', 'Sim',       ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('picante', 0, false, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('picante', 'Não',    ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('picante', 0, !$pepper, ['class' => 'form-check-input']) !!}
+                                {!! Form::label('picante', 'Não',       ['class' => 'form-check-label']) !!}
                             </div>
 
                         </div>

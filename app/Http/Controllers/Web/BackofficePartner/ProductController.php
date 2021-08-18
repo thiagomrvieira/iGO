@@ -9,8 +9,7 @@ use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\ProductTrait;
 
 use App\Http\Requests\ProductDataRequest;
-
-
+use App\Models\Allergen;
 use App\Models\Partner;
 use App\Models\PartnerCategory;
 use App\Models\Product;
@@ -58,12 +57,16 @@ class ProductController extends Controller
         # Get Sauces
         $sauces = Sauce::where('category_id', $partnerCategory->id)
                        ->where('active', 1)->get();
+        # Get Allergens
+        $allergens = Allergen::where('category_id', $partnerCategory->id)
+                             ->where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'categories'        => $categories,
             'productCategories' => $productCategories,
             'sides'             => $sides,
             'sauces'            => $sauces,
+            'allergens'         => $allergens,
         ]);
     }
 

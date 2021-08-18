@@ -235,7 +235,28 @@
                     </h2>
                     <div id="collapseAllergen" class="accordion-collapse collapse" aria-labelledby="headingAllergen" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
-                            <div class="custom-control custom-control-inline">
+
+                            @forelse ($allergens as $allergen)
+                                {{-- Set 'checked' for checkboxes --}}
+                                @php
+                                    $checked = false;
+                                    if (isset($product)) {
+                                        $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
+                                    }
+                                @endphp
+                                
+                                @unless ($allergen->slug == 'picante')
+                                    <div class="custom-control custom-control-inline">
+                                        {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input', 'id' => $allergen->slug]) !!}
+                                        {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                    </div>
+                                @endunless
+                                
+                            @empty
+                                Sem allergen
+                            @endforelse
+
+                            {{-- <div class="custom-control custom-control-inline">
                                 {!! Form::checkbox('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
                                 {!! Form::label('avgtime', 'Glúten', ['class' => 'form-check-label']) !!}
                             </div>
@@ -290,7 +311,7 @@
                             <div class="custom-control custom-control-inline">
                                 {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
                                 {!! Form::label('avgtime', 'Não tem', ['class' => 'form-check-label']) !!}
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

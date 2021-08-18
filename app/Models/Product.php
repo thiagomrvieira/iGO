@@ -65,4 +65,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Sauce::class, 'product_sauce');
     }
+
+    /**
+     * Get Allergens
+     */
+    public function allergens()
+    {
+        return $this->belongsToMany(Allergen::class, 'allergen_product');
+    }
 }

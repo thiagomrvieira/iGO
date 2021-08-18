@@ -245,73 +245,21 @@
                                     }
                                 @endphp
                                 
-                                @unless ($allergen->slug == 'picante')
-                                    <div class="custom-control custom-control-inline">
-                                        {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input', 'id' => $allergen->slug]) !!}
-                                        {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
-                                    </div>
-                                @endunless
+                                <div class="custom-control custom-control-inline">
+                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input', 'id' => $allergen->slug]) !!}
+                                    {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                </div>
                                 
                             @empty
                                 Sem allergen
                             @endforelse
 
-                            {{-- <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Glúten', ['class' => 'form-check-label']) !!}
-                            </div>
                             <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Peixe', ['class' => 'form-check-label']) !!}
+                                {!! Form::checkbox('no-allergen', null, false, ['class' => 'form-check-input']) !!}
+                                {!! Form::label('no-allergen', 'Não tem',      ['class' => 'form-check-label']) !!}
                             </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Lactose', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Mostarda', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Tremoço', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Amendoins', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Frutos de casca rija', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Sementes sésamo', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Moluscos', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Ovos', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Soja', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Aipo', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Dióxido de enxofre e sulfitos', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Não tem', ['class' => 'form-check-label']) !!}
-                            </div> --}}
+                            
+                            
 
                         </div>
                     </div>

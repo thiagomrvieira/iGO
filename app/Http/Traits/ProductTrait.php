@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 
+use App\Models\Allergen;
 use App\Models\Product;
 use App\Models\Extra;
 use App\Models\Sauce;
@@ -16,6 +17,9 @@ trait ProductTrait {
      */
     public function createProduct($request) 
     {
+
+        // dd($request->all());
+
         $product = Product::create([
             'partner_id'  => $request->partner_id,
             'image'       => $this->UploadProductImage($request),
@@ -38,6 +42,8 @@ trait ProductTrait {
         # Create the relation between Product and Sauce 
         $this->storeSauceProduct($request, $product);
         
+        # Create the relation between Product and Allergen 
+        $this->storeAllergenProduct($request, $product);
     }
     
     /**
@@ -91,6 +97,8 @@ trait ProductTrait {
      */
     public function updateProduct($request, $product) 
     {
+
+
         # Update product values
         $product->update($request->all());
 
@@ -135,6 +143,35 @@ trait ProductTrait {
         # Update Sauces in pivot table
         if ($sauceIdsForUpdate != []) {
             $product->sauces()->sync(array_filter($sauceIdsForUpdate));
+        }
+
+        return true;
+    }
+
+     /**
+     * Persist Allergen product in pivot table.
+     */
+    private function storeAllergenProduct($request, $product)
+    {
+
+        # Get all Allergen and pluck the slug column 
+        $allergens     = Allergen::where('active', 1)->get();
+        $allergenSlugs = $allergens->pluck('slug');
+
+        # Check if the categories slug exists in $request and set array $allergenIdsForUpdate
+        $allergenIdsForUpdate = $product->allergens->pluck('allergen_id')->toArray();
+        
+        # Check if the $request has a slug from Allergen and push into allergenIdsForUpdate
+        foreach ($allergenSlugs as $slug) {
+            if($request->$slug){
+                $allergenId = $allergens->where('slug', $slug)->first();
+                array_push($allergenIdsForUpdate, $allergenId->id);
+            }
+        }
+
+        # Update Allergen in pivot table
+        if ($allergenIdsForUpdate != []) {
+            $product->allergens()->sync(array_filter($allergenIdsForUpdate));
         }
 
         return true;

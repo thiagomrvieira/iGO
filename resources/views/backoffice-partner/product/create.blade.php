@@ -253,12 +253,12 @@
                             @empty
                                 Sem allergen
                             @endforelse
+
                             <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('no-allergen', null, $product->allergens->count() > 0 ? false : true, ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
-                                {!! Form::label('no-allergen', 'Não tem',      ['class' => 'form-check-label']) !!}
+                                {!! Form::checkbox('no-allergen', null, $product->allergens->count() > 0 ? false : true, 
+                                                                          ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
+                                {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                             </div>
-                            
-                            
 
                         </div>
                     </div>

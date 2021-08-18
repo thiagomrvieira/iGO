@@ -21,7 +21,6 @@ class AllergenSeeder extends Seeder
             array('name'=>'Glúten',                        'category_id'=> $partnerCategory->id, 'slug' => 'gluten',                        'active' => true),
             array('name'=>'Peixes',                        'category_id'=> $partnerCategory->id, 'slug' => 'peixes',                        'active' => true),
             array('name'=>'Lactose',                       'category_id'=> $partnerCategory->id, 'slug' => 'lactose',                       'active' => true),
-            array('name'=>'Mostarda',                      'category_id'=> $partnerCategory->id, 'slug' => 'mostarda',                      'active' => true),
             array('name'=>'Tremoço',                       'category_id'=> $partnerCategory->id, 'slug' => 'tremoco',                       'active' => true),
             array('name'=>'Crustáceos',                    'category_id'=> $partnerCategory->id, 'slug' => 'crustaceos',                    'active' => true),
             array('name'=>'Amendoins',                     'category_id'=> $partnerCategory->id, 'slug' => 'amendoins',                     'active' => true),

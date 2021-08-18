@@ -111,6 +111,9 @@ class ProductController extends Controller
         # Get Sauces
         $sauces = Sauce::where('category_id', $partnerCategory->id)
                        ->where('active', 1)->get();
+        # Get Allergens
+        $allergens = Allergen::where('category_id', $partnerCategory->id)
+                             ->where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'sides'             => $sides,
@@ -118,6 +121,8 @@ class ProductController extends Controller
             'product'           => $product,
             'categories'        => $categories,
             'productCategories' => $productCategories,
+            'allergens'         => $allergens,
+
         ]);
     }
 

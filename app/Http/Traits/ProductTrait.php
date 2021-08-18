@@ -98,7 +98,6 @@ trait ProductTrait {
     public function updateProduct($request, $product) 
     {
 
-
         # Update product values
         $product->update($request->all());
 
@@ -117,6 +116,9 @@ trait ProductTrait {
 
         # Create the relation between Product and Sauce 
         $this->storeSauceProduct($request, $product);
+
+        # Create the relation between Product and Allergen 
+        $this->storeAllergenProduct($request, $product);
     }
 
     /**

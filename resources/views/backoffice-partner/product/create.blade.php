@@ -162,7 +162,7 @@
                                 @endphp
 
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input', 'id' => $side->slug]) !!}
+                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input', 'id' => 'side' . $side->slug]) !!}
                                     {!! Form::label($side->slug, $side->name,    ['class' => 'form-check-label']) !!}
                                 </div>
                             @empty
@@ -194,7 +194,7 @@
                                 
                                 @unless ($sauce->slug == 'picante')
                                     <div class="custom-control custom-control-inline">
-                                        {!! Form::checkbox($sauce->slug, null, $checked, ['class' => 'form-check-input', 'id' => $sauce->slug]) !!}
+                                        {!! Form::checkbox($sauce->slug, null, $checked, ['class' => 'form-check-input', 'id' => 'sauce' . $sauce->slug]) !!}
                                         {!! Form::label($sauce->slug, $sauce->name,      ['class' => 'form-check-label']) !!}
                                     </div>
                                 @endunless
@@ -246,16 +246,15 @@
                                 @endphp
                                 
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input', 'id' => $allergen->slug]) !!}
+                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
                                     {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
                                 </div>
                                 
                             @empty
                                 Sem allergen
                             @endforelse
-
                             <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('no-allergen', null, false, ['class' => 'form-check-input']) !!}
+                                {!! Form::checkbox('no-allergen', null, $product->allergens->count() > 0 ? false : true, ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
                                 {!! Form::label('no-allergen', 'Não tem',      ['class' => 'form-check-label']) !!}
                             </div>
                             
@@ -478,6 +477,18 @@
                 }
             });
             
+        });
+
+        // Remove check e desabilita checkboxes de alergênios
+        $(document).on("click", "#removeAllergens", function (event) {
+            $('.inputAllergen').prop('checked', false).removeAttr('checked');
+            $('.inputAllergen').val('');
+        });
+
+        // Remove check de removeAllergens
+        $(document).on("click", ".inputAllergen", function (event) {
+            $('#removeAllergens').prop('checked', false).removeAttr('checked');
+            $('#removeAllergens').val('');
         });
 
 

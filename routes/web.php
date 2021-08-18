@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\DeliveryManController;
 use App\Http\Controllers\Web\PartnerController;
-use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
-use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficeProductController;
 use App\Http\Controllers\Web\PartnerCategoryController;
 use App\Http\Controllers\Web\WebContentController;
 use App\Http\Controllers\Web\FrontOfficeController;
+use App\Http\Controllers\Web\CampaignController;
+use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficeProductController;
+use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
 
 require __DIR__.'/auth.php';
 
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::resource('/content',     WebContentController::class);
     Route::resource('/partner',     PartnerController::class);
     Route::resource('/category',    PartnerCategoryController::class);
+    Route::resource('/campaign',    CampaignController::class);
 
 });
 

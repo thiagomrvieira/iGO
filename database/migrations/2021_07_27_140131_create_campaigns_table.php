@@ -19,7 +19,7 @@ class CreateCampaignsTable extends Migration
             $table->text('description');
             $table->integer('percentage');	
             $table->boolean('active')->default(false);
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->timestamp('start_date');	
             $table->timestamp('finish_date');	
             $table->timestamps();

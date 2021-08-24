@@ -15,7 +15,12 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        //
+       
+        dd(Campaign::where('active', true)->get());
+
+        return view('backoffice-admin.campaign.campaigns', [
+            'campaigns' => Campaign::where('active', true)->get(),
+        ]);
     }
 
     /**

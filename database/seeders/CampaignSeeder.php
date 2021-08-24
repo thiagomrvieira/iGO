@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campaign;
 use Illuminate\Database\Seeder;
 
 class CampaignSeeder extends Seeder
@@ -13,6 +14,46 @@ class CampaignSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        $data = array(
+            array(
+                'name'        => '10%',  
+                'description' => '10% de desconto no calor do produto',   
+                'percentage'  => 10, 
+                'active'      => true,   
+                'code'        => null,
+                'start_date'  => date("Y-m-d h:i:s", strtotime("today")), 
+                'finish_date' => date("Y-m-d h:i:s", strtotime("+3 Months") 
+            )),
+            array(
+                'name'        => '25%',  
+                'description' => '25% de desconto no calor do produto',   
+                'percentage'  => 25, 
+                'active'      => true,   
+                'code'        => null,
+                'start_date'  => date("Y-m-d h:i:s", strtotime("today")), 
+                'finish_date' => date("Y-m-d h:i:s", strtotime("+3 Months") 
+            )),
+            array(
+                'name'        => 'Promoção de férias',  
+                'description' => 'Desconto de 10% ao inserir o código promocional',   
+                'percentage'  => 10, 
+                'active'      => true, 
+                'code'        => 'FERIAS2021',
+                'start_date'  => date("Y-m-d h:i:s", strtotime("today")), 
+                'finish_date' => date("Y-m-d h:i:s", strtotime("+3 Months") 
+            )),
+            array(
+                'name'        => 'Promoção de ano novo',  
+                'description' => 'Desconto de 15% ao inserir o código promocional',   
+                'percentage'  => 15, 
+                'active'      => false, 
+                'code'        => 'iGO2021',
+                'start_date'  => date("Y-m-d h:i:s", strtotime("today")), 
+                'finish_date' => date("Y-m-d h:i:s", strtotime("+3 Months") 
+            )),
+        );
+        
+        Campaign::insert($data);
     }
 }

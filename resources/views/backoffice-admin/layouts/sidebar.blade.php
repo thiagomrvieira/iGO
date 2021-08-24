@@ -84,10 +84,9 @@
           </ul>
         </li>
 
-         {{-- Deliveryman --}}
+         {{-- Campaigns --}}
         <li class="nav-item">
-          <a href="{{ route('deliveryman.index') }}" class="nav-link">
-            {{-- <i class="nav-icon fas fa-shipping-fast"></i> --}}
+          <a href="{{ route('campaign.index') }}" class="nav-link">
             <i class="nav-icon fas fa-bullhorn"></i>
             <p>
               Campanhas

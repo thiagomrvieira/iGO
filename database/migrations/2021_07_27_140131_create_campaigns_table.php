@@ -15,6 +15,13 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->integer('percentage');	
+            $table->boolean('active')->default(false);
+            $table->string('code');
+            $table->timestamp('start_date');	
+            $table->timestamp('finish_date');	
             $table->timestamps();
         });
     }

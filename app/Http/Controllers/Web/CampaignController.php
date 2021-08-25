@@ -41,7 +41,8 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Campaign::create($request->all());
+        return back()->with(['message' => 'Campanha editada com sucesso!', 'alert' => 'alert-success']);
     }
 
     /**

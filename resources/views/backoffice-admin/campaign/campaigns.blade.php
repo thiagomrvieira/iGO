@@ -100,47 +100,68 @@
         </div>
     </div>
 
-    {{-- Modal de pré-registo --}}
+    {{-- Modal de criação de campanhas --}}
     <div class="modal fade" id="modal-lg">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{ __('backoffice/partners.modalCreate.modalTitle') }}</h4>
+                    <h4 class="modal-title">Cadastro de campanha</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'partner.store', 'method' => 'post' ]) !!}
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'campaign.store', 'method' => 'post' ]) !!}
                         @csrf
                         <div class="form-group row">
-                            {!! Form::label('company_name', __('backoffice/partners.modalCreate.company'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('name', 'Título', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('company_name', null,  ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.company') ]) !!}
+                                {!! Form::text('name', null,  ['class' => 'form-control', 'required', 'placeholder' =>  'Nome da campanha' ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('name', __('backoffice/partners.modalCreate.responsible'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('description', 'Descrição', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.responsible') ]) !!}
+                                {!! Form::textarea('description', null, ['class' => 'form-control', 'required', 'rows' => 3, 
+                                                                                                    'placeholder' =>  'Descrição da campanha' ]) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('email', __('backoffice/partners.modalCreate.email'), ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::text('email', null, ['class' => 'form-control', 'required', 'placeholder' =>  __('backoffice/partners.modalCreate.email') ]) !!}
+                            {!! Form::label('', 'Tipo de campanha', ['class' => 'col-sm-2 col-form-label']) !!}
+                            <div class="col-sm-10" style="margin: auto;">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('campaign-type', 'percentage', true, ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('campaign-type', 'Porcentagem', ['class' => 'form-check-label']) !!}
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('campaign-type', 'code', false,        ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('campaign-type', 'Código promocional', ['class' => 'form-check-label']) !!}
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            {!! Form::label('category_id', __('backoffice/partners.modalCreate.category'), ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('label-campaign', 'Porcentagem', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
                             <div class="col-sm-10">
-                                {{-- @if (count($partnerCategories) > 0)
-                                    {!! Form::select('category_id', $partnerCategories->pluck('name', 'id'), null, ['placeholder' => __('backoffice/partners.modalCreate.category'), 'class' => 'form-control', 'required']) !!}
-                                @endif --}}
+                                {!! Form::text('code', null,  ['class' => 'form-control', 'required', 'disabled', 'hidden',
+                                                               'placeholder' =>  'Código promocional', 'id' => 'code']) !!}
+                                {!! Form::number('percentage', null,  ['class' => 'form-control', 'required', 
+                                                                       'placeholder' =>  'Porcentagem', 'id' => 'percentage']) !!}
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            {!! Form::label('label-campaign', 'Data', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
+                            <div class="col-sm-5">
+                                {!! Form::date('start_date', null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
+                            </div>
+                            <div class="col-sm-5">
+                                {!! Form::date('finish_date', null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
+                            </div>
+                        </div>
+
                     {!! Form::close() !!}
-                    </div>
+                </div>
 
                 <div class="modal-footer justify-content-between">
                     {!! Form::submit(__('backoffice/partners.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
@@ -180,7 +201,7 @@
         $(document).on("click", ".openDeleteDialog", function () {
             var partnerId = $(this).data('partner-id');
             var action    = `/admin/partner/${partnerId}`;
-            
+
             $('#formDelete').attr('action', action );
         });
 
@@ -194,6 +215,18 @@
 
             $('#active').val(active == 1 ? 0 : 1);
             $('#form-update-status').attr('action', action ).submit();
+        });
+
+        $('input[type=radio][name=campaign-type]').change(function() {
+            if (this.value == 'percentage') {
+                $('#code').hide().attr('disabled', 'disabled');
+                $('#percentage').removeAttr('hidden').removeAttr('disabled').show();
+                $('#label-campaign').text("Porcentagem");
+            } else if (this.value == 'code') {
+                $('#percentage').hide().attr('disabled', 'disabled');
+                $('#code').removeAttr('disabled').removeAttr('hidden').show();
+                $('#label-campaign').text("Código promocional");
+            }
         });
         
     </script>

@@ -18,7 +18,7 @@ class CampaignSeeder extends Seeder
         $data = array(
             array(
                 'name'        => '10%',  
-                'description' => '10% de desconto no calor do produto',   
+                'description' => '10% de desconto no valor do produto',   
                 'percentage'  => 10, 
                 'active'      => true,   
                 'code'        => null,
@@ -27,7 +27,7 @@ class CampaignSeeder extends Seeder
             )),
             array(
                 'name'        => '25%',  
-                'description' => '25% de desconto no calor do produto',   
+                'description' => '25% de desconto no valor do produto',   
                 'percentage'  => 25, 
                 'active'      => true,   
                 'code'        => null,

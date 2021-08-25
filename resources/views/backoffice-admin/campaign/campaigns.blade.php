@@ -75,13 +75,7 @@
                                     {!! Form::open(['class' => 'form-horizontal',  'id' => 'form-update-status', 'method' => 'post' ]) !!}
                                         @csrf
                                         {{ method_field('PATCH') }}
-                                        
-                                        {{-- @if (is_null($partner->approved_at))
-                                            {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}
-                                        @endif --}}
-                                        
                                         {!! Form::hidden('active', 0, ['id' => 'active'] ) !!}
-                                       
                                     {!! Form::close() !!}
 
                                 </tbody>
@@ -182,19 +176,22 @@
 @section('jquery')
     <script type="text/javascript">
         
-        // Seta action do modal de confirmação de remoção de utilizador
+        // Seta action do modal de confirmação de remoção da campanha
         $(document).on("click", ".openDeleteDialog", function () {
             var partnerId = $(this).data('partner-id');
-            var action = `/admin/partner/${partnerId}`;
+            var action    = `/admin/partner/${partnerId}`;
+            
             $('#formDelete').attr('action', action );
         });
 
-        // Seta action do modal de confirmação de remoção de utilizador
+        // Seta action do form de update de status da campanha
         $(document).on("click", ".updateStatus", function () {
             event.preventDefault();
-            var partnerId = $(this).data('partner-id');
-            var active = $(this).data('partner-active');
-            var action = `/admin/partner/${partnerId}`;
+
+            var campaignId = $(this).data('campaign-id');
+            var active     = $(this).data('campaign-active');
+            var action     = `/admin/campaign/${campaignId}`;
+
             $('#active').val(active == 1 ? 0 : 1);
             $('#form-update-status').attr('action', action ).submit();
         });

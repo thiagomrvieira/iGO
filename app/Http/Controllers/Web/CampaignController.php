@@ -75,7 +75,10 @@ class CampaignController extends Controller
      */
     public function update(Request $request, Campaign $campaign)
     {
-        //
+        # Update campaign values
+        $campaign->update($request->all());
+        return back()->with(['message' => 'Campanha editada com sucesso!', 'alert' => 'alert-success']);
+
     }
 
     /**

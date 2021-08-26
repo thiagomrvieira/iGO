@@ -77,9 +77,9 @@
                                                     data-campaign-active="{{ $campaign->active }} ">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                <a href="{{ route('campaign.edit', ['campaign' => $campaign] ) }}">
+                                                {{-- <a href="{{ route('campaign.edit', ['campaign' => $campaign] ) }}">
                                                     <i class="far fa-edit"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a class="ml-1 openDeleteDialog" href="#" data-campaign-id="{{ $campaign->id }}" 
                                                     data-toggle="modal"  data-target="#modal-confirm">
                                                     <i class="far fa-trash-alt"></i>

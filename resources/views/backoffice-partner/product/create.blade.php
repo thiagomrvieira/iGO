@@ -255,7 +255,7 @@
                             @endforelse
 
                             <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('no-allergen', null, $product->allergens->count() > 0 ? false : true, 
+                                {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
                                                                           ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
                                 {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                             </div>
@@ -327,26 +327,15 @@
                     </h2>
                     <div id="collapseCampaign" class="accordion-collapse collapse" aria-labelledby="headingCampaign" data-bs-parent="#accordionProductData">
                         <div class="accordion-body">
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::radio('avgtime', '0-30', false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', 'Novidade', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::radio('avgtime', '30-45', false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', '30% de desconto', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', '2 por 1', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', '50% de desconto', ['class' => 'form-check-label']) !!}
-                            </div>
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::radio('avgtime', '45-60', false,       ['class' => 'form-check-input']) !!}
-                                {!! Form::label('avgtime', '20% de desconto', ['class' => 'form-check-label']) !!}
-                            </div>
+
+                            @forelse ($campaigns as $campaign)
+                                <div class="custom-control custom-control-inline">
+                                    {!! Form::radio('campaign_id', $campaign->id, ( isset($product) && $product->campaign_id == $campaign->id ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('campaign_id', $campaign->name, ['class' => 'form-check-label']) !!}
+                                </div>
+                            @empty
+                                SEM CAMPANHAS
+                            @endforelse
 
                         </div>
                     </div>

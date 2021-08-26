@@ -29,6 +29,7 @@ trait ProductTrait {
             'available'   => $request->available,
             'category_id' => $request->category_id,
             'note'        => $request->note,
+            'campaign_id' => $request->campaign_id,
         ]);
 
         # Check if the $request has extra inputs before call function create

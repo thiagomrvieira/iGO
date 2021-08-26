@@ -10,6 +10,7 @@ use App\Http\Traits\ProductTrait;
 
 use App\Http\Requests\ProductDataRequest;
 use App\Models\Allergen;
+use App\Models\Campaign;
 use App\Models\Partner;
 use App\Models\PartnerCategory;
 use App\Models\Product;
@@ -60,6 +61,8 @@ class ProductController extends Controller
         # Get Allergens
         $allergens = Allergen::where('category_id', $partnerCategory->id)
                              ->where('active', 1)->get();
+        # Get Campaigns
+        $campaigns = Campaign::where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'categories'        => $categories,
@@ -67,6 +70,7 @@ class ProductController extends Controller
             'sides'             => $sides,
             'sauces'            => $sauces,
             'allergens'         => $allergens,
+            'campaigns'         => $campaigns,
         ]);
     }
 
@@ -114,6 +118,8 @@ class ProductController extends Controller
         # Get Allergens
         $allergens = Allergen::where('category_id', $partnerCategory->id)
                              ->where('active', 1)->get();
+        # Get Campaigns
+        $campaigns = Campaign::where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
             'sides'             => $sides,
@@ -122,6 +128,7 @@ class ProductController extends Controller
             'categories'        => $categories,
             'productCategories' => $productCategories,
             'allergens'         => $allergens,
+            'campaigns'         => $campaigns,
 
         ]);
     }

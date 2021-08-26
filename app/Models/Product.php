@@ -18,6 +18,7 @@ class Product extends Model
        'price', 
        'available', 
        'note', 
+       'campaign_id', 
     ];
 
     protected $casts = [

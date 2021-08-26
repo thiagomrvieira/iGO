@@ -90,6 +90,10 @@ class CampaignController extends Controller
      */
     public function destroy(Campaign $campaign)
     {
-        //
+        if($campaign->products->count() < 1) {
+            $campaign->delete();
+            return back()->with(['message' => 'Campanha removida com sucesso!', 'alert' => 'alert-success']);
+        }
+        return back()->with(['message' => 'A Campanha não pode ser removida!', 'alert' => 'alert-warning']);
     }
 }

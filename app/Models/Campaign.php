@@ -19,4 +19,12 @@ class Campaign extends Model
         'start_date', 	
         'finish_date', 	
     ];
+
+     /**
+     * Get the products that uses the campaign
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

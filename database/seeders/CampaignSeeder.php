@@ -19,6 +19,7 @@ class CampaignSeeder extends Seeder
             array(
                 'name'        => '10%',  
                 'description' => '10% de desconto no valor do produto',   
+                'type'        => 'percentage-item', 
                 'percentage'  => 10, 
                 'active'      => true,   
                 'code'        => null,
@@ -27,7 +28,8 @@ class CampaignSeeder extends Seeder
             )),
             array(
                 'name'        => '25%',  
-                'description' => '25% de desconto no valor do produto',   
+                'description' => '25% de desconto no valor do produto', 
+                'type'        => 'percentage-purchase',   
                 'percentage'  => 25, 
                 'active'      => true,   
                 'code'        => null,
@@ -37,6 +39,7 @@ class CampaignSeeder extends Seeder
             array(
                 'name'        => 'Promoção de férias',  
                 'description' => 'Desconto de 10% ao inserir o código promocional',   
+                'type'        => 'percentage-purchase',   
                 'percentage'  => 10, 
                 'active'      => true, 
                 'code'        => 'FERIAS2021',
@@ -46,6 +49,7 @@ class CampaignSeeder extends Seeder
             array(
                 'name'        => 'Promoção de ano novo',  
                 'description' => 'Desconto de 15% ao inserir o código promocional',   
+                'type'        => 'percentage-purchase',   
                 'percentage'  => 15, 
                 'active'      => false, 
                 'code'        => 'iGO2021',

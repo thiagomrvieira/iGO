@@ -42,6 +42,7 @@
                                     <tr>
                                         <th> ID </th>
                                         <th> Campanha </th>
+                                        <th> Tipo </th>
                                         <th> Descrição </th>
                                         <th> Status </th>
                                         <th> Ações </th>
@@ -50,8 +51,17 @@
                                 <tbody>
                                     @forelse ($campaigns as $campaign)
                                         <tr>
-                                            <td> {{ $campaign->id          ?? null}} </td>
-                                            <td> {{ $campaign->name        ?? null}} </td>
+                                            <td> {{ $campaign->id   ?? null}} </td>
+                                            <td> {{ $campaign->name ?? null}} </td>
+                                            <td> 
+                                                @if ($campaign->type == 'percentage-purchase')
+                                                    Porcentagem no total da compra
+                                                @elseif ($campaign->type == 'percentage-item')
+                                                    Porcentagem no item
+                                                @else
+                                                    Taxa de entrega
+                                                @endif 
+                                            </td>
                                             <td> {{ $campaign->description ?? null}} </td>
                                             <td> {{ !$campaign->active ? 'Inativa' : 'Ativa' }}</td>
                                             <td>
@@ -113,45 +123,64 @@
                 <div class="modal-body">
                     {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'campaign.store', 'method' => 'post' ]) !!}
                         @csrf
+                        
+                        {{-- Campaign name --}}
                         <div class="form-group row">
                             {!! Form::label('name', 'Título', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
                                 {!! Form::text('name', null,  ['class' => 'form-control', 'required', 'placeholder' =>  'Nome da campanha' ]) !!}
                             </div>
                         </div>
+                        
+                        {{-- Campaign description --}}
                         <div class="form-group row">
                             {!! Form::label('description', 'Descrição', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
                                 {!! Form::textarea('description', null, ['class' => 'form-control', 'required', 'rows' => 3, 
-                                                                                                    'placeholder' =>  'Descrição da campanha' ]) !!}
+                                                                         'placeholder' =>  'Descrição da campanha' ]) !!}
                             </div>
                         </div>
+
+                        {{-- Type of campaign - Radios --}}
                         <div class="form-group row">
                             {!! Form::label('', 'Tipo de campanha', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10" style="margin: auto;">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    {!! Form::radio('campaign-type', 'percentage', true, ['class' => 'form-check-input']) !!}
-                                    {!! Form::label('campaign-type', 'Porcentagem', ['class' => 'form-check-label']) !!}
+                                    {!! Form::radio('type', 'percentage-item', true, ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('type', 'Porcentagem no item',   ['class' => 'form-check-label']) !!}
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    {!! Form::radio('campaign-type', 'code', false,        ['class' => 'form-check-input']) !!}
-                                    {!! Form::label('campaign-type', 'Código promocional', ['class' => 'form-check-label']) !!}
+                                    {!! Form::radio('type', 'percentage-purchase', false,   ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('type', 'Porcentagem em toda a compra', ['class' => 'form-check-label']) !!}
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('type', 'delivery', false, ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('type', 'Taxa de entrega', ['class' => 'form-check-label']) !!}
                                 </div>
                             </div>
                         </div>
-
+                        
+                        {{-- Percentage --}}
                         <div class="form-group row">
                             {!! Form::label('label-campaign', 'Porcentagem', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('code', null,  ['class' => 'form-control', 'required', 'disabled', 'hidden',
-                                                               'placeholder' =>  'Código promocional', 'id' => 'code']) !!}
                                 {!! Form::number('percentage', null,  ['class' => 'form-control', 'required', 
                                                                        'placeholder' =>  'Porcentagem', 'id' => 'percentage']) !!}
                             </div>
                         </div>
 
+                        {{-- Code --}}
+                        <div class="form-group row" >
+                            {!! Form::label('label-campaign', 'Código', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
+                            <div class="col-sm-10" style="margin: auto;">
+                                {!! Form::text('code', null,  ['class' => 'form-control', 'required',
+                                                               'placeholder' =>  'Código promocional', 'id' => 'code']) !!}
+                            </div>
+                        </div>
+
+                        {{-- Start and Finish date --}}
                         <div class="form-group row">
-                            {!! Form::label('label-campaign', 'Data', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
+                            {!! Form::label('label-campaign', 'Validade', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
                             <div class="col-sm-5">
                                 {!! Form::date('start_date', null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
                             </div>
@@ -162,7 +191,8 @@
 
                     {!! Form::close() !!}
                 </div>
-
+                
+                {{-- Buttons --}}
                 <div class="modal-footer justify-content-between">
                     {!! Form::submit(__('backoffice/partners.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
                     {!! Form::submit(__('backoffice/partners.modalCreate.create'), ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formCreation']) !!}
@@ -217,17 +247,17 @@
             $('#form-update-status').attr('action', action ).submit();
         });
 
-        $('input[type=radio][name=campaign-type]').change(function() {
-            if (this.value == 'percentage') {
-                $('#code').hide().attr('disabled', 'disabled');
-                $('#percentage').removeAttr('hidden').removeAttr('disabled').show();
-                $('#label-campaign').text("Porcentagem");
-            } else if (this.value == 'code') {
-                $('#percentage').hide().attr('disabled', 'disabled');
-                $('#code').removeAttr('disabled').removeAttr('hidden').show();
-                $('#label-campaign').text("Código promocional");
-            }
-        });
+        // $('input[type=radio][name=campaign-type]').change(function() {
+        //     if (this.value == 'percentage') {
+        //         $('#code').hide().attr('disabled', 'disabled');
+        //         $('#percentage').removeAttr('hidden').removeAttr('disabled').show();
+        //         $('#label-campaign').text("Porcentagem");
+        //     } else if (this.value == 'code') {
+        //         $('#percentage').hide().attr('disabled', 'disabled');
+        //         $('#code').removeAttr('disabled').removeAttr('hidden').show();
+        //         $('#label-campaign').text("Código promocional");
+        //     }
+        // });
         
     </script>
 @endsection

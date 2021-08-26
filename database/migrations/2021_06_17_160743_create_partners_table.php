@@ -27,6 +27,7 @@ class CreatePartnersTable extends Migration
             $table->integer('category_id')->nullable();
             $table->char('average_order_time')->nullable();
             $table->boolean('first_login')->default(true);
+            $table->boolean('premium')->default(false);
             $table->timestamps();
         });
     }   

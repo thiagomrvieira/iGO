@@ -61,6 +61,8 @@
                                 <b>{{ __('backoffice/partners.totalOrders') }}</b> <a class="float-right">0</a>
                             </li>
                         </ul>
+
+                        {{-- Button activate account --}}
                         @if ($partner->active == false)
                             {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}
                                 @csrf
@@ -80,6 +82,18 @@
                                 {!! Form::submit(__('backoffice/partners.deactiveAccount'),  ['type' => 'submit', 'class' => 'btn btn-danger btn-block' ]) !!}
                             {!! Form::close() !!}
                         @endif
+
+                        {{-- Button activate premium account --}}
+                        {!! Form::open(['class' => 'form-horizontal mt-1', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}
+                            @csrf
+                            {{ method_field('PATCH') }}
+                            {!! Form::hidden('premium', $partner->premium == 0 ? 1 : 0) !!}
+                            {!! Form::submit( $partner->premium == 0 ? 'Ativar premium' : 'Desativar premium',  
+                                                ['type' => 'submit', 'class' =>  ' ' . $partner->premium == 0 ? 
+                                                                                                'btn btn-primary btn-block' : 
+                                                                                                'btn btn-danger btn-block ' ]) !!}
+                        {!! Form::close() !!}
+                        
                     </div>
                 </div>
             </div>

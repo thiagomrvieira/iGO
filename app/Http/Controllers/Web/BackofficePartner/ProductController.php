@@ -150,13 +150,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product = $this->updateProduct($request, $product);
-
-        # Check if the partner wants to Feature the product
-        if ($product && $request->featured == 1) {
-            $featuredProduct = $this->createFeaturedProductRequest($product);
-        }
-
+        #   Update the product
+        $this->updateProduct($request, $product);
+        #   Update the featured
+        $this->updateFeaturedProductRequest($request, $product);
+        
         return redirect()->route('products.index');
 
     }

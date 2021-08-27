@@ -126,16 +126,18 @@
                                     </div>
                                 @endforeach
                             @endif
-                            
+                            {{ isset($product->featured->id) ? 'SM': 'N'}}
                             {{-- Featured Product --}}
                             {!! Form::label('featured', 'Deseja colocar o prato na secção de destaques?', 
                                                                             ['class' => 'form-check-label']) !!}
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('featured', 1, false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('featured', 1, ( isset($product) && $product->featured ? true : false) ?? false,      
+                                               ['class' => 'form-check-input']) !!}
                                 {!! Form::label('featured', 'Sim', ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('featured', 0, true,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('featured', 0, ( isset($product) && $product->featured ? false : true) ?? true,      
+                                               ['class' => 'form-check-input']) !!}
                                 {!! Form::label('featured', 'Não', ['class' => 'form-check-label']) !!}
                             </div>
 

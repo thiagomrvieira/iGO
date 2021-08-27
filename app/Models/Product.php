@@ -74,4 +74,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Allergen::class, 'allergen_product');
     }
+
+    /**
+     * Get featured
+     */
+    public function featured()
+    {
+        return $this->hasOne(Featured::class);
+    }
 }

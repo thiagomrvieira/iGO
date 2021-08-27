@@ -21,4 +21,25 @@ trait FeaturedProductTrait {
        return $featuredProduct;
     }
 
+    /**
+     * Check the status of the feature product request in $request
+     */
+    public function updateFeaturedProductRequest($request, $product) 
+    {   
+        if ($request->featured == 0) {
+           return $this->removeFeaturedProductRequest($product);
+        } 
+
+        return $this->createFeaturedProductRequest($product);
+    }
+
+    /**
+     * Remove Featured Product request in update
+     */
+    public function removeFeaturedProductRequest($product) 
+    {
+        return Featured::where('product_id', $product->id)->delete();
+    }
+
+
 }

@@ -108,7 +108,7 @@ trait ProductTrait {
         }
 
         # Check if input extras has value and Update extra model
-        if ($request->extras) {
+        if ($request->extras != '[{"name":"","price":""}]') {
             $this->createExtraProduct($request, $product);
         }
 

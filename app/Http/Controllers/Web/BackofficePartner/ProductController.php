@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\ProductTrait;
+use App\Http\Traits\FeaturedProductTrait;
 
 use App\Http\Requests\ProductDataRequest;
 use App\Models\Allergen;
@@ -21,7 +22,7 @@ use App\Models\Side;
 
 class ProductController extends Controller
 {
-    use ImagesTrait, ProductTrait;
+    use ImagesTrait, ProductTrait , FeaturedProductTrait;
 
     /**
      * Display a listing of the resource.
@@ -31,8 +32,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('created_at', 'DESC')->get();
-
-        // dd($products->pluck('category.name'));
         return view ('backoffice-partner.product.products')->with('products', $products);
     }
 
@@ -44,6 +43,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         # Get User/Partner and his main category
         $partner = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
@@ -82,8 +82,16 @@ class ProductController extends Controller
      */
     public function store(ProductDataRequest $request)
     {
+        # Get User/Partner
         $partner = Auth::user()->partner;
-        $this->createProduct($request);
+        
+        # Create a new product
+        $product = $this->createProduct($request);
+
+        # Check if the partner wants to Feature the product
+        if ($product && $request->featured == 1) {
+            $featuredProduct = $this->createFeaturedProductRequest($product);
+        }
 
         # Check if it's the first login and redirect to next step from 'welcome' flow
         if ($partner->first_login == 1) {
@@ -142,9 +150,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $this->updateProduct($request, $product);
+        $product = $this->updateProduct($request, $product);
 
-        
+        # Check if the partner wants to Feature the product
+        if ($product && $request->featured == 1) {
+            $featuredProduct = $this->createFeaturedProductRequest($product);
+        }
 
         return redirect()->route('products.index');
 

@@ -18,8 +18,6 @@ trait ProductTrait {
     public function createProduct($request) 
     {
 
-        // dd($request->all());
-
         $product = Product::create([
             'partner_id'  => $request->partner_id,
             'image'       => $this->UploadProductImage($request),
@@ -33,7 +31,7 @@ trait ProductTrait {
         ]);
 
         # Check if the $request has extra inputs before call function create
-        if ($request->extras) {
+        if ($request->extras != '[{"name":"","price":""}]') {
             $this->createExtraProduct($request, $product);
         }
 
@@ -45,6 +43,8 @@ trait ProductTrait {
         
         # Create the relation between Product and Allergen 
         $this->storeAllergenProduct($request, $product);
+
+        return $product;
     }
     
     /**
@@ -120,6 +120,8 @@ trait ProductTrait {
 
         # Create the relation between Product and Allergen 
         $this->storeAllergenProduct($request, $product);
+
+        return $product;
     }
 
     /**

@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->boolean('available');
             $table->text('note')->nullable();
-            $table->foreignId('campaign_id')->constrained()->nullable();
+            $table->foreignId('campaign_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

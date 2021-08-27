@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
             'password'       => bcrypt('iGOdelivery'),
+            'active'         => 1,
             'is_admin'       => 0,
             'is_partner'     => 1,
             'is_deliveryman' => 0,

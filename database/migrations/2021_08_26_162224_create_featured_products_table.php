@@ -17,8 +17,8 @@ class CreateFeaturedProductsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->boolean('active')->default(false);
-            $table->timestamp('start_date');	
-            $table->timestamp('finish_date');	
+            $table->timestamp('start_date')->nullable();	
+            $table->timestamp('finish_date')->nullable();	
             $table->timestamps();
         });
     }

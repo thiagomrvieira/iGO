@@ -93,11 +93,13 @@
                             {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}
 
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 1, ( isset($product) && $product->available == 1 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('available', 1, ( isset($product) && $product->available == 0 ? false : true) ?? true,      
+                                                ['class' => 'form-check-input']) !!}
                                 {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 0, ( isset($product) && $product->available == 0 ? true : false) ?? false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::radio('available', 0, ( isset($product) && $product->available == 0 ? true : false) ?? false,  
+                                                ['class' => 'form-check-input']) !!}
                                 {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
                             </div>
                         </div>
@@ -125,17 +127,16 @@
                                 @endforeach
                             @endif
                             
-                            
-
-                            {!! Form::label('available', 'Deseja colocar o prato na secção de destaques?', 
+                            {{-- Featured Product --}}
+                            {!! Form::label('featured', 'Deseja colocar o prato na secção de destaques?', 
                                                                             ['class' => 'form-check-label']) !!}
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 1, false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('featured', 1, false,      ['class' => 'form-check-input']) !!}
+                                {!! Form::label('featured', 'Sim', ['class' => 'form-check-label']) !!}
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('available', 0, false,      ['class' => 'form-check-input']) !!}
-                                {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
+                                {!! Form::radio('featured', 0, true,      ['class' => 'form-check-input']) !!}
+                                {!! Form::label('featured', 'Não', ['class' => 'form-check-label']) !!}
                             </div>
 
                         </div>

@@ -69,7 +69,46 @@
                     </h2>
                     <div id="collapseFeatured" class="accordion-collapse collapse" aria-labelledby="headingFeatured" data-bs-parent="#accordionProducts">
                         <div class="accordion-body">
-                            
+                            {{-- List of Featured Products --}}
+                            @forelse ($products as $featuredProduct)
+                                @if (isset($featuredProduct->featured->created_at))
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div style="float: left;">
+                                                @if ($featuredProduct->image)
+                                                    <img src="{{url('/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
+                                                        alt="Product Image" height="90px">
+                                                    <br>
+                                                @endif
+                                                <strong>{{$featuredProduct->name}}</strong>
+                                                <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
+                                                <p>{{$featuredProduct->price}}€</p>
+                                            </div>
+                                            <div style="float: right;">
+                                                
+                                                <div id="pen">
+                                                    <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}">
+                                                        pen
+                                                    </a>
+                                                </div>
+
+                                                <div id="trash">
+                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $featuredProduct->id }}"  
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        trash
+                                                    </a>
+                                                </div>
+                                                <div id="plus">
+                                                    plus
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @empty
+                                Sem produtos destacados
+                            @endforelse
+                           
                         </div>
                     </div>
                 </div>

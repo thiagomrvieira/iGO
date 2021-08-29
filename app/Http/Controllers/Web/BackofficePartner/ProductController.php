@@ -31,8 +31,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'DESC')->get();
-        return view ('backoffice-partner.product.products')->with('products', $products);
+        return view ('backoffice-partner.product.products', [
+            'products' => Product::with('featured')->orderBy('created_at', 'DESC')->get()
+        ]);
     }
 
 

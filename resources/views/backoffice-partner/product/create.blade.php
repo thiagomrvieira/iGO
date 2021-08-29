@@ -126,7 +126,7 @@
                                     </div>
                                 @endforeach
                             @endif
-                            {{ isset($product->featured->id) ? 'SM': 'N'}}
+
                             {{-- Featured Product --}}
                             {!! Form::label('featured', 'Deseja colocar o prato na secção de destaques?', 
                                                                             ['class' => 'form-check-label']) !!}

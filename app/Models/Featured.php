@@ -16,4 +16,12 @@ class Featured extends Model
         'start_date',
         'finish_date',
     ];
+
+    /**
+     * Get the product
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

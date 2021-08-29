@@ -16,7 +16,6 @@ class FeaturedController extends Controller
      */
     public function index()
     {
-        dd(Featured::all());
         return view('backoffice-admin.featured.products', [
             'featured' => Featured::all(),
         ]);

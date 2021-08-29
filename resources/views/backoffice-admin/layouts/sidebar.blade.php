@@ -84,7 +84,7 @@
           </ul>
         </li>
 
-         {{-- Campaigns --}}
+        {{-- Campaigns --}}
         <li class="nav-item">
           <a href="{{ route('campaign.index') }}" class="nav-link">
             <i class="nav-icon fas fa-bullhorn"></i>
@@ -93,7 +93,17 @@
             </p>
           </a>
         </li>
-        
+
+        {{-- Featured Products --}}
+        <li class="nav-item">
+          <a href="{{ route('featured.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-ad"></i>
+            <p>
+              Destaques
+            </p>
+          </a>
+        </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

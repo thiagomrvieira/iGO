@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 use App\Models\Featured;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 trait FeaturedProductTrait {  
         
@@ -12,10 +13,11 @@ trait FeaturedProductTrait {
      */
     public function createFeaturedProductRequest($product) 
     {
-        
         $featuredProduct = Featured::firstOrCreate(
             ['product_id' => $product->id],
-            ['product_id' => $product->id]
+            ['product_id' => $product->id,
+             'partner_id' => Auth::user()->partner->id,
+            ]
         );
 
        return $featuredProduct;

@@ -12,6 +12,7 @@ class Featured extends Model
     
     protected $fillable = [
         'product_id',
+        'partner_id',
         'active',
         'start_date',
         'finish_date',
@@ -23,5 +24,13 @@ class Featured extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Get the Partner.
+     */
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
     }
 }

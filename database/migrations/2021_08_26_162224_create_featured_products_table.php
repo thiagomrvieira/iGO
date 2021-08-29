@@ -16,6 +16,7 @@ class CreateFeaturedProductsTable extends Migration
         Schema::create('featured_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('partner_id')->constrained();
             $table->boolean('active')->default(false);
             $table->timestamp('start_date')->nullable();	
             $table->timestamp('finish_date')->nullable();	

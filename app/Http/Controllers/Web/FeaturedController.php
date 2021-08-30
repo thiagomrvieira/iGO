@@ -21,10 +21,28 @@ class FeaturedController extends Controller
         ]);
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Featured  $featured
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Featured $featured)
+    {
+        // dd($request->all());
+        #   Update the featured 
+        $featured->update($request->all());
+        return back()->with(['message' => 'Destaque ativado com sucesso!', 'alert' => 'alert-success']);
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $deliveryMan
+     * @param  \App\Models\Featured  $featured
      * @return \Illuminate\Http\Response
      */
     public function destroy(Featured $featured)

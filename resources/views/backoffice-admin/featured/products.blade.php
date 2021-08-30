@@ -61,8 +61,12 @@
                                 <tbody>
                                     @forelse ($productFeatured as $featured) 
                                         <tr>
-                                            <td> {{ $featured->id            ?? null }} </td>
-                                            <td> {{ $featured->partner->name ?? null }} </td>
+                                            <td> {{ $featured->id ?? null }} </td>
+                                            <td> 
+                                                <a href="{{ route('partner.edit', ['partner' => $featured->partner] ) }}">
+                                                    {{ $featured->partner->name  }}
+                                                </a>  
+                                            </td>
                                             <td> {{ $featured->product->name ?? null }} </td>
                                             <td> {{ $featured->created_at    ?? null }} </td>
                                             <td> {{ !$featured->active ? 'Inativa' : 'Ativa' }} </td>

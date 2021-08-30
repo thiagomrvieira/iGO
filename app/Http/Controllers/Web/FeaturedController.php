@@ -32,6 +32,6 @@ class FeaturedController extends Controller
         if($featured) {
             $featured->delete();
         }
-        return redirect()->route('featured.index');
+        return back()->with(['message' => 'Destaque removido com sucesso', 'alert' => 'alert-success']);
     }
 }

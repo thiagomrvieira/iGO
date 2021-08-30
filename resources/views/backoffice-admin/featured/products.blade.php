@@ -68,20 +68,17 @@
                                                 </a>  
                                             </td>
                                             <td> {{ $featured->product->name ?? null }} </td>
-                                            <td> {{ $featured->created_at    ?? null }} </td>
+                                            <td> {{ $featured->created_at  ? date('d-m-Y', strtotime($featured->created_at))  : null }} </td>
                                             <td> {{ !$featured->active ? 'Inativa' : 'Ativa' }} </td>
                                             <td> {{ $featured->start_date  ? date('d-m-Y', strtotime($featured->start_date)) : 'Inativa' }} </td>
                                             <td> {{ $featured->finish_date ? date('d-m-Y', strtotime($featured->start_date)) : 'Inativa' }} </td>
 
                                             <td>
-                                                <a class="mr-1 updateStatus" href="#" data-campaign-id="{{ $featured->id }} "
-                                                    data-campaign-active="{{ $featured->active }} ">
+                                                <a class="mr-1 updateStatus" href="#" data-featured-id="{{ $featured->id }} "
+                                                    data-featured-active="{{ $featured->active }} ">
                                                     <i class="fas fa-check"></i>
                                                 </a>
-                                                {{-- <a href="{{ route('campaign.edit', ['campaign' => $featured] ) }}">
-                                                    <i class="far fa-edit"></i>
-                                                </a> --}}
-                                                <a class="ml-1 openDeleteDialog" href="#" data-campaign-id="{{ $featured->id }}" 
+                                                <a class="ml-1 openDeleteDialog" href="#" data-featured-id="{{ $featured->id }}" 
                                                     data-toggle="modal"  data-target="#modal-confirm">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
@@ -103,10 +100,7 @@
                         
                         {{-- Button for creation --}}
                         <div class="card-footer clearfix">
-                            <div class="float-right">
-                                {!! Form::submit(__('backoffice/partners.createUser'),  ['type' => 'button', 'class' => 'btn btn-primary btn-sm float-right', 
-                                                                                         'data-toggle' => 'modal', 'data-target' => '#modal-lg']) !!}
-                            </div>
+                           {{-- Footer --}}
                         </div>
 
                     </div>
@@ -120,99 +114,6 @@
         </div>
     </div>
 
-    {{-- Modal de criação de campanhas --}}
-    <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Cadastro de campanha</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formCreation', 'route' => 'campaign.store', 'method' => 'post' ]) !!}
-                        @csrf
-                        
-                        {{-- Campaign name --}}
-                        <div class="form-group row">
-                            {!! Form::label('name', 'Título', ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::text('name', null,  ['class' => 'form-control', 'required', 'placeholder' =>  'Nome da campanha' ]) !!}
-                            </div>
-                        </div>
-                        
-                        {{-- Campaign description --}}
-                        <div class="form-group row">
-                            {!! Form::label('description', 'Descrição', ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::textarea('description', null, ['class' => 'form-control', 'required', 'rows' => 3, 
-                                                                         'placeholder' =>  'Descrição da campanha' ]) !!}
-                            </div>
-                        </div>
-
-                        {{-- Type of campaign - Radios --}}
-                        <div class="form-group row">
-                            {!! Form::label('', 'Tipo de campanha', ['class' => 'col-sm-2 col-form-label']) !!}
-                            <div class="col-sm-10" style="margin: auto;">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    {!! Form::radio('type', 'percentage-item', true, ['class' => 'form-check-input']) !!}
-                                    {!! Form::label('type', 'Porcentagem no item',   ['class' => 'form-check-label']) !!}
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    {!! Form::radio('type', 'percentage-purchase', false,   ['class' => 'form-check-input']) !!}
-                                    {!! Form::label('type', 'Porcentagem em toda a compra', ['class' => 'form-check-label']) !!}
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    {!! Form::radio('type', 'delivery', false, ['class' => 'form-check-input']) !!}
-                                    {!! Form::label('type', 'Taxa de entrega', ['class' => 'form-check-label']) !!}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {{-- Percentage --}}
-                        <div class="form-group row">
-                            {!! Form::label('label-campaign', 'Porcentagem', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::number('percentage', null,  ['class' => 'form-control', 'required', 
-                                                                       'placeholder' =>  'Porcentagem', 'id' => 'percentage']) !!}
-                            </div>
-                        </div>
-
-                        {{-- Code --}}
-                        <div class="form-group row" >
-                            {!! Form::label('label-campaign', 'Código', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
-                            <div class="col-sm-10" style="margin: auto;">
-                                {!! Form::text('code', null,  ['class' => 'form-control', 'required',
-                                                               'placeholder' =>  'Código promocional', 'id' => 'code']) !!}
-                            </div>
-                        </div>
-
-                        {{-- Start and Finish date --}}
-                        <div class="form-group row">
-                            {!! Form::label('label-campaign', 'Validade', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
-                            <div class="col-sm-5">
-                                {!! Form::date('start_date', null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
-                            </div>
-                            <div class="col-sm-5">
-                                {!! Form::date('finish_date', null, ['class' => 'form-control', 'required', 'placeholder' => __('backoffice/deliverymen.modalCreate.mobilePhoneNumber')]) !!}
-                            </div>
-                        </div>
-
-                    {!! Form::close() !!}
-                </div>
-                
-                {{-- Buttons --}}
-                <div class="modal-footer justify-content-between">
-                    {!! Form::submit(__('backoffice/partners.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/partners.modalCreate.create'), ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formCreation']) !!}
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    
     {{-- Modal de confirmação de remoção --}}
     <div class="modal fade" id="modal-confirm">
         <div class="modal-dialog modal-sm">
@@ -237,10 +138,10 @@
 @section('jquery')
     <script type="text/javascript">
         
-        // Seta action do modal de confirmação de remoção da campanha
+        // Seta action do modal de confirmação de remoção do featured
         $(document).on("click", ".openDeleteDialog", function () {
-            var campaignId = $(this).data('campaign-id');
-            var action     = `/admin/campaign/${campaignId}`;
+            var featuredId = $(this).data('featured-id');
+            var action     = `/admin/featured/${featuredId}`;
 
             $('#formDelete').attr('action', action );
         });
@@ -257,17 +158,6 @@
             $('#form-update-status').attr('action', action ).submit();
         });
 
-        // $('input[type=radio][name=campaign-type]').change(function() {
-        //     if (this.value == 'percentage') {
-        //         $('#code').hide().attr('disabled', 'disabled');
-        //         $('#percentage').removeAttr('hidden').removeAttr('disabled').show();
-        //         $('#label-campaign').text("Porcentagem");
-        //     } else if (this.value == 'code') {
-        //         $('#percentage').hide().attr('disabled', 'disabled');
-        //         $('#code').removeAttr('disabled').removeAttr('hidden').show();
-        //         $('#label-campaign').text("Código promocional");
-        //     }
-        // });
         
     </script>
 @endsection

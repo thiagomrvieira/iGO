@@ -20,4 +20,18 @@ class FeaturedController extends Controller
             'productFeatured' => Featured::all(),
         ]);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Product  $deliveryMan
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Featured $featured)
+    {
+        if($featured) {
+            $featured->delete();
+        }
+        return redirect()->route('featured.index');
+    }
 }

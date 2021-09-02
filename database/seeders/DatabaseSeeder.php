@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SauceSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(CampaignSeeder::class);
+        $this->call(AddressTypeSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

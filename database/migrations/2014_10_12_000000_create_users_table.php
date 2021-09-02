@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->nullable();
             $table->boolean('is_partner')->nullable();
             $table->boolean('is_deliveryman')->nullable();
+            $table->boolean('is_client')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -46,6 +46,12 @@ class DeliveryManController extends Controller
      */
     public function store(DeliverymanStoreRequest $request)
     {
+        # Create user
+        $user = $this->createUser($request);
+
+        # Get the user id and set value in array 
+        $request['user_id'] = $user->id ?? null;
+
         $deliveryman = DeliveryMan::create($request->all());
         return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman])
                          ->with(['message' => 'Estafeta criado com sucesso!', 'alert' => 'alert-success']);
@@ -65,7 +71,7 @@ class DeliveryManController extends Controller
         $resource = $request->resource;
 
         # Create user
-        $user = $this->createUser($resource);
+        $user = $this->createUserFromHome($resource);
 
         # Get the user id and set value in array 
         $resource['user_id'] = $user->id ?? null;

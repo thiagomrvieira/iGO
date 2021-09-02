@@ -60,7 +60,12 @@ class PartnerController extends Controller
      */
     public function store(PartnerStoreRequest $request)
     {
-        // dd('EPAH');
+        # Create user
+        $user = $this->createUser($request);
+
+        # Get the user id and set value in array 
+        $request['user_id'] = $user->id ?? null;
+
         $partner = Partner::create($request->all());
         return redirect()->route('partner.edit', ['partner' => $partner])
                          ->with(['message' => 'Aderente criado com sucesso!', 'alert' => 'alert-success']);
@@ -78,7 +83,7 @@ class PartnerController extends Controller
         $resource = $request->resource;
 
         # Create user
-        $user = $this->createUser($resource);
+        $user = $this->createUserFromHome($resource);
 
         # Get the user id and set value in array 
         $resource['user_id'] = $user->id ?? null;
@@ -87,7 +92,6 @@ class PartnerController extends Controller
         $partner = Partner::create($resource);
 
         # Create address
-        // dd($request->all());
         $address = $this->getAddressRequest($request->resource, $user->id); 
         
         

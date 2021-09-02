@@ -60,14 +60,12 @@ class DeliveryManController extends Controller
      */
     public function createDelManFromHome(DeliverymanStoreFromHomeRequest $request)
     {
-        // $deliveryman = DeliveryMan::create($request->resource);
-        // return response()->json(['resource' => $deliveryman], 201); 
-
+        
         # Set variable for resource creation 
         $resource = $request->resource;
 
         # Create user
-        $user = $this->createUserFromHome($resource);
+        $user = $this->createUser($resource);
 
         # Get the user id and set value in array 
         $resource['user_id'] = $user->id ?? null;

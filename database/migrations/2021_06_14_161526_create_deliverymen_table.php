@@ -15,6 +15,7 @@ class CreateDeliveryMenTable extends Migration
     {
         Schema::create('deliverymen', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name');
             $table->string('email');
             $table->string('mobile_phone_number');
@@ -30,7 +31,6 @@ class CreateDeliveryMenTable extends Migration
             $table->string('bank_account_number')->nullable();
             $table->dateTime('approved_at')->nullable();
             $table->boolean('active')->default(false);
-            $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ class DeliveryMan extends Model
     protected $table = 'deliverymen';
     protected $fillable = [
        'id',
+       'user_id',
        'name',
        'email',
        'mobile_phone_number',
@@ -25,7 +26,6 @@ class DeliveryMan extends Model
        'driving_license_number',
        'bank_account_name',
        'bank_account_number',
-       'user_id',
        'approved_at',
        'active'
     ];

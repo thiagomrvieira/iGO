@@ -3,23 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\AddressTrait;
+use App\Http\Traits\ClientTrait;
+use App\Http\Traits\UserTrait;
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class PassportAuthController extends Controller
 {
+    use AddressTrait, UserTrait, ClientTrait;
+
     /**
      * Registration
      */
     public function register(Request $request)
     {
- 
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
-       
+        # Create User
+        $user = $this->createUserFromApi($request);
+        
+        # Get the user id and set value in array 
+        $request['user_id'] = $user->id ?? null;
+        
+        # Create Client
+        $client = $this->createClient($request);
+
+        # Create Address
+        $address = $this->getAddressRequest($request, $client->user->id); 
+        
+        # Create Api token
         $token = $user->createToken('igoApiToken')->accessToken;
  
         return response()->json(['token' => $token], 200);

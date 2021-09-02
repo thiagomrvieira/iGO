@@ -10,7 +10,6 @@ trait UserTrait {
     #   Create a new user - Backoffice
     public function createUser($request) 
     { 
-
         $user = User::create([
             'name'           => $request['name'], 
             'email'          => $request['email'],
@@ -56,6 +55,24 @@ trait UserTrait {
 
         return $password;
     }
+
+    #   Create a new user - API
+    public function createUserFromApi($request) 
+    { 
+        $user = User::create([
+            'name'           => $request['name'], 
+            'email'          => $request['email'],
+            'password'       => bcrypt($this->generatePassWord($request)),
+            'active'         => true,
+            'is_admin'       => false,
+            'is_partner'     => false,
+            'is_deliveryman' => false,
+            'is_client'      => true,
+        ]);
+        
+        return $user;
+    }
+ 
     
     
 }

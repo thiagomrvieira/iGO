@@ -13,6 +13,7 @@ class Partner extends Model
     protected $table = 'partners';
     protected $fillable = [
        'id',
+       'user_id',
        'name',
        'email',
        'phone_number',
@@ -21,7 +22,6 @@ class Partner extends Model
        'company_name',
        'tax_number',
        'category_id',
-       'user_id',
        'active',
        'first_login',
        'average_order_time',

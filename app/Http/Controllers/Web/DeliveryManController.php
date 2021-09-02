@@ -8,11 +8,12 @@ use App\Http\Traits\AddressTrait;
 use App\Http\Requests\DeliverymanStoreRequest;
 use App\Http\Requests\DeliverymanStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
-
+use App\Http\Traits\UserTrait;
 
 class DeliveryManController extends Controller
 {
-    use AddressTrait;
+    use AddressTrait, UserTrait;
+    
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +60,21 @@ class DeliveryManController extends Controller
      */
     public function createDelManFromHome(DeliverymanStoreFromHomeRequest $request)
     {
-        $deliveryman = DeliveryMan::create($request->resource);
+        // $deliveryman = DeliveryMan::create($request->resource);
+        // return response()->json(['resource' => $deliveryman], 201); 
+
+        # Set variable for resource creation 
+        $resource = $request->resource;
+
+        # Create user
+        $user = $this->createUserFromHome($resource);
+
+        # Get the user id and set value in array 
+        $resource['user_id'] = $user->id ?? null;
+
+        # Create Deliveryman 
+        $deliveryman = DeliveryMan::create($resource);
+        
         return response()->json(['resource' => $deliveryman], 201); 
     }
 

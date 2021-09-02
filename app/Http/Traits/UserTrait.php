@@ -14,7 +14,6 @@ trait UserTrait {
             'name'           => $request['name'], 
             'email'          => $request['email'],
             'password'       => bcrypt($this->generatePassWord($request)),
-            // 'password'       => $this->generatePassWord($request),
             'active'         => false,
             'is_admin'       => false,
             'is_partner'     => true,
@@ -30,7 +29,7 @@ trait UserTrait {
         
         if ($request) {
             $email    = strstr($request['email'], '@', true);
-            $tax      = substr($request['tax_number'], -3  );
+            $tax      = substr($request['mobile_phone_number'], -3  );
             $password = $email . $tax . '@iGO';
         }
 

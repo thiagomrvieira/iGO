@@ -20,9 +20,14 @@ use App\Http\Controllers\PostController;
 //     return $request->user();
 // });
 
-Route::post('register', [PassportAuthController::class, 'register']);
-Route::post('login',    [PassportAuthController::class, 'login']);
 
-Route::middleware('auth:api')->group(function () {
-    Route::resource('posts', PostController::class);
+# API - Version 01
+Route::group(['prefix' => 'v1'], function() 
+{
+    Route::post('register', [PassportAuthController::class, 'register']);
+    Route::post('login',    [PassportAuthController::class, 'login']);
+    
+    Route::middleware('auth:api')->group(function () {
+        Route::resource('posts', PostController::class);
+    });
 });

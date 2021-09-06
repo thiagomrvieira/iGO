@@ -26,7 +26,7 @@ class PartnerStoreFromHomeRequest extends FormRequest
         return [
             '*.company_name' => 'required|string|max:50|unique:partners',
             '*.name' => 'required|string|max:50',
-            '*.email' => 'required|email|unique:partners',
+            '*.email' => 'required|email|unique:users',
             '*.category_id' => 'required|',
         ];
     }

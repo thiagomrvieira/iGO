@@ -25,7 +25,7 @@ class DeliverymanStoreFromHomeRequest extends FormRequest
     {
         return [
             '*.name' => 'required|string|max:50',
-            '*.email' => 'required|email|unique:deliverymen',
+            '*.email' => 'required|email|unique:users',
             '*.mobile_phone_number' => 'required|',
         ];
     }

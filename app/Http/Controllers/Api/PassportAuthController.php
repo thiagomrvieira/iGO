@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientStoreRequest;
 use App\Http\Traits\AddressTrait;
 use App\Http\Traits\ClientTrait;
 use App\Http\Traits\UserTrait;
@@ -17,7 +18,7 @@ class PassportAuthController extends Controller
     /**
      * Client registration
      */
-    public function register(Request $request)
+    public function register(ClientStoreRequest $request)
     {
         # Create User
         $user = $this->createUserFromApi($request);

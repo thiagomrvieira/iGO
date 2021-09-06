@@ -15,7 +15,7 @@ class PassportAuthController extends Controller
     use AddressTrait, UserTrait, ClientTrait;
 
     /**
-     * Registration
+     * Client registration
      */
     public function register(Request $request)
     {

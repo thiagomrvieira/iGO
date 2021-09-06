@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class PassportAuthController extends Controller
+
 {
     use AddressTrait, UserTrait, ClientTrait;
 
@@ -36,6 +37,7 @@ class PassportAuthController extends Controller
         $token = $user->createToken('igoApiToken')->accessToken;
  
         return response()->json(['token' => $token], 200);
+    
     }
  
     /**
@@ -44,11 +46,12 @@ class PassportAuthController extends Controller
     public function login(Request $request)
     {
         $data = [
-            'email' => $request->email,
+            'email'    => $request->email,
             'password' => $request->password
         ];
  
         if (auth()->attempt($data)) {
+             
             $token = auth()->user()->createToken('igoApiToken')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {

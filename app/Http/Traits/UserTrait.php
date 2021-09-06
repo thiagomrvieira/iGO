@@ -62,7 +62,7 @@ trait UserTrait {
         $user = User::create([
             'name'           => $request['name'], 
             'email'          => $request['email'],
-            'password'       => bcrypt($this->generatePassWord($request)),
+            'password'       => bcrypt( $request['password'] ),
             'active'         => true,
             'is_admin'       => false,
             'is_partner'     => false,

@@ -16,7 +16,7 @@ class RegistrationTest extends TestCase
         $response = $this->post('/api/v1/register', [
             'name'                => 'Test User 02',
             'email'               => 'test05@example.com',
-            'mobile_phone_number' => 'password',
+            'mobile_phone_number' => '987 654 321',
             'line_1'              => 'Rua Diogo Cão',
             'county'              => 'Estoril',
             'city'                => 'Cascais',
@@ -33,7 +33,7 @@ class RegistrationTest extends TestCase
         $response = $this->post('/api/v1/register', [
             'name'                => 'Test User 02',
             'email'               => 'test05@example.com',
-            'mobile_phone_number' => 'password',
+            'mobile_phone_number' => '987 654 321',
             'line_1'              => 'Rua Diogo Cão',
             'county'              => 'Estoril',
             'city'                => 'Cascais',

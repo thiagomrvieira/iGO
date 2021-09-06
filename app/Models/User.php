@@ -25,6 +25,7 @@ class User extends Authenticatable
         'is_admin',
         'is_partner',
         'is_deliveryman',
+        'is_client',
     ];
 
     /**

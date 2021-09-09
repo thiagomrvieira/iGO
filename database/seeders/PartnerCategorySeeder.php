@@ -14,25 +14,18 @@ class PartnerCategorySeeder extends Seeder
      */
     public function run()
     {
-        $parentCategory = PartnerCategory::create([
-            'name'      => 'Alimentos',
-            'slug'      => 'alimentos',
+        $restaurante = PartnerCategory::create([
+            'name'      => 'Restaurante',
+            'slug'      => 'restaurante',
             'parent_id' => null,
             'active'    => 1,
         ]);
 
-        PartnerCategory::create([
-            'name'      => 'Sushi',
-            'slug'      => 'sushi',
-            'parent_id' => $parentCategory->id,
-            'active'    => 1,
-        ]);
-
-        PartnerCategory::create([
-            'name'      => 'Brasileira',
-            'slug'      => 'brasileira',
-            'parent_id' => $parentCategory->id,
-            'active'    => 1,
-        ]);
+        $data = array(
+            array('name'=>'Oriental',   'parent_id'=> $restaurante->id, 'slug' => 'oriental',   'active' => true),
+            array('name'=>'Brasileira', 'parent_id'=> $restaurante->id, 'slug' => 'brasileira', 'active' => true),
+        );
+        
+        PartnerCategory::insert($data);
     }
 }

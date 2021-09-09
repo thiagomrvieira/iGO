@@ -16,34 +16,15 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        $partnerCategory = PartnerCategory::where('slug', 'alimentos')->first();
+        $restaurante = PartnerCategory::where('slug', 'restaurante')->first();
 
-        ProductCategory::create([
-            'name'                => 'Entradas',
-            'slug'                => 'entradas',
-            'partner_category_id' => $partnerCategory->id, 
-            'active'              => 1,
-        ]);
-
-        ProductCategory::create([
-            'name'                => 'Bebidas',
-            'slug'                => 'bebidas',
-            'partner_category_id' => $partnerCategory->id, 
-            'active'              => 1,
-        ]);
-
-        ProductCategory::create([
-            'name'                => 'Pratos principais',
-            'slug'                => 'pratos-principais',
-            'partner_category_id' => $partnerCategory->id, 
-            'active'              => 1,
-        ]);
-
-        ProductCategory::create([
-            'name'                => 'Sobremesas',
-            'slug'                => 'sobremesas',
-            'partner_category_id' => $partnerCategory->id, 
-            'active'              => 1,
-        ]);
+        $data = array(
+            array('name' => 'Entradas',          'partner_category_id' => $restaurante->id, 'slug' => 'entradas',          'active' => true),
+            array('name' => 'Bebidas',           'partner_category_id' => $restaurante->id, 'slug' => 'bebidas',           'active' => true),
+            array('name' => 'Pratos principais', 'partner_category_id' => $restaurante->id, 'slug' => 'pratos-principais', 'active' => true),
+            array('name' => 'Sobremesas',        'partner_category_id' => $restaurante->id, 'slug' => 'sobremesas',        'active' => true),
+        );
+        
+        ProductCategory::insert($data);
     }
 }

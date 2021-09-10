@@ -16,7 +16,7 @@ class SauceSeeder extends Seeder
      */
     public function run()
     {
-        $partnerCategory = PartnerCategory::where('slug', 'alimentos')->first();
+        $partnerCategory = PartnerCategory::where('slug', 'restaurantes')->first();
 
         $data = array(
             array('name'=>'Maionese',  'category_id'=> $partnerCategory->id, 'slug' => 'maionese',  'active' => true),

@@ -118,25 +118,24 @@ class ProductController extends Controller
         $productCategories = ProductCategory::where('active', true)->get();
         $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
         
-        # Get Side products
-        $sides = Side::where('category_id', $partnerCategory->id)
-                     ->where('active', 1)->get();
-        # Get Sauces
-        $sauces = Sauce::where('category_id', $partnerCategory->id)
-                       ->where('active', 1)->get();
-        # Get Allergens
-        $allergens = Allergen::where('category_id', $partnerCategory->id)
-                             ->where('active', 1)->get();
-        # Get Campaigns
+        if($partner->mainCategory->slug == 'restaurantes'){
+            # Get Side products
+            $sides = Side::where('category_id', $partnerCategory->id)->where('active', 1)->get();
+            # Get Sauces
+            $sauces = Sauce::where('category_id', $partnerCategory->id)->where('active', 1)->get();
+            # Get Allergens
+            $allergens = Allergen::where('category_id', $partnerCategory->id)->where('active', 1)->get();
+        }
+        
         $campaigns = Campaign::where('active', 1)->get();
 
         return view('backoffice-partner.product.create', [
-            'sides'             => $sides,
-            'sauces'            => $sauces,
+            'sides'             => $sides     ?? [],
+            'sauces'            => $sauces    ?? [],
+            'allergens'         => $allergens ?? [],
             'product'           => $product,
             'categories'        => $categories,
             'productCategories' => $productCategories,
-            'allergens'         => $allergens,
             'campaigns'         => $campaigns,
 
         ]);

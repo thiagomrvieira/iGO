@@ -165,8 +165,8 @@
                                 @endphp
 
                                 <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, null, $checked, ['class' => 'form-check-input', 'id' => 'side' . $side->slug]) !!}
-                                    {!! Form::label($side->slug, $side->name,    ['class' => 'form-check-label']) !!}
+                                    {!! Form::checkbox($side->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'side' . $side->slug]) !!}
+                                    {!! Form::label($side->slug, ucfirst($side->name),  ['class' => 'form-check-label']) !!}
                                 </div>
                             @empty
                                 Sem side
@@ -197,8 +197,8 @@
                                 
                                 @unless ($sauce->slug == 'picante')
                                     <div class="custom-control custom-control-inline">
-                                        {!! Form::checkbox($sauce->slug, null, $checked, ['class' => 'form-check-input', 'id' => 'sauce' . $sauce->slug]) !!}
-                                        {!! Form::label($sauce->slug, $sauce->name,      ['class' => 'form-check-label']) !!}
+                                        {!! Form::checkbox($sauce->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'sauce' . $sauce->slug]) !!}
+                                        {!! Form::label($sauce->slug, ucfirst($sauce->name), ['class' => 'form-check-label']) !!}
                                     </div>
                                 @endunless
                                 

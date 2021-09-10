@@ -63,7 +63,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingProduct">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
-                        Nome do prato*
+                        Nome do produto*
                         </button>
                     </h2>
                     <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct" data-bs-parent="#accordionProductData">
@@ -79,11 +79,11 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null, 
-                                            ['class' => 'form-control', 'placeholder' => 'Nome do prato*']) !!}
+                                            ['class' => 'form-control', 'placeholder' => 'Nome do produto*']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::textarea('description', (isset($product) && $product->description) ? $product->description : null, 
-                                                ['class' => 'form-control', 'placeholder' => 'Descrição do prato*']) !!}
+                                                ['class' => 'form-control', 'placeholder' => 'Descrição do produto*']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::number('price', (isset($product) && $product->price) ? number_format($product->price,2) : null, 
@@ -110,7 +110,7 @@
                 <div class="accordion-item"> 
                     <h2 class="accordion-header" id="headingCategory">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
-                            Ementa(categorias)*
+                            {{ $partner->mainCategory->slug == 'restaurantes' ? 'Ementa(categorias)*' : 'Categoria' }}
                         </button>
                     </h2>
                     <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory" data-bs-parent="#accordionProductData">
@@ -128,7 +128,7 @@
                             @endif
 
                             {{-- Featured Product --}}
-                            {!! Form::label('featured', 'Deseja colocar o prato na secção de destaques?', 
+                            {!! Form::label('featured', 'Deseja colocar o produto na secção de destaques?', 
                                                                             ['class' => 'form-check-label']) !!}
                             <div class="custom-control custom-radio custom-control-inline">
                                 {!! Form::radio('featured', 1, ( isset($product) && $product->featured ? true : false) ?? false,      
@@ -144,128 +144,131 @@
                         </div>
                     </div>
                 </div>
-
-                {{--  Side Product item --}}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingSide">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSide" aria-expanded="false" aria-controls="collapseSide">
-                            Acompanhamentos*
-                        </button>
-                    </h2>
-
-                    <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
-                        <div class="accordion-body">
-                            
-                            @forelse ($sides as $side)
-                                @php
-                                    $checked = false;
-                                    if (isset($product)) {
-                                        $checked = in_array($side->id, $product->sides->pluck('id')->toArray()) ? true : false;
-                                    }
-                                @endphp
-
-                                <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($side->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'side' . $side->slug]) !!}
-                                    {!! Form::label($side->slug, ucfirst($side->name),  ['class' => 'form-check-label']) !!}
-                                </div>
-                            @empty
-                                Sem side
-                            @endforelse
-
-                        </div>
-                    </div>
-                </div>
                 
-                {{--  Sauce item --}}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingSouce">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSouce" aria-expanded="false" aria-controls="collapseSouce">
-                            Molhos*
-                        </button>
-                    </h2>
-                    <div id="collapseSouce" class="accordion-collapse collapse" aria-labelledby="headingSouce" data-bs-parent="#accordionProductData">
-                        <div class="accordion-body">
-                            
-                            @forelse ($sauces as $sauce)
-                                {{-- Set 'checked' for checkboxes --}}
-                                @php
-                                    $checked = false;
-                                    if (isset($product)) {
-                                        $checked = in_array($sauce->id, $product->sauces->pluck('id')->toArray()) ? true : false;
-                                    }
-                                @endphp
+                @if ($partner->mainCategory->slug == 'restaurantes')
+                    {{--  Side Product item --}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSide">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSide" aria-expanded="false" aria-controls="collapseSide">
+                                Acompanhamentos*
+                            </button>
+                        </h2>
+
+                        <div id="collapseSide" class="accordion-collapse collapse" aria-labelledby="headingSide" data-bs-parent="#accordionProductData">
+                            <div class="accordion-body">
                                 
-                                @unless ($sauce->slug == 'picante')
+                                @forelse ($sides as $side)
+                                    @php
+                                        $checked = false;
+                                        if (isset($product)) {
+                                            $checked = in_array($side->id, $product->sides->pluck('id')->toArray()) ? true : false;
+                                        }
+                                    @endphp
+
                                     <div class="custom-control custom-control-inline">
-                                        {!! Form::checkbox($sauce->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'sauce' . $sauce->slug]) !!}
-                                        {!! Form::label($sauce->slug, ucfirst($sauce->name), ['class' => 'form-check-label']) !!}
+                                        {!! Form::checkbox($side->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'side' . $side->slug]) !!}
+                                        {!! Form::label($side->slug, ucfirst($side->name),  ['class' => 'form-check-label']) !!}
                                     </div>
-                                @endunless
-                                
-                            @empty
-                                Sem Sauce
-                            @endforelse
+                                @empty
+                                    Sem side
+                                @endforelse
 
-                            {{-- Set the value of 'Picante' input --}}
-                            @php
-                                $pepper = false;
-                                if (isset($product)) {
-                                    $pepper = $product->sauces->where('slug', 'picante')->count() > 0 ? true : false;
-                                }
-                            @endphp
-
-                            {!! Form::label('picante', 'O seu prato tem picante?', 
-                                                                        ['class' => 'form-check-label']) !!}
-                            <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('picante', 1, $pepper,  ['class' => 'form-check-input']) !!}
-                                {!! Form::label('picante', 'Sim',       ['class' => 'form-check-label']) !!}
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                {!! Form::radio('picante', 0, !$pepper, ['class' => 'form-check-input']) !!}
-                                {!! Form::label('picante', 'Não',       ['class' => 'form-check-label']) !!}
-                            </div>
-
                         </div>
                     </div>
-                </div>
+                    
+                    {{--  Sauce item --}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSouce">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSouce" aria-expanded="false" aria-controls="collapseSouce">
+                                Molhos*
+                            </button>
+                        </h2>
+                        <div id="collapseSouce" class="accordion-collapse collapse" aria-labelledby="headingSouce" data-bs-parent="#accordionProductData">
+                            <div class="accordion-body">
+                                
+                                @forelse ($sauces as $sauce)
+                                    {{-- Set 'checked' for checkboxes --}}
+                                    @php
+                                        $checked = false;
+                                        if (isset($product)) {
+                                            $checked = in_array($sauce->id, $product->sauces->pluck('id')->toArray()) ? true : false;
+                                        }
+                                    @endphp
+                                    
+                                    @unless ($sauce->slug == 'picante')
+                                        <div class="custom-control custom-control-inline">
+                                            {!! Form::checkbox($sauce->slug, null, $checked,     ['class' => 'form-check-input', 'id' => 'sauce' . $sauce->slug]) !!}
+                                            {!! Form::label($sauce->slug, ucfirst($sauce->name), ['class' => 'form-check-label']) !!}
+                                        </div>
+                                    @endunless
+                                    
+                                @empty
+                                    Sem Sauce
+                                @endforelse
 
-                {{--  Allergens item --}}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingAllergen">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAllergen" aria-expanded="false" aria-controls="collapseAllergen">
-                            Alergénios*
-                        </button>
-                    </h2>
-                    <div id="collapseAllergen" class="accordion-collapse collapse" aria-labelledby="headingAllergen" data-bs-parent="#accordionProductData">
-                        <div class="accordion-body">
-
-                            @forelse ($allergens as $allergen)
-                                {{-- Set 'checked' for checkboxes --}}
+                                {{-- Set the value of 'Picante' input --}}
                                 @php
-                                    $checked = false;
+                                    $pepper = false;
                                     if (isset($product)) {
-                                        $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
+                                        $pepper = $product->sauces->where('slug', 'picante')->count() > 0 ? true : false;
                                     }
                                 @endphp
-                                
-                                <div class="custom-control custom-control-inline">
-                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
-                                    {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+
+                                {!! Form::label('picante', 'O seu prato tem picante?', 
+                                                                            ['class' => 'form-check-label']) !!}
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('picante', 1, $pepper,  ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('picante', 'Sim',       ['class' => 'form-check-label']) !!}
                                 </div>
-                                
-                            @empty
-                                Sem allergen
-                            @endforelse
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    {!! Form::radio('picante', 0, !$pepper, ['class' => 'form-check-input']) !!}
+                                    {!! Form::label('picante', 'Não',       ['class' => 'form-check-label']) !!}
+                                </div>
 
-                            <div class="custom-control custom-control-inline">
-                                {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
-                                                                          ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
-                                {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                             </div>
-
                         </div>
                     </div>
-                </div>
+
+                    {{--  Allergens item --}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAllergen">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAllergen" aria-expanded="false" aria-controls="collapseAllergen">
+                                Alergénios*
+                            </button>
+                        </h2>
+                        <div id="collapseAllergen" class="accordion-collapse collapse" aria-labelledby="headingAllergen" data-bs-parent="#accordionProductData">
+                            <div class="accordion-body">
+
+                                @forelse ($allergens as $allergen)
+                                    {{-- Set 'checked' for checkboxes --}}
+                                    @php
+                                        $checked = false;
+                                        if (isset($product)) {
+                                            $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
+                                        }
+                                    @endphp
+                                    
+                                    <div class="custom-control custom-control-inline">
+                                        {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
+                                        {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                    </div>
+                                    
+                                @empty
+                                    Sem allergen
+                                @endforelse
+
+                                <div class="custom-control custom-control-inline">
+                                    {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
+                                                                            ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
+                                    {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
 
                 {{--  Extras item --}}
                 <div class="accordion-item">

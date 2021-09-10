@@ -24,7 +24,7 @@ class PartnerCategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50|unique:categories',
+            'name' => 'required|string|max:50|unique:partner_categories',
         ];
     }
 }

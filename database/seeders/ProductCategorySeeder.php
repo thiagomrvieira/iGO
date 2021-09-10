@@ -16,7 +16,7 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        $restaurante = PartnerCategory::where('slug', 'restaurante')->first();
+        $restaurante = PartnerCategory::where('slug', 'restaurantes')->first();
 
         $data = array(
             array('name' => 'Entradas',          'partner_category_id' => $restaurante->id, 'slug' => 'entradas',          'active' => true),

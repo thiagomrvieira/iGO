@@ -15,8 +15,8 @@ class PartnerCategorySeeder extends Seeder
     public function run()
     {
         $restaurante = PartnerCategory::create([
-            'name'      => 'Restaurante',
-            'slug'      => 'restaurante',
+            'name'      => 'Restaurantes',
+            'slug'      => 'restaurantes',
             'parent_id' => null,
             'active'    => 1,
         ]);

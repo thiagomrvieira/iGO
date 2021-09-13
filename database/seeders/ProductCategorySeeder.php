@@ -34,6 +34,7 @@ class ProductCategorySeeder extends Seeder
         $desporto    = PartnerCategory::where('slug', 'desporto-e-ar-livre')->first();
         $roupa       = PartnerCategory::where('slug', 'roupa-calcado-bagagens')->first();
         $livraria    = PartnerCategory::where('slug', 'livraria-e-papelaria')->first();
+        $farmacia    = PartnerCategory::where('slug', 'farmacias')->first();
 
         $data = array(
 
@@ -228,6 +229,29 @@ class ProductCategorySeeder extends Seeder
             array('name' => 'Papelaria',                 'partner_category_id' => $livraria->id, 'slug' => 'papelaria',               'active' => true),
             array('name' => 'Experiencias Odisseias',    'partner_category_id' => $livraria->id, 'slug' => 'experiencias-odisseias',  'active' => true),
             array('name' => 'Revistas, jornais, cromos', 'partner_category_id' => $livraria->id, 'slug' => 'revistas-jornais-cromos', 'active' => true),
+            
+            array('name' => 'Dor, Febre e Inflamação',                           'partner_category_id' => $farmacia->id, 'slug' => 'dor-febre-e-inflamacao',                           'active' => true),
+            array('name' => 'Alteração de sono e humor',                         'partner_category_id' => $farmacia->id, 'slug' => 'alteracao-de-sono-e-humor',                        'active' => true),
+            array('name' => 'Tosse, Rouquidão e dor de garganta',                'partner_category_id' => $farmacia->id, 'slug' => 'tosse-rouquidao-e-dor-de-garganta',                'active' => true),
+            array('name' => 'Dermatologia',                                      'partner_category_id' => $farmacia->id, 'slug' => 'dermatologia',                                     'active' => true),
+            array('name' => 'Homeopatia',                                        'partner_category_id' => $farmacia->id, 'slug' => 'homeopatia',                                       'active' => true),
+            array('name' => 'Cuidado de Olhos e Ouvidos',                        'partner_category_id' => $farmacia->id, 'slug' => 'cuidado-de-olhos-e-ouvidos',                       'active' => true),
+            array('name' => 'Infeções cutâneas',                                 'partner_category_id' => $farmacia->id, 'slug' => 'infecoes-cutaneas',                                'active' => true),
+            array('name' => 'Pernas pesadas',                                    'partner_category_id' => $farmacia->id, 'slug' => 'pernas-pesadas',                                   'active' => true),
+            array('name' => 'Multivitaminicos, minerais e energizantes',         'partner_category_id' => $farmacia->id, 'slug' => 'multivitaminicos-minerais-e-energizantes',         'active' => true),
+            array('name' => 'Bem-estar feminino',                                'partner_category_id' => $farmacia->id, 'slug' => 'bem-estar-feminino',                               'active' => true),
+            array('name' => 'Fadiga fisica e intelectual',                       'partner_category_id' => $farmacia->id, 'slug' => 'fadiga-fisica-e-intelectual',                      'active' => true),
+            array('name' => 'Saude oral',                                        'partner_category_id' => $farmacia->id, 'slug' => 'saude-oral',                                       'active' => true),
+            array('name' => 'Gripes, Constipações e Alergias',                   'partner_category_id' => $farmacia->id, 'slug' => 'gripes-constipacoes-e-alergias',                   'active' => true),
+            array('name' => 'Ossos e articulações',                              'partner_category_id' => $farmacia->id, 'slug' => 'ossos-e-articulações',                             'active' => true),
+            array('name' => 'Sistema digestivo',                                 'partner_category_id' => $farmacia->id, 'slug' => 'sistema-digestivo',                                'active' => true),
+            array('name' => 'Mamã, Bebé e Criança',                              'partner_category_id' => $farmacia->id, 'slug' => 'mama-bebe-e-criança',                              'active' => true),
+            array('name' => 'Enjoos, ma disposição e Azias',                     'partner_category_id' => $farmacia->id, 'slug' => 'enjoos-ma-disposicao-e-azias',                     'active' => true),
+            array('name' => 'Desparazitantes',                                   'partner_category_id' => $farmacia->id, 'slug' => 'desparazitantes',                                  'active' => true),
+            array('name' => 'Higiene e Cuidados da Pele',                        'partner_category_id' => $farmacia->id, 'slug' => 'higiene-e-cuidados-da-pele',                       'active' => true),
+            array('name' => 'Diarreias, Colicas e Obstipaçoes',                  'partner_category_id' => $farmacia->id, 'slug' => 'diarreias-colicas-e-obstipacoes',                  'active' => true),
+            array('name' => 'Descongestionantes',                                'partner_category_id' => $farmacia->id, 'slug' => 'descongestionantes',                               'active' => true),
+            array('name' => 'Preservativos, Testes de gravidez e lubrificantes', 'partner_category_id' => $farmacia->id, 'slug' => 'preservativos-testes-de-gravidez-e-lubrificantes', 'active' => true),
             
         );
         

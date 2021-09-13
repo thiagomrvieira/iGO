@@ -31,6 +31,7 @@ class PartnerCategorySeeder extends Seeder
         PartnerCategory::insert($data);
 
 
+
         #   Cria categoria Supermercado
         $supermercado = PartnerCategory::create([
             'name'      => 'Supermercado',
@@ -60,6 +61,35 @@ class PartnerCategorySeeder extends Seeder
             array('name'=>'Livraria e Papelaria',     'parent_id'=> $supermercado->id, 'slug' => 'livraria-e-papelaria',    'active' => true),
         );
         #   Cria Subcategorias de Supermercados
+        PartnerCategory::insert($data);
+
+
+        
+        #   Cria categoria Lojas
+         $supermercado = PartnerCategory::create([
+            'name'      => 'Lojas',
+            'slug'      => 'lojas',
+            'parent_id' => null,
+            'active'    => 1,
+        ]);
+        #   Subcategorias de Lojas
+        $data = array(
+            array('name'=>'Artigos do Lar',                      'parent_id'=> $supermercado->id, 'slug' => 'artigos-do-lar',                     'active' => true),
+            array('name'=>'Artigos de senhora',                  'parent_id'=> $supermercado->id, 'slug' => 'artigos-de-senhora',                 'active' => true),
+            array('name'=>'Artigos de homem',                    'parent_id'=> $supermercado->id, 'slug' => 'artigos-de-homem',                   'active' => true),
+            array('name'=>'Artigos de criança',                  'parent_id'=> $supermercado->id, 'slug' => 'artigos-de-crianca',                 'active' => true),
+            array('name'=>'Tecnologias & Electrónicos',          'parent_id'=> $supermercado->id, 'slug' => 'tecnologias-&-electronicos',         'active' => true),
+            array('name'=>'Artesanato e Roupa Africana',         'parent_id'=> $supermercado->id, 'slug' => 'artesanato-e-roupa-africana',        'active' => true),
+            array('name'=>'Bebidas alcoólicas',                  'parent_id'=> $supermercado->id, 'slug' => 'bebidas-alcoolicas',                 'active' => true),
+            array('name'=>'Bebidas sem álcool',                  'parent_id'=> $supermercado->id, 'slug' => 'bebidas-sem-alcool',                 'active' => true),
+            array('name'=>'Artigos de Festa',                    'parent_id'=> $supermercado->id, 'slug' => 'artigos-de-festa',                   'active' => true),
+            array('name'=>'Florista',                            'parent_id'=> $supermercado->id, 'slug' => 'florista',                           'active' => true),
+            array('name'=>'Amor, momentos e ocasiões especiais', 'parent_id'=> $supermercado->id, 'slug' => 'amor-momentos-e-ocasioes-especiais', 'active' => true),
+            array('name'=>'Artigos de higiene e biosegurança',   'parent_id'=> $supermercado->id, 'slug' => 'artigos-de-higiene-e-bioseguranca',  'active' => true),
+            array('name'=>'Agro',                                'parent_id'=> $supermercado->id, 'slug' => 'agro',                               'active' => true),
+           
+        );
+        #   Cria Subcategorias de Lojas
         PartnerCategory::insert($data);
     }
 }

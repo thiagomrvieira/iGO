@@ -2,34 +2,43 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+// use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+
 use Laravel\Passport\Passport;
-use App\User;
+use App\Models\User;
 
 
 
 class PartnerTest extends TestCase
 {
-    const ADMIN_EMAIL = 'admin@company';
-    const USER_EMAIL = 'user@company';
+    const CLIENT_EMAIL = 'client@igo.pt';
     
-    /** @test */
-    public function a_user_can_get_the_list_of_all_partners()
+    /**
+     * @test
+     * @group partner
+     */
+    public function api_is_accessible_and_protected()
     {
         
-        // $response = $this->post('/api/v1/register', [
-        //     'name'                => $this->faker->name(),
-        //     'email'               => $this->faker->unique()->safeEmail(),
-        //     'mobile_phone_number' => $this->faker->phoneNumber(),
-        //     'line_1'              => $this->faker->secondaryAddress(),
-        //     'county'              => $this->faker->cityPrefix(),
-        //     'city'                => $this->faker->city(),
-        //     'password'            => 'iGOdelivery',
-        // ]);
+        $response = $this->json('get', '/api/v1/partners')
+            ->assertStatus(401);
+        
+    }
 
-        // $response->assertSuccessful();
+    /** 
+     * @test 
+     * @group partner
+     */
+    public function a_user_can_get_the_list_of_all_partners()
+    {
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
 
-        // $response->assertStatus(200);
+        $response = $this->json('get', '/api/v1/partners');
+
+        $response->assertSuccessful();
+
+        $response->assertStatus(200);
         
         // $response->assertJsonStructure([
         //     'token',

@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PassportAuthController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Api\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,10 @@ Route::group(['prefix' => 'v1'], function()
     Route::post('login',    [PassportAuthController::class, 'login']);
     
     Route::middleware('auth:api')->group(function () {
-        Route::resource('posts', PostController::class);
+        // Route::apiResource('partners', PartnerController::class);
+        Route::apiResources([
+            'partners' => PartnerController::class,
+            // 'posts' => PostController::class,
+        ]);
     });
 });

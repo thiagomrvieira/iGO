@@ -40,8 +40,30 @@ class PartnerTest extends TestCase
 
         $response->assertStatus(200);
         
-        // $response->assertJsonStructure([
-        //     'token',
-        // ]);
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'user_id',
+                    'name',
+                    'email',
+                    'phone_number',
+                    'mobile_phone_number',
+                    'company_name',
+                    'tax_number',
+                    'approved_at',
+                    'active',
+                    'category_id',
+                    'average_order_time',
+                    'first_login',
+                    'premium',
+                    'created_at',
+                    'updated_at',
+                    'sub_categories'
+                ]
+            ]
+        ]);
+
+        
     }
 }

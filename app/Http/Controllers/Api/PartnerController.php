@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PartnerCollection;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Partner resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return response()->json(200);
+        return new PartnerCollection(Partner::where('active', true)->get());
     }
 
     /**

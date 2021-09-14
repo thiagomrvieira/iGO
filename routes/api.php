@@ -28,10 +28,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::post('login',    [PassportAuthController::class, 'login']);
     
     Route::middleware('auth:api')->group(function () {
-        // Route::apiResource('partners', PartnerController::class);
         Route::apiResources([
             'partners' => PartnerController::class,
-            // 'posts' => PostController::class,
         ]);
     });
 });

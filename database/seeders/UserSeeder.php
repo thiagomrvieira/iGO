@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Partner;
@@ -23,6 +24,16 @@ class UserSeeder extends Seeder
             'is_admin'       => 1,
             'is_partner'     => 0,
             'is_deliveryman' => 0,
+        ]);
+
+        $client = User::create([
+            'name'           => 'Cliente',
+            'email'          => 'client@igo.pt',
+            'password'       => bcrypt('iGOdelivery'),
+            'is_admin'       => 0,
+            'is_partner'     => 0,
+            'is_deliveryman' => 0,
+            'is_client'      => 1,
         ]);
 
         $partner = User::create([
@@ -59,6 +70,12 @@ class UserSeeder extends Seeder
             'user_id'             => $deliveryman->id,
         ]);
 
+        Client::create([
+            'name'                => 'Cliente',
+            'email'               => 'client@igo.pt',
+            'mobile_phone_number' => '987 654 321',
+            'user_id'             => $client->id,
+        ]);
         
     }
 }

@@ -25,7 +25,6 @@ class UserSeeder extends Seeder
             'is_deliveryman' => 0,
         ]);
 
-
         $partner = User::create([
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
@@ -45,7 +44,6 @@ class UserSeeder extends Seeder
             'is_deliveryman' => 1,
         ]);
 
-
         Partner::create([
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
@@ -53,7 +51,6 @@ class UserSeeder extends Seeder
             'category_id'    => 1,
             'user_id'        => $partner->id,
         ]);
-
 
         DeliveryMan::create([
             'name'                => 'Estafeta',

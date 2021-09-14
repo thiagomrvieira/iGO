@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         ]);
 
 
-        User::create([
+        $partner = User::create([
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
             'password'       => bcrypt('iGOdelivery'),
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'is_deliveryman' => 0,
         ]);
 
-        User::create([
+        $deliveryman =  User::create([
             'name'           => 'Estafeta',
             'email'          => 'estafeta@igo.pt',
             'password'       => bcrypt('iGOdelivery'),
@@ -46,19 +46,20 @@ class UserSeeder extends Seeder
         ]);
 
 
-        $partner = Partner::create([
+        Partner::create([
             'name'           => 'Parceiro',
             'email'          => 'partner@igo.pt',
             'company_name'   => 'iGO Delivery',
             'category_id'    => 1,
-            'user_id'        => 2,
+            'user_id'        => $partner->id,
         ]);
 
 
-        $deliveryman = DeliveryMan::create([
+        DeliveryMan::create([
             'name'                => 'Estafeta',
             'email'               => 'estafeta@igo.pt',
             'mobile_phone_number' => '987 654 321',
+            'user_id'             => $deliveryman->id,
         ]);
 
         

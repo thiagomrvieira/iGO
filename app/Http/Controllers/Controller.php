@@ -12,6 +12,12 @@ use Illuminate\Routing\Controller as BaseController;
  *    title="iGO - API documentation",
  *    version="1.0.0",
  * )
+ * @OA\SecurityScheme(
+ *     type="apiKey",
+ *     in="header",
+ *     securityScheme="api_key",
+ *     name="Authorization"
+ * )
  */
 class Controller extends BaseController
 {

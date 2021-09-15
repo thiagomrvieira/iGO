@@ -5,6 +5,87 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/partners": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get the list of partners",
+                "description": "Return a list of all active partners",
+                "operationId": "getListOfPartners",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/partners/{id}": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get partner information",
+                "description": "Expect to receive a valid ID and return partner and his products data",
+                "operationId": "getPartnerData",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/register": {
             "post": {
                 "tags": [
@@ -131,6 +212,15 @@
                         "description": "Forbidden"
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     },

@@ -10,6 +10,40 @@ use Illuminate\Http\Request;
 class PartnerController extends Controller
 {
     /**
+     * @OA\Get(path="/api/v1/partners",
+     *   tags={"Partners"},
+     *   summary="Get the list of partners",
+     *   description="Return a list of all active partners",
+     *   operationId="getListOfPartners",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     */
+    /**
      * Display a listing of the Partner resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,6 +66,50 @@ class PartnerController extends Controller
         //
     }
 
+
+    /**
+     * @OA\Get(path="/api/v1/partners/{id}",
+     *   tags={"Partners"},
+     *   summary="Get partner information",
+     *   description="Expect to receive a valid ID and return partner and his products data",
+     *   operationId="getPartnerData",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Partner id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     */
     /**
      * Display the specified resource.
      *

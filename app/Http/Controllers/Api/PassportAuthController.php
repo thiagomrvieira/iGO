@@ -124,7 +124,7 @@ class PassportAuthController extends Controller
      ** path="/api/v1/login",
      *   tags={"Auth"},
      *   summary="Login",
-     *   description="Log user and return token",
+     *   description="Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
      *   operationId="login",
      *
      *   @OA\Parameter(

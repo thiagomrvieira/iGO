@@ -12,7 +12,7 @@ use App\Models\User;
 
 class PartnerTest extends TestCase
 {
-    const CLIENT_EMAIL = 'client@igo.pt';
+    const CLIENT_EMAIL = 'client01@igo.pt';
     
     /**
      * @test

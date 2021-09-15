@@ -41,7 +41,6 @@ class Partner extends Model
      */
     public function address()
     {
-        // return $this->hasOne(Address::class);
         return $this->hasOne(Address::class, 'user_id', 'user_id');
     }
 
@@ -59,8 +58,6 @@ class Partner extends Model
     public function subCategories()
     {
         return $this->belongsToMany(PartnerCategory::class, 'category_partner', 'partner_id', 'category_id');
-        // return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
-
     }
 
     /**
@@ -68,9 +65,7 @@ class Partner extends Model
      */
     public function mainCategory()
     {
-        // return $this->hasOne(Category::class);
         return $this->hasOne(PartnerCategory::class, 'id', 'category_id');
-
     }
 
     /**
@@ -79,7 +74,6 @@ class Partner extends Model
     public function images()
     {
         return $this->hasOne(Image::class);
-
     }
 
     /**
@@ -88,5 +82,13 @@ class Partner extends Model
     public function schedule()
     {
         return $this->hasMany(SchedulePartner::class);
+    }
+
+    /**
+     * Get the Partner Products.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

@@ -52,7 +52,7 @@ class ProductController extends Controller
         # Get Product and Partner categories
         $productCategories = ProductCategory::where('partner_category_id', $partner->category_id)->where('active', true)->get();
         $categories        = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
-        
+
         if($partner->mainCategory->slug == 'restaurantes'){
             # Get Side products
             $sides = Side::where('category_id', $partnerCategory->id)->where('active', 1)->get();

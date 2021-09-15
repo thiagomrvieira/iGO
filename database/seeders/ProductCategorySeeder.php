@@ -16,27 +16,33 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        $mercearia   = PartnerCategory::where('slug', 'mercearia')->first();
-        $bio         = PartnerCategory::where('slug', 'bio-e-intolerancias')->first();
-        $laticinios  = PartnerCategory::where('slug', 'laticinios-e-ovos')->first();
-        $peixaria    = PartnerCategory::where('slug', 'peixaria-e-talho')->first();
-        $frutas      = PartnerCategory::where('slug', 'frutas-e-legumes')->first();
-        $charcutaria = PartnerCategory::where('slug', 'charcutaria-e-queijos')->first();
-        $padaria     = PartnerCategory::where('slug', 'padaria-e-pastelaria')->first();
-        $congelados  = PartnerCategory::where('slug', 'congelados')->first();
-        $bebidas     = PartnerCategory::where('slug', 'bebidas-e-garrafeira')->first();
-        $higiene     = PartnerCategory::where('slug', 'higiene-e-beleza')->first();
-        $bebe        = PartnerCategory::where('slug', 'bebe')->first();
-        $limpeza     = PartnerCategory::where('slug', 'limpeza')->first();
-        $casa        = PartnerCategory::where('slug', 'casa-bricolage-e-jardim')->first();
-        $animais     = PartnerCategory::where('slug', 'animais')->first();
-        $brinquedos  = PartnerCategory::where('slug', 'brinquedos-e-jogos')->first();
-        $desporto    = PartnerCategory::where('slug', 'desporto-e-ar-livre')->first();
-        $roupa       = PartnerCategory::where('slug', 'roupa-calcado-bagagens')->first();
-        $livraria    = PartnerCategory::where('slug', 'livraria-e-papelaria')->first();
-        $farmacia    = PartnerCategory::where('slug', 'farmacias')->first();
+        $restaurantes = PartnerCategory::where('slug', 'restaurantes')->first();
+        $mercearia    = PartnerCategory::where('slug', 'mercearia')->first();
+        $bio          = PartnerCategory::where('slug', 'bio-e-intolerancias')->first();
+        $laticinios   = PartnerCategory::where('slug', 'laticinios-e-ovos')->first();
+        $peixaria     = PartnerCategory::where('slug', 'peixaria-e-talho')->first();
+        $frutas       = PartnerCategory::where('slug', 'frutas-e-legumes')->first();
+        $charcutaria  = PartnerCategory::where('slug', 'charcutaria-e-queijos')->first();
+        $padaria      = PartnerCategory::where('slug', 'padaria-e-pastelaria')->first();
+        $congelados   = PartnerCategory::where('slug', 'congelados')->first();
+        $bebidas      = PartnerCategory::where('slug', 'bebidas-e-garrafeira')->first();
+        $higiene      = PartnerCategory::where('slug', 'higiene-e-beleza')->first();
+        $bebe         = PartnerCategory::where('slug', 'bebe')->first();
+        $limpeza      = PartnerCategory::where('slug', 'limpeza')->first();
+        $casa         = PartnerCategory::where('slug', 'casa-bricolage-e-jardim')->first();
+        $animais      = PartnerCategory::where('slug', 'animais')->first();
+        $brinquedos   = PartnerCategory::where('slug', 'brinquedos-e-jogos')->first();
+        $desporto     = PartnerCategory::where('slug', 'desporto-e-ar-livre')->first();
+        $roupa        = PartnerCategory::where('slug', 'roupa-calcado-bagagens')->first();
+        $livraria     = PartnerCategory::where('slug', 'livraria-e-papelaria')->first();
+        $farmacia     = PartnerCategory::where('slug', 'farmacias')->first();
 
         $data = array(
+
+            array('name' => 'Entradas',          'partner_category_id' => $restaurantes->id, 'slug' => 'entradas',          'active' => true),
+            array('name' => 'Pratos principais', 'partner_category_id' => $restaurantes->id, 'slug' => 'pratos-principais', 'active' => true),
+            array('name' => 'Sobremesas',        'partner_category_id' => $restaurantes->id, 'slug' => 'sobremesas',        'active' => true),
+            array('name' => 'Bebidas',           'partner_category_id' => $restaurantes->id, 'slug' => 'bebidas',           'active' => true),
 
             array('name' => 'Arroz, Massas e Farinhas',         'partner_category_id' => $mercearia->id, 'slug' => 'arroz-massas-e-farinhas',         'active' => true),
             array('name' => 'Azeite, Óleo e Vinagre',           'partner_category_id' => $mercearia->id, 'slug' => 'azeite-oleo-e-vinagre',           'active' => true),

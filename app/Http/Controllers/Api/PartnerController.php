@@ -16,7 +16,9 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return new PartnerCollection(Partner::where('active', true)->with('images')->get());
+        return new PartnerCollection(
+            Partner::where('active', true)->with('images')->get()
+        );
     }
 
     /**
@@ -38,8 +40,8 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        return new PartnerCollection(
-            Partner::where('id', $id)->with('images', 'products')->get()
+        return new PartnerCollection( 
+            Partner::where('id', $id)->with('images', 'products')->get() 
         );
     }
 

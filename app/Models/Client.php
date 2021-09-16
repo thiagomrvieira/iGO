@@ -24,4 +24,12 @@ class Client extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the user's favorite partners.
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Partner::class, 'client_partner', 'client_id', 'partner_id');
+    }
 }

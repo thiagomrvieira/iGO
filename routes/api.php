@@ -31,5 +31,8 @@ Route::group(['prefix' => 'v1'], function()
         Route::apiResources([
             'partners' => PartnerController::class,
         ]);
+        Route::post('favorite/{partner}',   PartnerController::class, 'favoritePost');
+        Route::post('unfavorite/{partner}', PartnerController::class, 'unFavoritePost');
+
     });
 });

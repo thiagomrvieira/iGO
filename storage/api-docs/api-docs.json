@@ -94,65 +94,46 @@
                 "summary": "Register a new user",
                 "description": "Create a new user and return token",
                 "operationId": "register",
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "mobile_phone_number",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "line_1",
-                        "in": "query",
-                        "description": "address data",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "county",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "city",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "mussum@igo.pt"
+                                    },
+                                    "mobile_phone_number": {
+                                        "type": "integer",
+                                        "example": "978 645 312"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "iGO@123"
+                                    },
+                                    "line_1": {
+                                        "type": "string",
+                                        "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
+                                    },
+                                    "county": {
+                                        "type": "string",
+                                        "example": "Sociosqu"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Aptent"
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "201": {
                         "description": "Resource created",
@@ -174,24 +155,26 @@
                 "summary": "Login",
                 "description": "Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
                 "operationId": "login",
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "mussum@igo.pt"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "iGO@123"
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Success",

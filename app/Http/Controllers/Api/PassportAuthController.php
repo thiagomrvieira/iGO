@@ -15,88 +15,43 @@ class PassportAuthController extends Controller
 {
     use AddressTrait, UserTrait, ClientTrait;
 
-    /**
-     * @OA\Post(
-     *   path="/api/v1/register",
-     *   tags={"Auth"},
-     *   summary="Register a new user",
-     *   description="Create a new user and return token",
-     *   operationId="register",
+    /** 
+     * CREATE NEW USER 
+     **
+     *  @OA\Post(
+     *      path="/api/v1/register",
+     *      tags={"Auth"},
+     *      summary="Register a new user",
+     *      description="Create a new user and return token",
+     *      operationId="register",
+     *          @OA\RequestBody(
+     *              required=true,
+     *              @OA\JsonContent(
+     *                  type="object",
+     *                  @OA\Property(property="name", type="string", example="Mussum Ipsum"),
+     *                  @OA\Property(property="email", type="string", example="mussum@igo.pt"),
+     *                  @OA\Property(property="mobile_phone_number", type="integer", example="978 645 312"),
+     *                  @OA\Property(property="password", type="string", example="iGO@123"),
+     *                  @OA\Property(property="line_1", type="string", example="Address line 1. Eg: Av. Mauris nec dolor, nº 50"),
+     *                  @OA\Property(property="county", type="string", example="Sociosqu"),
+     *                  @OA\Property(property="city", type="string", example="Aptent"),
+     *              )
+     *          ),
+     *      
+     *      @OA\Response(
+     *          response=201,
+     *          description="Resource created",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error"
+     *      ),
+     *  )
      *
-     *  @OA\Parameter(
-     *      name="name",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *  @OA\Parameter(
-     *      name="email",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="mobile_phone_number",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="integer"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="line_1",
-     *      description="address data",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="county",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="city",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=201,
-     *       description="Resource created",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=422,
-     *       description="Validation error"
-     *   ),
-     *)
-     **/
-    /**
-     * Register api
-     *
-     * @return \Illuminate\Http\Response
+     *  @return \Illuminate\Http\Response
      */
     public function register(ClientStoreRequest $request)
     {
@@ -119,59 +74,50 @@ class PassportAuthController extends Controller
     
     }
  
-    /**
-     * @OA\Post(
-     ** path="/api/v1/login",
-     *   tags={"Auth"},
-     *   summary="Login",
-     *   description="Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
-     *   operationId="login",
-     *
-     *   @OA\Parameter(
-     *      name="email",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *          type="string"
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=401,
-     *       description="Unauthenticated"
-     *   ),
-     *   @OA\Response(
-     *      response=400,
-     *      description="Bad Request"
-     *   ),
-     *   @OA\Response(
-     *      response=404,
-     *      description="not found"
-     *   ),
+    /** 
+     * LOG USER 
+     **
+     *  @OA\Post(
+     *      path="/api/v1/login",
+     *      tags={"Auth"},
+     *      summary="Login",
+     *      description="Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
+     *      operationId="login",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="email", type="string", example="mussum@igo.pt"),
+     *              @OA\Property(property="password", type="string", example="iGO@123"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="not found"
+     *      ),
      *      @OA\Response(
      *          response=403,
      *          description="Forbidden"
      *      )
-     *)
+     *  )
+     * 
+     *  @return \Illuminate\Http\Response
     **/
-
-    /**
-     * Login
-     */
     public function login(Request $request)
     {
         $data = [

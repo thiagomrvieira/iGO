@@ -62,4 +62,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Partner::class);
     }
+
+    /**
+     * Get the Client associated with the user.
+     */
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
 }

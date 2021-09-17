@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PassportAuthController;
@@ -31,8 +32,8 @@ Route::group(['prefix' => 'v1'], function()
         Route::apiResources([
             'partners' => PartnerController::class,
         ]);
-        Route::post('favorite/{partner}',   PartnerController::class, 'favoritePost');
-        Route::post('unfavorite/{partner}', PartnerController::class, 'unFavoritePost');
+        
+        Route::post('favorite/{partner}',   [ClientController::class, 'favoritePartner']);
 
     });
 });

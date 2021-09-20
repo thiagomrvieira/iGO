@@ -153,7 +153,6 @@ class ClientController extends Controller
         return new ClientAddressCollection( 
             Address::where('user_id', Auth::user()->id)->get() 
         );
-        // dd(Address::where('user_id', Auth::user()->id)->first()->type->name);     
     }
 
     /**

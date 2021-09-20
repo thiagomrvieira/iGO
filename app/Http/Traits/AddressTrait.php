@@ -11,8 +11,6 @@ trait AddressTrait {
     public function getAddressRequest($request, $resourceId) { 
         $checkAddress = Address::where('user_id', $resourceId)->first();
         
-        // dd(is_array($request));
-        
         if (is_null($checkAddress)) {
             # Check if the data is an array - Sent from home
             if (is_array($request)) {
@@ -29,6 +27,7 @@ trait AddressTrait {
     
     #   Create addresses from DeliveryManController and PartnerController
     public function createAdress(Request $request, $user_id) {
+
         $resource = $request->all();
         $resource['user_id'] = $user_id;
 

@@ -168,7 +168,7 @@ class ClientController extends Controller
     public function getAddressData()
     {
         return new ClientAddressCollection( 
-            Address::where('user_id', Auth::user()->id)->get() 
+            Address::where('user_id', Auth::user()->id)->get()
         );
     }
 

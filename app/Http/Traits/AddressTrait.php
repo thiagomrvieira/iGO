@@ -27,7 +27,6 @@ trait AddressTrait {
     
     #   Create addresses from DeliveryManController and PartnerController
     public function createAdress(Request $request, $user_id) {
-
         $resource = $request->all();
         $resource['user_id'] = $user_id;
 
@@ -49,6 +48,5 @@ trait AddressTrait {
         $address = Address::create($resource);
 
         return $address;
-
     }
 }

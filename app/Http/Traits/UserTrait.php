@@ -3,7 +3,7 @@
 namespace App\Http\Traits;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 trait UserTrait {
     
@@ -73,6 +73,24 @@ trait UserTrait {
         return $user;
     }
  
+    #   Create user data - API
+    public function updateUserFromApi($request) 
+    { 
+        $user = User::updateOrCreate([
+            'id' => Auth::user()->id,
+        ], [
+            'name'           => $request['name'], 
+            'email'          => $request['email'],
+            'password'       => bcrypt( $request['password'] ),
+            'active'         => true,
+            'is_admin'       => false,
+            'is_partner'     => false,
+            'is_deliveryman' => false,
+            'is_client'      => true,
+        ]);
+
+        return $user;
+    }
     
     
 }

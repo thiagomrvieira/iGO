@@ -44,7 +44,7 @@
                     "Clients"
                 ],
                 "summary": "Set client profile",
-                "description": "Update data from logged in client",
+                "description": "Update client profile data",
                 "operationId": "setClientProfile",
                 "requestBody": {
                     "required": true,
@@ -52,9 +52,25 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "example": "09/07/1988"
+                                    },
                                     "email": {
                                         "type": "string",
                                         "example": "mussum@igo.pt"
+                                    },
+                                    "mobile_phone_number": {
+                                        "type": "integer",
+                                        "example": "978 645 312"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "iGO@123"
                                     }
                                 },
                                 "type": "object"

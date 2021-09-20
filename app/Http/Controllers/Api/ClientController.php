@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ClientAddressCollection;
 use App\Http\Resources\ClientPersonalDataResource;
 use App\Http\Resources\ClientResource;
+use App\Http\Traits\AddressTrait;
+use App\Http\Traits\ClientTrait;
+use App\Http\Traits\UserTrait;
 use App\Models\Address;
 use App\Models\Client;
 use App\Models\Partner;
@@ -15,9 +18,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
+    use AddressTrait, UserTrait, ClientTrait;
 
     /**
-     * Get client profile
+     * GET CLIENT PROFILE
      * *
      * 
      * @OA\Get(path="/api/v1/profile",
@@ -60,19 +64,23 @@ class ClientController extends Controller
     }
 
     /**
-     * Set client profile
+     * SET CLIENT PROFILE
      * *
      * 
      * @OA\Patch(path="/api/v1/profile",
      *   tags={"Clients"},
      *   summary="Set client profile",
-     *   description="Update data from logged in client",
+     *   description="Update client profile data",
      *   operationId="setClientProfile",
      *   @OA\RequestBody(
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
+     *          @OA\Property(property="name", type="string", example="Mussum Ipsum"),
+     *          @OA\Property(property="birth_date", type="string", example="09/07/1988"),
      *          @OA\Property(property="email", type="string", example="mussum@igo.pt"),
+     *          @OA\Property(property="mobile_phone_number", type="integer", example="978 645 312"),
+     *          @OA\Property(property="password", type="string", example="iGO@123"),
      *      )
      *   ),
      *   @OA\Response(
@@ -106,12 +114,21 @@ class ClientController extends Controller
      */
     public function setPersonalData(Request $request)
     {
-        return Auth::user()->client->update($request->all());
+        
+        # Update User data
+        $user = $this->updateUserFromApi($request);
+
+        # Create Client
+        $client = $this->updateClient($request);
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Dados atualizados',
+                                 'data'    => $this->getPersonalData()], 200); 
         
     }
 
     /**
-     * Get client addresses
+     * GET CLIENT ADRESSES
      * *
      * 
      * @OA\Get(path="/api/v1/address",

@@ -12,7 +12,7 @@ class Address extends Model
     protected $table = 'addresses';
     protected $fillable = [
         'user_id',
-        'address_type',
+        'address_type_id',
         'line_1',
         'line_2',
         'county',
@@ -21,5 +21,19 @@ class Address extends Model
         'country'
     ];
 
-    
+    /**
+     * Get the Address owner.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the address type.
+     */
+    public function type()
+    {
+        return $this->belongsTo(AddressType::class, 'address_type_id', 'id');
+    }
 }

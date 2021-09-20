@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class AddressType extends Model
 {
     use HasFactory;
+    
+    protected $table = 'address_types';
+    protected $fillable = [
+        'id',
+        'name',
+        'active',
+    ];
 }

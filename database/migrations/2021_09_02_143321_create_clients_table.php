@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name');
             $table->string('email');
+            $table->date('birth_date')->nullable();
             $table->string('mobile_phone_number')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();

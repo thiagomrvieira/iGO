@@ -33,7 +33,10 @@ Route::group(['prefix' => 'v1'], function()
             'partners' => PartnerController::class,
         ]);
         
-        Route::post('favorite/{partner}',   [ClientController::class, 'favoritePartner']);
+        Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);
+        Route::get('profile',             [ClientController::class, 'getPersonalData']);
+        Route::patch('profile',           [ClientController::class, 'setPersonalData']);
+        Route::get('address',             [ClientController::class, 'getAddressData']);
 
     });
 });

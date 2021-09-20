@@ -182,7 +182,7 @@ class ClientController extends Controller
      * @OA\Post(path="/api/v1/client/addresses",
      *   tags={"Clients"},
      *   summary="Save client address",
-     *   description="Update client address - ",
+     *   description="Create new client address - Update client address if address_id not null ",
      *   operationId="updateAddressData",
      *   @OA\RequestBody(
      *      required=true,

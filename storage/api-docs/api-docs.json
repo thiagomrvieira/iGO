@@ -144,7 +144,7 @@
                     "Clients"
                 ],
                 "summary": "Save client address",
-                "description": "Update client address - ",
+                "description": "Create new client address - Update client address if address_id not null ",
                 "operationId": "updateAddressData",
                 "requestBody": {
                     "required": true,

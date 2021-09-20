@@ -15,9 +15,8 @@ class AddressTypeSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array('name'=>'Casa',     'active' => true),
-            array('name'=>'Trabalho', 'active' => true),
-            array('name'=>'Outro',    'active' => true),
+            array('name'=>'delivery', 'active' => true),
+            array('name'=>'billing',  'active' => true),
         );
         AddressType::insert($data);
     }

@@ -19,6 +19,7 @@ class ClientAddressCollection extends ResourceCollection
     {
         return [
             'data' => AddressResource::collection($this->collection),
+            'user' => $this->collection[0]->user->name,
         ];    
         
     }

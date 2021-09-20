@@ -29,7 +29,6 @@ trait AddressTrait {
     public function createAdress(Request $request, $user_id) {
         $resource = $request->all();
         $resource['user_id'] = $user_id;
-
         $address = Address::create($resource);
         return $address;
     }
@@ -46,7 +45,19 @@ trait AddressTrait {
         $resource['user_id'] = $user_id;
        
         $address = Address::create($resource);
+        return $address;
+    }
 
+    #   Create addresses from API
+    public function createAdressFromApi(Request $request, $user_id) {
+        $resource = $request->all();
+
+        $resource['user_id']      = $user_id;
+        $resource['address_name'] = $request->address_name == null 
+                                        ?  'Principal'
+                                        :  $request->address_name;
+
+        $address = Address::create($resource);
         return $address;
     }
 }

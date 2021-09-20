@@ -35,7 +35,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::patch('profile',           [ClientController::class, 'updatePersonalData']);
         
         #   Get/Update Client Addresses
-        Route::get('address',             [ClientController::class, 'getAddressData'    ]);
+        Route::get('addresses',           [ClientController::class, 'getAddressData'    ]);
 
     });
 });

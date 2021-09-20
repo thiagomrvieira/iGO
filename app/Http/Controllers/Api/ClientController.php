@@ -131,7 +131,7 @@ class ClientController extends Controller
      * GET CLIENT ADRESSES
      * *
      * 
-     * @OA\Get(path="/api/v1/address",
+     * @OA\Get(path="/api/v1/addresses",
      *   tags={"Clients"},
      *   summary="Get client addresses",
      *   description="Get data from logged in client",

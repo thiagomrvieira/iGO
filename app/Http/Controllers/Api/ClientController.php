@@ -64,7 +64,7 @@ class ClientController extends Controller
     }
 
     /**
-     * SET CLIENT PROFILE
+     * UPDATE CLIENT PROFILE
      * *
      * 
      * @OA\Patch(path="/api/v1/profile",
@@ -112,13 +112,13 @@ class ClientController extends Controller
      * )
      *
      */
-    public function setPersonalData(Request $request)
+    public function updatePersonalData(Request $request)
     {
         
         # Update User data
         $user = $this->updateUserFromApi($request);
 
-        # Create Client
+        # Update Client
         $client = $this->updateClient($request);
 
         return response()->json(['status'  => $status  ?? 'success',

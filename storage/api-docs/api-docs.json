@@ -5,7 +5,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/v1/profile": {
+        "/api/v1/client/profile": {
             "get": {
                 "tags": [
                     "Clients"
@@ -105,14 +105,95 @@
                 ]
             }
         },
-        "/api/v1/addresses": {
+        "/api/v1/client/addresses": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Get client addresses",
-                "description": "Get data from logged in client",
+                "description": "Get list of all addresses from logged in client",
                 "operationId": "getClientAddresses",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Save client address",
+                "description": "Update client address - ",
+                "operationId": "updateAddressData",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "address_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "address_type_id": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    },
+                                    "address_name": {
+                                        "type": "string",
+                                        "example": "Trabalho"
+                                    },
+                                    "line_1": {
+                                        "type": "string",
+                                        "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
+                                    },
+                                    "line_2": {
+                                        "type": "string",
+                                        "example": "Address line 2. Eg: Praceta São João"
+                                    },
+                                    "county": {
+                                        "type": "string",
+                                        "example": "Sociosqu"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Aptent"
+                                    },
+                                    "post_code": {
+                                        "type": "string",
+                                        "example": "46703"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "Sociosqu"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -140,7 +221,7 @@
                 ]
             }
         },
-        "/api/v1/favorite/{id}": {
+        "/api/v1/client/favorite/{id}": {
             "post": {
                 "tags": [
                     "Clients"

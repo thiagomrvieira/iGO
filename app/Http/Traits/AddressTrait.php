@@ -3,7 +3,7 @@
 namespace App\Http\Traits;
 use App\Models\Address;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 trait AddressTrait {
     
@@ -58,6 +58,26 @@ trait AddressTrait {
                                         :  $request->address_name;
 
         $address = Address::create($resource);
+        return $address;
+    }
+
+    #   Create/Update addresses from API
+    public function createOrUpdateAddressFromApi(Request $request) {
+
+        $address = Address::updateOrCreate(
+            ['user_id' => Auth::user()->id, 
+             'id'      => $request->address_id],
+            ['address_name'    => $request->address_name, 
+             'user_id'         => Auth::user()->id,
+             'address_type_id' => $request->address_type_id,
+             'line_1'          => $request->line_1    ?? null,
+             'line_2'          => $request->line_2    ?? null,
+             'county'          => $request->county    ?? null,
+             'city'            => $request->city      ?? null,
+             'post_code'       => $request->post_code ?? null,
+             'country'         => $request->country   ?? null,
+            ]
+        );
         return $address;
     }
 }

@@ -24,7 +24,7 @@ class ClientController extends Controller
      * GET CLIENT PROFILE
      * *
      * 
-     * @OA\Get(path="/api/v1/profile",
+     * @OA\Get(path="/api/v1/client/profile",
      *   tags={"Clients"},
      *   summary="Get client profile",
      *   description="Get data from logged in client",
@@ -67,7 +67,7 @@ class ClientController extends Controller
      * UPDATE CLIENT PROFILE
      * *
      * 
-     * @OA\Patch(path="/api/v1/profile",
+     * @OA\Patch(path="/api/v1/client/profile",
      *   tags={"Clients"},
      *   summary="Set client profile",
      *   description="Update client profile data",
@@ -127,14 +127,17 @@ class ClientController extends Controller
         
     }
 
+
+    
+
     /**
      * GET CLIENT ADRESSES
      * *
      * 
-     * @OA\Get(path="/api/v1/addresses",
+     * @OA\Get(path="/api/v1/client/addresses",
      *   tags={"Clients"},
      *   summary="Get client addresses",
-     *   description="Get data from logged in client",
+     *   description="Get list of all addresses from logged in client",
      *   operationId="getClientAddresses",
      *   @OA\Response(
      *      response=200,
@@ -173,10 +176,75 @@ class ClientController extends Controller
     }
 
     /**
+     * UPDATE ADDRESS DATA
+     * *
+     * 
+     * @OA\Post(path="/api/v1/client/addresses",
+     *   tags={"Clients"},
+     *   summary="Save client address",
+     *   description="Update client address - ",
+     *   operationId="updateAddressData",
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="address_id", type="integer", example="1"),
+     *          @OA\Property(property="address_type_id", type="integer", example="2"),
+     *          @OA\Property(property="address_name", type="string", example="Trabalho"),
+     *          @OA\Property(property="line_1", type="string", example="Address line 1. Eg: Av. Mauris nec dolor, nº 50"),
+     *          @OA\Property(property="line_2", type="string", example="Address line 2. Eg: Praceta São João"),
+     *          @OA\Property(property="county", type="string", example="Sociosqu"),
+     *          @OA\Property(property="city", type="string", example="Aptent"),
+     *          @OA\Property(property="post_code", type="string", example="46703"),
+     *          @OA\Property(property="country", type="string", example="Sociosqu"),
+     * 
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function updateAddressData(Request $request)
+    {
+        # Create Address
+        $address = $this->createorUpdateAddressFromApi($request); 
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Dados atualizados',
+                                 'data'    => $address], 200); 
+        
+    }
+
+    /**
      * Favorite/Unfavorite a partner - Persist in client_partner pivot table
      * *
      * 
-     * @OA\Post(path="/api/v1/favorite/{id}",
+     * @OA\Post(path="/api/v1/client/favorite/{id}",
      *   tags={"Clients"},
      *   summary="Set favorite partners",
      *   description="Set/Unset a partner as favorite - Expect to receive a valid partner id",

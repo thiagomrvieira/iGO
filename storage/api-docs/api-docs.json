@@ -267,6 +267,44 @@
                 ]
             }
         },
+        "/api/v1/content/{content}": {
+            "get": {
+                "tags": [
+                    "Webcontent"
+                ],
+                "summary": "Get web content",
+                "description": "Expect to receive a valid content area key (Options: 'about', 'faq', 'conditions', 'contacts') and return the respective content",
+                "operationId": "getWebContent",
+                "parameters": [
+                    {
+                        "name": "content",
+                        "in": "path",
+                        "description": "Options: 'about', 'faq', 'conditions', 'contacts'",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "/api/v1/partners": {
             "get": {
                 "tags": [

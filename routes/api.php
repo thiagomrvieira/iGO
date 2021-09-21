@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\FrontOfficeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PassportAuthController;
@@ -24,6 +25,9 @@ Route::group(['prefix' => 'v1'], function()
     Route::post('register', [PassportAuthController::class, 'register']);
     Route::post('login',    [PassportAuthController::class, 'login'   ]);
     
+    #   WEB CONTENT
+    Route::get('/content/{content}', [FrontOfficeController::class, 'showContent']);
+
     Route::middleware('auth:api')->group(function () {
         Route::apiResources([
             'partners' => PartnerController::class,
@@ -42,6 +46,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('addresses',  [ClientController::class, 'getAddressData' ]);
             Route::post('addresses', [ClientController::class, 'updateAddressData']);
         });
+        
         
 
     });

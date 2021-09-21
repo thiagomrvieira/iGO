@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WebContentCollection;
 use App\Http\Resources\WebContentResource;
 use App\Models\WebContent;
 use Illuminate\Http\Request;
@@ -54,8 +55,8 @@ class FrontOfficeController extends Controller
      */
     public function showContent($content)
     {
-        return new WebContentResource( 
-            WebContent::where('content_area', $content)->first()
+        return new WebContentCollection( 
+            WebContent::where('content_area', $content)->get()
         );
     }
 }

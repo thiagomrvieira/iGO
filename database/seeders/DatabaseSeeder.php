@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AllergenSeeder::class);
         $this->call(CampaignSeeder::class);
         $this->call(AddressTypeSeeder::class);
+        $this->call(CountiesSeeder::class);
+        $this->call(ShippingFeeSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

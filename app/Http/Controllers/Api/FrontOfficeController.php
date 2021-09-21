@@ -10,8 +10,50 @@ use Illuminate\Http\Request;
 
 class FrontOfficeController extends Controller
 {
-        /**
-     * @OA\Get(path="/api/v1/content/{content}",
+    /**
+     * Display All Web contents.
+     **
+     *
+     * @OA\Get(path="/api/v1/contents",
+     *   tags={"Webcontent"},
+     *   summary="Get all active web contents",
+     *   description="Display all active web contents",
+     *   operationId="getAllWebContent",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   
+     * )
+     *
+     */
+    public function showContents()
+    {
+        return new WebContentCollection( 
+            WebContent::all()
+        );
+    }
+
+    /**
+     * Display the specified Web content.
+     **
+     *
+     * @OA\Get(path="/api/v1/contents/{content}",
      *   tags={"Webcontent"},
      *   summary="Get web content",
      *   description="Expect to receive a valid content area key (Options: 'about', 'faq', 'conditions', 'contacts') and return the respective content",
@@ -46,11 +88,8 @@ class FrontOfficeController extends Controller
      *   ),
      *   
      * )
-     */
-    /**
-     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $content
      * @return \Illuminate\Http\Response
      */
     public function showContent($content)

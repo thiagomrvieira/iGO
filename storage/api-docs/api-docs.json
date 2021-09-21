@@ -267,7 +267,34 @@
                 ]
             }
         },
-        "/api/v1/content/{content}": {
+        "/api/v1/contents": {
+            "get": {
+                "tags": [
+                    "Webcontent"
+                ],
+                "summary": "Get all active web contents",
+                "description": "Display all active web contents",
+                "operationId": "getAllWebContent",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/contents/{content}": {
             "get": {
                 "tags": [
                     "Webcontent"

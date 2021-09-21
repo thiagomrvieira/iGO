@@ -26,7 +26,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::post('login',    [PassportAuthController::class, 'login'   ]);
     
     #   WEB CONTENT
-    Route::get('/content/{content}', [FrontOfficeController::class, 'showContent']);
+    Route::get('/contents/{content}', [FrontOfficeController::class, 'showContent' ]);
+    Route::get('/contents',           [FrontOfficeController::class, 'showContents']);
 
     Route::middleware('auth:api')->group(function () {
         Route::apiResources([

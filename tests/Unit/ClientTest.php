@@ -24,7 +24,7 @@ class ClientTest extends TestCase
     {
         Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
 
-        $response = $this->json('post', '/api/v1/favorite/1');
+        $response = $this->json('post', '/api/v1/client/favorite/1');
 
         $response->assertSuccessful();
 
@@ -43,7 +43,7 @@ class ClientTest extends TestCase
         
         $randomId  = 999;
         
-        $response  = $this->json('post', '/api/v1/favorite/'.$randomId);
+        $response  = $this->json('post', '/api/v1/client/favorite/'.$randomId);
         
         $res_array = (array)json_decode($response->content());
 

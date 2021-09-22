@@ -52,7 +52,7 @@
                                         <th> Origem  </th>
                                         <th> Destino </th>
                                         <th> Valor   </th>
-                                        <th> Ações   </th>
+                                        <th style="text-align: center"> Ações   </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,11 +62,13 @@
                                             <td> {{ $shipping->from->name ?? null }} </td>
                                             <td> {{ $shipping->to->name   ?? null }} </td>
                                             <td> {{ $shipping->price      ?? null }} </td>
-                                            <td>
-                                                <a class="ml-1 openDeleteDialog" href="#" 
-                                                    data-toggle="modal"  data-target="#modal-confirm"
-                                                    data-shipping-id="{{ $shipping->id }}" >
-                                                    <i class="far fa-trash-alt"></i>
+                                            <td style="text-align: center">
+                                                <a class="editShippingFee" href="#" data-toggle="modal" data-target="#modal-md"
+                                                    data-shipping-id="{{ $shipping->id }}"
+                                                    data-shipping-from="{{ $shipping->from->name }}"
+                                                    data-shipping-to="{{ $shipping->to->name }}"
+                                                    data-shipping-price="{{ $shipping->price }}">
+                                                    <i class="far fa-edit"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -100,52 +102,46 @@
         </div>
     </div>
 
-    {{-- Modal de ativação de estaque --}}
-    <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
+    {{-- Modal de edição do valor da taxa de entrega --}}
+    <div class="modal fade" id="modal-md">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Ativar destaque</h4>
+                    <h4 class="modal-title">Alterar valor da entrega</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formFeatured', 'method' => 'post' ]) !!}
+                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formShipping', 'method' => 'post' ]) !!}
                         @csrf
                         {{ method_field('PATCH') }}
 
                         <div class="form-group row">
-                            {!! Form::label('partner', 'Parceiro', ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('partner', 'Origem', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('partner', null,  ['class' => 'form-control', 'disabled' ]) !!}
+                                {!! Form::text('deliveryFrom', null,  ['class' => 'form-control', 'disabled', 'id' => 'deliveryFrom']) !!}
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label('product', 'Produto', ['class' => 'col-sm-2 col-form-label']) !!}
+                            {!! Form::label('product', 'Destino', ['class' => 'col-sm-2 col-form-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('product', null,  ['class' => 'form-control', 'disabled' ]) !!}
+                                {!! Form::text('deliveryTo', null,  ['class' => 'form-control', 'disabled', 'id' => 'deliveryTo']) !!}
                             </div>
                         </div>
-                         {{-- Start and Finish date --}}
-                         <div class="form-group row">
-                            {!! Form::label('label-campaign', 'Validade', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
-                            <div class="col-sm-5">
-                                {!! Form::date('start_date', null, ['class' => 'form-control', 'required', 'id' => 'start_date']) !!}
+                        {{-- Price --}}
+                        <div class="form-group row">
+                            {!! Form::label('label-campaign', 'Valor', ['class' => 'col-sm-2 col-form-label', 'id' => 'label-campaign']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::number('price', null, ['class' => 'form-control', 'required', 'id' => 'price']) !!}
                             </div>
-                            <div class="col-sm-5">
-                                {!! Form::date('finish_date', null, ['class' => 'form-control', 'required', 'id' => 'finish_date']) !!}
-                            </div>
-                            {!! Form::hidden('active', 1) !!}
-
                         </div>
-                        
                     {!! Form::close() !!}
                     </div>
 
                 <div class="modal-footer justify-content-between">
                     {!! Form::submit(__('backoffice/partners.modalCreate.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/partners.modalCreate.create'), ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formFeatured']) !!}
+                    {!! Form::submit('Salvar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formShipping']) !!}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -153,58 +149,28 @@
         <!-- /.modal-dialog -->
     </div>
 
-    {{-- Modal de confirmação de remoção --}}
-    <div class="modal fade" id="modal-confirm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>{{ __('backoffice/partners.modalRemove.modalTitle') }}</p>
-                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formDelete', 'method' => 'post' ]) !!}
-                        @csrf
-                        {{ method_field('DELETE') }}
-                    {!! Form::close() !!}
-                </div>
-                <div class="modal-footer justify-content-between">
-                    {!! Form::submit(__('backoffice/partners.modalRemove.close'),  ['type' => 'button', 'class' => 'btn btn-default', 'data-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/partners.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger' , 'form' => 'formDelete'   ]) !!}
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 @endsection
     
 @section('jquery')
     <script type="text/javascript">
         
-        // Seta action do modal de confirmação de remoção do featured
-        $(document).on("click", ".openDeleteDialog", function () {
-            var featuredId = $(this).data('featured-id');
-            var action     = `/admin/featured/${featuredId}`;
-
-            $('#formDelete').attr('action', action );
-        });
-
-        // Seta action do form de update de status de featured
-        $(document).on("click", ".updateStatus", function () {
+        // Seta action do form edição de valores de entrega
+        $(document).on("click", ".editShippingFee", function () {
             event.preventDefault();
 
-            var partner    = $(this).data('featured-partner');
-            var product    = $(this).data('featured-product');
-            var startDate  = $(this).data('featured-start' );
-            var finishDate = $(this).data('featured-finish');
-            var featuredId = $(this).data('featured-id');
-            var action     = `/admin/featured/${featuredId}`;
-            
-            $('#partner').val(partner);
-            $('#product').val(product);
+            var shippingId   = $(this).data('shipping-id');
+            var shippingFrom = $(this).data('shipping-from');
+            var shippingTo   = $(this).data('shipping-to');
+            var price        = $(this).data('shipping-price');
+            var action       = `/admin/shippingfee/${shippingId}`;
 
-            $('#start_date').val(startDate   != '1970-01-01' ? startDate  : null);   
-            $('#finish_date').val(finishDate != '1970-01-01' ? finishDate : null);   
+            $('#deliveryFrom').val(shippingFrom);   
+            $('#deliveryTo').val(shippingTo);   
+            $('#price').val(price);   
 
-            $('#active').val(1);
-
-            $('#formFeatured').attr('action', action );
+            $('#formShipping').attr('action', action );
         });
 
         

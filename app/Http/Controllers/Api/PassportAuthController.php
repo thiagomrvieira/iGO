@@ -10,6 +10,9 @@ use App\Http\Traits\UserTrait;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Bridge\RefreshToken;
+use Laravel\Passport\Token;
 
 class PassportAuthController extends Controller
 {
@@ -134,7 +137,52 @@ class PassportAuthController extends Controller
         }
     } 
     
-    
+    /** 
+     * LOGOUT USER 
+     **
+     *  @OA\Post(
+     *      path="/api/v1/logout",
+     *      tags={"Auth"},
+     *      summary="Logout",
+     *      description="Remove api token for logged user",
+     *      operationId="logout",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated"
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="not found"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      security={
+     *          {"api_key": {}}
+     *      }
+     *  )
+     * 
+     *  @return \Illuminate\Http\Response
+    **/
+    public function logout()
+    {
+        Token::where('user_id', Auth::user()->id)->update(['revoked' => true]);
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Logout efetuado!'], 200);
+    } 
 
 
 }

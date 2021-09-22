@@ -24,12 +24,14 @@ Route::group(['prefix' => 'v1'], function()
     #   AUTH CLIENT
     Route::post('register', [PassportAuthController::class, 'register']);
     Route::post('login',    [PassportAuthController::class, 'login'   ]);
+    Route::post('logout',   [PassportAuthController::class, 'logout'  ])->middleware(['auth:api']);;
     
     #   WEB CONTENT
     Route::get('/contents/{content}', [FrontOfficeController::class, 'showContent' ]);
     Route::get('/contents',           [FrontOfficeController::class, 'showContents']);
 
     Route::middleware('auth:api')->group(function () {
+
         Route::apiResources([
             'partners' => PartnerController::class,
         ]);

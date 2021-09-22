@@ -104,6 +104,16 @@
           </a>
         </li>
 
+        {{-- Shipping Fee --}}
+        <li class="nav-item">
+          <a href="{{ route('shippingfee.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-hand-holding-usd"></i>
+            <p>
+              Taxas de entrega
+            </p>
+          </a>
+        </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

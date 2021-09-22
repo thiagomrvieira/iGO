@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\CampaignController;
 use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficeProductController;
 use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
 use App\Http\Controllers\Web\FeaturedController;
+use App\Http\Controllers\Web\ShippingFeeController;
 
 require __DIR__.'/auth.php';
 
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::resource('/category',    PartnerCategoryController::class);
     Route::resource('/campaign',    CampaignController::class);
     Route::resource('/featured',    FeaturedController::class);
+    Route::resource('/shippingfee', ShippingFeeController::class);
 
 });
 

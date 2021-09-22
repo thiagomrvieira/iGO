@@ -58,10 +58,10 @@
                                 <tbody>
                                     @forelse ($shippingFees as $shipping) 
                                         <tr>
-                                            <td> {{ $shipping->id         ?? null }} </td>
-                                            <td> {{ $shipping->from->name ?? null }} </td>
-                                            <td> {{ $shipping->to->name   ?? null }} </td>
-                                            <td> {{ $shipping->price      ?? null }} </td>
+                                            <td> {{ $shipping->id                      ?? null }} </td>
+                                            <td> {{ $shipping->from->name              ?? null }} </td>
+                                            <td> {{ $shipping->to->name                ?? null }} </td>
+                                            <td> {{ number_format($shipping->price, 2) ?? null }} </td>
                                             <td style="text-align: center">
                                                 <a class="editShippingFee" href="#" data-toggle="modal" data-target="#modal-md"
                                                     data-shipping-id="{{ $shipping->id }}"
@@ -168,7 +168,7 @@
 
             $('#deliveryFrom').val(shippingFrom);   
             $('#deliveryTo').val(shippingTo);   
-            $('#price').val(price);   
+            $('#price').val(parseFloat(price).toFixed(2));   
 
             $('#formShipping').attr('action', action );
         });

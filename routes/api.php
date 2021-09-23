@@ -39,20 +39,23 @@ Route::group(['prefix' => 'v1'], function()
             'shippingfees' => ShippingFeeController::class,
         ]);
 
+        
+        
         Route::group(['prefix' => 'client'], function() 
         {
             #   Favorite/Unfavorite Partner
             Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);
-                    
+            
             #   Get/Update Client personal data
             Route::get('profile',   [ClientController::class, 'getPersonalData'   ]);
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
-
+            
             #   Get/Create/Update Client Addresses
             Route::get('addresses',  [ClientController::class, 'getAddressData' ]);
             Route::post('addresses', [ClientController::class, 'updateAddressData']);
         });
         
+        // Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'getAddressData' ]);
         
 
     });

@@ -18,7 +18,7 @@ class ShippingFeeController extends Controller
      *   tags={"Shipping fees"},
      *   summary="Get all shipping fees",
      *   description="Display a list of all shipping fees",
-     *   operationId="getWebContent",
+     *   operationId="getShippingFees",
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -65,13 +65,54 @@ class ShippingFeeController extends Controller
 
     /**
      * Display the specified resource.
+     **
+     *
+     * @OA\Get(path="/api/v1/shippingfees/{id}",
+     *   tags={"Shipping fees"},
+     *   summary="Get all shipping fees",
+     *   description="Display a list of all shipping fees",
+     *   operationId="getShippingFee",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Shipping fee id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *      {"api_key": {}}
+     *   }
+     * )
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return new ShippingFeeCollection( 
+            ShippingFee::where('id', $id)->get()
+        );
     }
 
     /**

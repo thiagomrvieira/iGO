@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\ClientController;
-use App\Http\Controllers\Api\FrontOfficeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\ShippingFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::middleware('auth:api')->group(function () {
 
         Route::apiResources([
-            'partners' => PartnerController::class,
+            'partners'    => PartnerController::class,
+            'shippingfee' => ShippingFeeController::class,
         ]);
 
         Route::group(['prefix' => 'client'], function() 

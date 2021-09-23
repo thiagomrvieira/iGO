@@ -35,8 +35,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::middleware('auth:api')->group(function () {
 
         Route::apiResources([
-            'partners'    => PartnerController::class,
-            'shippingfee' => ShippingFeeController::class,
+            'partners'     => PartnerController::class,
+            'shippingfees' => ShippingFeeController::class,
         ]);
 
         Route::group(['prefix' => 'client'], function() 

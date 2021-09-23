@@ -23,7 +23,7 @@ class ShippingFeeTest extends TestCase
     public function api_is_accessible_and_protected_by_token()
     {
         
-        $response = $this->json('get', '/api/v1/shippingfee')
+        $response = $this->json('get', '/api/v1/shippingfees')
             ->assertStatus(401);
         
     }
@@ -37,7 +37,7 @@ class ShippingFeeTest extends TestCase
     {
         Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
 
-        $response = $this->json('get', '/api/v1/shippingfee');
+        $response = $this->json('get', '/api/v1/shippingfees');
 
         $response->assertSuccessful();
 
@@ -47,9 +47,11 @@ class ShippingFeeTest extends TestCase
             'data' => [
                 '*' => [
                     'id',
-                    'delivery_from',
-                    'delivery_to',
-                    'price',
+                    'delivery_from_id',
+                    'delivery_from_name',
+                    'delivery_to_id',
+                    'delivery_to_name',
+                    'price'          
                 ]
             ]
         ]);

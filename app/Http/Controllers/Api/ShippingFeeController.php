@@ -3,19 +3,53 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ShippingFeeCollection;
+use App\Models\ShippingFee;
 use Illuminate\Http\Request;
 
 class ShippingFeeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
+     **
+     *
+     * @OA\Get(path="/api/v1/shippingfees",
+     *   tags={"Shipping fees"},
+     *   summary="Get all shipping fees",
+     *   description="Display a list of all shipping fees",
+     *   operationId="getWebContent",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *      {"api_key": {}}
+     *   }
+     * )
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Aderente desfavoritado'], 200);
+        return new ShippingFeeCollection( 
+            ShippingFee::all()
+        );
     }
 
     /**

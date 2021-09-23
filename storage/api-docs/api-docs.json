@@ -558,6 +558,38 @@
                     }
                 ]
             }
+        },
+        "/api/v1/shippingfees": {
+            "get": {
+                "tags": [
+                    "Shipping fees"
+                ],
+                "summary": "Get all shipping fees",
+                "description": "Display a list of all shipping fees",
+                "operationId": "getWebContent",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
         }
     },
     "components": {

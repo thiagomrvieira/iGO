@@ -86,6 +86,52 @@ class ShippingFeeTest extends TestCase
         ]);
     }
 
+    /** 
+     * @test 
+     * @group shippingfee
+     */
+    public function a_user_can_get_the_shipping_fee_data_by_from_to_locations()
+    {
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
+
+        $response = $this->json('get', '/api/v1/shippingfees/1/2');
+
+        $response->assertSuccessful();
+
+        $response->assertStatus(200);
+        
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'delivery_from_id',
+                    'delivery_from_name',
+                    'delivery_to_id',
+                    'delivery_to_name',
+                    'price'          
+                ]
+            ]
+        ]);
+
+        // $response = $this->json('get', '/api/v1/shippingfees/Belas/Luanda');
+
+        // $response->assertSuccessful();
+
+        // $response->assertStatus(200);
+        
+        // $response->assertJsonStructure([
+        //     'data' => [
+        //         '*' => [
+        //             'id',
+        //             'delivery_from_id',
+        //             'delivery_from_name',
+        //             'delivery_to_id',
+        //             'delivery_to_name',
+        //             'price'          
+        //         ]
+        //     ]
+        // ]);
+    }
 
 
 }

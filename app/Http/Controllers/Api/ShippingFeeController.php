@@ -52,26 +52,16 @@ class ShippingFeeController extends Controller
         );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
+     * Display the resource specified by ID.
      **
      *
      * @OA\Get(path="/api/v1/shippingfees/{id}",
      *   tags={"Shipping fees"},
-     *   summary="Get all shipping fees",
-     *   description="Display a list of all shipping fees",
-     *   operationId="getShippingFee",
+     *   summary="Get the especified shipping fee",
+     *   description="Display the resource specified by ID.",
+     *   operationId="getShippingFeeById",
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -115,26 +105,66 @@ class ShippingFeeController extends Controller
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
-     * Remove the specified resource from storage.
+     * Display the resource specified by From/To columns.
+     **
+     *
+     * @OA\Get(path="/api/v1/shippingfees/{from}/{to}",
+     *   tags={"Shipping fees"},
+     *   summary="Get the especified shipping fee",
+     *   description="Display the resource specified by FROM(delivery_from) TO(delivery_to) paramters.",
+     *   operationId="getShippingFeebyFromTo",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="from",
+     *      description="County id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="to",
+     *      description="County id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *      {"api_key": {}}
+     *   }
+     * )
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function showByFromTo($from, $to)
     {
-        //
+        return new ShippingFeeCollection( 
+            ShippingFee::where('delivery_from', $from)->where('delivery_to', $to)->get()
+        );
     }
+    
 }

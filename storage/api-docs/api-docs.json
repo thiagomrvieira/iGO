@@ -596,14 +596,66 @@
                 "tags": [
                     "Shipping fees"
                 ],
-                "summary": "Get all shipping fees",
-                "description": "Display a list of all shipping fees",
-                "operationId": "getShippingFee",
+                "summary": "Get the especified shipping fee",
+                "description": "Display the resource specified by ID.",
+                "operationId": "getShippingFeeById",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
                         "description": "Shipping fee id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shippingfees/{from}/{to}": {
+            "get": {
+                "tags": [
+                    "Shipping fees"
+                ],
+                "summary": "Get the especified shipping fee",
+                "description": "Display the resource specified by FROM(delivery_from) TO(delivery_to) variables.",
+                "operationId": "getShippingFeebyFromTo",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "path",
+                        "description": "County id from",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "path",
+                        "description": "County id to",
                         "required": true,
                         "schema": {
                             "type": "integer"

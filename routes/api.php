@@ -55,7 +55,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('addresses', [ClientController::class, 'updateAddressData']);
         });
         
-        // Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'getAddressData' ]);
+        Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
         
 
     });

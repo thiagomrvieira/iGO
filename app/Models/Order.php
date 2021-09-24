@@ -11,7 +11,7 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
-    private $fillable = [
+    protected $fillable = [
         'client_id',
         'order_status_id',
         'amount',

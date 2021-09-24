@@ -15,6 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->constrained();
+            $table->foreignId('order_status_id')->constrained();
+            $table->float('amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

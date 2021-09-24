@@ -4,8 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    private $fillable = [
+        'client_id',
+        'order_status_id',
+        'amount',
+    ];
+
+    /**
+     * Get the order's items/products.
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_product', 'oder_id', 'product_id');
+    }
 }

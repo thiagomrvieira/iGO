@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('price');
-            $table->boolean('available');
+            $table->boolean('available')->default(true);
             $table->text('note')->nullable();
             $table->foreignId('campaign_id')->nullable()->constrained();
             $table->timestamps();

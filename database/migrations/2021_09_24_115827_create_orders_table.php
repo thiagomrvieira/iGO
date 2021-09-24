@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('client_id')->constrained();
             $table->foreignId('order_status_type_id')->constrained();
             $table->float('amount');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

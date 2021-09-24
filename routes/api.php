@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FrontOfficeController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ShippingFeeController;
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::apiResources([
             'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
+            'orders'       => OrderController::class,
         ]);
 
         

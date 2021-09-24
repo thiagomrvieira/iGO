@@ -18,8 +18,8 @@ class CreateOrderProductTable extends Migration
             $table->foreignId('client_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->tinyInteger('quantity');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

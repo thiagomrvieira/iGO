@@ -40,7 +40,7 @@ Route::group(['prefix' => 'v1'], function()
             'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
             'cart'         => CartController::class,
-            'orders'       => OrderController::class,
+            // 'orders'       => OrderController::class,
         ]);
 
         

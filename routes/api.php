@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::apiResources([
             'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
+            'cart'         => CartController::class,
             'orders'       => OrderController::class,
         ]);
 

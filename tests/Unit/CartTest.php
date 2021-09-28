@@ -12,18 +12,18 @@ use App\Models\User;
 
 
 
-class OrderTest extends TestCase
+class CartTest extends TestCase
 {
     const CLIENT_EMAIL = 'client01@igo.pt';
     
     /**
      * @test
-     * @group order
+     * @group cart
      */
     public function api_is_accessible_and_protected_by_token()
     {
         
-        $response = $this->json('get', '/api/v1/orders')
+        $response = $this->json('get', '/api/v1/cart')
             ->assertStatus(401);
         
     }
@@ -31,29 +31,57 @@ class OrderTest extends TestCase
     
     /** 
      * @test 
-     * @group order
+     * @group cart
      */
-    public function a_user_can_order_products()
+    public function a_user_can_see_wich_products_he_has_in_his_cart()
     {
-        // Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
 
-        // $response = $this->json('post', '/api/v1/orders', [
-        //     // 'client_id'  => Client::where('email', self::CLIENT_EMAIL)->get()->id,
-        //     'product_id' => Product::inRandomOrder()->first()->id,
-        //     'quantity'   => 1,
-        // ]);
+        $response = $this->json('get', '/api/v1/cart');
 
-        // $response->assertSuccessful();
+        $response->assertSuccessful();
 
-        // $response->assertStatus(200);
-
-        // $this->assertDatabaseHas('order_product', [
-        //     // 'client_id'  => 1,
-        //     'product_id' => 1,
-        //     'quantity'   => 1,
-        // ]);
-
+        $response->assertStatus(200);
         
+        // $response->assertJsonStructure([
+        //     'data' => [
+        //         '*' => [
+        //             'id',
+        //             'delivery_from_id',
+        //             'delivery_from_name',
+        //             'delivery_to_id',
+        //             'delivery_to_name',
+        //             'price'          
+        //         ]
+        //     ]
+        // ]);
+    }
+
+
+    /** 
+     * @test 
+     * @group cart
+     */
+    public function a_user_can_add_products_to_the_cart()
+    {
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
+
+        $productId = Product::inRandomOrder()->first()->id;
+
+        $response = $this->json('post', '/api/v1/cart', [
+            'product_id' => $productId,
+            'quantity'   => 1,
+        ]);
+
+        $response->assertSuccessful();
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('carts', [
+            'client_id'  => Client::where('email', self::CLIENT_EMAIL)->first()->id,
+            'product_id' => $productId,
+            'quantity'   => 1,
+        ]);
         
         // $response->assertJsonStructure([
         //     'data' => [

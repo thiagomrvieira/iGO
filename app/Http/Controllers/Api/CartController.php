@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CartProductCollection;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,13 +11,50 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * DISPLAY A LIST OF PRODUCTS IN THE CART
+     * *
+     * 
+     * @OA\Get(path="/api/v1/cart",
+     *   tags={"Cart"},
+     *   summary="Show products in the cart",
+     *   description="Display a list of products added to the cart",
+     *   operationId="showCart",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return new CartProductCollection( 
+            Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->get()
+        );
     }
 
     /**
@@ -69,7 +107,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $request['client_id'] = Auth::user()->client->id;
 
         $cartItems = Cart::updateOrCreate(
             [
@@ -77,7 +114,9 @@ class CartController extends Controller
                 'product_id' => $request->product_id,
             ],
             [
-                $request->all(),
+                'client_id'  => Auth::user()->client->id,
+                'product_id' => $request->product_id,
+                'quantity'   => $request->quantity,
             ]
         );
 

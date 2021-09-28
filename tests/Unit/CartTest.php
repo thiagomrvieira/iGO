@@ -22,10 +22,8 @@ class CartTest extends TestCase
      */
     public function api_is_accessible_and_protected_by_token()
     {
-        
         $response = $this->json('get', '/api/v1/cart')
             ->assertStatus(401);
-        
     }
 
     
@@ -43,18 +41,18 @@ class CartTest extends TestCase
 
         $response->assertStatus(200);
         
-        // $response->assertJsonStructure([
-        //     'data' => [
-        //         '*' => [
-        //             'id',
-        //             'delivery_from_id',
-        //             'delivery_from_name',
-        //             'delivery_to_id',
-        //             'delivery_to_name',
-        //             'price'          
-        //         ]
-        //     ]
-        // ]);
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'product_id',
+                    'product_name',
+                    'product_price',
+                    'quantity',
+                    'amount',
+                    'created_at',
+                ]
+            ]
+        ]);
     }
 
 

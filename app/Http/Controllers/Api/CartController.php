@@ -108,7 +108,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
 
-        $cartItems = Cart::updateOrCreate(
+        $cartItem = Cart::updateOrCreate(
             [
                 'client_id'  => Auth::user()->client->id,
                 'product_id' => $request->product_id,
@@ -122,7 +122,7 @@ class CartController extends Controller
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho',
-                                 'data'    => $cartItems], 200); 
+                                 'data'    => $cartItem], 200); 
     }
 
     /**

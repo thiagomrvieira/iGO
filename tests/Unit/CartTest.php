@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 // use PHPUnit\Framework\TestCase;
 
+use App\Models\Cart;
 use App\Models\Client;
 use App\Models\Product;
 use Tests\TestCase;
@@ -80,96 +81,35 @@ class CartTest extends TestCase
             'product_id' => $productId,
             'quantity'   => 1,
         ]);
-        
-        // $response->assertJsonStructure([
-        //     'data' => [
-        //         '*' => [
-        //             'id',
-        //             'delivery_from_id',
-        //             'delivery_from_name',
-        //             'delivery_to_id',
-        //             'delivery_to_name',
-        //             'price'          
-        //         ]
-        //     ]
-        // ]);
+       
     }
 
 
-    // /** 
-    //  * @test 
-    //  * @group shippingfee
-    //  */
-    // public function a_user_can_get_the_shipping_fee_data_by_id()
-    // {
-    //     Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
-
-    //     $response = $this->json('get', '/api/v1/shippingfees/1');
-
-    //     $response->assertSuccessful();
-
-    //     $response->assertStatus(200);
+    /** 
+     * @test 
+     * @group cart
+     */
+    public function a_user_can_remove_products_from_the_cart()
+    {
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
         
-    //     $response->assertJsonStructure([
-    //         'data' => [
-    //             '*' => [
-    //                 'id',
-    //                 'delivery_from_id',
-    //                 'delivery_from_name',
-    //                 'delivery_to_id',
-    //                 'delivery_to_name',
-    //                 'price'          
-    //             ]
-    //         ]
-    //     ]);
-    // }
-
-    // /** 
-    //  * @test 
-    //  * @group shippingfee
-    //  */
-    // public function a_user_can_get_the_shipping_fee_data_by_from_to_locations()
-    // {
-    //     Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
-
-    //     $response = $this->json('get', '/api/v1/shippingfees/1/2');
-
-    //     $response->assertSuccessful();
-
-    //     $response->assertStatus(200);
+        $clientId = User::where('email', self::CLIENT_EMAIL)->first()->client->id;
         
-    //     $response->assertJsonStructure([
-    //         'data' => [
-    //             '*' => [
-    //                 'id',
-    //                 'delivery_from_id',
-    //                 'delivery_from_name',
-    //                 'delivery_to_id',
-    //                 'delivery_to_name',
-    //                 'price'          
-    //             ]
-    //         ]
-    //     ]);
+        $productInCart = Cart::where('client_id', $clientId)->where('deleted_at', null)->inRandomOrder()->first();
 
-    //     // $response = $this->json('get', '/api/v1/shippingfees/Belas/Luanda');
+        $response = $this->json('delete', '/api/v1/cart/' . $productInCart->product_id);
 
-    //     // $response->assertSuccessful();
+        $response->assertSuccessful();
 
-    //     // $response->assertStatus(200);
-        
-    //     // $response->assertJsonStructure([
-    //     //     'data' => [
-    //     //         '*' => [
-    //     //             'id',
-    //     //             'delivery_from_id',
-    //     //             'delivery_from_name',
-    //     //             'delivery_to_id',
-    //     //             'delivery_to_name',
-    //     //             'price'          
-    //     //         ]
-    //     //     ]
-    //     // ]);
-    // }
+        $response->assertStatus(200);
+
+        $this->assertSoftDeleted('carts', [
+            'client_id'  => $clientId,
+            'product_id' => $productInCart->product_id,
+        ]);
+       
+    }
+
 
 
 }

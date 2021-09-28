@@ -122,7 +122,7 @@ class CartController extends Controller
         );
 
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Produto adicionado ao carrinho',
+                                 'message' => $message ?? 'Produto adicionado ao carrinho!',
                                  'data'    => new CartProductResource($cartItem)], 200); 
     }
 
@@ -150,13 +150,65 @@ class CartController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * REMOVE ITEM FROM THE CART
+     * *
+     * 
+     * @OA\Delete(path="/api/v1/cart/{id}",
+     *   tags={"Cart"},
+     *   summary="Remove item from the cart",
+     *   description="Remove a specified product from the cart - Expect to recieve a valid product id",
+     *   operationId="removeFromCart",
+     *  @OA\Parameter(
+     *      name="id",
+     *      description="Product id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $cartItem = Cart::where('client_id', Auth::user()->client->id)
+                        ->where('product_id', $id)->first();
+
+        $cartItem->delete();
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Produto removido do carrinho!',
+                                 'data'    => new CartProductResource($cartItem)], 200); 
+
+
     }
 }

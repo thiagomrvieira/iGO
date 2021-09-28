@@ -27,7 +27,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -80,7 +80,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -126,7 +126,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -161,7 +161,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -226,7 +226,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -261,7 +261,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -342,7 +342,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -388,7 +388,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -420,7 +420,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -458,67 +458,12 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
                     }
                 }
-            }
-        },
-        "/api/v1/orders": {
-            "post": {
-                "tags": [
-                    "Orders"
-                ],
-                "summary": "Create a new order",
-                "description": "Create a new order - Expect to recieve a product id and a quantity",
-                "operationId": "createorder",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "product_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "quantity": {
-                                        "type": "integer",
-                                        "example": "2"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
             }
         },
         "/api/v1/partners": {
@@ -543,7 +488,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -589,7 +534,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -705,7 +650,7 @@
                         "description": "Bad Request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -735,7 +680,7 @@
                         "description": "Bad Request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -767,7 +712,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -810,7 +755,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"
@@ -862,7 +807,7 @@
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Not found"
                     },
                     "403": {
                         "description": "Forbidden"

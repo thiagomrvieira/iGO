@@ -24,46 +24,7 @@ class OrderController extends Controller
      * CREATE A NEW ORDER
      * *
      * 
-     * @OA\Post(path="/api/v1/orders",
-     *   tags={"Orders"},
-     *   summary="Create a new order",
-     *   description="Create a new order - Expect to recieve a product id and a quantity",
-     *   operationId="createorder",
-     *   @OA\RequestBody(
-     *      required=true,
-     *      @OA\JsonContent(
-     *          type="object",
-     *          @OA\Property(property="product_id", type="integer", example="1"),
-     *          @OA\Property(property="quantity", type="integer", example="2"),
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=200,
-     *      description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=401,
-     *      description="Unauthenticated"
-     *   ),
-     *   @OA\Response(
-     *      response=400, 
-     *      description="Bad request"
-     *   ),
-     *   @OA\Response(
-     *      response=404,
-     *      description="Not found"
-     *   ),
-     *   @OA\Response(
-     *      response=403,
-     *      description="Forbidden"
-     *   ),
-     *   security={
-     *     {"api_key": {}}
-     *   }
-     * )
+     
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

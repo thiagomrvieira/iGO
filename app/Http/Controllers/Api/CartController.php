@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartProductCollection;
+use App\Http\Resources\CartProductResource;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,7 +123,7 @@ class CartController extends Controller
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho',
-                                 'data'    => $cartItem], 200); 
+                                 'data'    => new CartProductResource($cartItem)], 200); 
     }
 
     /**

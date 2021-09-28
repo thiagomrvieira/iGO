@@ -332,6 +332,61 @@
                 }
             }
         },
+        "/api/v1/orders": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Create a new order",
+                "description": "Create a new order - Expect to recieve a product id and a quantity",
+                "operationId": "createorder",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "product_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/partners": {
             "get": {
                 "tags": [
@@ -640,13 +695,13 @@
                     "Shipping fees"
                 ],
                 "summary": "Get the especified shipping fee",
-                "description": "Display the resource specified by FROM(delivery_from) TO(delivery_to) variables.",
+                "description": "Display the resource specified by FROM(delivery_from) TO(delivery_to) paramters.",
                 "operationId": "getShippingFeebyFromTo",
                 "parameters": [
                     {
                         "name": "from",
                         "in": "path",
-                        "description": "County id from",
+                        "description": "County id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -655,7 +710,7 @@
                     {
                         "name": "to",
                         "in": "path",
-                        "description": "County id to",
+                        "description": "County id",
                         "required": true,
                         "schema": {
                             "type": "integer"

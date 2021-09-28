@@ -46,6 +46,14 @@ class OrderTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertStatus(200);
+
+        $this->assertDatabaseHas('order_product', [
+            // 'client_id'  => 1,
+            'product_id' => 1,
+            'quantity'   => 1,
+        ]);
+
+        
         
         // $response->assertJsonStructure([
         //     'data' => [

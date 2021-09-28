@@ -32,7 +32,7 @@ class FrontOfficeController extends Controller
      *   ),
      *   @OA\Response(
      *      response=404,
-     *      description="not found"
+     *      description="Not found"
      *   ),
      *   @OA\Response(
      *      response=403,
@@ -80,7 +80,7 @@ class FrontOfficeController extends Controller
      *   ),
      *   @OA\Response(
      *      response=404,
-     *      description="not found"
+     *      description="Not found"
      *   ),
      *   @OA\Response(
      *      response=403,

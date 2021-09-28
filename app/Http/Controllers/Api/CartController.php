@@ -38,7 +38,7 @@ class CartController extends Controller
      *   ),
      *   @OA\Response(
      *      response=404,
-     *      description="not found"
+     *      description="Not found"
      *   ),
      *   @OA\Response(
      *      response=403,
@@ -92,7 +92,7 @@ class CartController extends Controller
      *   ),
      *   @OA\Response(
      *      response=404,
-     *      description="not found"
+     *      description="Not found"
      *   ),
      *   @OA\Response(
      *      response=403,
@@ -124,29 +124,6 @@ class CartController extends Controller
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho!',
                                  'data'    => new CartProductResource($cartItem)], 200); 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -184,7 +161,7 @@ class CartController extends Controller
      *   ),
      *   @OA\Response(
      *      response=404,
-     *      description="not found"
+     *      description="Not found"
      *   ),
      *   @OA\Response(
      *      response=403,
@@ -202,12 +179,17 @@ class CartController extends Controller
     {
         $cartItem = Cart::where('client_id', Auth::user()->client->id)
                         ->where('product_id', $id)->first();
+        if (!$cartItem) {
+            $status      = 'Error';
+            $message     = 'Produto não encontrado';
+            $status_code = 404;
+        } else {
+            $cartItem->delete();
+        }
 
-        $cartItem->delete();
 
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Produto removido do carrinho!',
-                                 'data'    => new CartProductResource($cartItem)], 200); 
+                                 'message' => $message ?? 'Produto removido do carrinho!'], $status_code ?? 200); 
 
 
     }

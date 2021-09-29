@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
             'product_sides'     => ProductSideResource::collection($this->sides),
             'product_sauces'    => ProductSauceResource::collection($this->sauces),
             'product_allergens' => ProductAllergenResource::collection($this->allergens),
+            'product_extras'    => ProductExtraResource::collection($this->extras),
             'image'             => $this->image,
             'price'             => $this->price,
             'note'              => $this->note,
@@ -33,7 +34,6 @@ class ProductResource extends JsonResource
                 'name' => $this->campaign->name ?? null,
             ],
             'created_at' => $this->created_at,
-            'extras'     => ProductExtraResource::collection($this->extras),
         ];    
       
     }

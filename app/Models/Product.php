@@ -82,4 +82,12 @@ class Product extends Model
     {
         return $this->hasOne(Featured::class);
     }
+
+    /**
+     * Get campaign
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }

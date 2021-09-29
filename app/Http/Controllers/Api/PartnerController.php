@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PartnerCollection;
+use App\Http\Resources\ProductCollection;
 use App\Models\Partner;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
@@ -127,7 +129,7 @@ class PartnerController extends Controller
      * @OA\Get(path="/api/v1/partners/{id}/products",
      *   tags={"Partners"},
      *   summary="Get partner products",
-     *   description="Expect to receive a valid ID and return partner and his products data",
+     *   description="Expect to receive a valid ID and return partner products data",
      *   operationId="getPartnerProducts",
      *   @OA\Response(
      *      response=200,
@@ -174,8 +176,8 @@ class PartnerController extends Controller
      */
     public function showProducts($id)
     {
-        return new PartnerCollection( 
-            Partner::where('id', $id)->with('images', 'products')->get() 
+        return new ProductCollection( 
+            Product::where('partner_id', $id)->where('available', 1)->get()
         );
     }
 

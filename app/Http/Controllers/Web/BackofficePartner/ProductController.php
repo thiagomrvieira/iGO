@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function index()
     {
         return view ('backoffice-partner.product.products', [
-            'products' => Product::with('featured')->orderBy('created_at', 'DESC')->get()
+            'products' => Product::where('partner_id', Auth::user()->partner->id)->with('featured')->orderBy('created_at', 'DESC')->get()
         ]);
     }
 

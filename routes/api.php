@@ -60,6 +60,8 @@ Route::group(['prefix' => 'v1'], function()
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
+        #   Show partner products
+        Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);
         
 
     });

@@ -124,6 +124,62 @@ class PartnerController extends Controller
     }
 
     /**
+     * @OA\Get(path="/api/v1/partners/{id}/products",
+     *   tags={"Partners"},
+     *   summary="Get partner products",
+     *   description="Expect to receive a valid ID and return partner and his products data",
+     *   operationId="getPartnerProducts",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Partner id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     */
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showProducts($id)
+    {
+        return new PartnerCollection( 
+            Partner::where('id', $id)->with('images', 'products')->get() 
+        );
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

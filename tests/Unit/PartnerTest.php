@@ -128,5 +128,26 @@ class PartnerTest extends TestCase
     }
 
 
+    /** 
+     * @test 
+     * @group partner
+     */
+    public function a_user_can_see_all_partner_products()
+    {
+        Passport::actingAs(User::where('email', self::CLIENT_EMAIL)->first());
+
+        $partnerId = Partner::first()->id;
+
+        $response = $this->json('get', '/api/v1/partners/'. $partnerId .'/products');
+
+        $response->assertSuccessful();
+
+        $response->assertStatus(200);
+        
+        // $response->assertJsonStructure([
+        //     'data' => []
+        // ]);
+    }
+
 
 }

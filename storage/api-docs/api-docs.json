@@ -553,7 +553,7 @@
                     "Partners"
                 ],
                 "summary": "Get partner products",
-                "description": "Expect to receive a valid ID and return partner and his products data",
+                "description": "Expect to receive a valid ID and return partner products data",
                 "operationId": "getPartnerProducts",
                 "parameters": [
                     {

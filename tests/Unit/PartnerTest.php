@@ -46,22 +46,21 @@ class PartnerTest extends TestCase
             'data' => [
                 '*' => [
                     'id',
-                    'user_id',
-                    'name',
+                    'company_name',
+                    'responsible_name',
                     'email',
                     'phone_number',
                     'mobile_phone_number',
-                    'company_name',
                     'tax_number',
-                    'approved_at',
+                    'category',
+                    'sub_categories',
                     'active',
-                    'category_id',
                     'average_order_time',
-                    'first_login',
                     'premium',
-                    'created_at',
-                    'updated_at',
-                    'sub_categories'
+                    'account_created_at',
+                    'account_approved_at',
+                    'images',
+                    'total_products',
                 ]
             ]
         ]);
@@ -85,22 +84,21 @@ class PartnerTest extends TestCase
             'data' => [
                 '*' => [
                     'id',
-                    'user_id',
-                    'name',
+                    'company_name',
+                    'responsible_name',
                     'email',
                     'phone_number',
                     'mobile_phone_number',
-                    'company_name',
                     'tax_number',
-                    'approved_at',
+                    'category',
+                    'sub_categories',
                     'active',
-                    'category_id',
                     'average_order_time',
-                    'first_login',
                     'premium',
-                    'created_at',
-                    'updated_at',
-                    'sub_categories'
+                    'account_created_at',
+                    'account_approved_at',
+                    'images',
+                    'total_products',
                 ]
             ]
         ]);

@@ -23,7 +23,7 @@ class PartnerResource extends JsonResource
             'phone_number'        => $this->phone_number,
             'mobile_phone_number' => $this->mobile_phone_number,
             'tax_number'          => $this->tax_number,
-            'category'            => PartnerCategory::where('id', $this->category_id)->first()->name,
+            'category'            => $this->mainCategory->name,
             'sub_categories'      => $this->subCategories,
             'active'              => $this->active,
             'average_order_time'  => $this->average_order_time,

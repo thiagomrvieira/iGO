@@ -33,7 +33,7 @@ class ProductResource extends JsonResource
                 'name' => $this->campaign->name ?? null,
             ],
             'created_at' => $this->created_at,
-            'extras'     => $this->extras,
+            'extras'     => ProductExtraResource::collection($this->extras),
         ];    
       
     }

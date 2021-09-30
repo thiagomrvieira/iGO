@@ -1,18 +1,26 @@
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!**********************************************************!*\
+  !*** ./resources/views/frontoffice/assets/js/scripts.js ***!
+  \**********************************************************/
 var $j = jQuery.noConflict(),
     $w = $j(window);
+$j(document).ready(function ($) {
+  scrollMenuFixed(); // select2
 
-$j(document).ready(function($) {
-	scrollMenuFixed();
+  $j('.category_id').select2();
 });
 
 function scrollMenuFixed() {
-	if ($j(this).scrollTop() > 5) {
-		$j("header").addClass("fixed");
-	} else {
-		$j("header").removeClass("fixed");
-	}
+  if ($j(this).scrollTop() > 5) {
+    $j("header").addClass("fixed");
+  } else {
+    $j("header").removeClass("fixed");
+  }
 }
 
-$w.scroll(function() {
-	scrollMenuFixed();
+$w.scroll(function () {
+  scrollMenuFixed();
 });
+/******/ })()
+;

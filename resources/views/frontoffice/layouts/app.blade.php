@@ -8,8 +8,11 @@
         <title>{{ config('app.name', 'iGO - É só pedir') }}</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
+        <!-- Select2 CSS -->
+        <link rel="stylesheet" href="{{ asset('assets-frontoffice/libs/select2/select2.min.css') }}">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('assets-frontoffice/css/styles.css') }}">
+        
     </head>
     <body>
         <!-- Header -->
@@ -24,6 +27,8 @@
 
         <!-- jQuery -->
         <script src="{{ asset('assets-frontoffice/libs/jquery/jquery.min.js') }}" type="text/javascript"></script>
+        <!-- Select2 -->
+        <script src="{{ asset('assets-frontoffice/libs/select2/select2.min.js') }}" type="text/javascript"></script>
         <!-- Vue -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
         <!-- Axios -->

@@ -106,8 +106,8 @@
                                                 <input type="text" id="name" name="name" placeholder="Nome" @change="removeClassError('partnerCreation', 'name')" v-model="partner.name">
                                             </div>
                                         </div> 
-                                        <div class="block-field-msg">
-                                            <small id="nameHelp" class="text-danger" v-if="partnerErrors.includes('name')">{{ __('Campo obrigatório') }}</small>
+                                        <div class="block-field-msg" v-if="partnerErrors.includes('name')">
+                                            <small id="nameHelp" class="text-danger" >{{ __('Campo obrigatório') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -287,9 +287,9 @@
                                         </div>
                                     </div>
                                     <div class="block-form-group">
-                                        <div class="block-field block-field-entity-partner-category">
+                                        <div class="block-field block-field-big block-field-entity-partner-category">
                                             <div class="block-input">
-                                                <select id="category_id" name="category_id" @change="removeClassError('partnerCreation', 'category_id')" v-model="partner.category_id">
+                                                <select id="category_id" class="category_id" name="category_id" @change="removeClassError('partnerCreation', 'category_id')" v-model="partner.category_id">
                                                     <option value="" disabled selected>{{ __('Categoria') }}</option>
                                                     @foreach ($partnerCategories as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -437,7 +437,6 @@
 @endsection
 
 @section('vue-instance')
-
     <script type="text/javascript">
         new Vue({
             el: '#page-front',

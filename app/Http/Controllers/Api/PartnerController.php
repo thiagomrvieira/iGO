@@ -52,9 +52,9 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return new PartnerCollection(
-            Partner::where('active', true)->with('images')->get()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Lista de aderentes',
+                                 'data'    => new PartnerCollection( Partner::where('active', true)->with('images')->get() )], 200); 
     }
 
     /**
@@ -120,9 +120,9 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        return new PartnerCollection( 
-            Partner::where('id', $id)->with('images', 'products')->get() 
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Lista de aderentes',
+                                 'data'    => new PartnerCollection( Partner::where('id', $id)->with('images', 'products')->get() )], 200); 
     }
 
     /**
@@ -176,9 +176,12 @@ class PartnerController extends Controller
      */
     public function showProducts($id)
     {
-        return new ProductCollection( 
-            Product::where('partner_id', $id)->where('available', 1)->get()
-        );
+        // return new ProductCollection( 
+        //     Product::where('partner_id', $id)->where('available', 1)->get()
+        // );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Lista de produtos do aderente',
+                                 'data'    => new ProductCollection( Product::where('partner_id', $id)->where('available', 1)->get() )], 200); 
     }
 
     /**

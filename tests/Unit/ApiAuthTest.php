@@ -32,7 +32,9 @@ class ApiAuthTest extends TestCase
         $response->assertStatus(201);
         
         $response->assertJsonStructure([
-            'token',
+            'status',
+            'message',
+            'data',
         ]);
     }
     

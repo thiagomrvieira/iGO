@@ -14,6 +14,8 @@ class ShippingFeeCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'shipping_fees' => $this->collection,
+        ];
     }
 }

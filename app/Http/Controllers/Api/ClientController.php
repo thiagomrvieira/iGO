@@ -60,7 +60,9 @@ class ClientController extends Controller
      */
     public function getPersonalData()
     {
-        return new ClientPersonalDataResource(Auth::user()->client);
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Dados pessoais',
+                                 'data'    => new ClientPersonalDataResource(Auth::user()->client)], 200); 
     }
 
     /**
@@ -123,7 +125,7 @@ class ClientController extends Controller
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Dados atualizados',
-                                 'data'    => $this->getPersonalData()], 200); 
+                                 'data'    => new ClientPersonalDataResource(Auth::user()->client)], 200); 
         
     }
 
@@ -170,9 +172,10 @@ class ClientController extends Controller
      */
     public function getAddressData()
     {
-        return new ClientAddressCollection( 
-            Address::where('user_id', Auth::user()->id)->get()
-        );
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Dados atualizados',
+                                 'data'    => new ClientAddressCollection(Address::where('user_id', Auth::user()->id)->get())], 200); 
     }
 
     /**

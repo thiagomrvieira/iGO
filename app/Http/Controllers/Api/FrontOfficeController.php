@@ -44,9 +44,9 @@ class FrontOfficeController extends Controller
      */
     public function showContents()
     {
-        return new WebContentCollection( 
-            WebContent::all()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Web content',
+                                 'data'    => new WebContentCollection( WebContent::all() )], 200); 
     }
 
     /**

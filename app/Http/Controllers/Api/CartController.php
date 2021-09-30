@@ -53,9 +53,10 @@ class CartController extends Controller
      */
     public function index()
     {
-        return new CartProductCollection( 
-            Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->get()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Lista de produtos no carrinho',
+                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->get() )
+                                ], 200); 
     }
 
     /**

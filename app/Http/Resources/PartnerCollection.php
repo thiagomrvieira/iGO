@@ -14,6 +14,8 @@ class PartnerCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'partners' => PartnerResource::collection($this->collection),
+        ];  
     }
 }

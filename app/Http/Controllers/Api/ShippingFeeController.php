@@ -47,9 +47,9 @@ class ShippingFeeController extends Controller
      */
     public function index()
     {
-        return new ShippingFeeCollection( 
-            ShippingFee::all()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Lista de taxas de entrega',
+                                 'data'    => new ShippingFeeCollection( ShippingFee::all() )], 200); 
     }
 
 

@@ -172,9 +172,10 @@ class ClientController extends Controller
      */
     public function getAddressData()
     {
-        return new ClientAddressCollection( 
-            Address::where('user_id', Auth::user()->id)->get()
-        );
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Dados atualizados',
+                                 'data'    => new ClientAddressCollection(Address::where('user_id', Auth::user()->id)->get())], 200); 
     }
 
     /**

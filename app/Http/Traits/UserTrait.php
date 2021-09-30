@@ -76,9 +76,7 @@ trait UserTrait {
     #   Create user data - API
     public function updateUserFromApi($request) 
     { 
-        $user = User::updateOrCreate([
-            'id' => Auth::user()->id,
-        ], [
+        $user = User::where('id', Auth::user()->id)->update([
             'name'           => $request['name'], 
             'email'          => $request['email'],
             'password'       => bcrypt( $request['password'] ),

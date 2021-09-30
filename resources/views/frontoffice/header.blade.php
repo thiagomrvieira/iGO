@@ -55,8 +55,7 @@
                     </div>
                 </div>
                 <div class="column-right">
-                    <div class="block-languages">
-                        
+                    <div class="block-languages">  
                     </div>
                     <div class="block-social-media">
                         <ul>

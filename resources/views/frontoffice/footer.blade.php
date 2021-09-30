@@ -14,6 +14,11 @@
                             <rect width="255" height="36" transform="translate(260 1394)" fill="none"/>
                         </g>
                     </svg>
+                </div>        
+            </div>
+
+            <div class="block-footer-center">
+                <div class="column-left">
                     <p>Av das Descobertas, 12</p>
                     <p>Talatona, Luanda / Angola</p>
                     <p>Talatona, Luanda / Angola</p>
@@ -82,20 +87,21 @@
                         </ul>
                     </div>
                 </div>
-                <div class="block-center">
+                <div class="column-middle">
                     <ul>
-                        <li><a href="">{{ __('Sobre nós') }}</a></li>
-                        <li><a href="">{{ __('Parceiros') }}</a></li>
-                        <li><a href="">{{ __('Estafetas') }}</a></li>
-                        <li><a href="">{{ __('Contactos') }}</a></li>
-                        <li><a href="">{{ __('FAQs') }}</a></li>
-                        <li><a href="">{{ __('Termos e condições') }}</a></li>
+                        <li><a href="#">{{ __('Sobre nós') }}</a></li>
+                        <li><a href="#">{{ __('Parceiros') }}</a></li>
+                        <li><a href="#">{{ __('Estafetas') }}</a></li>
+                        <li><a href="#">{{ __('Contactos') }}</a></li>
+                        <li><a href="#">{{ __('FAQs') }}</a></li>
+                        <li><a href="#">{{ __('Termos e Condições') }}</a></li>
                     </ul>
                 </div>
-                <div class="block-right">
-                    <input type="text" >
+                <div class="column-right">
+                    <input type="text" placeholder="E-mail">
                 </div>
             </div>
+
             <div class="block-footer-bottom">
                 <div class="row-fluid">
                     <div class="column-left">
@@ -112,6 +118,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </footer>

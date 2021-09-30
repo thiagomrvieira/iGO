@@ -146,7 +146,7 @@ class PassportAuthController extends Controller
                     'user'  => auth()->user(),
                     'token' => $token,
                 ],
-            ], 201);
+            ], 200);
 
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);

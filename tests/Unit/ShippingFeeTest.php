@@ -44,16 +44,9 @@ class ShippingFeeTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'delivery_from_id',
-                    'delivery_from_name',
-                    'delivery_to_id',
-                    'delivery_to_name',
-                    'price'          
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
     }
 
@@ -73,16 +66,9 @@ class ShippingFeeTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'delivery_from_id',
-                    'delivery_from_name',
-                    'delivery_to_id',
-                    'delivery_to_name',
-                    'price'          
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
     }
 
@@ -101,36 +87,11 @@ class ShippingFeeTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'delivery_from_id',
-                    'delivery_from_name',
-                    'delivery_to_id',
-                    'delivery_to_name',
-                    'price'          
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
 
-        // $response = $this->json('get', '/api/v1/shippingfees/Belas/Luanda');
-
-        // $response->assertSuccessful();
-
-        // $response->assertStatus(200);
-        
-        // $response->assertJsonStructure([
-        //     'data' => [
-        //         '*' => [
-        //             'id',
-        //             'delivery_from_id',
-        //             'delivery_from_name',
-        //             'delivery_to_id',
-        //             'delivery_to_name',
-        //             'price'          
-        //         ]
-        //     ]
-        // ]);
     }
 
 

@@ -43,26 +43,9 @@ class PartnerTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'company_name',
-                    'responsible_name',
-                    'email',
-                    'phone_number',
-                    'mobile_phone_number',
-                    'tax_number',
-                    'category',
-                    'sub_categories',
-                    'active',
-                    'average_order_time',
-                    'premium',
-                    'account_created_at',
-                    'account_approved_at',
-                    'images',
-                    'total_products',
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
     }
 
@@ -81,26 +64,9 @@ class PartnerTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'company_name',
-                    'responsible_name',
-                    'email',
-                    'phone_number',
-                    'mobile_phone_number',
-                    'tax_number',
-                    'category',
-                    'sub_categories',
-                    'active',
-                    'average_order_time',
-                    'premium',
-                    'account_created_at',
-                    'account_approved_at',
-                    'images',
-                    'total_products',
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
     }
 

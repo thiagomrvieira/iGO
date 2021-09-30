@@ -100,9 +100,9 @@ class ShippingFeeController extends Controller
      */
     public function show($id)
     {
-        return new ShippingFeeCollection( 
-            ShippingFee::where('id', $id)->get()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Taxas de entrega',
+                                 'data'    => new ShippingFeeCollection( ShippingFee::where('id', $id)->get() )], 200); 
     }
 
 
@@ -162,9 +162,9 @@ class ShippingFeeController extends Controller
      */
     public function showByFromTo($from, $to)
     {
-        return new ShippingFeeCollection( 
-            ShippingFee::where('delivery_from', $from)->where('delivery_to', $to)->get()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Taxas de entrega',
+                                 'data'    => new ShippingFeeCollection( ShippingFee::where('delivery_from', $from)->where('delivery_to', $to)->get() )], 200); 
     }
     
 }

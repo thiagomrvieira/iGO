@@ -43,16 +43,9 @@ class CartTest extends TestCase
         $response->assertStatus(200);
         
         $response->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'product_id',
-                    'product_name',
-                    'product_price',
-                    'quantity',
-                    'amount',
-                    'created_at',
-                ]
-            ]
+            'status',
+            'message',
+            'data',
         ]);
     }
 

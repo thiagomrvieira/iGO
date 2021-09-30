@@ -73,7 +73,14 @@ class PassportAuthController extends Controller
         # Create Api token
         $token = $user->createToken('igoApiToken')->accessToken;
  
-        return response()->json(['token' => $token], 201);
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Utilizador criado!',
+            'data' => [  
+                'user'  => $user,
+                'token' => $token,
+            ],
+        ], 201);
     
     }
  
@@ -131,7 +138,16 @@ class PassportAuthController extends Controller
         if (auth()->attempt($data)) {
              
             $token = auth()->user()->createToken('igoApiToken')->accessToken;
-            return response()->json(['token' => $token], 200);
+
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Utilizador logado!',
+                'data' => [  
+                    'user'  => auth()->user(),
+                    'token' => $token,
+                ],
+            ], 201);
+
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

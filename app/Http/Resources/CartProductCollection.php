@@ -20,8 +20,9 @@ class CartProductCollection extends ResourceCollection
         }
 
         return [
-            'data'         => $this->collection,
-            'total_amount' => $totalAmount,
+            'data'           => $this->collection,
+            'total_products' => $this->collection->sum('quantity'),
+            'total_amount'   => $totalAmount,
         ];
 
         

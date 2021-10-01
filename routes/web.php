@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePa
 use App\Http\Controllers\Web\FeaturedController;
 use App\Http\Controllers\Web\ShippingFeeController;
 
+#   ROUTES FOR AUTH
 require __DIR__.'/auth.php';
 
 

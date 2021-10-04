@@ -56,7 +56,8 @@ class CartController extends Controller
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de produtos no carrinho',
-                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->get() )
+                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)
+                                                                            ->where('order_id', null)->with('CartExtras')->get() )
                                 ], 200); 
     }
 
@@ -75,7 +76,6 @@ class CartController extends Controller
      *          type="object",
      *          @OA\Property(property="product_id", type="integer", example="4"),
      *          @OA\Property(property="quantity", type="integer", example="2"),
-     *          @OA\Property(property="extras", type="string", example="[{'extra_id':1,'extra_quantity':1}]"),
      *      )
      *   ),
      *   @OA\Response(

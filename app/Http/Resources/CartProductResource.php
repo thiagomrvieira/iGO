@@ -21,12 +21,9 @@ class CartProductResource extends JsonResource
                 'price'    => $this->product->price,
                 'quantity' => $this->quantity,
             ],
-            // 'extra' => [
-            //     'id'       => 1,
-            //     'name'     => 1,
-            //     'quantity' => 1,
-            // ],
-            'extras' => $this->extras,
+           
+            // 'extras'     => $this->cartExtras,
+            'extras'   => CartProductExtraResource::collection($this->cartExtras),
             'amount'     => $this->quantity * $this->product->price,
             'created_at' => $this->created_at,
         ];   

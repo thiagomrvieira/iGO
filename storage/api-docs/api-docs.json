@@ -54,7 +54,7 @@
                                 "properties": {
                                     "product_id": {
                                         "type": "integer",
-                                        "example": "1"
+                                        "example": "4"
                                     },
                                     "quantity": {
                                         "type": "integer",

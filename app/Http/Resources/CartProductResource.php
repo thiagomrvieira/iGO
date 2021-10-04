@@ -16,13 +16,19 @@ class CartProductResource extends JsonResource
     {
         return [
             'product' => [
-                'id'    => $this->product_id,
-                'name'  => $this->product->name,
-                'price' => $this->product->price,
+                'id'       => $this->product_id,
+                'name'     => $this->product->name,
+                'price'    => $this->product->price,
+                'quantity' => $this->quantity,
             ],
-            'quantity'            => $this->quantity,
-            'amount'              => $this->quantity * $this->product->price,
-            'created_at'          => $this->created_at,
-        ];    
+            // 'extra' => [
+            //     'id'       => 1,
+            //     'name'     => 1,
+            //     'quantity' => 1,
+            // ],
+            'extras' => $this->extras,
+            'amount'     => $this->quantity * $this->product->price,
+            'created_at' => $this->created_at,
+        ];   
     }
 }

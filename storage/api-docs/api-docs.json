@@ -54,11 +54,15 @@
                                 "properties": {
                                     "product_id": {
                                         "type": "integer",
-                                        "example": "1"
+                                        "example": "4"
                                     },
                                     "quantity": {
                                         "type": "integer",
                                         "example": "2"
+                                    },
+                                    "extras": {
+                                        "type": "string",
+                                        "example": "[{'extra_id':1,'extra_quantity':2}]"
                                     }
                                 },
                                 "type": "object"

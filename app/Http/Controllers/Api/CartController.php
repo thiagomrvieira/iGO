@@ -75,7 +75,7 @@ class CartController extends Controller
      *          type="object",
      *          @OA\Property(property="product_id", type="integer", example="4"),
      *          @OA\Property(property="quantity", type="integer", example="2"),
-     *          @OA\Property(property="extras", type="string", example="[{'extra_id':1,'extra_quantity':2}]"),
+     *          @OA\Property(property="extras", type="string", example="[{'extra_id':1,'extra_quantity':1}]"),
      *      )
      *   ),
      *   @OA\Response(
@@ -112,45 +112,38 @@ class CartController extends Controller
     public function store(Request $request)
     {
 
-        // $cartProduct = Cart::updateOrCreate(
-        //     [
-        //         'client_id'  => Auth::user()->client->id,
-        //         'product_id' => $request->product_id,
-        //     ],
-        //     [
-        //         'client_id'  => Auth::user()->client->id,
-        //         'product_id' => $request->product_id,
-        //         'quantity'   => $request->quantity,
-        //     ]
-        // );
+        $cartProduct = Cart::updateOrCreate(
+            [
+                'client_id'  => Auth::user()->client->id,
+                'product_id' => $request->product_id,
+            ],
+            [
+                'client_id'  => Auth::user()->client->id,
+                'product_id' => $request->product_id,
+                'quantity'   => $request->quantity,
+            ]
+        );
 
-        // return  gettype($request->extras);
-        // return  gettype(json_decode($request->extras));
-        return  gettype(json_decode('[{"a":1,"b":2}]'));
-        // return  $request->extras;
-
-        // if ($request->extras != "[{'extra_id':,'extra_quantity':}]") {
-
-        //     foreach (json_decode($request->extras) as $extras) {
-        //     // foreach ($request->extras as $extras) {
-        //         CartExtra::updateOrCreate(
-        //             [
-        //                 'cart_id'  => $cartProduct->id,
-        //                 'extra_id' => $extras->extra_id,
-        //             ],
-        //             [
-        //                 'cart_id'  => $cartProduct->id,
-        //                 'extra_id' => $extras->extra_id,
-        //                 'quantity' => $extras->extra_quantity,
-        //             ]
-        //         );
-        //     }
-        // }
+        if (isset($request->extras)) {
+            foreach (json_decode($request->extras) as $extras) {
+                CartExtra::updateOrCreate(
+                    [
+                        'cart_id'  => $cartProduct->id,
+                        'extra_id' => $extras->extra_id,
+                    ],
+                    [
+                        'cart_id'  => $cartProduct->id,
+                        'extra_id' => $extras->extra_id,
+                        'quantity' => $extras->extra_quantity,
+                    ]
+                );
+            }
+        }
         
 
-        // return response()->json(['status'  => $status  ?? 'success',
-        //                          'message' => $message ?? 'Produto adicionado ao carrinho!',
-        //                          'data'    => new CartProductResource($cartProduct)], 200); 
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Produto adicionado ao carrinho!',
+                                 'data'    => new CartProductResource($cartProduct)], 200); 
     }
 
     /**

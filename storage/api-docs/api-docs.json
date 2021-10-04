@@ -62,7 +62,7 @@
                                     },
                                     "extras": {
                                         "type": "string",
-                                        "example": "[{'extra_id':1,'extra_quantity':2}]"
+                                        "example": "[{'extra_id':1,'extra_quantity':1}]"
                                     }
                                 },
                                 "type": "object"

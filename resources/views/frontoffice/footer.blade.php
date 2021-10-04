@@ -110,14 +110,14 @@
                 </div>
                 <div class="column-middle">
                     <ul class="ul-left">
-                        <li><a href="#">{{ __('Sobre nós') }}</a></li>
+                        <li><a href="{{ route('about') }}">{{ __('Sobre nós') }}</a></li>
                         <li><a href="#">{{ __('Parceiros') }}</a></li>
                         <li><a href="#">{{ __('Estafetas') }}</a></li>
-                        <li><a href="#">{{ __('Contactos') }}</a></li>
+                        <li><a href="{{ route('contact') }}">{{ __('Contactos') }}</a></li>
                     </ul>
                     <ul class="ul-right">
-                        <li><a href="#">{{ __('FAQs') }}</a></li>
-                        <li><a href="#">{{ __('Termos e Condições') }}</a></li>
+                        <li><a href="{{ route('faq') }}">{{ __('FAQs') }}</a></li>
+                        <li><a href="{{ route('conditions') }}">{{ __('Termos e Condições') }}</a></li>
                     </ul>
                 </div>
                 <div class="column-right">

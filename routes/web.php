@@ -15,19 +15,9 @@ use App\Http\Controllers\Web\ShippingFeeController;
 #   ROUTES FOR AUTH
 require __DIR__.'/auth.php';
 
-
-#   ROUTES FOR FRONTOFFICE
-Route::get('/',           [FrontOfficeController::class, 'showHomePage'      ])->name('home');
-Route::get('/about',      [FrontOfficeController::class, 'showAboutPage'     ])->name('about');
-Route::get('/faq',        [FrontOfficeController::class, 'showFaqPage'       ])->name('faq');
-Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage'])->name('conditions');
-Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])->name('contact');
-
-
 #   ROUTES FOR RESOURCES CREATION IN WEB
 Route::post('/deliveryman/store', [DeliveryManController::class, 'createDelManFromHome' ])->name('deliveryman.store.home');
 Route::post('/partner/store',     [PartnerController::class,     'createPartnerFromHome'])->name('partner.store.home');
-
 
 #   ROUTES FOR BACKOFICE/ADMIN
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function() {
@@ -45,7 +35,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::resource('/shippingfee', ShippingFeeController::class);
 
 });
-
 
 #   ROUTES FOR BACKOFICE/PARTNER
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
@@ -67,8 +56,6 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
     // Route::get('/productdata',  [BackofficeProductController::class, 'createProductData'])->name('partner.createProduct.data');
     // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 
-
-
 });
 
 #   ROUTES FOR BACKOFICE/DELIVERYMAN
@@ -78,3 +65,10 @@ Route::group(['prefix' => 'deliveryman', 'middleware' => ['auth','deliveryman']]
         return 'DELIVERYMAN';
     });
 });
+
+#   ROUTES FOR FRONTOFFICE
+Route::get('/',           [FrontOfficeController::class, 'showHomePage'      ])->name('home');
+Route::get('/about',      [FrontOfficeController::class, 'showAboutPage'     ])->name('about');
+Route::get('/faq',        [FrontOfficeController::class, 'showFaqPage'       ])->name('faq');
+Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage'])->name('conditions');
+Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])->name('contact');

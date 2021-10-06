@@ -12,12 +12,11 @@
                         </div>
                         <div class="faqs">
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Dúvidas frequentes</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -26,7 +25,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -35,16 +34,14 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Pedidos</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                     <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -53,7 +50,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -65,12 +62,11 @@
                                 </div>
                             </div>
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Entregas</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                     <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -79,7 +75,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -91,12 +87,11 @@
                                 </div>
                             </div>
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Pagamentos</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                     <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -105,7 +100,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -117,12 +112,11 @@
                                 </div>
                             </div>
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Cancelamentos</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                     <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -131,7 +125,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -143,12 +137,11 @@
                                 </div>
                             </div>
                             <div class="faq-item">
-                                <button class="faq-button" aria-expanded="false">
+                                <button class="faq-button">
                                     <h3>Reclamações</h3>
-                                    <span class="icon" aria-hidden="true"></span>
                                 </button>
                                 <div class="faq-content">
-                                     <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 1</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -157,7 +150,7 @@
                                             Ut tortor pretium viverra suspendisse potenti.
                                         </p>
                                     </div>
-                                    <div class="faq-content-item">
+                                    <div class="faq-answer">
                                         <h4>Dúvida 2</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

@@ -680,10 +680,6 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 
 /* About us page */
 
-/* .block-about-us {
-  position: relative;
-} */
-
 .block-about-us .img-full {
   display: flex;
   width: 100%;
@@ -860,106 +856,56 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   margin: 0 auto;
 }
 
-.block-faq .faq-item {
-  border-bottom: 1px solid #FFE414;
+.block-faq .faqs {
+  margin: 36px 0 106px 0;
 }
 
-.block-faq .faq-item button[aria-expanded='true'] {
-  border-bottom: 1px solid #FFE414;
+.block-faq .faq-block-title{
+  margin-left: 24px; 
 }
 
 .block-faq .faq-button{
-  position: relative;
-  display: block;
-  text-align: left;
-  width: 100%;
-  padding: 17px 24px;
-  color: #072A40;
-  font-family: 'Krona One', sans-serif;
-  font-size: 14px;
-  line-height: 12px;
-  font-weight: 400;
-  font-style: normal;
-  color: #072A40;
-  border: none;
+ width: 100%;
   background-color: #FFFDEA;
+  border: none;
   outline: none;
-}
-
-.block-faq button:hover,
-.block-faq button:focus {
+  text-align: left;
+  padding: 17px 24px;
   cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+
+/* .block-faq .faq-button:after {
+  content: url("assets-frontoffice/images/seta_drop.png");
+  float: right;
+} */
+
+.block-faq button:hover, .block-faq button.is-open{
   color: #FFE414;
 }
 
-.block-faq button:hover::after,
-.block-faq button:focus::after {
-  cursor: pointer;
-  color: #FFE414;
-  border: 1px solid #FFE414;
-}
-
-.block-faq button .icon {
-  display: inline-block;
-  position: absolute;
-  top: 18px;
-  right: 0;
-  width: 22px;
-  height: 22px;
-  border: 1px solid;
-  border-radius: 22px;
-}
-
-.block-faq button .icon::before {
-  display: block;
-  position: absolute;
-  content: '';
-  top: 9px;
-  left: 5px;
-  width: 10px;
-  height: 2px;
-  background: currentColor;
-}
-.block-faq button .icon::after {
-  display: block;
-  position: absolute;
-  content: '';
-  top: 5px;
-  left: 9px;
-  width: 2px;
-  height: 10px;
-  background: currentColor;
-}
-
-.block-faq button[aria-expanded='true'] {
-  color: #FFE414;
-}
-.block-faq button[aria-expanded='true'] .icon::after {
-  width: 0;
-}
-.block-faq button[aria-expanded='true'] + .faq-content {
-  opacity: 1;
-  max-height: 9em;
-  transition: all 200ms linear;
-  will-change: opacity, max-height;
-}
 .block-faq .faq-content {
-  opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 200ms linear, max-height 200ms linear;
-  will-change: opacity, max-height;
+  transition: max-height 0.2s ease-in-out;
 }
-.block-faq .faq-content p {
-  font-size: 1rem;
-  font-weight: 300;
-  margin: 2em 0;
-  font-family: 'Krona One', sans-serif;
-  font-size: 14px;
-  line-height: 12px;
-  font-weight: 400;
+
+.block-faq .faq-content .faq-answer{
+  padding: 32px 24px;
+}
+
+.block-faq .faq-content .faq-answer:not(:last-child){
+  border-bottom: 0.5px solid #FFE414;
+}
+
+.block-faq .faq-content .faq-answer h4{
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
   font-style: normal;
   color: #072A40;
+  margin-bottom: 24px;
 }
 
 /* Footer */

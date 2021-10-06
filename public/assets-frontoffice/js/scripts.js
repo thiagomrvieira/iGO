@@ -8,36 +8,7 @@ var $j = jQuery.noConflict(),
 $j(document).ready(function ($) {
   scrollMenuFixed(); // select2
 
-  $j('.category_id').select2(); // Block Faq
-
-  var items = document.querySelectorAll('.faqs button');
-
-  function toggleAccordion() {
-    var itemToggle = this.getAttribute('aria-expanded');
-
-    for (i = 0; i < items.length; i++) {
-      items[i].setAttribute('aria-expanded', 'false');
-    }
-
-    if (itemToggle == 'false') {
-      this.setAttribute('aria-expanded', 'true');
-    }
-  }
-
-  items.forEach(function (item) {
-    return item.addEventListener('click', toggleAccordion);
-  });
-  console.log(items); //   for (i = 0; i < items.length; i++) {
-  // 	items[i].addEventListener("click", function() {
-  // 	  this.classList.toggle("active");
-  // 	  var faqContent = this.nextElementSibling;
-  // 	  if (faqContent.style.maxHeight) {
-  // 		faqContent.style.maxHeight = null;
-  // 	  } else {
-  // 		faqContent.style.maxHeight = faqContent.scrollHeight + "px";
-  // 	  } 
-  // 	});
-  //   }
+  $j('.category_id').select2();
 });
 
 function scrollMenuFixed() {
@@ -50,6 +21,25 @@ function scrollMenuFixed() {
 
 $w.scroll(function () {
   scrollMenuFixed();
-});
+}); // Block Faq
+
+var faq = $j('.faq-button');
+console.log(faq);
+
+for (var i = 0; i < faq.length; i++) {
+  faq[i].onclick = function () {
+    this.classList.toggle('is-open');
+    var content = this.nextElementSibling;
+    console.log(content);
+
+    if (content.style.maxHeight) {
+      // accordion is currently open, so close it
+      content.style.maxHeight = null;
+    } else {
+      // accordion is currently closed, so open it
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+  };
+}
 /******/ })()
 ;

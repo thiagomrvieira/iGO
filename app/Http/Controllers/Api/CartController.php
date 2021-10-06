@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CartProductCollection;
 use App\Http\Resources\CartProductResource;
 use App\Models\Cart;
+use App\Models\CartExtra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +56,8 @@ class CartController extends Controller
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de produtos no carrinho',
-                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->get() )
+                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)
+                                                                            ->where('order_id', null)->with('CartExtras')->get() )
                                 ], 200); 
     }
 
@@ -72,7 +74,7 @@ class CartController extends Controller
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="product_id", type="integer", example="1"),
+     *          @OA\Property(property="product_id", type="integer", example="4"),
      *          @OA\Property(property="quantity", type="integer", example="2"),
      *      )
      *   ),
@@ -110,7 +112,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
 
-        $cartItem = Cart::updateOrCreate(
+        $cartProduct = Cart::updateOrCreate(
             [
                 'client_id'  => Auth::user()->client->id,
                 'product_id' => $request->product_id,
@@ -122,9 +124,26 @@ class CartController extends Controller
             ]
         );
 
+        if (isset($request->extras)) {
+            foreach (json_decode($request->extras) as $extras) {
+                CartExtra::updateOrCreate(
+                    [
+                        'cart_id'  => $cartProduct->id,
+                        'extra_id' => $extras->extra_id,
+                    ],
+                    [
+                        'cart_id'  => $cartProduct->id,
+                        'extra_id' => $extras->extra_id,
+                        'quantity' => $extras->extra_quantity,
+                    ]
+                );
+            }
+        }
+        
+
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho!',
-                                 'data'    => new CartProductResource($cartItem)], 200); 
+                                 'data'    => new CartProductResource($cartProduct)], 200); 
     }
 
     /**

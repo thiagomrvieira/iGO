@@ -19,7 +19,7 @@
         <div class="block-home-top">
             <div class="block-about-us">
                 <div class="img-full">
-                    <img src="{{ asset('assets-frontoffice/images/about-us.jpg') }}" alt="About us">
+                    <img src="{{ asset('assets-frontoffice/images/about-us.png') }}" alt="About us">
                 </div>
                 <div class="main-fluid">
                     <div class="limit-wrapper">

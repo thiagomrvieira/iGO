@@ -940,6 +940,12 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   font-size: 1rem;
   font-weight: 300;
   margin: 2em 0;
+  font-family: 'Krona One', sans-serif;
+  font-size: 14px;
+  line-height: 12px;
+  font-weight: 400;
+  font-style: normal;
+  color: #072A40;
 }
 
 /* Footer */

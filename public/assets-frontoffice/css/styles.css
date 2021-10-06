@@ -675,10 +675,15 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 
 /* About us page */
 
+/* .block-about-us {
+  position: relative;
+} */
+
 .block-about-us .img-full {
   display: flex;
   width: 100%;
   height: 400px;
+  position: relative;
 }
 
 .block-about-us .img-full img {
@@ -686,8 +691,13 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+
+}
+
+.block-about-us .img-full h2 {
+  position: absolute;
+  top: 188px;
+  left: 260px;
 }
 
 .block-about-us .main-fluid .limit-wrapper {

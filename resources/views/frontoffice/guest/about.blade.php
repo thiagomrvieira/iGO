@@ -19,6 +19,7 @@
         <div class="block-home-top">
             <div class="block-about-us">
                 <div class="img-full">
+                    <h2>Um mundo à sua porta... </h2>
                     <img src="{{ asset('assets-frontoffice/images/about-us.png') }}" alt="About us">
                 </div>
                 <div class="main-fluid">
@@ -33,7 +34,7 @@
                                 rápida e eficiente anytime, anywhere; Conectando usuários, empresas e transportadores de
                                 acordo as suas necessidades.</p>
                             <p>Visão iGo : A nossa visão consiste em facilitar o acesso e intercâmbio de produtos a todos os
-                                nossos clientes sem esforço e de forma sustentável./p>
+                                nossos clientes sem esforço e de forma sustentável.</p>
                         </div>
                         <div class="how-to-use">
                             <div class="about-block-title">

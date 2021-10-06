@@ -23,9 +23,10 @@
         </div>
         
         <!-- Footer -->
-        @if (!Request::is('login'))
-            @include('frontoffice.footer')
+        @if ( !Request::is('login')) 
+            @include('frontoffice.footer')      
         @endif
+        
 
         <!-- jQuery -->
         <script src="{{ asset('assets-frontoffice/libs/jquery/jquery.min.js') }}" type="text/javascript"></script>

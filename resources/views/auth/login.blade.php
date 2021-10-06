@@ -80,9 +80,9 @@
 
                             </div>
                             <div class="password-recover">
-                                <p>Esqueceu-se da password? <span><a href="#">Recuperar</a></span> </p>
+                                <p>Esqueceu-se da password? <span><a href="{{ route('password.request') }}">Recuperar</a></span> </p>
                             </div>
-                            <a class="register" href="#">Registar</a>
+                            {{-- <a class="register" href="#">Registar</a> --}}
                             <button type="submit" class="button button-primary">Entrar</button>
                         </form>
                     </div>

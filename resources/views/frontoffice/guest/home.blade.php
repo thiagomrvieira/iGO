@@ -319,8 +319,8 @@
                             <div class="block-form-title"><h2>{{ __('Quer dizer “iGO”?') }}</h2></div>
                             <div class="block-form-lead"><span>{{ __('Junte-se à nossa equipa de estafetas.') }}</span></div>
                             <form method="POST" id="deliverymanCreation" class="form-default-wrapper" enctype="multipart/form-data">
-                                <div class="block-form-group">
-                                    <div class="block-field block-field-entity-deliveryman-name">
+                                <div class="block-form-group" v-if="deliverymanErrors.includes('name')">
+                                    <div class="block-field block-field-entity-deliveryman-name" >
                                         <div class="block-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                 <g transform="translate(138 -724.44)">
@@ -501,6 +501,7 @@
                     this.partnerErrors = [];
 
                     Object.entries(this.resource).forEach(([key, value]) => {
+                        console.log(key);
                         if (!this.resource[key]) { 
                             jQuery(`#${form} #${key}`).addClass("is-invalid");
                             (form == 'deliverymanCreation') ? this.deliverymanErrors.push(key) : this.partnerErrors.push(key);

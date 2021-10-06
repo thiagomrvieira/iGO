@@ -24,15 +24,16 @@
                 <div class="main-fluid">
                     <div class="limit-wrapper">
                         <div class="about-us-text-top">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                                centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            <p>A iGo é uma empressa jovem e dinâmica, baseada em Angola, com objetivo de melhorar o acesso
+                                de produtos e serviços aos nossos usuários, de forma a melhorar a funcionalidade do nosso
+                                cotidiano. Apelamos pela tecnologia e inovação dos nossos serviços bem como o favorecimento
+                                do desenvolvimento económico, social e ambiental da nossa sociedade.
                             </p>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                                classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                                classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                            <p>Missão IGo: A nossa missão é garantir aos nossos clientes acesso aos seus pedidos de forma
+                                rápida e eficiente anytime, anywhere; Conectando usuários, empresas e transportadores de
+                                acordo as suas necessidades.</p>
+                            <p>Visão iGo : A nossa visão consiste em facilitar o acesso e intercâmbio de produtos a todos os
+                                nossos clientes sem esforço e de forma sustentável./p>
                         </div>
                         <div class="how-to-use">
                             <div class="about-block-title">

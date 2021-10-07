@@ -1,5 +1,8 @@
 @extends('frontoffice.layouts.app')
 @section('content')
+    @php
+        App::setLocale('pt');
+    @endphp
     <div id="page-front">
         <div class="block-home-top">
             <div class="block-faq">
@@ -288,37 +291,4 @@
             </div>
         </div>
     </div>
-
-
-    @php
-    App::setLocale('en');
-@endphp
-
-    {{-- <div class="container">
-        <div class="panel-group" id="faq">
-            @php
-                $count = 0;
-            @endphp
-            @foreach ($content as $faq)
-                @php
-                    $count++;
-                @endphp
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#faq" href="{{'#collapse'.$count}}">{{ $faq->title ?? null }}</a>
-                        </h4>
-                    </div>
-                    <div id="{{'collapse'.$count}}" class="panel-collapse collapse {{$count == 1 ? 'in' : ''}}">
-                        <div class="panel-body">
-                            {!! $faq->content ?? null !!}
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div> 
-    </div> --}}
-
-
-
 @endsection

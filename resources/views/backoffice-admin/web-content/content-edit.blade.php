@@ -3,7 +3,7 @@
 @section('content-header')
     <div class="container-fluid">
         {{-- Breadcrumbs --}}
-        <div class="row mb-2">
+        <div class="mb-2 row">
             <div class="col-sm-6">
                 <h1 class="m-0">{{ __('backoffice/webContent.contentEditor')  }}</h1>
             </div>
@@ -33,10 +33,10 @@
                 
                 <div class="card card-outline card-info">
                     <div class="card-header">
-                        <h3 class="card-title float-left">
+                        <h3 class="float-left card-title">
                             {{ $content->title ?? null}}
                         </h3>
-                        <ul class="nav nav-pills float-right">
+                        <ul class="float-right nav nav-pills">
                             <li class="nav-item btn-xs"><a class="nav-link active" href="#portuguese"  data-toggle="tab"> PT </a> </li>
                             <li class="nav-item btn-xs"><a class="nav-link"        href="#english" data-toggle="tab"> EN </a> </li>
                         </ul>
@@ -76,7 +76,7 @@
                                                                 ['class' => 'form-control summernote', 'placeholder' =>  __('backoffice/webContent.areaTitle') ]) !!}
                                         </div>
                                     </div>
-                            
+                                    
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <div class="form-check">

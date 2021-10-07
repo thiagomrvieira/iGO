@@ -2,9 +2,9 @@
 
 @section('content')
 
-    {{-- @php
-    App::setLocale('en');
-@endphp --}}
+    @php
+        App::setLocale('en');
+    @endphp
 
     {{-- @isset($about)
         <strong>
@@ -17,7 +17,8 @@
 
     <div id="page-front">
         <div class="block-home-top">
-            <div class="block-about-us">
+            {!! $about->content ?? null !!}
+            {{-- <div class="block-about-us">
                 <div class="img-full">
                     <h2>Um mundo à sua porta... </h2>
                     <img src="{{ asset('assets-frontoffice/images/about-us.png') }}" alt="About us">
@@ -76,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

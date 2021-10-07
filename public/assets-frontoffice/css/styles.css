@@ -250,6 +250,10 @@ a:hover {
   height: calc(100vh - 200px);
 }
 
+.block-login .login .login-form button {
+  margin-top: 55px;
+}
+
 .block-login .login .block-form-group {
   display: flex;
   flex-direction: column;
@@ -687,7 +691,6 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-
 }
 
 .block-about-us .img-full h2 {
@@ -726,7 +729,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   line-height: 36px;
   font-weight: 400;
   font-style: normal;
-  color: #072A40;
+  color: #072a40;
   text-align: center;
   margin: 72px 0 52px 0;
 }
@@ -737,19 +740,30 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   align-items: center;
 }
 
-
-.block-about-us .main-fluid .limit-wrapper .how-to-use .about-icons .column-3 .block-about-icon {
+.block-about-us
+  .main-fluid
+  .limit-wrapper
+  .how-to-use
+  .about-icons
+  .column-3
+  .block-about-icon {
   width: 160px;
   margin-bottom: 36px;
 }
 
-.block-about-us .main-fluid .limit-wrapper .how-to-use .about-icons .column-3 .block-about-lead {
+.block-about-us
+  .main-fluid
+  .limit-wrapper
+  .how-to-use
+  .about-icons
+  .column-3
+  .block-about-lead {
   font-family: 'Krona One', sans-serif;
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
   font-style: normal;
-  color: #072A40;
+  color: #072a40;
   text-align: center;
   width: 160px;
 }
@@ -768,13 +782,17 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   line-height: 36px;
   font-weight: 400;
   font-style: normal;
-  color: #072A40;
+  color: #072a40;
   text-align: left;
   margin: 0 0 50px 15px;
-} 
+}
 
-.block-contact .main-fluid .limit-wrapper .contacts .department:not(:last-child) {
-  border-bottom: 1px solid #FFE414;
+.block-contact
+  .main-fluid
+  .limit-wrapper
+  .contacts
+  .department:not(:last-child) {
+  border-bottom: 1px solid #ffe414;
   padding-left: 15px;
   margin-bottom: 36px;
 }
@@ -788,26 +806,26 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   text-align: left;
   margin-bottom: 33px;
 }
-.block-contact .main-fluid .limit-wrapper .contacts .department svg{
+.block-contact .main-fluid .limit-wrapper .contacts .department svg {
   margin-right: 17px;
 }
 
-.block-contact .main-fluid .limit-wrapper .contacts .department ul { 
+.block-contact .main-fluid .limit-wrapper .contacts .department ul {
   list-style-type: none;
 }
 
-.block-contact .main-fluid .limit-wrapper .contacts .department li { 
+.block-contact .main-fluid .limit-wrapper .contacts .department li {
   display: flex;
   margin-bottom: 33px;
 }
 
-.block-contact .main-fluid .limit-wrapper .contacts .department p { 
+.block-contact .main-fluid .limit-wrapper .contacts .department p {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 12px;
   font-weight: 400;
   font-style: normal;
-  color: #072A40;
+  color: #072a40;
 }
 
 /* Conditions */
@@ -821,7 +839,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 .block-conditions .main-fluid .limit-wrapper .condition-block-title {
   text-align: left;
   margin: 0 0 50px 15px;
-} 
+}
 
 .block-conditions .main-fluid .limit-wrapper .conditions .condition h3 {
   text-align: left;
@@ -833,8 +851,12 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   margin-bottom: 33px;
 }
 
-.block-conditions .main-fluid .limit-wrapper .conditions .condition:not(:last-child) {
-  border-bottom: 1px solid #FFE414;
+.block-conditions
+  .main-fluid
+  .limit-wrapper
+  .conditions
+  .condition:not(:last-child) {
+  border-bottom: 1px solid #ffe414;
   padding-left: 15px;
   margin-bottom: 36px;
 }
@@ -856,19 +878,29 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   margin: 36px 0 106px 0;
 }
 
-.block-faq .faq-block-title{
-  margin-left: 24px; 
+.block-faq .faq-block-title {
+  margin-left: 24px;
 }
 
-.block-faq .faq-button{
- width: 100%;
-  background-color: #FFFDEA;
+.block-faq .faq-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #fffdea;
   border: none;
   outline: none;
   text-align: left;
-  padding: 17px 24px;
+  padding: 4px 15px 4px 25px;
   cursor: pointer;
   transition: background-color 0.2s linear;
+  border-bottom: 0.5px solid #ffe414;
+}
+.block-faq .faq-button svg {
+	transition: all .3s ease-in-out;
+}
+.block-faq .faq-button.is-open svg {
+	transform: rotate(180deg);
 }
 
 /* .block-faq .faq-button:after {
@@ -876,8 +908,9 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   float: right;
 } */
 
-.block-faq button:hover, .block-faq button.is-open{
-  color: #FFE414;
+.block-faq button:hover,
+.block-faq button.is-open {
+  color: #ffe414;
 }
 
 .block-faq .faq-content {
@@ -886,21 +919,21 @@ header.fixed .row-fluid .column-left .block-logo a svg {
   transition: max-height 0.2s ease-in-out;
 }
 
-.block-faq .faq-content .faq-answer{
+.block-faq .faq-content .faq-answer {
   padding: 32px 24px;
 }
 
-.block-faq .faq-content .faq-answer:not(:last-child){
-  border-bottom: 0.5px solid #FFE414;
+.block-faq .faq-content .faq-answer:not(:last-child) {
+  border-bottom: 0.5px solid #ffe414;
 }
 
-.block-faq .faq-content .faq-answer h4{
+.block-faq .faq-content .faq-answer h4 {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 22px;
   font-weight: 600;
   font-style: normal;
-  color: #072A40;
+  color: #072a40;
   margin-bottom: 24px;
 }
 

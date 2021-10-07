@@ -76,6 +76,6 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middlew
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 
-Route::get('/forgot-password-login', [PasswordResetLinkController::class, 'create'])->middleware('guest')->name('password.request');
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->middleware('guest')->name('password.request');
 
 Route::post('/forgot-password-login', [PasswordResetLinkController::class, 'store'])->middleware('guest')->name('password.email');

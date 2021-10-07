@@ -70,23 +70,12 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 */
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->middleware('guest')
-    ->name('login');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
 
-Route::post('/login', [
-    AuthenticatedSessionController::class,
-    'store',
-])->middleware('guest');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
 
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 
-Route::get('/forgot-password-login', [PasswordResetLinkController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.request');
+Route::get('/forgot-password-login', [PasswordResetLinkController::class, 'create'])->middleware('guest')->name('password.request');
 
-Route::post('/forgot-password-login', [PasswordResetLinkController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.email');
+Route::post('/forgot-password-login', [PasswordResetLinkController::class, 'store'])->middleware('guest')->name('password.email');

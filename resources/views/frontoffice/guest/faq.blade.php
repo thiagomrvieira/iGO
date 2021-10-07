@@ -1,7 +1,7 @@
 @extends('frontoffice.layouts.app')
 @section('content')
     @php
-        App::setLocale('pt');
+        App::setLocale('en');
     @endphp
     <div id="page-front">
         <div class="block-home-top">

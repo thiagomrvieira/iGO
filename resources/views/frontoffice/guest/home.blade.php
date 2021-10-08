@@ -11,8 +11,8 @@
                             <div class="block-image"><img src="{{ asset('assets-frontoffice/images/telephone-app-igo.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/></div>
                         </div>
                         <div class="column-right">
-                            <div class="block-title"><h1>{{ __('É só pedir!') }}</h1></div>
-                            <div class="block-subtitle"><h2>{{ __('O melhor serviço de entregas de Angola já chegou.') }}</h2></div>
+                            <div class="block-title"><h1>{{ __('homepage.header-title') }}</h1></div>
+                            <div class="block-subtitle"><h2>{{ __('homepage.header-sub-title') }}</h2></div>
                             <div class="block-apps">
                                 <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/google-play-store.png') }}" alt="{{ __('Google Play') }}" title="{{ __('Google Play') }}"/></a>
                                 <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/apple-store.png') }}" alt="{{ __('Apple Store') }}" title="{{ __('Apple Store') }}"/></a>
@@ -319,7 +319,7 @@
                             <div class="block-form-title"><h2>{{ __('Quer dizer “iGO”?') }}</h2></div>
                             <div class="block-form-lead"><span>{{ __('Junte-se à nossa equipa de estafetas.') }}</span></div>
                             <form method="POST" id="deliverymanCreation" class="form-default-wrapper" enctype="multipart/form-data">
-                                <div class="block-form-group" v-if="deliverymanErrors.includes('name')">
+                                <div class="block-form-group">
                                     <div class="block-field block-field-entity-deliveryman-name" >
                                         <div class="block-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -501,9 +501,8 @@
                     this.partnerErrors = [];
 
                     Object.entries(this.resource).forEach(([key, value]) => {
-                        console.log(key);
                         if (!this.resource[key]) { 
-                            jQuery(`#${form} #${key}`).addClass("is-invalid");
+                            jQuery(`#${form} #${key}`).parents('.block-field').addClass("is-invalid");
                             (form == 'deliverymanCreation') ? this.deliverymanErrors.push(key) : this.partnerErrors.push(key);
                         }
                     });

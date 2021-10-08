@@ -1,7 +1,5 @@
 @extends('frontoffice.layouts.auth')
 @section('content')
-    {{-- <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
     <div id="page-front">
         <div class="block-home-top">
             <div class="block-login">
@@ -32,7 +30,7 @@
                                     <div class="block-input ">
                                         <input id="email" type="email"
                                             class="form-control" name="email"
-                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail" autofocus>
                                     </div>
                                 </div>
                                 @error('email')
@@ -69,9 +67,7 @@
                                         </svg>
                                     </div>
                                     <div class="block-input">
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder=" {{ __('Password') }} " autocomplete="current-password">
                                     </div>
                                 </div>
                                 @error('password')

@@ -4,7 +4,7 @@
             <div class="row-fluid">
                 <div class="column-left">
                     <div class="block-logo">
-                        <a href="{{ route('home') }}" title="{{ __('iGO') }}">
+                        <a href="{{ route('home', app()->getLocale()) }}" title="{{ __('iGO') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="80" viewBox="0 0 72.035 81">
                                 <g transform="translate(-396.673 -134.859)">
                                     <g transform="translate(396.673 134.859)">
@@ -43,19 +43,34 @@
                     <div class="block-main-menu">
                         <ul>
                             <li>
-                                <a href="{{ route('home') }}" title="{{ __('Home') }}" class="{!! Request::is('/') ? 'active' : '' !!}">{{ __('Home') }}</a>
+                                <a href="{{ route('home', app()->getLocale()) }}" title="{{ __('Home') }}" class="{!! Request::is('/') ? 'active' : '' !!}">{{ __('Home') }}</a>
                             </li>
                             <li>
-                                <a href="{{ route('about') }}" title="{{ __('Sobre Nós') }}" class="{!! Request::is('/about') ? 'active' : '' !!}">{{ __('Sobre Nós') }}</a>
+                                <a href="{{ route('about', app()->getLocale() ) }}" title="{{ __('Sobre Nós') }}" class="{!! Request::is('/about') ? 'active' : '' !!}">{{ __('Sobre Nós') }}</a>
                             </li>
                             <li>
-                                <a href="{{ route('login') }}" title="{{ __('Login Aderentes') }}" class="{!! Request::is('/login') ? 'active' : '' !!}">{{ __('Login Aderentes') }}</a>
+                                <a href="{{ route('login', app()->getLocale()) }}" title="{{ __('Login Aderentes') }}" class="{!! Request::is('/login') ? 'active' : '' !!}">{{ __('Login Aderentes') }}</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="column-right">
                     <div class="block-languages">  
+
+                        {{-- <li class="nav-item btn-xs"><a class="nav-link active" href="#portuguese"  data-toggle="tab"> PT </a> </li>
+                        <li class="nav-item btn-xs"><a class="nav-link"        href="#english" data-toggle="tab"> EN </a> </li> --}}
+                        
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Config::get('languages')[App::getLocale()] }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
+                                    @endif
+                                @endforeach
+                                </div>
+                          
                     </div>
                     <div class="block-social-media">
                         <ul>

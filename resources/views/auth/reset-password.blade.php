@@ -1,56 +1,5 @@
-{{-- <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
-
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block w-full mt-1" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block w-full mt-1"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout> --}}
-
 @extends('frontoffice.layouts.auth')
 @section('content')
-    {{-- <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
     <div id="page-front">
         <div class="block-home-top">
             <div class="block-login">
@@ -80,8 +29,7 @@
                                         </svg>
                                     </div>
                                     <div class="block-input ">
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            value="{{ old('email', $request->email) }}" required autofocus>
+                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $request->email) }}" required autofocus>
                                     </div>
                                 </div>
                                 @error('email')
@@ -118,9 +66,7 @@
                                         </svg>
                                     </div>
                                     <div class="block-input">
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="{{ __('Password') }}">
                                     </div>
                                 </div>
                                 @error('password')
@@ -158,9 +104,7 @@
                                         </svg>
                                     </div>
                                     <div class="block-input">
-                                        <input id="password_confirmation" type="password"
-                                            class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"
-                                            required>
+                                        <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('Confirmar Password') }}" required>
                                     </div>
                                 </div>
                                 @error('password')

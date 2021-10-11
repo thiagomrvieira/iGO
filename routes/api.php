@@ -65,6 +65,10 @@ Route::group(['prefix' => 'v1'], function()
         #   Show partner products
         Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);
         
+        #   Show Main and Sub categories
+        Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
+        Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
+        
 
     });
 });

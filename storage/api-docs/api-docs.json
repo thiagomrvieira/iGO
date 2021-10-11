@@ -501,6 +501,122 @@
                 ]
             }
         },
+        "/api/v1/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Partner Categories"
+                ],
+                "summary": "Get partner category information",
+                "description": "Return data of the specified partners category",
+                "operationId": "getPartnerCategoryData",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner Category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/maincategories": {
+            "get": {
+                "tags": [
+                    "Partner Categories"
+                ],
+                "summary": "Get the list of main categories",
+                "description": "Return a list of all active main partner categories",
+                "operationId": "getListOfMainCategories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/subcategories": {
+            "get": {
+                "tags": [
+                    "Partner Categories"
+                ],
+                "summary": "Get the list of sub categories",
+                "description": "Return a list of all active sub partner categories",
+                "operationId": "getListOfSubCategories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/partners": {
             "get": {
                 "tags": [

@@ -15,9 +15,10 @@ class PartnerCategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                  => $this->id,
-            'name'                => $this->name,
-            'parent_category'     => $this->parent->name,
+            'id'              => $this->id,
+            'name'            => $this->name,
+            'image'           => $this->image        ?? 'storage/assets-mobile/default_32.svg',
+            'parent_category' => $this->parent->name ?? null,
         ]; 
     }
 }

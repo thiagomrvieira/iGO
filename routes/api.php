@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PartnerCategoryController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ShippingFeeController;
@@ -41,6 +42,7 @@ Route::group(['prefix' => 'v1'], function()
             'shippingfees' => ShippingFeeController::class,
             'cart'         => CartController::class,
             'orders'       => OrderController::class,
+            'categories'   => PartnerCategoryController::class,
         ]);
 
         

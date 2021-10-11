@@ -25,10 +25,20 @@ class PartnerCategorySeeder extends Seeder
         ]);
         #   Subcategorias de restaurantes
         $data = array(
-            array('name'=>'Oriental',   'parent_id'=> $restaurante->id, 'slug' => 'oriental',   'image' => 'storage/assets-mobile/cat_sushi.svg',      'active' => true),
-            array('name'=>'Brasileira', 'parent_id'=> $restaurante->id, 'slug' => 'brasileira', 'image' => 'storage/assets-mobile/cat_brasileira.svg', 'active' => true),
-            array('name'=>'Portuguesa', 'parent_id'=> $restaurante->id, 'slug' => 'portuguesa', 'image' => 'storage/assets-mobile/cat_portuguesa.svg', 'active' => true),
-            array('name'=>'Árabe',      'parent_id'=> $restaurante->id, 'slug' => 'arabe',      'image' => 'storage/assets-mobile/cat_arabe.svg',      'active' => true),
+            array('name'=>'Árabe',                'parent_id'=> $restaurante->id, 'slug' => 'arabe',                'image' => 'storage/assets-mobile/cat_arabe.svg',         'active' => true),
+            array('name'=>'Brasileira',           'parent_id'=> $restaurante->id, 'slug' => 'brasileira',           'image' => 'storage/assets-mobile/cat_brasileira.svg',    'active' => true),
+            array('name'=>'Da banda',             'parent_id'=> $restaurante->id, 'slug' => 'da_banda',             'image' => 'storage/assets-mobile/cat_da_banda.svg',      'active' => true),
+            array('name'=>'Gelados',              'parent_id'=> $restaurante->id, 'slug' => 'gelados',              'image' => 'storage/assets-mobile/cat_gelados.svg',       'active' => true),
+            array('name'=>'Hambúrgueres',         'parent_id'=> $restaurante->id, 'slug' => 'harmburgueres',        'image' => 'storage/assets-mobile/cat_hamburguer.svg',    'active' => true),
+            array('name'=>'Massas & Pizzas',      'parent_id'=> $restaurante->id, 'slug' => 'massas_e_pizzas',      'image' => 'storage/assets-mobile/cat_massas_pizzas.svg', 'active' => true),
+            array('name'=>'Petiscos & Lanches',   'parent_id'=> $restaurante->id, 'slug' => 'petiscos_e_lanches',   'image' => 'storage/assets-mobile/cat_petiscos.svg',      'active' => true),
+            array('name'=>'Matabixos & Brunch',   'parent_id'=> $restaurante->id, 'slug' => 'matabixos_e_brunch',   'image' => 'storage/assets-mobile/cat_matabixos.svg',     'active' => true),
+            array('name'=>'Portuguesa',           'parent_id'=> $restaurante->id, 'slug' => 'portuguesa',           'image' => 'storage/assets-mobile/cat_portuguesa.svg',    'active' => true),
+            array('name'=>'Resto do mundo',       'parent_id'=> $restaurante->id, 'slug' => 'resto_do_mundo',       'image' => 'storage/assets-mobile/cat_mundo.svg',         'active' => true),
+            array('name'=>'Sobremesas & Doces',   'parent_id'=> $restaurante->id, 'slug' => 'sobremesas_e_doces',   'image' => 'storage/assets-mobile/cat_sobremesa.svg',     'active' => true),
+            array('name'=>'Sumos & Batidos',      'parent_id'=> $restaurante->id, 'slug' => 'sumos_e_batidos',      'image' => 'storage/assets-mobile/cat_sumos_batidos.svg', 'active' => true),
+            array('name'=>'Oriental',             'parent_id'=> $restaurante->id, 'slug' => 'oriental',             'image' => 'storage/assets-mobile/cat_sushi.svg',         'active' => true),
+            array('name'=>'Vegetariana & Vegana', 'parent_id'=> $restaurante->id, 'slug' => 'vegetariana_e_vegana', 'image' => 'storage/assets-mobile/cat_vegetariana.svg',   'active' => true),
         );
         #   Cria Subcategorias de restaurantes
         PartnerCategory::insert($data);
@@ -139,8 +149,8 @@ class PartnerCategorySeeder extends Seeder
         ]);
         #   Subcategorias de Farmácias
         $data = array(
-            array('name'  => 'Medicamentos sem prescrição médica',           'parent_id'=> $farmacia->id, 'slug' => 'medicamentos-sem-prescricao-medica', 
-                  'image' => 'storage/assets-mobile/checkout_farmacias.svg', 'active'   => true),
+            // array('name'  => 'Medicamentos sem prescrição médica',           'parent_id'=> $farmacia->id, 'slug' => 'medicamentos-sem-prescricao-medica', 
+            //       'image' => 'storage/assets-mobile/checkout_farmacias.svg', 'active'   => true),
             array('name'  => 'Adulto',                                       'parent_id'=> $farmacia->id, 'slug' => 'adulto',                             
                   'image' => 'storage/assets-mobile/adulto.png',             'active'   => true),
             array('name'  => 'Criança',                                      'parent_id'=> $farmacia->id, 'slug' => 'crianca',                            

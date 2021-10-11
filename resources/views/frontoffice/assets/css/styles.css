@@ -376,6 +376,10 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	height: 50px;
 }
 
+header .row-fluid .column-right .block-social-media a:hover svg path {
+	fill: #072a40;
+}
+
 /* Form */
 .form-default-wrapper {
 	width: 100%;
@@ -1052,13 +1056,14 @@ footer .block-footer-center .column-right .newsletter input[type='text'] {
 	background-color: #072a40;
 	font-weight: bold;
 	margin-top: 25px;
+	color: #ffffff;
 }
 
 footer .block-footer-center .column-right .newsletter input::placeholder {
 	font-family: 'Robot', sans-serif;
 	font-size: 14px;
 	line-height: 22px;
-	font-weight: 400;
+	font-weight: 500;
 	font-style: normal;
 	color: #ffffff;
 }
@@ -1068,7 +1073,11 @@ footer .block-footer-center .column-right .newsletter .btn {
 	top: 85%;
 	transform: translateY(-50%);
 	right: 0px;
+	font-family: 'Robot', sans-serif;
 	font-size: 14px;
+	line-height: 22px;
+	font-weight: 400;
+	font-style: normal;
 	color: #ff8d3b;
 	cursor: pointer;
 	border-bottom: 1px solid #ff8d3b;

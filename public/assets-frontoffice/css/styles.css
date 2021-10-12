@@ -339,6 +339,30 @@ header .row-fluid .column-middle .block-main-menu ul li a.active {
 	color: #072a40;
 	text-decoration: none;
 }
+header .row-fluid .column-right {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+header .row-fluid .column-right ul {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	list-style-type: none;
+}
+header .row-fluid .column-right .block-languages ul li a{
+	font-family: 'Krona One', sans-serif;
+	font-size: 12px;
+	line-height: 32px;
+	font-weight: 400;
+	font-style: normal;
+	color: #687780;
+	text-decoration: none;
+	margin-left: 10px;
+}
+header .row-fluid .column-right .block-languages ul li a.active {
+	color: #072a40;
+}
 header .row-fluid .column-right .block-social-media {
 	margin-left: 20px;
 }
@@ -360,6 +384,9 @@ header .row-fluid .column-right .block-social-media ul li a {
 	display: flex;
 	text-decoration: none;
 }
+header .row-fluid .column-right .block-social-media a:hover svg path {
+	fill: #072a40;
+}
 header.fixed {
 	background-color: #ffffff;
 }
@@ -369,10 +396,6 @@ header.fixed .row-fluid {
 header.fixed .row-fluid .column-left .block-logo a svg {
 	width: 45px;
 	height: 50px;
-}
-
-header .row-fluid .column-right .block-social-media a:hover svg path {
-	fill: #072a40;
 }
 
 /* Form */
@@ -1084,7 +1107,7 @@ footer .block-footer-center .column-right .newsletter input::placeholder {
 
 footer .block-footer-center .column-right .newsletter .btn {
 	position: absolute;
-	top: 85%;
+	top: 80%;
 	transform: translateY(-50%);
 	right: 0px;
 	font-family: 'Robot', sans-serif;

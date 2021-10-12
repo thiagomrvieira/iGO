@@ -110,21 +110,21 @@
                 </div>
                 <div class="column-middle">
                     <ul class="ul-left">
-                        <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('Sobre nós') }}</a></li>
-                        <li><a href="#">{{ __('Parceiros') }}</a></li>
-                        <li><a href="#">{{ __('Estafetas') }}</a></li>
-                        <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contactos') }}</a></li>
+                        <li><a href="{{ route('about') }}">{{ __('footer.footer-nav-about') }}</a></li>
+                        <li><a href="#">{{ __('footer.footer-nav-partners') }}</a></li>
+                        <li><a href="#">{{ __('footer.footer-nav-couriers') }}</a></li>
+                        <li><a href="{{ route('contact') }}">{{ __('footer.footer-nav-contacts') }}</a></li>
                     </ul>
                     <ul class="ul-right">
-                        <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQs') }}</a></li>
-                        <li><a href="{{ route('conditions', app()->getLocale()) }}">{{ __('Termos e Condições') }}</a></li>
+                        <li><a href="{{ route('faq') }}">{{ __('footer.footer-nav-faqs') }}</a></li>
+                        <li><a href="{{ route('conditions') }}">{{ __('footer.footer-nav-terms-conditions') }}</a></li>
                     </ul>
                 </div>
                 <div class="column-right">
                     <div class="newsletter">
                         <label for="newsletter">Newsletter</label>
                         <input type="text" name="newsletter" placeholder="E-mail">
-                        <div class="btn">Enviar</div>
+                        <div class="btn">{{ __('footer.footer-newsletter-send') }}</div>
                     </div>
                 </div>
             </div>

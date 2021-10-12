@@ -14,7 +14,7 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {   
-
+        
         return [
             'id'          => $this->id ,
             'name'        => $this->name,
@@ -32,8 +32,8 @@ class ProductResource extends JsonResource
             'final_price'       => $this->finalPrice() ?? null,
             'note'              => $this->note,
             'campaign' => [
-                'id'   => $this->campaign->id   ?? null,
-                'name' => $this->campaign->name ?? null,
+                'id'   => $this->campaignData()->id   ?? null,
+                'name' => $this->campaignData()->name ?? null,
             ],
             'created_at' => $this->created_at,
         ];    

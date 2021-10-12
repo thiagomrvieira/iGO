@@ -176,9 +176,6 @@ class PartnerController extends Controller
      */
     public function showProducts($id)
     {
-        // return new ProductCollection( 
-        //     Product::where('partner_id', $id)->where('available', 1)->get()
-        // );
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de produtos do aderente',
                                  'data'    => new ProductCollection( Product::where('partner_id', $id)->where('available', 1)->get() )], 200); 

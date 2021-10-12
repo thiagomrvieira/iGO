@@ -13,7 +13,8 @@ class ProductResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
+    {   
+
         return [
             'id'          => $this->id ,
             'name'        => $this->name,
@@ -28,6 +29,7 @@ class ProductResource extends JsonResource
             'product_extras'    => ProductExtraResource::collection($this->extras),
             'image'             => $this->image,
             'price'             => $this->price,
+            'final_price'       => $this->finalPrice() ?? null,
             'note'              => $this->note,
             'campaign' => [
                 'id'   => $this->campaign->id   ?? null,

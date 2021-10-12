@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PartnerCategoryController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
 
 /*
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'v1'], function()
             'cart'         => CartController::class,
             'orders'       => OrderController::class,
             'categories'   => PartnerCategoryController::class,
+            'products'     => ProductController::class,
         ]);
 
         

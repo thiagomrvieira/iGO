@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campaign;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -18,60 +19,23 @@ class ProductsSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        #   Products
-        $data = array(
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
+
+        for ($i=0; $i < 250 ; $i++) { 
+            $products[] = array(
+                'partner_id'  => Partner::inRandomOrder()->first()->id,  
                 'category_id' => ProductCategory::inRandomOrder()->first()->id, 
                 'image'       => $faker->image(),   
                 'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
-                'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => $faker->image(),   
-                'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
-                'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => $faker->image(),   
-                'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
-                'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => $faker->image(),   
-                'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
-                'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => $faker->image(),   
-                'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            array(
-                'partner_id'  => Partner::inRandomOrder()->first()->id, 
-                'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => $faker->image(),   
-                'name'        => $faker->company(), 
-                'price'       => $faker->randomNumber(2), 
-                'description' => $faker->text()
-            ),
-            
-        );
-       
+                'description' => $faker->text(),
+                'price'       => $faker->randomNumber(4), 
+                'available'   => (bool)random_int(0, 1),
+                'note'        => $i % 2 == 0 ? $faker->text() : null,
+                'campaign_id' => $i % 3 == 0 ? Campaign::inRandomOrder()->first()->id : null,
+                'created_at'  => $faker->dateTimeBetween('-8 week', '+1 week')
+            );
+        }
+
         #   Cria Produtos
-        Product::insert($data);
+        Product::insert($products);
     }
 }

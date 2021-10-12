@@ -41,4 +41,19 @@ class Cart extends Model
     {
         return $this->hasOne(CartSide::class);    
     }
+
+    /**
+     * Return the total of product and extras in the cart
+     */
+    public function amount()
+    {
+        $product = $this->quantity * $this->product->price;
+        $extras  = 0;
+        
+        foreach ($this->cartExtras as $cartExtra) {
+            $extras += ($cartExtra->quantity * $cartExtra->extra->price);
+        }
+        
+        return $product + $extras;
+    }
 }

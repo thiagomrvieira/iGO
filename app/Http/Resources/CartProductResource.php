@@ -27,7 +27,7 @@ class CartProductResource extends JsonResource
                 'id'   => $this->cartSide->side->id   ?? null,
                 'name' => $this->cartSide->side->name ?? null,
             ],
-            'amount'     => $this->quantity * $this->product->price,
+            'amount'     => $this->amount(),
             'created_at' => $this->created_at,
         ];   
     }

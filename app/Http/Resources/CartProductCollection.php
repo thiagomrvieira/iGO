@@ -14,18 +14,11 @@ class CartProductCollection extends ResourceCollection
      */
     public function toArray($request)
     {   
-        $totalAmount = 0;
-        foreach ($this->collection as $collection) {
-            $totalAmount += ($collection->quantity * $collection->product->price);
-        }
-
         return [
             'products'       => $this->collection,
             'total_products' => $this->collection->sum('quantity'),
-            'total_amount'   => $totalAmount,
+            'total_amount'   => $this->collection->first()->totalAmount(),
         ];
-
-        
     }
 
 

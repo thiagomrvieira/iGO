@@ -51,7 +51,7 @@ class Cart extends Model
     }
 
     /**
-     * Return the total of product and extras in the cart
+     * Return the total of a product and extras in the cart
      */
     public function amount()
     {
@@ -63,5 +63,17 @@ class Cart extends Model
         }
         
         return $product + $extras;
+    }
+
+    /**
+     * Return the total of all products and extras in the cart
+     */
+    public function totalAmount()
+    {
+        $total = 0;
+        foreach (Cart::where('client_id', $this->client_id)->get() as $cart) {
+            $total += $cart->amount();
+        }
+        return $total;
     }
 }

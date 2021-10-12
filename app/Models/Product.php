@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -89,5 +90,44 @@ class Product extends Model
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);
+    }
+
+    
+    /**
+     * Find product price with discount
+     */
+    public function finalPrice()
+    {
+        #   Check if the product is associated with a campaing anc check the type
+        if (isset($this->campaign->id) && $this->campaign->type == 'percentage-item') {
+            
+            #   Check if the campaign date is valid
+            if (Carbon::now() >= $this->campaign->start_date && Carbon::now() <= $this->campaign->finish_date) {
+               
+                #   Return price with discount
+                return $this->price - ($this->price * ($this->campaign->percentage / 100) );       
+            }
+
+        }
+        
+    }
+
+    /**
+     * Use the relation to validate campaign date and return campaign data from relation
+     */
+    public function campaignData()
+    {
+        #   Check if the product is associated with a campaing anc check the type
+        if (isset($this->campaign->id)) {
+            
+            #   Check if the campaign date is valid
+            if (Carbon::now() >= $this->campaign->start_date && Carbon::now() <= $this->campaign->finish_date) {
+               
+                #   Return price with discount
+                return $this->campaign;      
+            }
+
+        }
+        
     }
 }

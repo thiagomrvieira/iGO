@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class ProductDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,8 +13,7 @@ class ProductResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {   
-
+    {
         return [
             'id'          => $this->id ,
             'name'        => $this->name,
@@ -23,10 +22,27 @@ class ProductResource extends JsonResource
                 'id'   => $this->category->id,
                 'name' => $this->category->name,
             ],
-            // 'product_sides'     => ProductSideResource::collection($this->sides),
-            // 'product_sauces'    => ProductSauceResource::collection($this->sauces),
-            // 'product_allergens' => ProductAllergenResource::collection($this->allergens),
-            // 'product_extras'    => ProductExtraResource::collection($this->extras),
+            'options' => [
+                [
+                    'text'      => 'Side dishes',
+                    'type'      => 'radio',
+                    'mandatory' => true,
+                    'values'    => ProductSideResource::collection($this->sides)
+                ],
+                [
+                    'text'      => 'Sauces',
+                    'type'      => 'radio',
+                    'mandatory' => false,
+                    'values'    => ProductSauceResource::collection($this->sauces)
+                ],
+                [
+                    'text'      => 'Extras',
+                    'type'      => 'checkbox',
+                    'mandatory' => false,
+                    'values'    => ProductExtraResource::collection($this->extras)
+                ],
+            ],
+            'product_allergens' => ProductAllergenResource::collection($this->allergens),
             'image'             => $this->image,
             'price'             => $this->price,
             'final_price'       => $this->finalPrice() ?? null,
@@ -38,6 +54,5 @@ class ProductResource extends JsonResource
             'created_at' => $this->created_at,
             'available'  => $this->available,
         ];    
-      
     }
 }

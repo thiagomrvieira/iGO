@@ -71,14 +71,14 @@ class PassportAuthController extends Controller
         $address = $this->createAdressFromApi($request, $client->user->id); 
         
         # Create Api token
-        $token = $user->createToken('igoApiToken')->accessToken;
+        // $token = $user->createToken('igoApiToken')->accessToken;
  
         return response()->json([
             'status'  => 'success',
             'message' => 'Utilizador criado!',
             'data' => [  
                 'user'  => $user,
-                'token' => $token,
+                // 'token' => $token,
             ],
         ], 201);
     

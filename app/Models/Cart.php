@@ -33,4 +33,12 @@ class Cart extends Model
     {
         return $this->hasMany(CartExtra::class);    
     }
+
+    /**
+     * Get the product side in the cart.
+     */
+    public function cartSide()
+    {
+        return $this->hasOne(CartSide::class);    
+    }
 }

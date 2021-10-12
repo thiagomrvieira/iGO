@@ -22,8 +22,11 @@ class CartProductResource extends JsonResource
                 'quantity' => $this->quantity,
             ],
            
-            // 'extras'     => $this->cartExtras,
-            'extras'   => CartProductExtraResource::collection($this->cartExtras),
+            'extras' => CartProductExtraResource::collection($this->cartExtras),
+            'side'   => [
+                'id'   => $this->cartSide->side->id   ?? null,
+                'name' => $this->cartSide->side->name ?? null,
+            ],
             'amount'     => $this->quantity * $this->product->price,
             'created_at' => $this->created_at,
         ];   

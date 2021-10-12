@@ -1,5 +1,4 @@
 @extends('frontoffice.layouts.app')
-
 @section('content')
 	<div id="page-front">
 		<div class="block-home-top">

@@ -56,21 +56,14 @@
                 </div>
                 <div class="column-right">
                     <div class="block-languages">  
-
-                        {{-- <li class="nav-item btn-xs"><a class="nav-link active" href="#portuguese"  data-toggle="tab"> PT </a> </li>
-                        <li class="nav-item btn-xs"><a class="nav-link"        href="#english" data-toggle="tab"> EN </a> </li> --}}
-                        
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Config::get('languages')[App::getLocale()] }}
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                @foreach (Config::get('languages') as $lang => $language)
-                                    @if ($lang != App::getLocale())
-                                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
-                                    @endif
-                                @endforeach
-                                </div>
-                          
+                        <ul>
+                            <li><a href="" class="active"> {{ Config::get('languages')[App::getLocale()] }} </a></li>
+                            @foreach (Config::get('languages') as $lang => $language)
+                                @if ($lang != App::getLocale())
+                                    <li><a href="{{ route('lang.switch', $lang) }}"> {{$language}} </a></li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </div>
                     <div class="block-social-media">
                         <ul>

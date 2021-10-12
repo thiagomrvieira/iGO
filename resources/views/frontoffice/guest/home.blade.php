@@ -12,7 +12,7 @@
                         </div>
                         <div class="column-right">
                             <div class="block-title"><h1>{{ __('homepage.header-title') }}</h1></div>
-                            <div class="block-subtitle"><h2>{{ __('homepage.header-sub-title') }}</h2></div>
+                            <div class="block-subtitle"><h2>{{ __('homepage.header-subtitle') }}</h2></div>
                             <div class="block-apps">
                                 <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/google-play-store.png') }}" alt="{{ __('Google Play') }}" title="{{ __('Google Play') }}"/></a>
                                 <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/apple-store.png') }}" alt="{{ __('Apple Store') }}" title="{{ __('Apple Store') }}"/></a>
@@ -25,31 +25,31 @@
         <div class="block-home-find">
             <div class="main-fluid">
                 <div class="limit-wrapper">
-                    <div class="block-title"><h2>{{ __('Descubra agora as vantagens de ser parceiro:') }}</h2></div>
+                    <div class="block-title"><h2>{{ __('homepage.home-find-title') }}</h2></div>
                     <div class="row-fluid">
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-time.svg') }}" alt="{{ __('Entregas no tempo certo') }}" title="{{ __('Entregas no tempo certo') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-time.svg') }}" alt="{{ __('homepage.home-find-delivery') }}" title="{{ __('homepage.home-find-delivery') }}"/>
                             </div>
-                            <div class="block-find-lead"><span>{{ __('Entregas no tempo certo') }}</span></div>
+                            <div class="block-find-lead"><span>{{ __('homepage.home-find-delivery') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-info.svg') }}" alt="{{ __('Informação integrada') }}" title="{{ __('Informação integrada') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-info.svg') }}" alt="{{ __('homepage.home-find-information') }}" title="{{ __('homepage.home-find-information') }}"/>
                             </div>
-                            <div class="block-find-lead"><span>{{ __('Informação integrada') }}</span></div>
+                            <div class="block-find-lead"><span>{{ __('homepage.home-find-information') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-bussiness.svg') }}" alt="{{ __('Mapeamento do negócio') }}" title="{{ __('Mapeamento do negócio') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-bussiness.svg') }}" alt="{{ __('homepage.home-find-business') }}" title="{{ __('homepage.home-find-business') }}"/>
                             </div>
-                            <div class="block-find-lead"><span>{{ __('Mapeamento do negócio') }}</span></div>
+                            <div class="block-find-lead"><span>{{ __('homepage.home-find-business') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-comunication.svg') }}" alt="{{ __('Comunicação massiva') }}" title="{{ __('Comunicação massiva') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-comunication.svg') }}" alt="{{ __('homepage.home-find-comunication') }}" title="{{ __('homepage.home-find-comunication') }}"/>
                             </div>
-                            <div class="block-find-lead"><span>{{ __('Comunicação massiva') }}</span></div>
+                            <div class="block-find-lead"><span>{{ __('homepage.home-find-comunication') }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                                     </g>
                                 </svg>
                             </div>
-                            <div class="block-title"><h2>{{ __('Quer juntar-se ao melhor serviço de entregas em Angola?') }}</h2></div>
-                            <div class="block-lead"><span>{{ __('Faça já o pré-registo do seu negócio.') }}</span></div>
+                            <div class="block-title"><h2>{{ __('homepage.home-partner-title') }}</h2></div>
+                            <div class="block-lead"><span>{{ __('homepage.home-partner-subtitle') }}</span></div>
                             <div class="block-image"><img src="{{ asset('assets-frontoffice/images/phone-app-igo.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/></div>
                         </div>
                         <div class="column-right">
@@ -103,11 +103,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="name" name="name" placeholder="Nome" @change="removeClassError('partnerCreation', 'name')" v-model="partner.name">
+                                                <input type="text" id="name" name="name" placeholder="{{ __('homepage.home-partner-form-name') }}" @change="removeClassError('partnerCreation', 'name')" v-model="partner.name">
                                             </div>
                                         </div> 
                                         <div class="block-field-msg" v-if="partnerErrors.includes('name')">
-                                            <small id="nameHelp" class="text-danger" >{{ __('Campo obrigatório') }}</small>
+                                            <small id="nameHelp" class="text-danger" >{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -125,11 +125,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="email" id="email" name="email" placeholder="Email" @change="removeClassError('partnerCreation', 'email')" v-model="partner.email">
+                                                <input type="email" id="email" name="email" placeholder="{{ __('homepage.home-partner-form-email') }}" @change="removeClassError('partnerCreation', 'email')" v-model="partner.email">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="emailHelp" class="text-danger" v-if="partnerErrors.includes('email')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="emailHelp" class="text-danger" v-if="partnerErrors.includes('email')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -146,11 +146,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="address" name="line_1" placeholder="Morada" @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
+                                                <input type="text" id="address" name="line_1" placeholder="{{ __('homepage.home-partner-form-address') }}" @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="address1Help" class="text-danger" v-if="partnerErrors.includes('line_1')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="address1Help" class="text-danger" v-if="partnerErrors.includes('line_1')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -164,11 +164,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input  type="text" id="county" name="county" placeholder="Bairro" @change="removeClassError('partnerCreation', 'county')" v-model="partner.county">
+                                                <input  type="text" id="county" name="county" placeholder="{{ __('homepage.home-partner-form-county') }}" @change="removeClassError('partnerCreation', 'county')" v-model="partner.county">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="countyHelp" class="text-danger" v-if="partnerErrors.includes('county')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="countyHelp" class="text-danger" v-if="partnerErrors.includes('county')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -189,11 +189,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="city" name="city" placeholder="Província" @change="removeClassError('partnerCreation', 'city')" v-model="partner.city">
+                                                <input type="text" id="city" name="city" placeholder="{{ __('homepage.home-partner-form-city') }}" @change="removeClassError('partnerCreation', 'city')" v-model="partner.city">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="cityHelp" class="text-danger" v-if="partnerErrors.includes('city')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="cityHelp" class="text-danger" v-if="partnerErrors.includes('city')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -209,11 +209,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="phone_number" name="phone_number" placeholder="Telefone" @change="removeClassError('partnerCreation', 'phone_number')" v-model="partner.phone_number">
+                                                <input type="text" id="phone_number" name="phone_number" placeholder="{{ __('homepage.home-partner-form-phone-number') }}" @change="removeClassError('partnerCreation', 'phone_number')" v-model="partner.phone_number">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="phone_numberHelp" class="text-danger" v-if="partnerErrors.includes('phone_number')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="phone_numberHelp" class="text-danger" v-if="partnerErrors.includes('phone_number')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -231,11 +231,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="mobile_phone_number" name="mobile_phone_number" placeholder="Telemóvel" @change="removeClassError('partnerCreation', 'mobile_phone_number')" v-model="partner.mobile_phone_number">
+                                                <input type="text" id="mobile_phone_number" name="mobile_phone_number" placeholder="{{ __('homepage.home-partner-form-mobile-phone-number') }}" @change="removeClassError('partnerCreation', 'mobile_phone_number')" v-model="partner.mobile_phone_number">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="mobile_phone_numberHelp" class="text-danger" v-if="partnerErrors.includes('mobile_phone_number')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="mobile_phone_numberHelp" class="text-danger" v-if="partnerErrors.includes('mobile_phone_number')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -256,11 +256,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="company_name" name="company_name" placeholder="Estabelecimento" @change="removeClassError('partnerCreation', 'company_name')" v-model="partner.company_name">
+                                                <input type="text" id="company_name" name="company_name" placeholder="{{ __('homepage.home-partner-form-company-name') }}" @change="removeClassError('partnerCreation', 'company_name')" v-model="partner.company_name">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="company_nameHelp" class="text-danger" v-if="partnerErrors.includes('company_name')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="company_nameHelp" class="text-danger" v-if="partnerErrors.includes('company_name')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -279,11 +279,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="tax_number" name="tax_number" placeholder="NIF" @change="removeClassError('partnerCreation', 'tax_number')" v-model="partner.tax_number">
+                                                <input type="text" id="tax_number" name="tax_number" placeholder="{{ __('homepage.home-partner-form-tax-number') }}" @change="removeClassError('partnerCreation', 'tax_number')" v-model="partner.tax_number">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="tax_numberHelp" class="text-danger" v-if="partnerErrors.includes('tax_number')">{{ __('Campo obrigatório') }}</small>
+                                            <small id="tax_numberHelp" class="text-danger" v-if="partnerErrors.includes('tax_number')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -316,8 +316,8 @@
                 <div class="limit-wrapper">
                     <div class="row-fluid">
                         <div class="column-left">
-                            <div class="block-form-title"><h2>{{ __('Quer dizer “iGO”?') }}</h2></div>
-                            <div class="block-form-lead"><span>{{ __('Junte-se à nossa equipa de estafetas.') }}</span></div>
+                            <div class="block-form-title"><h2>{{ __('homepage.home-find-title') }}</h2></div>
+                            <div class="block-form-lead"><span>{{ __('homepage.home-find-subtitle') }}</span></div>
                             <form method="POST" id="deliverymanCreation" class="form-default-wrapper" enctype="multipart/form-data">
                                 <div class="block-form-group">
                                     <div class="block-field block-field-entity-deliveryman-name" >
@@ -342,11 +342,11 @@
                                             </svg>
                                         </div>
                                         <div class="block-input">
-                                            <input type="text" id="name" placeholder="Nome" @change="removeClassError('deliverymanCreation', 'name')" v-model="deliveryman.name">
+                                            <input type="text" id="name" placeholder="{{ __('homepage.') }}" @change="removeClassError('deliverymanCreation', 'name')" v-model="deliveryman.name">
                                         </div>
                                     </div> 
                                     <div class="block-field-msg">
-                                        <small id="nameHelp" class="text-danger" v-if="deliverymanErrors.includes('name')">{{ __('Campo obrigatório') }}</small>
+                                        <small id="nameHelp" class="text-danger" v-if="deliverymanErrors.includes('name')">{{ __('homepage.home-partner-form-error') }}</small>
                                     </div>
                                 </div>
                                 <div class="block-form-group">

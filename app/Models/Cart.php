@@ -43,6 +43,14 @@ class Cart extends Model
     }
 
     /**
+     * Get the product sauce in the cart.
+     */
+    public function cartSauce()
+    {
+        return $this->hasOne(CartSauce::class);    
+    }
+
+    /**
      * Return the total of product and extras in the cart
      */
     public function amount()

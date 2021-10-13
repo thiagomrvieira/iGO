@@ -76,4 +76,18 @@ class Cart extends Model
         }
         return $total;
     }
+
+    /**
+     * Observe static methods
+     */
+    protected static function boot() {
+        parent::boot();
+    
+        #   Delete extras, Side and Sauce when removing items from cart
+        static::deleting(function($cart) {
+            $cart->cartExtras()->delete();
+            $cart->cartSide()->delete();
+            $cart->cartSauce()->delete();
+        });
+    }
 }

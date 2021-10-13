@@ -33,7 +33,9 @@ trait CartTrait {
     public function AddExtraToCart($request, $cartProduct)
     {
         if (isset($request->extras)) {
-            foreach (json_decode($request->extras) as $extras) {
+            $str = str_replace('\'', '"', $request->extras);
+
+            foreach (json_decode($str) as $extras) {
                 CartExtra::updateOrCreate(
                     [
                         'cart_id'  => $cartProduct->id,

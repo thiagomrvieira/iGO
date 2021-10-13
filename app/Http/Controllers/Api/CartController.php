@@ -81,6 +81,9 @@ class CartController extends Controller
      *          type="object",
      *          @OA\Property(property="product_id", type="integer", example="4"),
      *          @OA\Property(property="quantity", type="integer", example="2"),
+     *          @OA\Property(property="side", type="integer", example="1"),
+     *          @OA\Property(property="sauce", type="integer", example="6"),
+     *          @OA\Property(property="extras", type="string", example="[{'extra_id':'3','extra_quantity':'1'}]"),
      *      )
      *   ),
      *   @OA\Response(

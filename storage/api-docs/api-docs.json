@@ -59,6 +59,18 @@
                                     "quantity": {
                                         "type": "integer",
                                         "example": "2"
+                                    },
+                                    "side": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "sauce": {
+                                        "type": "integer",
+                                        "example": "6"
+                                    },
+                                    "extras": {
+                                        "type": "string",
+                                        "example": "[{'extra_id':'3','extra_quantity':'1'}]"
                                     }
                                 },
                                 "type": "object"

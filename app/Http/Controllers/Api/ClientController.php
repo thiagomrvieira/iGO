@@ -174,7 +174,7 @@ class ClientController extends Controller
     {
         
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Dados atualizados',
+                                 'message' => $message ?? 'Endereços',
                                  'data'    => new ClientAddressCollection(Address::where('user_id', Auth::user()->id)->get())], 200); 
     }
 

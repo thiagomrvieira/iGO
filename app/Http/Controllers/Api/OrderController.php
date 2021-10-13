@@ -11,7 +11,42 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * DISPLAY A LIST OF ALL USER ORDERS
+     * *
+     * 
+     * @OA\Get(path="/api/v1/orders",
+     *   tags={"Orders"},
+     *   summary="Show all client order",
+     *   description="Display a list of all client orders ",
+     *   operationId="showOrders",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,37 +66,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request['client_id'] = Auth::user()->client->id;
-
-        $order = Order::firstOrCreate(
-            array(
-                'client_id'            => Auth::user()->client->id,
-                'order_status_type_id' => 1,
-            ),
-            array(
-                $request->all()
-            ),
-        );
         
-
-        return 'teste';
-        // $productAndQuantity    = $order->products->pluck('product_id')->toArray() ?? [];
-        // $productsIdsForUpdate [] = $request->product_id;
-
-        // $productAndQuantity = array_fill_keys(
-        //     $productsIdsForUpdate, 
-        //     array('quantity' => $request->quantity,)
-        // );
-
-        // foreach ($variable as $key => $value) {
-        //     # code...
-        // }
-
-        // $order->products()->sync($productAndQuantity);
-        $order->products()->sync([
-        
-                
-        ]);
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho',

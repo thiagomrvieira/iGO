@@ -16,8 +16,18 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained();
+            $table->foreignId('address_id')->constrained();
+            $table->foreignId('campaign_id')->nullable()->constrained();
             $table->foreignId('order_status_type_id')->default(1)->constrained();
+            
+            $table->string('tax_name');
+            $table->string('tax_number');
+            
             $table->float('amount')->nullable();
+
+            $table->timestamp('deliver_at')->nullable();	
+            $table->timestamp('delivered_at')->nullable();	
+            
             $table->timestamps();
             $table->softDeletes();
         });

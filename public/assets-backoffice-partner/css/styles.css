@@ -1,0 +1,361 @@
+@import url(https://fonts.googleapis.com/css2?family=Krona+One&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap);
+* {
+	box-sizing: border-box;
+	-webkit-appearance: none !important;
+	outline: none !important;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+html,
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 100%;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font-weight: normal;
+	font-style: normal;
+	color: #072a40;
+}
+
+h1 {
+	font-family: 'Krona One', sans-serif;
+	font-size: 28px;
+	line-height: 50px;
+	font-weight: 400;
+	font-style: normal;
+}
+h2 {
+	font-family: 'Krona One', sans-serif;
+	font-size: 20px;
+	line-height: 36px;
+	font-weight: 400;
+	font-style: normal;
+}
+h3 {
+	font-family: 'Krona One', sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: 400;
+	font-style: normal;
+}
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	font-style: normal;
+	color: #072a40;
+	margin-bottom: 20px;
+}
+p:last-child {
+	margin-bottom: 0px;
+}
+
+b,
+strong,
+.font-bold {
+	font-weight: 700 !important;
+}
+i,
+em,
+.font-italic {
+	font-style: italic !important;
+}
+img {
+	display: block;
+	width: 100%;
+}
+a,
+a:focus {
+	color: #072a40;
+	text-decoration: underline;
+}
+a:hover {
+	font-weight: 700;
+}
+
+/* Buttons */
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	min-width: 120px;
+	min-height: 45px;
+	padding: 10px 20px 10px 20px;
+	border: 0;
+	margin: 0;
+	cursor: pointer;
+	outline: none;
+	border-radius: 20px;
+	font-family: 'Krona One', sans-serif;
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: 400;
+	font-style: normal;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	transition: 0.2s all ease-in-out;
+}
+.button.button-primary {
+	color: #ffe414;
+	border-color: #072a40;
+	background-color: #072a40;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+.button.button-primary:hover,
+.button.button-primary:focus {
+	color: #ffe414;
+	border-color: #072a40;
+	background-color: #072a40;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Container Wrapper */
+#container-wrapper {
+	position: relative;
+}
+.main-fluid {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+.limit-wrapper {
+	width: 100%;
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.text-danger {
+	color: #eb3e3e;
+}
+
+.is-invalid {
+	border: 2px solid #eb3e3e !important;
+}
+
+/* Header */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 10;
+	transition: all 0.2s ease-in-out;
+	box-shadow: 0 2px 2px -2px gray;
+}
+header * {
+	transition: all 0.2s ease-in-out;
+}
+header .row-fluid {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 0;
+}
+header .row-fluid .column-left .block-logo a {
+	display: flex;
+	align-items: center;
+}
+header .row-fluid .column-right {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+header .row-fluid .column-right img {
+	width: 48px;
+	margin-left: 15px;
+}
+#page-backoffice .block-home-find {
+	position: relative;
+	background-color: #ffffff;
+	background-image: url(/images/bg-home-top.png?702812c1c545c98f9c00f0f36b36ec3c);
+	background-repeat: no-repeat;
+	background-position: top right;
+	padding-top: 150px;
+}
+
+#page-backoffice .block-home-find {
+	position: relative;
+	padding: 155px 0 105px 0;
+	z-index: 1;
+}
+#page-backoffice .block-home-find .block-title {
+	text-align: center;
+	margin-bottom: 24px;
+}
+#page-backoffice .block-home-find .block-lead {
+	width: 400px;
+	margin: 0 auto 50px auto;
+	text-align: center;
+}
+#page-backoffice .block-home-find .row-fluid .block-lead span {
+	font-family: 'Krona One', sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	font-style: normal;
+	color: #072a40;
+}
+#page-backoffice .block-home-find .row-fluid {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+#page-backoffice .block-home-find .row-fluid .column-4 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: calc(25% - 15px);
+	margin-left: 30px;
+	margin-bottom: 56px;
+}
+#page-backoffice .block-home-find .row-fluid .column-4:last-child {
+	margin-left: 0px;
+}
+#page-backoffice .block-home-find .row-fluid .column-4 .block-find-icon {
+	margin-bottom: 30px;
+}
+#page-backoffice .block-home-find .row-fluid .column-4 .number-circle {
+    width: 24px;
+	color: #FFE414;
+	background-color: #072A40;
+    border-radius: 50%;
+    text-align: center;
+	margin-bottom: 10px;
+}
+#page-backoffice .block-home-find .row-fluid .column-4 .number-circle span {
+    width: 24px;
+	color: #FFE414;
+	background-color: #072A40;
+	font-family: 'Krona One', sans-serif;
+	font-size: 11px;
+    line-height: 22px;
+    border-radius: 50%;
+    text-align: center;
+}
+#page-backoffice .block-home-find .row-fluid .column-4 .block-find-lead span {
+	font-family: 'Krona One', sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	font-style: normal;
+	color: #072a40;
+}
+#page-backoffice .block-home-find .block-start {
+	width: 116px;
+	margin: 0 auto;
+}
+
+
+

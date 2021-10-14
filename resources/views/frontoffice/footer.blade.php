@@ -17,7 +17,6 @@
                     </svg>
                 </div>
             </div>
-
             <div class="block-footer-center">
                 <div class="column-left">
                     <ul>
@@ -128,7 +127,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="block-footer-bottom">
                 <div class="row-fluid">
                     <div class="column-left">
@@ -139,17 +137,12 @@
                     <div class="column-right">
                         <div class="block-footer-apps">
                             <p>Download em:</p>
-                            <a href="javascript:void(0);" target="_blank"><img
-                                    src="{{ asset('assets-frontoffice/images/google-play-store.png') }}"
-                                    alt="{{ __('Google Play') }}" title="{{ __('Google Play') }}" /></a>
-                            <a href="javascript:void(0);" target="_blank"><img
-                                    src="{{ asset('assets-frontoffice/images/apple-store.png') }}"
-                                    alt="{{ __('Apple Store') }}" title="{{ __('Apple Store') }}" /></a>
+                            <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/google-play-store.png') }}" alt="{{ __('Google Play') }}" title="{{ __('Google Play') }}" /></a>
+                            <a href="javascript:void(0);" target="_blank"><img src="{{ asset('assets-frontoffice/images/apple-store.png') }}" alt="{{ __('Apple Store') }}" title="{{ __('Apple Store') }}" /></a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </footer>

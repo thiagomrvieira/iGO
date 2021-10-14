@@ -17,8 +17,8 @@ class CheckoutOrderResource extends JsonResource
         // return parent::toArray($request);
 
         return [
-            'products' => CartProductResource::collection($this->cart),
-            'address'  => new AddressResource($this->address),
+            'products'          => CartProductResource::collection($this->cart),
+            'delivery_address'  => new AddressResource($this->address),
             // 'amount'   => $this->amount(),
         ];
         

@@ -514,6 +514,39 @@
             }
         },
         "/api/v1/checkout": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Display order data",
+                "description": "Show order details - Products, delivery, schedule, tax and payment data",
+                "operationId": "showOrdersDetails",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
             "patch": {
                 "tags": [
                     "Orders"

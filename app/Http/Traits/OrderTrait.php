@@ -16,6 +16,10 @@ trait OrderTrait {
             [
                 'client_id'            => Auth::user()->client->id,
                 'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
+            ],
+            [
+                'client_id'            => Auth::user()->client->id,
+                'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
                 'address_id'           => Auth::user()->addresses->where('address_type_id', 1)->first()->id,
                 'tax_name'             => Auth::user()->name,
                 'tax_number'           => Auth::user()->client->tax_number ?? null,

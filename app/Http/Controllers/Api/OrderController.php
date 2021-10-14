@@ -59,6 +59,58 @@ class OrderController extends Controller
     }
 
     /**
+     * Display chekout data
+     * *
+     * 
+     * @OA\Get(path="/api/v1/checkout",
+     *   tags={"Orders"},
+     *   summary="Display order data",
+     *   description="Show order details - Products, delivery, schedule, tax and payment data",
+     *   operationId="showOrdersDetails",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function checkout()
+    {
+        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart->count() > 0) {
+            $data    = $this->firstOrCreateOrder();
+            $message = "Chekout";
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não há produtos no carrinho',
+                                 'data'    => $data    ?? null], 200); 
+    }
+
+
+    /**
      * CREATE A NEW ORDER
      * *
      * 

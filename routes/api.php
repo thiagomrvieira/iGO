@@ -71,7 +71,9 @@ Route::group(['prefix' => 'v1'], function()
         Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
         Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
         
-        #   Add existing products in the cart to the order
+        #   Get order data
+        Route::get('checkout', [OrderController::class, 'checkout']);
+        #   Update order data
         Route::patch('checkout', [OrderController::class, 'update']);
 
     });

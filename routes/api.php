@@ -74,7 +74,7 @@ Route::group(['prefix' => 'v1'], function()
         #   Get order data
         Route::get('checkout', [OrderController::class, 'checkout']);
         #   Update order data
-        Route::patch('checkout', [OrderController::class, 'update']);
+        Route::post('checkout', [OrderController::class, 'update']);
 
     });
 });

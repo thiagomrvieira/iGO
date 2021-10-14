@@ -547,13 +547,45 @@
                     }
                 ]
             },
-            "patch": {
+            "post": {
                 "tags": [
                     "Orders"
                 ],
                 "summary": "Checkout order",
                 "description": "Return order data and update if send any paramter",
                 "operationId": "checkout",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "address_id": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    },
+                                    "deliver_at": {
+                                        "type": "string",
+                                        "example": "2022-12-21 19:44"
+                                    },
+                                    "tax_name": {
+                                        "type": "string",
+                                        "example": "Fulano da Silva"
+                                    },
+                                    "tax_number": {
+                                        "type": "integer",
+                                        "example": "300 322 984"
+                                    },
+                                    "campaign_code": {
+                                        "type": "string",
+                                        "example": "iGONATAL"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",

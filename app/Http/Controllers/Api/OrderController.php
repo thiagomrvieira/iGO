@@ -141,14 +141,25 @@ class OrderController extends Controller
     }
 
     /**
-     * CHECKOUT
+     * UPDATE DATA FROM ORDER
      * *
      * 
-     * @OA\patch(path="/api/v1/checkout",
+     * @OA\post(path="/api/v1/checkout",
      *   tags={"Orders"},
      *   summary="Checkout order",
      *   description="Return order data and update if send any paramter",
      *   operationId="checkout",
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="address_id", type="integer", example="2"),
+     *          @OA\Property(property="deliver_at", type="string", example="2022-12-21 19:44"),
+     *          @OA\Property(property="tax_name", type="string", example="Fulano da Silva"),
+     *          @OA\Property(property="tax_number", type="integer", example="300 322 984"),
+     *          @OA\Property(property="campaign_code", type="string", example="iGONATAL"),
+     *      )
+     *   ),
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -181,20 +192,17 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart->count() > 0) {
+        if (isset(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart)) {
             
-            #   Update order columns - OrderTrait
-            $order = $this->checkoutOrder($request);        
+            $this->checkoutOrderData($request); 
             
-            #   Update order_id columns in products in the cart
-            // Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->update(['order_id' => $order->id]);
-
-           
+            return $this->checkout();
         }
         
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Resumo do pedido',
-                                 'data'    => $order   ?? null], 200); 
+                                 'message' => $message ?? 'Não há produtos no carrinho',
+                                 'data'    => $data    ?? null], 200); 
+       
     }
 
     /**

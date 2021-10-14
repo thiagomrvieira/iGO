@@ -29,8 +29,7 @@ class WebContentController extends Controller
             $view    = 'backoffice-admin.web-content.content-edit-faq';
         }
             
-        return view($view)->with('content', $content)
-                          ->with('content_area', $content_area);
+        return view($view)->with('content', $content)->with('content_area', $content_area);
     }
 
     

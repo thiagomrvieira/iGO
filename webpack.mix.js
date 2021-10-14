@@ -12,16 +12,23 @@ const mix = require('laravel-mix')
  */
 
 mix
-
+  // General
   .js('resources/js/app.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
   ])
-  
+
+  // Assets frontoffice
   .postCss('resources/views/frontoffice/assets/css/styles.css', 'public/assets-frontoffice/css/styles.css')
   .js('resources/views/frontoffice/assets/js/scripts.js', 'public/assets-frontoffice/js/scripts.js')
   .copy('resources/views/frontoffice/assets/images',  'public/assets-frontoffice/images')
   .copy('resources/views/frontoffice/assets/libs',  'public/assets-frontoffice/libs')
+
+  // Assets backoffice partner
+  .postCss('resources/views/backoffice-partner/assets/css/styles.css', 'public/assets-backoffice-partner/css/styles.css')
+  .js('resources/views/backoffice-partner/assets/js/scripts.js', 'public/assets-backoffice-partner/js/scripts.js')
+  .copy('resources/views/backoffice-partner/assets/images',  'public/assets-backoffice-partner/images')
+  .copy('resources/views/backoffice-partner/assets/libs',  'public/assets-backoffice-partner/libs')
   

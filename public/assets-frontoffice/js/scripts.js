@@ -8,7 +8,10 @@ var $j = jQuery.noConflict(),
 $j(document).ready(function ($) {
   scrollMenuFixed(); // select2
 
-  $j('.category_id').select2(); // Block Faq
+  var category = $j('.category_id').select2();
+  category.on("change", function (e) {
+    removeClassErrorSelect2('partnerCreation', 'category_id');
+  }); // Block Faq
 
   $j('.faqs').on('click', '.faq-button', function () {
     this.classList.toggle('is-open');
@@ -32,6 +35,11 @@ function scrollMenuFixed() {
   }
 }
 
+function removeClassErrorSelect2(form, inputId) {
+  jQuery("#".concat(form, " #").concat(inputId)).parents('.block-field').removeClass('is-invalid');
+}
+
+window.removeClassErrorSelect2 = removeClassErrorSelect2;
 $w.scroll(function () {
   scrollMenuFixed();
 });

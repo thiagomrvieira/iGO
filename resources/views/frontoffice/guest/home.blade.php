@@ -146,11 +146,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="address" name="line_1" placeholder="{{ __('homepage.home-partner-form-address') }}" @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
+                                                <input type="text" id="line_1" name="line_1" placeholder="{{ __('homepage.home-partner-form-address') }}" @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="address1Help" class="text-danger" v-if="partnerErrors.includes('line_1')">{{ __('homepage.home-partner-form-error') }}</small>
+                                            <small id="addressHelp" class="text-danger" v-if="partnerErrors.includes('line_1')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -289,7 +289,7 @@
                                     <div class="block-form-group">
                                         <div class="block-field block-field-big block-field-entity-partner-category">
                                             <div class="block-input">
-                                                <select id="category_id" class="category_id" name="category_id" @change="removeClassError('partnerCreation', 'category_id')" v-model="partner.category_id">
+                                                <select id="category_id" class="category_id" name="category_id" @change="removeClassError('partnerCreation', 'category_id')" v-select="partner.category_id">
                                                     <option value="" disabled selected>{{ __('Categoria') }}</option>
                                                     @foreach ($partnerCategories as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -297,7 +297,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="block-field-msg"></div>
+                                        <div class="block-field-msg">
+                                            <small id="category_idHelp" class="text-danger" v-if="partnerErrors.includes('category_id')">{{ __('homepage.home-partner-form-error') }}</small>
+                                        </div>
                                     </div>
                                     <div class="block-form-group">
                                         <div class="block-submit">
@@ -444,7 +446,7 @@
                 partner: {
                     name: '',
                     email: '',
-                    address: '',
+                    line_1: '',
                     county: '',
                     city: '',
                     phone_number: '',
@@ -499,9 +501,14 @@
                 checkForm(form) {
                     this.deliverymanErrors = [];
                     this.partnerErrors = [];
-
+                    console.log(Object.entries(this.resource))
                     Object.entries(this.resource).forEach(([key, value]) => {
+                        if (key === "category_id" ) {
+                            this.resource[key] = jQuery('.category_id').val();
+                        }
+
                         if (!this.resource[key]) { 
+                            
                             jQuery(`#${form} #${key}`).parents('.block-field').addClass("is-invalid");
                             (form == 'deliverymanCreation') ? this.deliverymanErrors.push(key) : this.partnerErrors.push(key);
                         }
@@ -547,7 +554,7 @@
 
                 //  Remove error class and messages
                 removeClassError(form, inputId){
-                    $(`#${form} #${inputId}`).removeClass('is-invalid');
+                    jQuery(`#${form} #${inputId}`).parents('.block-field').removeClass('is-invalid');
                     if (form == 'deliverymanCreation') {
                         this.deliverymanErrors = this.deliverymanErrors.filter(item => item !== inputId);
                         this.delManValidationError = false;
@@ -558,7 +565,6 @@
                         this.partnrValidationError = false;
                         this.partnrValidationErrorMessage = '';
                     }
-
                 }
             }
 

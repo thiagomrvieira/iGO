@@ -38,4 +38,11 @@ class Order extends Model
         return $this->hasMany(Cart::class);
     }
     
+    /**
+     * Get the Address associated with the order.
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }

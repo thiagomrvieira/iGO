@@ -26,6 +26,7 @@ class Cart extends Model
         return $this->belongsTo(Product::class);
     }
     
+
     /**
      * Get the product extra in the cart.
      */

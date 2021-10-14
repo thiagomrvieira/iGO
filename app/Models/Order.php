@@ -13,8 +13,13 @@ class Order extends Model
 
     protected $fillable = [
         'client_id',
-        'order_status_id',
+        'address_id',
+        'campaign_id',
+        'order_status_type_id',
+        'tax_name',
+        'tax_number',
         'amount',
+        'deliver_at', 
     ];
 
     /**
@@ -25,5 +30,12 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
     }
 
+    /**
+     * Get the items/products in the cart
+     */
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
     
 }

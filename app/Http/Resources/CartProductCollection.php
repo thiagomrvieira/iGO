@@ -17,7 +17,7 @@ class CartProductCollection extends ResourceCollection
         return [
             'products'       => $this->collection,
             'total_products' => $this->collection->sum('quantity'),
-            'total_amount'   => $this->collection->count() > 0 ? $this->collection->first()->totalAmount() : 0,
+            'total_amount'   => ($this->collection->count() > 0 ? $this->collection->first()->totalAmount() : 0) ?? null,
         ];
     }
 

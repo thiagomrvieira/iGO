@@ -20,8 +20,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('campaign_id')->nullable()->constrained();
             $table->foreignId('order_status_type_id')->default(1)->constrained();
             
-            $table->string('tax_name');
-            $table->string('tax_number');
+            $table->string('tax_name')->nullable();
+            $table->string('tax_number')->nullable();
             
             $table->float('amount')->nullable();
 

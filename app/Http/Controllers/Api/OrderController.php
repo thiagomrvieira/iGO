@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\OrderTrait;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    use OrderTrait;
+
     /**
      * DISPLAY A LIST OF ALL USER ORDERS
      * *
@@ -68,9 +71,9 @@ class OrderController extends Controller
     {
         
 
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Produto adicionado ao carrinho',
-                                 'data'    => $order], 200); 
+        // return response()->json(['status'  => $status  ?? 'success',
+        //                          'message' => $message ?? 'Produto adicionado ao carrinho',
+        //                          'data'    => $order], 200); 
     }
 
     /**
@@ -85,15 +88,60 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * CHECKOUT
+     * *
+     * 
+     * @OA\patch(path="/api/v1/checkout",
+     *   tags={"Orders"},
+     *   summary="Checkout order",
+     *   description="Return order data and update if send any paramter",
+     *   operationId="checkout",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart->count() > 0) {
+            
+            #   Update order columns - OrderTrait
+            $order = $this->checkoutOrder($request);        
+            
+            #   Update order_id columns in products in the cart
+            // Cart::where('client_id', Auth::user()->client->id)->where('order_id', null)->update(['order_id' => $order->id]);
+
+           
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Resumo do pedido',
+                                 'data'    => $order   ?? null], 200); 
     }
 
     /**
@@ -106,4 +154,6 @@ class OrderController extends Controller
     {
         //
     }
+
+    
 }

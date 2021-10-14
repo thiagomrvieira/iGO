@@ -71,4 +71,12 @@ class User extends Authenticatable
         return $this->hasOne(Client::class);
     }
 
+    /**
+     * Get the Addresses associated with the user.
+     */
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
 }

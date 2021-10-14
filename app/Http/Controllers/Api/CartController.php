@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CartProductCollection;
 use App\Http\Resources\CartProductResource;
 use App\Http\Traits\CartTrait;
+use App\Http\Traits\OrderTrait;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\CartExtra;
 use App\Models\CartSauce;
 use App\Models\CartSide;
+use App\Models\OrderStatusType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    use CartTrait;
+    use CartTrait, OrderTrait;
 
     /**
      * DISPLAY A LIST OF PRODUCTS IN THE CART
@@ -59,10 +62,14 @@ class CartController extends Controller
      */
     public function index()
     {
+        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->count() > 0) {
+            $data = new CartProductCollection(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart);
+        }
+        
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de produtos no carrinho',
-                                 'data'    => new CartProductCollection(Cart::where('client_id', Auth::user()->client->id)
-                                                                            ->where('order_id', null)->with('CartExtras')->get() )
+                                //  'data'    => new CartProductCollection($cart ?? null)
+                                 'data'    => $data ?? []
                                 ], 200); 
     }
 
@@ -119,8 +126,11 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        # Create a new order or get an opened one - OrderTrait
+        $order = $this->firstOrCreateOrder($request);     
+
         # Add Product to a cart or update if exist
-        $cartProduct = $this->AddProductToCart($request);
+        $cartProduct = $this->AddProductToCart($request, $order);
 
         # Add Extra to a cart or update if exist
         $this->AddExtraToCart($request, $cartProduct);
@@ -203,4 +213,8 @@ class CartController extends Controller
 
 
     }
+
+
+
+    
 }

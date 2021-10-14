@@ -42,6 +42,7 @@ trait OrderTrait {
         );
     }
 
+
     # Check Campaign Code
     public function checkCampaignCode($campaign_code)
     {

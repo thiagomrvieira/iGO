@@ -64,12 +64,17 @@ class CartController extends Controller
     {
         if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->count() > 0) {
             $data = new CartProductCollection(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart);
+        } else {
+            $data = [
+                "products"       => [],
+                "total_products" => 0,
+                "total_amount"   => 0
+            ];
         }
-        
+
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de produtos no carrinho',
-                                //  'data'    => new CartProductCollection($cart ?? null)
-                                 'data'    => $data ?? []
+                                 'data'    => $data    ?? []
                                 ], 200); 
     }
 

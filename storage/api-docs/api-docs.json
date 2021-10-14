@@ -519,7 +519,7 @@
                     "Orders"
                 ],
                 "summary": "Checkout order",
-                "description": "Return order data and update if send any value",
+                "description": "Return order data and update if send any paramter",
                 "operationId": "checkout",
                 "responses": {
                     "200": {

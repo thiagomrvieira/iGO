@@ -85,7 +85,24 @@ class Order extends Model
                           ->where('delivery_to',   $deliveryTo->id)->first()->price;
     }
 
+    /**
+     * Get the order's items/products.
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 
+    /**
+     * Return the value of the discount
+     */
+    public function discount()
+    {   
+        if (isset($this->campaign)){
+            return $this->total() * ($this->campaign->percentage / 100);
+        }
+        return null;
+    }
 
 
 

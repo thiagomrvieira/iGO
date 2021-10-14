@@ -22,9 +22,11 @@ class CheckoutOrderResource extends JsonResource
                 'tax_name'   => $this->tax_name,  
                 'tax_number' => $this->tax_number,
             ],
-            'subtotal'     => $this->subtotal(),
-            'shipping_fee' => $this->shippingFee(),
-            'total'        => $this->total(),
+            'subtotal'       => $this->subtotal(),
+            'shipping_fee'   => $this->shippingFee(),
+            'total'          => $this->total(),
+            'discount'       => $this->discount(),
+            'total_final'    => $this->total() - $this->discount() ?? null,
         ];
         
     }

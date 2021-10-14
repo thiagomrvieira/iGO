@@ -7,6 +7,8 @@ use App\Http\Resources\CartProductCollection;
 use App\Http\Resources\CartProductResource;
 use App\Models\Cart;
 use App\Models\CartExtra;
+use App\Models\CartSauce;
+use App\Models\CartSide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -138,6 +140,30 @@ class CartController extends Controller
                     ]
                 );
             }
+        }
+
+        if (isset($request->side)) {
+            CartSide::updateOrCreate(
+                [
+                    'cart_id' => $cartProduct->id,
+                ],
+                [
+                    'cart_id'  => $cartProduct->id,
+                    'side_id'  => $request->side,
+                ]
+            );
+        }
+
+        if (isset($request->sauce)) {
+            CartSauce::updateOrCreate(
+                [
+                    'cart_id' => $cartProduct->id,
+                ],
+                [
+                    'cart_id'  => $cartProduct->id,
+                    'sauce_id' => $request->sauce,
+                ]
+            );
         }
         
 

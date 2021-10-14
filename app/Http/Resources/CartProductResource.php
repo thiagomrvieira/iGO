@@ -22,9 +22,16 @@ class CartProductResource extends JsonResource
                 'quantity' => $this->quantity,
             ],
            
-            // 'extras'     => $this->cartExtras,
-            'extras'   => CartProductExtraResource::collection($this->cartExtras),
-            'amount'     => $this->quantity * $this->product->price,
+            'extras' => CartProductExtraResource::collection($this->cartExtras),
+            'side'   => [
+                'id'   => $this->cartSide->side->id   ?? null,
+                'name' => $this->cartSide->side->name ?? null,
+            ],
+            'sauce'   => [
+                'id'   => $this->cartSauce->sauce->id   ?? null,
+                'name' => $this->cartSauce->sauce->name ?? null,
+            ],
+            'amount'     => $this->amount(),
             'created_at' => $this->created_at,
         ];   
     }

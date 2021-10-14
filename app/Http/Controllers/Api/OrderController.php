@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CheckoutOrderResource;
 use App\Http\Traits\OrderTrait;
 use App\Models\Product;
 use App\Models\Order;
@@ -100,7 +101,7 @@ class OrderController extends Controller
     public function checkout()
     {
         if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart->count() > 0) {
-            $data    = $this->firstOrCreateOrder();
+            $data    = new CheckoutOrderResource($this->firstOrCreateOrder());
             $message = "Chekout";
         }
         

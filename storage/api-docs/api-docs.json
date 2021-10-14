@@ -320,7 +320,7 @@
                                     },
                                     "county": {
                                         "type": "string",
-                                        "example": "Sociosqu"
+                                        "example": "Luanda"
                                     },
                                     "city": {
                                         "type": "string",
@@ -332,7 +332,7 @@
                                     },
                                     "country": {
                                         "type": "string",
-                                        "example": "Sociosqu"
+                                        "example": "Angola"
                                     }
                                 },
                                 "type": "object"
@@ -962,7 +962,7 @@
                                     },
                                     "county": {
                                         "type": "string",
-                                        "example": "Sociosqu"
+                                        "example": "Luanda"
                                     },
                                     "city": {
                                         "type": "string",

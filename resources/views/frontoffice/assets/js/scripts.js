@@ -5,7 +5,9 @@ $j(document).ready(function ($) {
   scrollMenuFixed()
 
   // select2
-  $j('.category_id').select2()
+  const category = $j('.category_id').select2()
+
+  category.on("change", function (e) { removeClassErrorSelect2('partnerCreation', 'category_id') });
 
   // Block Faq
   $j('.faqs').on('click', '.faq-button', function(){
@@ -28,6 +30,11 @@ function scrollMenuFixed() {
     $j('header').removeClass('fixed')
   }
 }
+
+function removeClassErrorSelect2(form, inputId){
+  jQuery(`#${form} #${inputId}`).parents('.block-field').removeClass('is-invalid');
+}
+window.removeClassErrorSelect2 = removeClassErrorSelect2; 
 
 $w.scroll(function () {
   scrollMenuFixed()

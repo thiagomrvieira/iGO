@@ -146,11 +146,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="address" name="address" placeholder="{{ __('homepage.home-partner-form-address') }}" @change="removeClassError('partnerCreation', 'address')" v-model="partner.address">
+                                                <input type="text" id="line_1" name="line_1" placeholder="{{ __('homepage.home-partner-form-address') }}" @change="removeClassError('partnerCreation', 'line_1')" v-model="partner.line_1">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="addressHelp" class="text-danger" v-if="partnerErrors.includes('address')">{{ __('homepage.home-partner-form-error') }}</small>
+                                            <small id="addressHelp" class="text-danger" v-if="partnerErrors.includes('line_1')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -446,7 +446,7 @@
                 partner: {
                     name: '',
                     email: '',
-                    address: '',
+                    line_1: '',
                     county: '',
                     city: '',
                     phone_number: '',

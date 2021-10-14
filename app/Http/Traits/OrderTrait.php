@@ -63,5 +63,19 @@ trait OrderTrait {
 
         return null; 
     }
+
+    # Checkout order
+    public function finishOrder()
+    {   
+        return Order::updateOrCreate(
+            [
+                'client_id'            => Auth::user()->client->id,
+                'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
+            ],
+            [
+                'order_status_type_id' => 2,
+            ]
+        );
+    }
     
 }

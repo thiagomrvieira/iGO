@@ -112,35 +112,6 @@ class OrderController extends Controller
 
 
     /**
-     * CREATE A NEW ORDER
-     * *
-     * 
-     
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-
-        // return response()->json(['status'  => $status  ?? 'success',
-        //                          'message' => $message ?? 'Produto adicionado ao carrinho',
-        //                          'data'    => $order], 200); 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * UPDATE DATA FROM ORDER
      * *
      * 
@@ -205,6 +176,57 @@ class OrderController extends Controller
        
     }
 
+
+    /**
+     * SUBMIT ORDER
+     * *
+     * 
+     * @OA\post(path="/api/v1/order/submit",
+     *   tags={"Orders"},
+     *   summary="Submit order",
+     *   description="Change order status from Open to Submitted",
+     *   operationId="submitOrder",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function submit()
+    {
+        if (isset(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart)) {
+            $this->finishOrder(); 
+            $message = "O seu pedido foi submetido!";
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não há produtos no carrinho'], 200); 
+       
+    }
     /**
      * Remove the specified resource from storage.
      *

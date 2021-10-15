@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CheckoutOrderResource;
+use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
 use App\Http\Traits\OrderTrait;
 use App\Models\Product;
 use App\Models\Order;
@@ -56,7 +58,21 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+
+        
+
+
+        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )->where('order_status_type_id', '<>' , 2 )->count() > 0) {
+            $data    = new OrderCollection(
+                                 Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )
+                                      ->where('order_status_type_id', '<>' , 2 )->get()
+                                    );
+            $message = "histórico de pedidos";
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não há histórico de pedidos',
+                                 'data'    => $data    ?? null], 200); 
     }
 
     /**

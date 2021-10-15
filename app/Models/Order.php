@@ -22,14 +22,15 @@ class Order extends Model
         'deliver_at', 
     ];
 
-    /**
-     * Get the order's items/products.
-     */
-    public function products()
-    {
-        return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
-    }
+    // /**
+    //  * Get the order's items/products.
+    //  */
+    // public function products()
+    // {
+    //     return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
+    // }
 
+    
     /**
      * Get the items/products in the cart
      */
@@ -37,7 +38,7 @@ class Order extends Model
     {
         return $this->hasMany(Cart::class);
     }
-    
+
     /**
      * Get the Address associated with the order.
      */
@@ -45,6 +46,15 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class);
     }
+
+    /**
+     * Get the Order Status.
+     */
+    public function orderStatusType()
+    {
+        return $this->belongsTo(OrderStatusType::class);
+    }
+
 
 
     /**

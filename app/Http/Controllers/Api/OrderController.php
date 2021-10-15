@@ -58,12 +58,11 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $order = Order::where('client_id', Auth::user()->client->id)
+                      ->whereIn('order_status_type_id', array(8, 9) )->get();
 
-        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )->where('order_status_type_id', '<>' , 2 )->count() > 0) {
-            $data    = new OrderCollection(
-                                 Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )
-                                      ->where('order_status_type_id', '<>' , 2 )->get()
-                                    );
+        if ($order->count() > 0) {
+            $data    = new OrderCollection( $order ) ;
             $message = "histórico de pedidos";
         }
         
@@ -114,12 +113,11 @@ class OrderController extends Controller
      */
     public function inProgress()
     {
-
-        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )->where('order_status_type_id', '<>' , 2 )->count() > 0) {
-            $data    = new OrderCollection(
-                                 Order::where('client_id', Auth::user()->client->id)
-                                      ->whereIn('order_status_type_id', array(3, 4, 5, 6, 7) )->get()
-                                    );
+        $order = Order::where('client_id', Auth::user()->client->id)
+                      ->whereIn('order_status_type_id', array(3, 4, 5, 6, 7) )->get();
+                                    
+        if ($order->count() > 0) {
+            $data    = new OrderCollection( $order );
             $message = "Pedidos em curso";
         }
         
@@ -169,8 +167,9 @@ class OrderController extends Controller
      */
     public function checkout()
     {
-        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart->count() > 0) {
-            $data    = new CheckoutOrderResource($this->firstOrCreateOrder());
+        $order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
+        if ($order) {
+            $data    = new CheckoutOrderResource($order);
             $message = "Chekout";
         }
         
@@ -184,7 +183,7 @@ class OrderController extends Controller
      * UPDATE DATA FROM ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/checkout",
+     * @OA\post(path="/api/v1/order/checkout",
      *   tags={"Orders"},
      *   summary="Checkout order",
      *   description="Update order data and if sent any paramter",
@@ -298,14 +297,66 @@ class OrderController extends Controller
     }
     
     /**
-     * Show the specified resource from storage.
+     * GET THE SPECIFIED ORDER
+     * *
+     * @OA\Get(path="/api/v1/order/{id}",
+     *   tags={"Orders"},
+     *   summary="Get the specified order",
+     *   description="Return data of the specified order",
+     *   operationId="getOrder",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $order = Order::where('id',  $id)->get();
+        if (isset($order) ) {
+            $data    = new CheckoutOrderResource( $order->first() );
+            $message = "Dados do pedido";
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não foi possivel encontrar o pedido especificado"',
+                                 'data'    => $data    ?? null], 200); 
     }
 
     /**

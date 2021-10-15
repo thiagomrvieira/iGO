@@ -76,7 +76,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::post('order/checkout',   [OrderController::class, 'update']);
         Route::post('order/submit',     [OrderController::class, 'submit']);
         Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
-        Route::get('orders/{id}',       [OrderController::class, 'show']);
+        Route::get('order/{id}',        [OrderController::class, 'show']);
 
     });
 });

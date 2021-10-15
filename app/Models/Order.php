@@ -88,8 +88,8 @@ class Order extends Model
         # Get the Partner
         $partner = $cart->product->partner;
         # Get The county names
-        $deliveryFrom = County::where('name', $this->address->county)->first();
-        $deliveryTo   = County::where('name', $partner->address->county)->first();
+        $deliveryFrom = County::where('id', $this->address->county_id)->first();
+        $deliveryTo   = County::where('id', $partner->address->county_id)->first();
 
         return ShippingFee::where('delivery_from', $deliveryFrom->id)
                           ->where('delivery_to',   $deliveryTo->id)->first()->price;

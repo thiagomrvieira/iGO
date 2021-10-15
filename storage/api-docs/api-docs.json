@@ -318,9 +318,9 @@
                                         "type": "string",
                                         "example": "Address line 2. Eg: Praceta São João"
                                     },
-                                    "county": {
-                                        "type": "string",
-                                        "example": "Luanda"
+                                    "county_id": {
+                                        "type": "integer",
+                                        "example": "1"
                                     },
                                     "city": {
                                         "type": "string",
@@ -960,9 +960,9 @@
                                         "type": "string",
                                         "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
                                     },
-                                    "county": {
-                                        "type": "string",
-                                        "example": "Luanda"
+                                    "county_id": {
+                                        "type": "integer",
+                                        "example": "1"
                                     },
                                     "city": {
                                         "type": "string",

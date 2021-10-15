@@ -36,7 +36,7 @@ class PassportAuthController extends Controller
      *                  @OA\Property(property="mobile_phone_number", type="integer", example="978 645 312"),
      *                  @OA\Property(property="password", type="string", example="iGO@123"),
      *                  @OA\Property(property="line_1", type="string", example="Address line 1. Eg: Av. Mauris nec dolor, nº 50"),
-     *                  @OA\Property(property="county", type="string", example="Luanda"),
+     *                  @OA\Property(property="county_id", type="integer", example="1"),
      *                  @OA\Property(property="city", type="string", example="Aptent"),
      *              )
      *          ),

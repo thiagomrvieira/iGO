@@ -16,7 +16,7 @@ class Address extends Model
         'address_type_id',
         'line_1',
         'line_2',
-        'county',
+        'county_id',
         'city',
         'post_code',
         'country'
@@ -36,5 +36,13 @@ class Address extends Model
     public function type()
     {
         return $this->belongsTo(AddressType::class, 'address_type_id', 'id');
+    }
+
+    /**
+     * Get the county.
+     */
+    public function county()
+    {
+        return $this->belongsTo(County::class);
     }
 }

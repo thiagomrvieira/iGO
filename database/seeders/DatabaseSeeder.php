@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PartnerImagesSeeder::class);
         $this->call(ProductsSeeder::class);
         $this->call(ExtraSeeder::class);
+        $this->call(AddressesSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

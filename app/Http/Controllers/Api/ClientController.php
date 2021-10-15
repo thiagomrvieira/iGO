@@ -196,7 +196,7 @@ class ClientController extends Controller
      *          @OA\Property(property="address_name", type="string", example="Trabalho"),
      *          @OA\Property(property="line_1", type="string", example="Address line 1. Eg: Av. Mauris nec dolor, nº 50"),
      *          @OA\Property(property="line_2", type="string", example="Address line 2. Eg: Praceta São João"),
-     *          @OA\Property(property="county", type="string", example="Luanda"),
+     *          @OA\Property(property="county_id", type="integer", example="1"),
      *          @OA\Property(property="city", type="string", example="Aptent"),
      *          @OA\Property(property="post_code", type="string", example="46703"),
      *          @OA\Property(property="country", type="string", example="Angola"),

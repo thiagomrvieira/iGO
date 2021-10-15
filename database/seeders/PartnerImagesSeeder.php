@@ -6,13 +6,11 @@ use App\Models\Image;
 use App\Models\Partner;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-// use Illuminate\Foundation\Testing\WithFaker;
 
 
 class PartnerImagesSeeder extends Seeder
+      
 {
-    // use WithFaker;
-    
     /**
      * Run the database seeds.
      *

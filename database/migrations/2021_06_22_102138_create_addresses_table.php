@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->foreignId('address_type_id')->default(1)->constrained('address_types');
             $table->string('line_1');
             $table->string('line_2')->nullable();
-            $table->string('county');
+            $table->foreignId('county_id')->constrained();
             $table->string('city');
             $table->string('post_code')->nullable();
             $table->string('country')->nullable();

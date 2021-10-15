@@ -15,17 +15,15 @@ class OrderStatusTypesSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array('name' => 'Aberto'),
-            array('name' => 'Submetido'),
-            array('name' => 'Novo pedido Aderente'),
-            array('name' => 'Pedido em Curso Aderente'),
-            array('name' => 'Novo pedido Estafeta'),
-            array('name' => 'Pedido Concluído Aderente'),
-            array('name' => 'Pedido em Curso Estafeta'),
-            array('name' => 'Pedido Concluído Estafeta'),
-            array('name' => 'Pedido Concluído Estafeta'),
-            array('name' => 'Pedido Cancelado'),
-            
+            array('name' => 'Aberto',    'description' => 'Pedido aberto'),
+            array('name' => 'Submetido', 'description' => 'Pedido submetido'),
+            array('name' => 'Em curso',  'description' => 'Novo pedido Aderente'),
+            array('name' => 'Em curso',  'description' => 'Pedido em Curso Aderente'),
+            array('name' => 'Em curso',  'description' => 'Novo pedido Estafeta'),
+            array('name' => 'Em curso',  'description' => 'Pedido Concluído Aderente'),
+            array('name' => 'Em curso',  'description' => 'Pedido em Curso Estafeta'),
+            array('name' => 'Entregue',  'description' => 'Pedido Concluído Estafeta'),
+            array('name' => 'Cancelado', 'description' => 'Pedido Cancelado'),
         );
         
         OrderStatusType::insert($data);

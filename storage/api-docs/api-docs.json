@@ -552,7 +552,7 @@
                     "Orders"
                 ],
                 "summary": "Checkout order",
-                "description": "Return order data and update if send any paramter",
+                "description": "Update order data and if sent any paramter",
                 "operationId": "checkout",
                 "requestBody": {
                     "required": true,

@@ -16,6 +16,7 @@ class CreateOrderStatusTypesTable extends Migration
         Schema::create('order_status_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
             $table->timestamps();
         });
     }

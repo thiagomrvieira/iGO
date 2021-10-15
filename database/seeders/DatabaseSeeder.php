@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ShippingFeeSeeder::class);
         $this->call(OrderStatusTypesSeeder::class);
         $this->call(PartnersSeeder::class);
+        $this->call(PartnerImagesSeeder::class);
         $this->call(ProductsSeeder::class);
         $this->call(ExtraSeeder::class);
         // \App\Models\User::factory(10)->create();

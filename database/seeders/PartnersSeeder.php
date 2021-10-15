@@ -60,17 +60,5 @@ class PartnersSeeder extends Seeder
         #   Cria partners
         Partner::insert($data);
 
-        #   Cria imagens para cada aderente
-        foreach (Partner::all() as $partner) {
-            Image::create([
-                'partner_id'  => $partner->id, 
-                'image_cover' => $faker->image(), 
-                'image_01'    => $faker->image(), 
-                'image_02'    => $faker->image(), 
-                'image_03'    => $faker->image(), 
-            ]);
-        }
-
-
     }
 }

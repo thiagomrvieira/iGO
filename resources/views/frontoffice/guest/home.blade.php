@@ -409,37 +409,40 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        {{-- Show success message --}}
-        <div class="alert alert-success" role="alert"
-            v-if="partnerCreated.company_name">
-            <h4 class="alert-heading">Olá, @{{ partnerCreated.name }}!</h4>
-            <p>O pré-cadasto da <b> @{{ partnerCreated.company_name }} </b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
-        </div>
-        {{-- Show validation error --}}
-        <div class="alert alert-danger" role="alert"
-            v-if="partnrValidationError">
-            <h4 class="alert-heading">Erro!</h4>
-            <p>  @{{ partnrValidationErrorMessage }} </p>
-        </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+        
+            <div class="modal-body partner-success" role="alert" v-if="partnerCreated.company_name">
+                <h4 class="alert-heading">Olá, <span></span></h4>
+                <p>O pré-cadasto da <b></b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+            </div>
+           
+            <div class="modal-body partner-error">
+                <h4 class="alert-heading">Erro!</h4>
+                <p>Não foi possível cadastar o aderente com os dados informados</p>
+            </div>
 
-        {{-- Show success message --}}
-        <div class="alert alert-success" role="alert"
-            v-if="deliverymanCreated">
-            <h4 class="alert-heading">Olá, @{{ deliverymanCreated }}!</h4>
-            <p>O seu pré-cadasto foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
-        </div>
-        {{-- Show validation error --}}
-        <div class="alert alert-danger" role="alert"
-            v-if="delManValidationError">
-            <h4 class="alert-heading">Erro!</h4>
-            <p>  @{{ delManValidationErrorMessage }} </p>
+            <div class="modal-body delivery-success" role="alert" v-if="deliverymanCreated">
+                <h4 class="alert-heading">Olá, <span></span></h4>
+                <p>O seu pré-cadasto foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+            </div>
+
+            <div class="modal-body delivery-error">
+                <h4 class="alert-heading">Erro!</h4>
+                <p class="delManValidationError">Não foi possível cadastar o aderente com os dados informados</p>
+            </div>
+           
         </div>
     </div>
 @endsection
 
 @section('vue-instance')
     <script type="text/javascript">
+    const modalElement = jQuery('.modal');
         new Vue({
             el: '#page-front',
             data: {
@@ -479,7 +482,6 @@
                 //  Handle the form request
                 getFormRequest: function (form, event) {
                     event.preventDefault();
-                    
                     if (form == 'deliverymanCreation') {
                         this.resource = this.deliveryman;
                         if(this.checkForm(form) ){
@@ -491,7 +493,6 @@
                             this.formAction = "{{ route('partner.store.home') }}";
                         }
                     }
-
                     if ( this.formAction ) {
                         this.submitForm(event);
                     }
@@ -501,12 +502,10 @@
                 checkForm(form) {
                     this.deliverymanErrors = [];
                     this.partnerErrors = [];
-                    console.log(Object.entries(this.resource))
                     Object.entries(this.resource).forEach(([key, value]) => {
                         if (key === "category_id" ) {
                             this.resource[key] = jQuery('.category_id').val();
                         }
-
                         if (!this.resource[key]) { 
                             
                             jQuery(`#${form} #${key}`).parents('.block-field').addClass("is-invalid");
@@ -516,42 +515,43 @@
 
                     return (this.partnerErrors.length || this.deliverymanErrors.length) ? false : true;
                 },
-
+                
                 //  Submit forms
                 submitForm() {
                     axios.post(this.formAction, {
                         resource: this.resource,
                     })
                     .then(response => {
+                        
                         if (Object.keys(response.data.resource).length > 6) {
-                            this.partnerCreated.name = (response.status == 201) ?  response.data.resource.name : null;
-                            this.partnerCreated.company_name = (response.status == 201) ?  response.data.resource.company_name : null;
+                            // this.partnerCreated.name = (response.status == 201) ?  response.data.resource.name : null;
+                            // this.partnerCreated.company_name = (response.status == 201) ?  response.data.resource.company_name : null;
+                            modalElement.find('.partner-success h4 span').html(response.data.resource.name);
+                            modalElement.find('.partner-success p b').html(response.data.resource.company_name);
+                            modalElement.addClass('show-partner-success');
                         } else {
-                            this.deliverymanCreated = (response.status == 201) ?  response.data.resource.name : null;
+                            // this.deliverymanCreated = (response.status == 201) ?  response.data.resource.name : null;
+                            modalElement.find('.partner-success h4 span').html(response.data.resource.name);
+                            modalElement.addClass('show-delivery-success');
                         }
                         this.cleanInputs(this.resource);
                     })
                     .catch((error) => {
-                        console.log(Object.keys(this.resource).length); 
                         if (Object.keys(this.resource).length > 3) {
-                            this.partnrValidationError = true;
-                            this.partnrValidationErrorMessage = "Não foi possível cadastar o aderente com os dados informados";
+                            modalElement.addClass('show-partner-error');
                         } else {
-                            this.delManValidationError = true;
-                            this.delManValidationErrorMessage = "Não foi possível cadastar o estafeta com os dados informados";
+                            modalElement.addClass('show-delivery-error');
                         }
                     });
                 },
-
+                
                 //  Clean form inputs after requests
                 cleanInputs(resource){
                     this.formAction = '';
-                    
                     Object.keys(resource).forEach(key => {
                         resource[key] = '';
                     });
                 },
-
                 //  Remove error class and messages
                 removeClassError(form, inputId){
                     jQuery(`#${form} #${inputId}`).parents('.block-field').removeClass('is-invalid');
@@ -559,7 +559,6 @@
                         this.deliverymanErrors = this.deliverymanErrors.filter(item => item !== inputId);
                         this.delManValidationError = false;
                         this.delManValidationErrorMessage = '';
-                        
                     } else {
                         this.partnerErrors = this.partnerErrors.filter(item => item !== inputId);
                         this.partnrValidationError = false;

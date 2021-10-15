@@ -59,9 +59,6 @@ class OrderController extends Controller
     public function index()
     {
 
-        
-
-
         if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )->where('order_status_type_id', '<>' , 2 )->count() > 0) {
             $data    = new OrderCollection(
                                  Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )
@@ -76,10 +73,66 @@ class OrderController extends Controller
     }
 
     /**
+     * DISPLAY A LIST OF ALL USER IN PROGRESS ORDERS 
+     * *
+     * 
+     * @OA\Get(path="/api/v1/order/inprogress",
+     *   tags={"Orders"},
+     *   summary="Show all client orders in progress ",
+     *   description="Display a list of all client orders in progress (status id between 3 and 5)",
+     *   operationId="showInProgressOrders",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inProgress()
+    {
+
+        if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', '<>' , 1 )->where('order_status_type_id', '<>' , 2 )->count() > 0) {
+            $data    = new OrderCollection(
+                                 Order::where('client_id', Auth::user()->client->id)
+                                      ->whereIn('order_status_type_id', array(3, 4, 5, 6, 7) )->get()
+                                    );
+            $message = "Pedidos em curso";
+        }
+        
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não há pedidos em andamento',
+                                 'data'    => $data    ?? null], 200); 
+    }
+
+    /**
      * Display chekout data
      * *
      * 
-     * @OA\Get(path="/api/v1/checkout",
+     * @OA\Get(path="/api/v1/order/checkout",
      *   tags={"Orders"},
      *   summary="Display order data",
      *   description="Show order details - Products, delivery, schedule, tax and payment data",
@@ -197,7 +250,7 @@ class OrderController extends Controller
      * SUBMIT ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/order/submit",
+     * @OA\post(path="/api/v1/orders/submit",
      *   tags={"Orders"},
      *   summary="Submit order",
      *   description="Change order status from Open to Submitted",
@@ -243,6 +296,18 @@ class OrderController extends Controller
                                  'message' => $message ?? 'Não há produtos no carrinho'], 200); 
        
     }
+    
+    /**
+     * Show the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Remove the specified resource from storage.
      *

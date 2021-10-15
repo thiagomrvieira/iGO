@@ -42,7 +42,6 @@ Route::group(['prefix' => 'v1'], function()
             'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
             'cart'         => CartController::class,
-            'orders'       => OrderController::class,
             'categories'   => PartnerCategoryController::class,
             'products'     => ProductController::class,
         ]);
@@ -71,12 +70,13 @@ Route::group(['prefix' => 'v1'], function()
         Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
         Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
         
-        #   Get order data
-        Route::get('checkout', [OrderController::class, 'checkout']);
-        #   Update order data
-        Route::post('checkout', [OrderController::class, 'update']);
-        #   Update order status
-        Route::post('order/submit', [OrderController::class, 'submit']);
+        #   ORDERS
+        Route::get('orders',            [OrderController::class, 'index']);
+        Route::get('order/checkout',    [OrderController::class, 'checkout']);
+        Route::post('order/checkout',   [OrderController::class, 'update']);
+        Route::post('order/submit',     [OrderController::class, 'submit']);
+        Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
+        Route::get('orders/{id}',       [OrderController::class, 'show']);
 
     });
 });

@@ -15,10 +15,11 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'      => $this->id,
-            'status'  => $this->orderStatusType->name,
-            'date'    => $this->created_at,
-            'partner' => [
+            'id'          => $this->id,
+            'status'      => $this->orderStatusType->name,
+            'description' => $this->orderStatusType->description,
+            'date'        => $this->created_at,
+            'partner'     => [
                 'id'    => $this->cart->first()->product->partner->id,  
                 'name'  => $this->cart->first()->product->partner->name,  
                 'image' => $this->cart->first()->product->partner->images->image_cover ?? null,  

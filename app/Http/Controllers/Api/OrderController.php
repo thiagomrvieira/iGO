@@ -134,7 +134,7 @@ class OrderController extends Controller
      * @OA\post(path="/api/v1/checkout",
      *   tags={"Orders"},
      *   summary="Checkout order",
-     *   description="Return order data and update if send any paramter",
+     *   description="Update order data and if sent any paramter",
      *   operationId="checkout",
      *   @OA\RequestBody(
      *      required=true,

@@ -196,7 +196,7 @@ class OrderController extends Controller
      *          @OA\Property(property="deliver_at", type="string", example="2022-12-21 19:44"),
      *          @OA\Property(property="tax_name", type="string", example="Fulano da Silva"),
      *          @OA\Property(property="tax_number", type="integer", example="300 322 984"),
-     *          @OA\Property(property="campaign_code", type="string", example="iGONATAL"),
+     *          @OA\Property(property="campaign_code", type="string", example="FERIAS2021"),
      *      )
      *   ),
      *   @OA\Response(
@@ -249,7 +249,7 @@ class OrderController extends Controller
      * SUBMIT ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/orders/submit",
+     * @OA\post(path="/api/v1/order/submit",
      *   tags={"Orders"},
      *   summary="Submit order",
      *   description="Change order status from Open to Submitted",
@@ -349,13 +349,13 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::where('id',  $id)->get();
-        if (isset($order) ) {
+        if ($order->count() > 0) {
             $data    = new CheckoutOrderResource( $order->first() );
             $message = "Dados do pedido";
         }
         
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não foi possivel encontrar o pedido especificado"',
+                                 'message' => $message ?? 'Não foi possivel encontrar o pedido especificado',
                                  'data'    => $data    ?? null], 200); 
     }
 

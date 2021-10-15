@@ -613,7 +613,7 @@
                                     },
                                     "campaign_code": {
                                         "type": "string",
-                                        "example": "iGONATAL"
+                                        "example": "FERIAS2021"
                                     }
                                 },
                                 "type": "object"
@@ -648,7 +648,7 @@
                 ]
             }
         },
-        "/api/v1/orders/submit": {
+        "/api/v1/order/submit": {
             "post": {
                 "tags": [
                     "Orders"

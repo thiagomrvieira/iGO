@@ -238,15 +238,12 @@ a:hover {
 	margin: 0 auto;
 	padding: 0 15px;
 }
-
 .text-danger {
 	color: #eb3e3e;
 }
-
 .is-invalid {
 	border: 2px solid #eb3e3e !important;
 }
-
 /* Login */
 .block-login {
 	display: flex;
@@ -254,29 +251,24 @@ a:hover {
 	margin-top: 50px;
 	height: calc(100vh - 200px);
 }
-
 .block-login .login .login-form button {
 	margin-top: 55px;
 }
-
 .block-login .login .block-form-group {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	width: 350px;
 }
-
 .block-login .login .block-title h1 {
 	text-align: center;
 	margin: 50px;
 }
-
 .block-login .login form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
 .block-login .login .password-recover p {
 	font-family: 'Krona One', sans-serif;
 	font-size: 11px;
@@ -286,16 +278,13 @@ a:hover {
 	counter-reset: #072a40;
 	margin-bottom: 16px;
 }
-
 .block-login .login .password-recover a {
 	color: #f77415;
 }
-
 .block-login .login .register {
 	color: #f77415;
 	margin-bottom: 56px;
 }
-
 /* Header */
 header {
 	position: fixed;
@@ -912,7 +901,6 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 .block-faq .faq-block-title {
 	margin-left: 24px;
 }
-
 .block-faq .faq-button {
 	display: flex;
 	align-items: center;
@@ -933,31 +921,25 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 .block-faq .faq-button.is-open svg {
 	transform: rotate(180deg);
 }
-
 /* .block-faq .faq-button:after {
 	content: url("assets-frontoffice/images/seta_drop.png");
 	float: right;
 } */
-
 .block-faq button:hover,
 .block-faq button.is-open {
 	color: #ffe414;
 }
-
 .block-faq .faq-content {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.2s ease-in-out;
 }
-
 .block-faq .faq-content .faq-answer {
 	padding: 32px 24px;
 }
-
 .block-faq .faq-content .faq-answer:not(:last-child) {
 	border-bottom: 0.5px solid #ffe414;
 }
-
 .block-faq .faq-content .faq-answer h4 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
@@ -967,17 +949,14 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	color: #072a40;
 	margin-bottom: 24px;
 }
-
 /* Footer */
 footer {
 	background-color: #072a40;
 }
-
 footer .block-footer-top {
 	margin-left: 0;
 	padding-top: 55px;
 }
-
 footer .block-footer-center {
 	display: flex;
 	padding: 20px 0;
@@ -991,7 +970,6 @@ footer .block-footer-center .column-left {
 footer .block-footer-center .column-left ul {
 	list-style: none;
 }
-
 footer .block-footer-center .column-left ul li {
 	margin: 0 0 20px 0;
 	font-family: 'Roboto', sans-serif;
@@ -1001,11 +979,9 @@ footer .block-footer-center .column-left ul li {
 	font-style: normal;
 	color: #ffffff;
 }
-
 footer .block-footer-center .column-left .block-social-media {
 	margin-top: 50px;
 }
-
 footer .block-footer-center .column-left .block-social-media ul {
 	display: flex;
 	align-items: center;
@@ -1014,34 +990,28 @@ footer .block-footer-center .column-left .block-social-media ul {
 	margin: 0;
 	padding: 0;
 }
-
 footer .block-footer-center .column-left .block-social-media ul li {
 	margin-right: 15px;
 }
-
 footer .block-footer-center .column-middle {
 	display: flex;
 	align-items: top;
 	justify-content: flex-start;
 }
-
 footer .block-footer-center .column-middle .ul-left {
 	width: 200px;
 	display: flex;
 	flex-direction: column;
 }
-
 footer .block-footer-center .column-middle .ul-right {
 	width: 200px;
 	display: flex;
 	flex-direction: column;
 }
-
 footer .block-footer-center .column-middle ul li {
 	display: inline-block;
 	margin: 0 0 20px 0;
 }
-
 footer .block-footer-center .column-middle ul li a {
 	font-family: 'Krona One', sans-serif;
 	font-size: 14px;
@@ -1051,19 +1021,16 @@ footer .block-footer-center .column-middle ul li a {
 	color: #ffffff;
 	text-decoration: none;
 }
-
 footer .block-footer-center .column-right {
 	width: 350px;
 	align-items: center;
 }
-
 footer .block-footer-center .column-right .newsletter {
 	width: 350px;
 	position: relative;
 	margin-left: 50px;
 	border-bottom: 1px solid #ffffff;
 }
-
 footer .block-footer-center .column-right .newsletter label {
 	font-family: 'Krona One', sans-serif;
 	font-size: 14px;
@@ -1072,7 +1039,6 @@ footer .block-footer-center .column-right .newsletter label {
 	font-style: normal;
 	color: #ffffff;
 }
-
 footer .block-footer-center .column-right .newsletter input[type='text'] {
 	width: 100%;
 	border: 0;
@@ -1081,7 +1047,6 @@ footer .block-footer-center .column-right .newsletter input[type='text'] {
 	margin-top: 25px;
 	color: #ffffff;
 }
-
 footer .block-footer-center .column-right .newsletter input::placeholder {
 	font-family: 'Robot', sans-serif;
 	font-size: 14px;
@@ -1090,7 +1055,6 @@ footer .block-footer-center .column-right .newsletter input::placeholder {
 	font-style: normal;
 	color: #ffffff;
 }
-
 footer .block-footer-center .column-right .newsletter .btn {
 	position: absolute;
 	top: 80%;
@@ -1105,18 +1069,15 @@ footer .block-footer-center .column-right .newsletter .btn {
 	cursor: pointer;
 	border-bottom: 1px solid #ff8d3b;
 }
-
 footer .block-footer-bottom {
 	border-top: 1px solid #687780;
 	padding: 15px 0px 20px 0px;
 }
-
 footer .block-footer-bottom .row-fluid {
 	display: flex;
 	align-items: top;
 	justify-content: space-between;
 }
-
 footer .block-footer-bottom .row-fluid .column-left .block-footer-copyright p {
 	font-family: 'Krona One', sans-serif;
 	font-size: 11px;
@@ -1125,7 +1086,6 @@ footer .block-footer-bottom .row-fluid .column-left .block-footer-copyright p {
 	font-style: normal;
 	color: #687780;
 }
-
 footer .block-footer-bottom .row-fluid .column-right .block-footer-apps {
 	display: flex;
 	flex-direction: row;
@@ -1133,7 +1093,6 @@ footer .block-footer-bottom .row-fluid .column-right .block-footer-apps {
 	justify-content: space-between;
 	width: 310px;
 }
-
 footer .block-footer-bottom .row-fluid .column-right .block-footer-apps p {
 	font-family: 'Krona One', sans-serif;
 	font-size: 11px;
@@ -1141,4 +1100,58 @@ footer .block-footer-bottom .row-fluid .column-right .block-footer-apps p {
 	font-weight: 400;
 	font-style: normal;
 	color: #687780;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 100; /* Sit on top */
+	padding-top: 400px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: #072A40; /* Fallback color */
+	background-color: 	rgb(7, 42, 64, 0.85); /* Black w/ opacity */
+}
+.modal.show-partner-success,
+.modal.show-partner-error,
+.modal.show-delivery-success,
+.modal.show-delivery-error {
+	display: block;
+}
+  /* Modal Content */
+.modal-content {
+	width: 730px;
+	height: 450px;
+	background-color: #FFFEF0;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 10px;
+}
+.modal-body{
+	display: none;
+}
+.modal.show-partner-success .modal-body.partner-success,
+.modal.show-partner-error .modal-body.partner-error,
+.modal.show-delivery-success .modal-body.delivery-success,
+.modal.show-delivery-error .modal-body.delivery-error {
+	display: block; 
+}
+  /* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
 }

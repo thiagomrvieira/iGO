@@ -24,6 +24,10 @@ $j(document).ready(function ($) {
       // accordion is currently closed, so open it
       content.style.maxHeight = content.scrollHeight + 'px';
     }
+  }); // Close modal
+
+  $j('.modal').on('click', function () {
+    $j(this).removeClass('show-partner-success show-partner-error show-delivery-success show-delivery-error');
   });
 });
 
@@ -33,7 +37,8 @@ function scrollMenuFixed() {
   } else {
     $j('header').removeClass('fixed');
   }
-}
+} // Remove error message from the select2 on the partners form
+
 
 function removeClassErrorSelect2(form, inputId) {
   jQuery("#".concat(form, " #").concat(inputId)).parents('.block-field').removeClass('is-invalid');

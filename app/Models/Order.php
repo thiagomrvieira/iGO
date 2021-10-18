@@ -114,6 +114,13 @@ class Order extends Model
         return null;
     }
 
+    /**
+     * Get the client rating.
+     */
+    public function rating()
+    {
+        return $this->hasOne(OrderRating::class);
+    }
 
 
 }

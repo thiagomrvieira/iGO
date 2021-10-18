@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\OrderRatingController;
 use App\Http\Controllers\Api\PartnerCategoryController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,10 @@ Route::group(['prefix' => 'v1'], function()
             #   Get/Create/Update Client Addresses
             Route::get('addresses',  [ClientController::class, 'getAddressData' ]);
             Route::post('addresses', [ClientController::class, 'updateAddressData']);
+            
+            #   Order Rating
+            Route::post('order/{id}/rating', [OrderRatingController::class, 'store']);
+
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
@@ -77,6 +83,8 @@ Route::group(['prefix' => 'v1'], function()
         Route::post('order/submit',     [OrderController::class, 'submit']);
         Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
         Route::get('order/{id}',        [OrderController::class, 'show']);
+
+
 
     });
 });

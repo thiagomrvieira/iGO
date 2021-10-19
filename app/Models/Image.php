@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +24,19 @@ class Image extends Model
     public function partner()
     {
         return $this->belongsTo(Partner::class);
+    }
+
+    public function getCreatedAtAttribute($value){  
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
+    }
+    
+    public function getUpdatedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function getActiveAttribute($value){
+        return (boolean) $value;
     }
 }

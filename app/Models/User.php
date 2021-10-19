@@ -79,4 +79,23 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
+    /**
+     * Return boolean fields as TRUE/FALSE instead of 0/1
+     */
+    public function getActiveAttribute($value){
+        return (boolean) $value;
+    }
+    public function getIsAdminAttribute($value){
+        return (boolean) $value;
+    }
+    public function getIsPartnerAttribute($value){
+        return (boolean) $value;
+    }
+    public function getIsDeliverymanAttribute($value){
+        return (boolean) $value;
+    }
+    public function getIsClientAttribute($value){
+        return (boolean) $value;
+    }
+
 }

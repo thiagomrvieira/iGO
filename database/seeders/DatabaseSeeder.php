@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductsSeeder::class);
         $this->call(ExtraSeeder::class);
         $this->call(AddressesSeeder::class);
+        $this->call(OrderDeliveryStatusTypeSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

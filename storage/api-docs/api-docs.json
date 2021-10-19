@@ -413,6 +413,72 @@
                 ]
             }
         },
+        "/api/v1/client/order/{id}/deliverymanrating": {
+            "post": {
+                "tags": [
+                    "Review & Rating"
+                ],
+                "summary": "Delivery man rating",
+                "description": "Rate the delivery man when he deliver the order",
+                "operationId": "deliverymanRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "review": {
+                                        "type": "string",
+                                        "example": "Mauris aliquet nunc non turpis scelerisque, eget. Diuretics paradis num copo é motivis de denguis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/contents": {
             "get": {
                 "tags": [
@@ -729,14 +795,14 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}/rating": {
+        "/api/v1/client/order/{id}/orderrating": {
             "post": {
                 "tags": [
                     "Review & Rating"
                 ],
                 "summary": "Order rating",
-                "description": "Return data of the specified order",
-                "operationId": "ratingOrder",
+                "description": "Rate the order when it arrive",
+                "operationId": "orderRating",
                 "parameters": [
                     {
                         "name": "id",
@@ -1269,6 +1335,76 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}/productrating": {
+            "post": {
+                "tags": [
+                    "Review & Rating"
+                ],
+                "summary": "Product rating",
+                "description": "Rate a product after the order arrives",
+                "operationId": "productRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "product_id": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    },
+                                    "review": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",

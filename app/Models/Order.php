@@ -122,5 +122,12 @@ class Order extends Model
         return $this->hasOne(OrderRating::class);
     }
 
+    /**
+     * Get the Delivery man who delivered the product.
+     */
+    public function deliverymen()
+    {
+        return $this->hasMany(DeliverymanOrder::class);
+    }
 
 }

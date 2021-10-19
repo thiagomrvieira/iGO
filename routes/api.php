@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\CountyController;
 use App\Http\Controllers\Api\DeliverymanRatingController;
 use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\OrderController;
@@ -88,6 +89,9 @@ Route::group(['prefix' => 'v1'], function()
         Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
         Route::get('order/{id}',        [OrderController::class, 'show']);
 
+        #   COUNTIES
+        Route::get('counties',      [CountyController::class, 'index']);
+        Route::get('counties/{id}', [CountyController::class, 'show' ]);
 
 
     });

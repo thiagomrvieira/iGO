@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,10 @@ class Client extends Model
     public function favorites()
     {
         return $this->belongsToMany(Partner::class, 'client_partner', 'client_id', 'partner_id');
+    }
+
+    public function getBirthDateAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
     }
 }

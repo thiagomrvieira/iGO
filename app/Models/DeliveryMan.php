@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,5 +48,10 @@ class DeliveryMan extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getBirthDateAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
     }
 }

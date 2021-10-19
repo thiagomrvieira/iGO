@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -130,4 +131,18 @@ class Order extends Model
         return $this->hasMany(DeliverymanOrder::class);
     }
 
+    public function getDeliverAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function getDeliveredAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function getDeletedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
+    }
 }

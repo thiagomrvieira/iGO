@@ -130,4 +130,8 @@ class Product extends Model
         }
         
     }
+
+    public function getAvailableAttribute($value){
+        return (boolean) $value;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -90,5 +91,18 @@ class Partner extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+    
+    public function getFirstLoginAttribute($value){
+        return (boolean) $value;
+    }
+
+    public function getPremiumAttribute($value){
+        return (boolean) $value;
+    }
+
+    public function getApprovedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
     }
 }

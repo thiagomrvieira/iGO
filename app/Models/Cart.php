@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -90,5 +91,10 @@ class Cart extends Model
             $cart->cartSide()->delete();
             $cart->cartSauce()->delete();
         });
+    }
+
+    public function getDeletedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('Y-m-d H:i:s');
     }
 }

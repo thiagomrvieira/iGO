@@ -12,6 +12,8 @@ use App\Http\Controllers\Web\BackofficePartner\ProductController as BackofficePr
 use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePartnerController;
 use App\Http\Controllers\Web\FeaturedController;
 use App\Http\Controllers\Web\ShippingFeeController;
+use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Mail;
 
 #   ROUTES FOR AUTH
 require __DIR__.'/auth.php';
@@ -77,3 +79,18 @@ Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])-
 
 
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
+#   EMAIL
+Route::get('send-mail', function () {
+   
+    $details = [
+        'title' => 'Mail from iGO - É só pedir!',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    // \mail()::to('your_receiver_email@gmail.com')->send(new \App\Mail\MyTestMail($details));
+    Mail::to('thiagomrvieira@gmail.com')->send(new MyTestMail($details));
+
+   
+    dd("Email is Sent.");
+});

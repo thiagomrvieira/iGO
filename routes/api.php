@@ -63,8 +63,9 @@ Route::group(['prefix' => 'v1'], function()
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
             
             #   Get/Create/Update Client Addresses
-            Route::get('addresses',  [ClientController::class, 'getAddressData' ]);
-            Route::post('addresses', [ClientController::class, 'updateAddressData']);
+            Route::get('addresses',         [ClientController::class, 'getAddressData' ]);
+            Route::post('addresses',        [ClientController::class, 'updateAddressData']);
+            Route::delete('addresses/{id}', [ClientController::class, 'deleteAddressData']);
             
             #   Review & Rating
             Route::post('order/{id}/orderrating',       [OrderRatingController::class,       'store']);

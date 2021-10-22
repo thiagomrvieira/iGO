@@ -308,5 +308,64 @@ class ClientController extends Controller
                                  'message' => $message ?? 'Aderente desfavoritado'], 200);
     }
 
+
+    /**
+     * DELETE ADDRESS
+     * *
+     * 
+     * @OA\Delete(path="/api/v1/client/addresses/{id}",
+     *   tags={"Clients"},
+     *   summary="Remove address",
+     *   description="Remove client address specified in addres id",
+     *   operationId="removeClienteAddress",
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Address id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function deleteAddressData($id)
+    {
+        if ( Address::where('user_id', Auth::user()->id)->where('id', $id)->delete() ){
+            $message = 'Endereço removido';
+        }
+            
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Não foi possível remover o endereço informado'], 200); 
+        
+    }
+
     
 }

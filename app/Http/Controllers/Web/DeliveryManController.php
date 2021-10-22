@@ -9,6 +9,8 @@ use App\Http\Requests\DeliverymanStoreRequest;
 use App\Http\Requests\DeliverymanStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserTrait;
+use App\Mail\DeliverymanCreateAccount;
+use Illuminate\Support\Facades\Mail;
 
 class DeliveryManController extends Controller
 {
@@ -53,6 +55,7 @@ class DeliveryManController extends Controller
         $request['user_id'] = $user->id ?? null;
 
         $deliveryman = DeliveryMan::create($request->all());
+        
         return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman])
                          ->with(['message' => 'Estafeta criado com sucesso!', 'alert' => 'alert-success']);
         
@@ -78,6 +81,9 @@ class DeliveryManController extends Controller
 
         # Create Deliveryman 
         $deliveryman = DeliveryMan::create($resource);
+
+        # Send email   
+        Mail::to($user)->send(new DeliverymanCreateAccount($deliveryman));
         
         return response()->json(['resource' => $deliveryman], 201); 
     }

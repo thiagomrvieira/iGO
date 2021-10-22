@@ -217,7 +217,7 @@
                                     <div class="form-group row">
                                         {!! Form::label('county',  __('backoffice/partners.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::select('county_id', $counties->pluck('name', 'id'), $deliveryman->address->county_id ?? null, 
+                                            {!! Form::select('county_id', $counties->pluck('name', 'id'), $partner->address->county_id ?? null, 
                                                     ['class' => 'form-control', 'placeholder' => 'Seleciona uma província']) !!}
                                         </div>
                                     </div>

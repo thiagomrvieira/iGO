@@ -15,7 +15,7 @@ class CreateSchedulePartnersTable extends Migration
     {
         Schema::create('schedule_partners', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('partner_id') ->constrained();
+            $table->foreignId('partner_id')->constrained()->onDelete('cascade');;
             $table->string('day');
             $table->string('period');
             $table->time('open');

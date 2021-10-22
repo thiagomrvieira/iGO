@@ -15,7 +15,7 @@ class CreateCategoryPartnerTable extends Migration
     {
         Schema::create('category_partner', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('partner_id')->constrained();
+            $table->foreignId('partner_id')->constrained()->onDelete('cascade');;
             // $table->foreignId('category_id')->constrained();
 
             $table->unsignedBigInteger('category_id');

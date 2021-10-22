@@ -450,7 +450,7 @@
                     name: '',
                     email: '',
                     line_1: '',
-                    county: '',
+                    county_id: '',
                     city: '',
                     phone_number: '',
                     mobile_phone_number: '',

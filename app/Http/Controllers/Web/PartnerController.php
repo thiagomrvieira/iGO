@@ -10,7 +10,9 @@ use App\Http\Requests\PartnerStoreRequest;
 use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserTrait;
+use App\Mail\PartnerCreateAccount;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class PartnerController extends Controller
 {
@@ -78,7 +80,7 @@ class PartnerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createPartnerFromHome(PartnerStoreFromHomeRequest $request)
-    {
+    {   
         # Set variable for resource creation 
         $resource = $request->resource;
 
@@ -93,7 +95,10 @@ class PartnerController extends Controller
 
         # Create address
         $address = $this->getAddressRequest($request->resource, $user->id); 
-        
+
+        # Send Email
+        Mail::to($user)->send(new PartnerCreateAccount($partner));
+
         
         return response()->json(['resource' => $partner], 201); 
     }

@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\WebContent;
 use App\Models\PartnerCategory;
 use App\Http\Controllers\Controller;
-
+use App\Models\County;
 
 class FrontOfficeController extends Controller
 {
     public function showHomePage() {
-        $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
-            PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
-        return view('frontoffice.guest.home')->with('partnerCategories', $partnerCategories);
+        return view('frontoffice.guest.home')->with('partnerCategories', PartnerCategory::where('active', 1)->where('parent_id', null)->get() ?? [])
+                                             ->with('counties', County::all() ?? []);
     }
 
     public function showAboutPage() {

@@ -69,6 +69,10 @@ class PartnerController extends Controller
         $request['user_id'] = $user->id ?? null;
 
         $partner = Partner::create($request->all());
+
+        # Send Email
+        Mail::to($user)->send(new PartnerCreateAccount($partner));
+
         return redirect()->route('partner.edit', ['partner' => $partner])
                          ->with(['message' => 'Aderente criado com sucesso!', 'alert' => 'alert-success']);
     }
@@ -152,7 +156,7 @@ class PartnerController extends Controller
     public function destroy(Partner $partner)
     {
         if($partner) {
-            $partner->delete();
+            $partner->user->delete();
         }
         return redirect()->route('partner.index');
     }

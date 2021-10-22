@@ -16,7 +16,7 @@ class CreateClientPartnerTable extends Migration
         Schema::create('client_partner', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained();
-            $table->foreignId('partner_id')->constrained();
+            $table->foreignId('partner_id')->constrained()->onDelete('cascade');;
             $table->timestamps();
         });
     }

@@ -81,6 +81,7 @@
             'lineTwo'     => "Linha 2",
             'county'      => "Concelho",
             'city'        => "Cidade",
+            'locality'    => "Bairro",
             'postalCode'  => "Código postal",
             'country'     => "País",
         ],

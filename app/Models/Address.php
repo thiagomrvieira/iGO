@@ -18,7 +18,7 @@ class Address extends Model
         'line_1',
         'line_2',
         'county_id',
-        'city',
+        'locality',
         'post_code',
         'country'
     ];

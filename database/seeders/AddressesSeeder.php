@@ -33,7 +33,7 @@ class AddressesSeeder extends Seeder
                 'line_1'          => $faker->streetAddress(),
                 'line_2'          => null,
                 'county_id'       => County::inRandomOrder()->first()->id,
-                'city'            => $faker->city(),
+                'locality'        => $faker->city(),
                 'post_code'       => $faker->postcode(),
                 'country'         => $faker->country(),  
             ]);

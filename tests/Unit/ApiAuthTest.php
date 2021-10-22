@@ -23,7 +23,7 @@ class ApiAuthTest extends TestCase
             'mobile_phone_number' => $this->faker->phoneNumber(),
             'line_1'              => $this->faker->secondaryAddress(),
             'county'              => $this->faker->cityPrefix(),
-            'city'                => $this->faker->city(),
+            'locality'            => $this->faker->city(),
             'password'            => 'iGOdelivery',
         ]);
 

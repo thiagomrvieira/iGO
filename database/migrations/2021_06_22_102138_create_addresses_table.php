@@ -21,7 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string('line_1');
             $table->string('line_2')->nullable();
             $table->foreignId('county_id')->constrained();
-            $table->string('city');
+            $table->string('locality');
             $table->string('post_code')->nullable();
             $table->string('country')->nullable();
             $table->timestamps();

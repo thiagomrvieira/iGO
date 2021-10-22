@@ -322,9 +322,9 @@
                                         "type": "integer",
                                         "example": "1"
                                     },
-                                    "city": {
+                                    "locality": {
                                         "type": "string",
-                                        "example": "Aptent"
+                                        "example": "Bairro"
                                     },
                                     "post_code": {
                                         "type": "string",
@@ -1254,7 +1254,7 @@
                                         "type": "integer",
                                         "example": "1"
                                     },
-                                    "city": {
+                                    "locality": {
                                         "type": "string",
                                         "example": "Aptent"
                                     }

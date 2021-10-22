@@ -234,13 +234,13 @@
                                     <div class="form-group row">
                                         {!! Form::label('county',  __('backoffice/deliverymen.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('county', $deliveryman->address->county ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.county') ]) !!}
+                                            {!! Form::text('county', $deliveryman->address->county->id ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.county') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        {!! Form::label('city',  __('backoffice/deliverymen.addressDataTab.city'),  ['class' => 'col-sm-2 col-form-label']) !!}
+                                        {!! Form::label('locality',  'Bairro',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('city', $deliveryman->address->city ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.city') ]) !!}
+                                            {!! Form::text('locality', $deliveryman->address->locality ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.locality') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">

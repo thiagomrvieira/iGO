@@ -217,13 +217,13 @@
                                     <div class="form-group row">
                                         {!! Form::label('county',  __('backoffice/partners.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('county', $partner->address->county ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.county') ]) !!}
+                                            {!! Form::text('county_id', $partner->address->county_id ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.county') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        {!! Form::label('city',  __('backoffice/partners.addressDataTab.city'),  ['class' => 'col-sm-2 col-form-label']) !!}
+                                        {!! Form::label('locality', 'Bairro',  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('city', $partner->address->city ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.city') ]) !!}
+                                            {!! Form::text('locality', $partner->address->locality ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/partners.addressDataTab.locality') ]) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">

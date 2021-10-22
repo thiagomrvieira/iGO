@@ -77,10 +77,10 @@
                                 {!! Form::text('line_1', $partner->address->line_1 ?? null, ['class' => 'form-control', 'placeholder' => 'Rua*']) !!}
                             </div>
                             <div class="form-group mb-1">
-                                {!! Form::text('county', $partner->address->county ?? null, ['class' => 'form-control', 'placeholder' => 'Bairro*']) !!}
+                                {!! Form::text('county_id', $partner->address->county->name ?? null, ['class' => 'form-control', 'placeholder' => 'Provincia*']) !!}
                             </div>
                             <div class="form-group mb-1">
-                                {!! Form::text('city', $partner->address->city ?? null, ['class' => 'form-control', 'placeholder' => 'Província*']) !!}
+                                {!! Form::text('', $partner->address->locality ?? null, ['class' => 'form-control', 'placeholder' => 'Bairro*']) !!}
                             </div>
                             <div class="form-group mb-1">
                                 {!! Form::text('phone', $partner->phone_number ?? null, ['class' => 'form-control', 'placeholder' => 'Telefone*']) !!}

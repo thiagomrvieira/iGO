@@ -72,8 +72,8 @@ trait AddressTrait {
              'address_type_id' => $request->address_type_id,
              'line_1'          => $request->line_1    ?? null,
              'line_2'          => $request->line_2    ?? null,
-             'county'          => $request->county    ?? null,
-             'city'            => $request->city      ?? null,
+             'county_id'       => $request->county_id ?? null,
+             'locality'        => $request->locality  ?? null,
              'post_code'       => $request->post_code ?? null,
              'country'         => $request->country   ?? null,
             ]

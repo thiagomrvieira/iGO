@@ -161,7 +161,7 @@ class PartnerController extends Controller
         ]);
 
         # Check in address inputs and call update method 
-        if (!is_null($request->line_1) || !is_null($request->county) || !is_null($request->city) || !is_null($request->post_code)) { 
+        if (!is_null($request->line_1) || !is_null($request->county_id) || !is_null($request->locality) || !is_null($request->post_code)) { 
             $address = $this->getAddressRequest($request, $partner->user->id); 
         }
 

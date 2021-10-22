@@ -186,15 +186,15 @@
                                     </div>
                                     
                                     <div class="form-group row">
-                                        <label for="inputCounty" class="col-sm-2 col-form-label">Concelho</label>
+                                        <label for="inputCounty" class="col-sm-2 col-form-label">Província</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputCounty" placeholder="Concelho" {{ $deliveryman->address->county_id ?? null}}>
+                                            <input type="text" class="form-control" id="inputCounty" placeholder="Província" {{ $deliveryman->address->county_id ?? null}}>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputCity" class="col-sm-2 col-form-label">Cidade</label>
+                                        <label for="inputCity" class="col-sm-2 col-form-label">Bairro</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputCity" placeholder="Cidade" {{ $deliveryman->address->city_id ?? null}}>
+                                            <input type="text" class="form-control" id="inputCity" placeholder="Bairro" {{ $deliveryman->address->locality ?? null}}>
                                         </div>
                                     </div>
                                     <div class="form-group row">

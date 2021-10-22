@@ -11,6 +11,7 @@ use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserTrait;
 use App\Mail\PartnerCreateAccount;
+use App\Models\County;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
@@ -116,11 +117,13 @@ class PartnerController extends Controller
     public function edit(Partner $partner)
     {
 
-        $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
-                                    PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
+        // $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
+        //                             PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
                                     
-        return view('backoffice-admin.partner.partner-edit')->with('partner', $partner)
-                                                      ->with('partnerCategories', $partnerCategories);
+        return view('backoffice-admin.partner.partner-edit')
+            ->with('partner', $partner)
+            ->with('partnerCategories', PartnerCategory::where('active', 1)->where('parent_id', null)->get() ?? [])
+            ->with('counties', County::all());
     }
 
     /**

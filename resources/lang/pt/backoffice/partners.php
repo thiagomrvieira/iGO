@@ -79,7 +79,7 @@
             'address'     => "Morada",
             'lineOne'     => "Linha 1",
             'lineTwo'     => "Linha 2",
-            'county'      => "Concelho",
+            'county'      => "Província",
             'city'        => "Cidade",
             'locality'    => "Bairro",
             'postalCode'  => "Código postal",

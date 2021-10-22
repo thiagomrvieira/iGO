@@ -234,7 +234,9 @@
                                     <div class="form-group row">
                                         {!! Form::label('county',  __('backoffice/deliverymen.addressDataTab.county'),  ['class' => 'col-sm-2 col-form-label']) !!}
                                         <div class="col-sm-10">
-                                            {!! Form::text('county', $deliveryman->address->county->id ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.county') ]) !!}
+                                            {{-- {!! Form::text('county', $deliveryman->address->county->id ?? null, ['class' => 'form-control', 'placeholder' =>  __('backoffice/deliverymen.addressDataTab.county') ]) !!} --}}
+                                            {!! Form::select('county_id', $counties->pluck('name', 'id'), $deliveryman->address->county_id ?? null, 
+                                                    ['class' => 'form-control', 'placeholder' => 'Seleciona uma província']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -10,6 +10,7 @@ use App\Http\Requests\DeliverymanStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserTrait;
 use App\Mail\DeliverymanCreateAccount;
+use App\Models\County;
 use Illuminate\Support\Facades\Mail;
 
 class DeliveryManController extends Controller
@@ -99,7 +100,9 @@ class DeliveryManController extends Controller
      */
     public function edit(DeliveryMan $deliveryman)
     {
-        return view('backoffice-admin.deliveryman.deliveryman-edit')->with('deliveryman', $deliveryman);
+        return view('backoffice-admin.deliveryman.deliveryman-edit')
+            ->with('deliveryman', $deliveryman)
+            ->with('counties', County::all());
     }
 
     /**

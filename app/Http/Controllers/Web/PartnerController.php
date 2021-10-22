@@ -116,10 +116,6 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-
-        // $partnerCategories = (PartnerCategory::where('active', 1)->where('parent_id', null)->count() > 0 ) ? 
-        //                             PartnerCategory::where('active', 1)->where('parent_id', null)->get() : [];
-                                    
         return view('backoffice-admin.partner.partner-edit')
             ->with('partner', $partner)
             ->with('partnerCategories', PartnerCategory::where('active', 1)->where('parent_id', null)->get() ?? [])

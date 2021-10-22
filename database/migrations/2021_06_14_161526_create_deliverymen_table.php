@@ -15,7 +15,7 @@ class CreateDeliveryMenTable extends Migration
     {
         Schema::create('deliverymen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('mobile_phone_number');

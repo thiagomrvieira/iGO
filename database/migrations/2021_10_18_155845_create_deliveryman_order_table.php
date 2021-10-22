@@ -15,7 +15,7 @@ class CreateDeliverymanOrderTable extends Migration
     {
         Schema::create('deliveryman_order', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('deliveryman_id')->constrained();
+            $table->foreignId('deliveryman_id')->constrained()->onDelete('cascade');
             $table->foreignId('order_id')->constrained();
             $table->foreignId('order_delivery_status_type_id')->constrained();
             $table->string('note')->nullable();

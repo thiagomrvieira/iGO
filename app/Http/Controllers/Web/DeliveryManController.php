@@ -55,6 +55,9 @@ class DeliveryManController extends Controller
         $request['user_id'] = $user->id ?? null;
 
         $deliveryman = DeliveryMan::create($request->all());
+
+        # Send email   
+        Mail::to($user)->send(new DeliverymanCreateAccount($deliveryman));
         
         return redirect()->route('deliveryman.edit', ['deliveryman' => $deliveryman])
                          ->with(['message' => 'Estafeta criado com sucesso!', 'alert' => 'alert-success']);
@@ -124,7 +127,7 @@ class DeliveryManController extends Controller
     public function destroy(DeliveryMan $deliveryman)
     {
         if($deliveryman) {
-            $deliveryman->delete();
+            $deliveryman->user->delete();
         }
         return redirect()->route('deliveryman.index');
     }

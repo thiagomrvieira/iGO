@@ -129,13 +129,6 @@ class ClientController extends Controller
         
     }
 
-
-    
-
-
-
-    
-
     /**
      * Favorite/Unfavorite a partner - Persist in client_partner pivot table
      * *
@@ -201,8 +194,4 @@ class ClientController extends Controller
                                  'message' => $message ?? 'Aderente desfavoritado'], 200);
     }
 
-
-   
-
-    
 }

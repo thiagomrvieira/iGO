@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -62,10 +63,10 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('profile',   [ClientController::class, 'getPersonalData'   ]);
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
             
-            #   Get/Create/Update Client Addresses
-            Route::get('addresses',         [ClientController::class, 'getAddressData' ]);
-            Route::post('addresses',        [ClientController::class, 'updateAddressData']);
-            Route::delete('addresses/{id}', [ClientController::class, 'deleteAddressData']);
+            #   ADDRESSES
+            Route::get('addresses',         [AddressController::class, 'index'  ]);
+            Route::post('addresses',        [AddressController::class, 'update' ]);
+            Route::delete('addresses/{id}', [AddressController::class, 'destroy']);
             
             #   Review & Rating
             Route::post('order/{id}/orderrating',       [OrderRatingController::class,       'store']);

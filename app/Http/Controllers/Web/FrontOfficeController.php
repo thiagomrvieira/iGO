@@ -11,8 +11,9 @@ use App\Models\County;
 class FrontOfficeController extends Controller
 {
     public function showHomePage() {
-        return view('frontoffice.guest.home')->with('partnerCategories', PartnerCategory::where('active', 1)->where('parent_id', null)->get() ?? [])
-                                             ->with('counties', County::all() ?? []);
+        return view('frontoffice.guest.home')
+        ->with('partnerCategories', PartnerCategory::where('active', 1)->where('parent_id', null)->get() ?? [])
+        ->with('counties', County::all() ?? []);
     }
 
     public function showAboutPage() {

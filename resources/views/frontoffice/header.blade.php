@@ -57,7 +57,7 @@
                 <div class="column-right">
                     <div class="block-languages">  
                         <ul>
-                            <li><a href="" class="active"> {{ Config::get('languages')[App::getLocale()] }} </a></li>
+                            <li><a href="" class="active"> {{ Config::get('languages')[App::getLocale()] . " |" }} </a></li>
                             @foreach (Config::get('languages') as $lang => $language)
                                 @if ($lang != App::getLocale())
                                     <li><a href="{{ route('lang.switch', $lang) }}"> {{$language}} </a></li>

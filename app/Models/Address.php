@@ -57,4 +57,12 @@ class Address extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    /**
+     * Get the tax data.
+     */
+    public function taxData()
+    {
+        return $this->hasOne(AddressTax::class);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 use App\Models\Address;
+use App\Models\AddressTax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,7 +66,7 @@ trait AddressTrait {
     public function createOrUpdateAddressFromApi(Request $request) {
 
         foreach ($request->all() as $addressData) {
-            Address::updateOrCreate(
+            $address = Address::updateOrCreate(
                 ['user_id' => Auth::user()->id, 
                  'id'      => $addressData['address_id']                ?? null],
                 ['address_name'    => $addressData['address_name']      ?? null, 
@@ -79,6 +80,16 @@ trait AddressTrait {
                  'country'         => $addressData['country']           ?? null,
                 ]
             );
+
+            if (isset($addressData['tax_name']) && isset($addressData['tax_number'])) {
+                AddressTax::updateOrCreate(
+                    ['address_id' => $address->id],
+                    ['address_id' => $address->id,
+                     'tax_name'   => $addressData['tax_name'], 
+                     'tax_number' => $addressData['tax_number'],
+                    ]
+                );
+            }
         }
         
     }

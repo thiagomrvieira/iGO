@@ -64,20 +64,22 @@ trait AddressTrait {
     #   Create/Update addresses from API
     public function createOrUpdateAddressFromApi(Request $request) {
 
-        $address = Address::updateOrCreate(
-            ['user_id' => Auth::user()->id, 
-             'id'      => $request->address_id],
-            ['address_name'    => $request->address_name, 
-             'user_id'         => Auth::user()->id,
-             'address_type_id' => $request->address_type_id,
-             'line_1'          => $request->line_1    ?? null,
-             'line_2'          => $request->line_2    ?? null,
-             'county_id'       => $request->county_id ?? null,
-             'locality'        => $request->locality  ?? null,
-             'post_code'       => $request->post_code ?? null,
-             'country'         => $request->country   ?? null,
-            ]
-        );
-        return $address;
+        foreach ($request->all() as $addressData) {
+            Address::updateOrCreate(
+                ['user_id' => Auth::user()->id, 
+                 'id'      => $addressData['address_id']                ?? null],
+                ['address_name'    => $addressData['address_name']      ?? null, 
+                 'user_id'         => Auth::user()->id,
+                 'address_type_id' => $addressData['address_type_id'],
+                 'line_1'          => $addressData['line_1']            ?? null,
+                 'line_2'          => $addressData['line_2']            ?? null,
+                 'county_id'       => $addressData['county_id']         ?? null,
+                 'locality'        => $addressData['locality']          ?? null,
+                 'post_code'       => $addressData['post_code']         ?? null,
+                 'country'         => $addressData['country']           ?? null,
+                ]
+            );
+        }
+        
     }
 }

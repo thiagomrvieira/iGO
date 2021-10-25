@@ -120,9 +120,7 @@ class AddressController extends Controller
         # Create Address
         $address = $this->createorUpdateAddressFromApi($request); 
 
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Dados atualizados',
-                                 'data'    => $address], 200); 
+        return $this->index();
         
     }
     

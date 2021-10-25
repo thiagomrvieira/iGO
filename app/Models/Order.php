@@ -16,6 +16,7 @@ class Order extends Model
         'client_id',
         'address_id',
         'campaign_id',
+        'partner_id',
         'order_status_type_id',
         'tax_name',
         'tax_number',

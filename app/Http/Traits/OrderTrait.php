@@ -5,6 +5,7 @@ namespace App\Http\Traits;
 use App\Models\Campaign;
 use App\Models\Order;
 use App\Models\OrderStatusType;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 trait OrderTrait {
     
     # Get an Order with status 'opened' or create one
-    public function firstOrCreateOrder()
+    public function firstOrCreateOrder($request)
     {
         return Order::firstOrCreate(
             [
@@ -25,6 +26,7 @@ trait OrderTrait {
                 'address_id'           => Auth::user()->addresses->where('address_type_id', 1)->first()->id,
                 'tax_name'             => Auth::user()->name,
                 'tax_number'           => Auth::user()->client->tax_number ?? null,
+                'partner_id'           => Product::where('id', $request->product_id)->first()->partner_id,
             ]
         );
     }
@@ -44,6 +46,8 @@ trait OrderTrait {
                 'tax_number'           => $request->tax_number  ?? Auth::user()->client->tax_number,
                 'deliver_at'           => $request->deliver_at  ?? null,
                 'campaign_id'          => $this->checkCampaignCode($request->campaign_code),
+                'partner_id'           => Product::where('id', $request->product_id)->first()->partner_id,
+
             ]
         );
     }

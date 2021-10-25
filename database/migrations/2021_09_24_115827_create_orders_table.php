@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('address_id')->constrained();
             $table->foreignId('campaign_id')->nullable()->constrained();
             $table->foreignId('order_status_type_id')->default(1)->constrained();
+            $table->foreignId('partner_id')->constrained();
             
             $table->string('tax_name')->nullable();
             $table->string('tax_number')->nullable();

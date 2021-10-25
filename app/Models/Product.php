@@ -37,7 +37,7 @@ class Product extends Model
     }
 
     /**
-     * Get the partner that owns the Partner profile.
+     * Get the partner that owns the Product.
      */
     public function partner()
     {

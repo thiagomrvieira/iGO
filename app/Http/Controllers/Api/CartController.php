@@ -13,6 +13,7 @@ use App\Models\CartExtra;
 use App\Models\CartSauce;
 use App\Models\CartSide;
 use App\Models\OrderStatusType;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -131,6 +132,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
         # Create a new order or get an opened one - OrderTrait
         $order = $this->firstOrCreateOrder($request);     
 

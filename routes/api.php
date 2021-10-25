@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\OrderRatingController;
 use App\Http\Controllers\Api\PartnerCategoryController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\PartnerRatingController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductRatingController;
 use App\Http\Controllers\Api\ShippingFeeController;
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('order/{id}/orderrating',       [OrderRatingController::class,       'store']);
             Route::post('order/{id}/deliverymanrating', [DeliverymanRatingController::class, 'store']);
             Route::post('order/{id}/productrating',     [ProductRatingController::class,     'store']);
+            Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
 
         });
         

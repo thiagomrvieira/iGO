@@ -32,6 +32,8 @@ class PartnerResource extends JsonResource
             'account_approved_at' => $this->approved_at,
             'images'              => $this->images,
             'total_products'      => $this->products->count(),
+            'total_reviews'       => $this->reviewsAndRatings->count('review'),
+            'rating'              => $this->reviewsAndRatings->avg('rate'),
         ]; 
     }
 }

@@ -18,8 +18,8 @@ class CreateDeliverymanRatingsTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('deliveryman_id')->constrained()->onDelete('cascade');
-            $table->smallInteger('rate');
-            $table->string('review');
+            $table->smallInteger('rate')->nullable();
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

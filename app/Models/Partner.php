@@ -119,4 +119,13 @@ class Partner extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+
+    /**
+     * Get the Partner Ratings.
+     */
+    public function reviewsAndRatings()
+    {
+        return $this->hasMany(PartnerRating::class);
+    }
 }

@@ -18,8 +18,8 @@ class CreateProductRatingsTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->smallInteger('rate');
-            $table->string('review');
+            $table->smallInteger('rate')->nullable();
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

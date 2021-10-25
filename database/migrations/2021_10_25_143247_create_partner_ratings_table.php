@@ -18,8 +18,8 @@ class CreatePartnerRatingsTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('partner_id')->constrained()->onDelete('cascade');
-            $table->smallInteger('rate');
-            $table->string('review');
+            $table->smallInteger('rate')->nullable();
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

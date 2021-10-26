@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ExtraSeeder::class);
         $this->call(AddressesSeeder::class);
         $this->call(OrderDeliveryStatusTypeSeeder::class);
+        $this->call(OrderSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

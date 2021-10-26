@@ -20,7 +20,7 @@ class ProductsSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
 
-        for ($i=0; $i < 250 ; $i++) { 
+        for ($i=0; $i < 150 ; $i++) { 
             $products[] = array(
                 'partner_id'  => Partner::inRandomOrder()->first()->id,  
                 'category_id' => ProductCategory::inRandomOrder()->first()->id, 

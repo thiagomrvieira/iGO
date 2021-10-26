@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\AddressType;
+use App\Models\Client;
 use App\Models\County;
 use App\Models\Image;
 use App\Models\Partner;
@@ -29,6 +30,21 @@ class AddressesSeeder extends Seeder
             Address::create([
                 'address_name'    => $faker->company(),
                 'user_id'         => $partner->user->id,
+                // 'address_type_id' => AddressType::inRandomOrder()->first()->id,
+                'line_1'          => $faker->streetAddress(),
+                'line_2'          => null,
+                'county_id'       => County::inRandomOrder()->first()->id,
+                'locality'        => $faker->city(),
+                'post_code'       => $faker->postcode(),
+                'country'         => $faker->country(),  
+            ]);
+        }
+        
+        #   Cria endereços para cada cliente
+        foreach (Client::all() as $client) {
+            Address::create([
+                'address_name'    => 'Home',
+                'user_id'         => $client->user->id,
                 // 'address_type_id' => AddressType::inRandomOrder()->first()->id,
                 'line_1'          => $faker->streetAddress(),
                 'line_2'          => null,

@@ -6,8 +6,9 @@ $j(document).ready(function ($) {
 
   // select2
   const category = $j('.category_id').select2()
-
+  const county = $j('.county_id').select2()
   category.on("change", function (e) { removeClassErrorSelect2('partnerCreation', 'category_id') });
+  county.on("change", function (e) { removeClassErrorSelect2('partnerCreation', 'county_id') });
 
   // Block Faq
   $j('.faqs').on('click', '.faq-button', function(){
@@ -26,6 +27,15 @@ $j(document).ready(function ($) {
   $j('.modal').on('click', function(){
     $j(this).removeClass('show-partner-success show-partner-error show-delivery-success show-delivery-error');
   });
+
+  $j('.form-default-wrapper input').on('click', function(){
+    if($j(this).val() != ''){
+     $j(this).addClass('block-field-active');
+    } else {
+     $j('.form-default-wrapper .block-form-group .block-field').removeClass('block-field-active');
+    }        
+  });
+
 })
 
 function scrollMenuFixed() {

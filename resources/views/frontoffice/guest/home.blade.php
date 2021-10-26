@@ -164,11 +164,17 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input  type="text" id="county" name="county" placeholder="{{ __('homepage.home-partner-form-county') }}" @change="removeClassError('partnerCreation', 'county')" v-model="partner.county">
+                                                <select id="county_id" class="county_id" name="county_id" @change="removeClassError('partnerCreation', 'county_id')" v-select="partner.county_id">
+                                                    <option value="" disabled selected>{{ __('Província') }}</option>
+                                                    @foreach ($counties as $countie)
+                                                        <option value="{{$countie->id}}">{{$countie->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                {{-- <input  type="text" id="county_id" name="county_id" placeholder="{{ __('homepage.home-partner-form-county') }}" @change="removeClassError('partnerCreation', 'county_id')" v-model="partner.county_id"> --}}
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="countyHelp" class="text-danger" v-if="partnerErrors.includes('county')">{{ __('homepage.home-partner-form-error') }}</small>
+                                            <small id="countyHelp" class="text-danger" v-if="partnerErrors.includes('county_id')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -189,11 +195,11 @@
                                                 </svg>
                                             </div>
                                             <div class="block-input">
-                                                <input type="text" id="city" name="city" placeholder="{{ __('homepage.home-partner-form-city') }}" @change="removeClassError('partnerCreation', 'city')" v-model="partner.city">
+                                                <input type="text" id="locality" name="locality" placeholder="{{ __('homepage.home-partner-form-city') }}" @change="removeClassError('partnerCreation', 'locality')" v-model="partner.locality">
                                             </div>
                                         </div>
                                         <div class="block-field-msg">
-                                            <small id="cityHelp" class="text-danger" v-if="partnerErrors.includes('city')">{{ __('homepage.home-partner-form-error') }}</small>
+                                            <small id="cityHelp" class="text-danger" v-if="partnerErrors.includes('locality')">{{ __('homepage.home-partner-form-error') }}</small>
                                         </div>
                                     </div>
                                     <div class="block-form-group">
@@ -415,25 +421,27 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-        
+            <div class="modal-top-right">
+                <button class="modal-content-close">X</button>
+            </div>
             <div class="modal-body partner-success" role="alert" v-if="partnerCreated.company_name">
                 <h4 class="alert-heading">Olá, <span></span></h4>
-                <p>O pré-cadasto da <b></b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+                <p>O pré-registo da <b></b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
             </div>
            
             <div class="modal-body partner-error">
                 <h4 class="alert-heading">Erro!</h4>
-                <p>Não foi possível cadastar o aderente com os dados informados</p>
+                <p>Não foi possível registar o aderente com os dados informados</p>
             </div>
 
             <div class="modal-body delivery-success" role="alert" v-if="deliverymanCreated">
                 <h4 class="alert-heading">Olá, <span></span></h4>
-                <p>O seu pré-cadasto foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+                <p>O seu pré-registo foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
             </div>
 
             <div class="modal-body delivery-error">
                 <h4 class="alert-heading">Erro!</h4>
-                <p class="delManValidationError">Não foi possível cadastar o aderente com os dados informados</p>
+                <p class="delManValidationError">Não foi possível registar o aderente com os dados informados</p>
             </div>
            
         </div>
@@ -451,7 +459,7 @@
                     email: '',
                     line_1: '',
                     county_id: '',
-                    city: '',
+                    locality: '',
                     phone_number: '',
                     mobile_phone_number: '',
                     company_name: '',
@@ -482,6 +490,7 @@
                 //  Handle the form request
                 getFormRequest: function (form, event) {
                     event.preventDefault();
+                    console.log(form);
                     if (form == 'deliverymanCreation') {
                         this.resource = this.deliveryman;
                         if(this.checkForm(form) ){
@@ -489,6 +498,7 @@
                         }
                     } else {
                         this.resource = this.partner;
+                        console.log(this.checkForm(form) );
                         if(this.checkForm(form) ){
                             this.formAction = "{{ route('partner.store.home') }}";
                         }
@@ -506,8 +516,10 @@
                         if (key === "category_id" ) {
                             this.resource[key] = jQuery('.category_id').val();
                         }
+                        if (key === "county_id" ) {
+                            this.resource[key] = jQuery('.county_id').val();
+                        }
                         if (!this.resource[key]) { 
-                            
                             jQuery(`#${form} #${key}`).parents('.block-field').addClass("is-invalid");
                             (form == 'deliverymanCreation') ? this.deliverymanErrors.push(key) : this.partnerErrors.push(key);
                         }

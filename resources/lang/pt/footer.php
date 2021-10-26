@@ -11,3 +11,4 @@ return [
 	// Newsletter
 	'footer-newsletter-send' => 'Enviar',
 ];
+

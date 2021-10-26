@@ -34,7 +34,7 @@ class OrderSeeder extends Seeder
         $user    = $client->user;
         $address = $user->addresses->first();
         
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 12; $i++) { 
             
             $product = Product::inRandomOrder()->first();
             $extra   = $product->extras->first();
@@ -45,9 +45,9 @@ class OrderSeeder extends Seeder
                 $orderStatus = OrderStatusType::where('name', 'Aberto')->first()->id;
             }else if ($i == 2) {
                 $orderStatus = OrderStatusType::where('name', 'Submetido')->first()->id;
-            }else if ($i > 2 && $i < 4) {
-                $orderStatus = OrderStatusType::where('name', 'Em curso')->first()->id;
-            }else if ($i > 4 && $i < 8) {
+            }else if ($i > 2 && $i < 5) {
+                $orderStatus = OrderStatusType::where('name', 'Em curso')->inRandomOrder()->first()->id;
+            }else if ($i > 5 && $i < 9) {
                 $orderStatus = OrderStatusType::where('name', 'Entregue')->first()->id;
             }else{
                 $orderStatus = OrderStatusType::where('name', 'Cancelado')->first()->id;

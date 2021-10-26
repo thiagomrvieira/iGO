@@ -9,7 +9,10 @@ $j(document).ready(function ($) {
   scrollMenuFixed(); // select2
 
   var category = $j('.category_id').select2();
-  var county = $j('.county_id').select2();
+  var county = $j('.county_id').select2({
+    dropdownCssClass: "county_select2_dropdown"
+  }); // $("#myBox").select2({ containerCssClass : "error" });
+
   category.on("change", function (e) {
     removeClassErrorSelect2('partnerCreation', 'category_id');
   });
@@ -32,13 +35,16 @@ $j(document).ready(function ($) {
 
   $j('.modal').on('click', function () {
     $j(this).removeClass('show-partner-success show-partner-error show-delivery-success show-delivery-error');
-  });
-  $j('.form-default-wrapper input').on('click', function () {
-    if ($j(this).val() != '') {
-      $j(this).addClass('block-field-active');
-    } else {
-      $j('.form-default-wrapper .block-form-group .block-field').removeClass('block-field-active');
-    }
+  }); // Add color border
+
+  $j("form#partnerCreation :input").each(function () {
+    $j(this).on('keyup', function () {
+      if ($j(this).val() != "") {
+        $j(this).parents('.block-field').addClass("block-field-active");
+      } else {
+        $j(this).parents('.block-field').removeClass("block-field-active");
+      }
+    });
   });
 });
 

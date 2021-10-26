@@ -43,13 +43,13 @@
                     <div class="block-main-menu">
                         <ul>
                             <li>
-                                <a href="{{ route('home', app()->getLocale()) }}" title="{{ __('Home') }}" class="{!! Request::is('/') ? 'active' : '' !!}">{{ __('Home') }}</a>
+                                <a href="{{ route('home', app()->getLocale()) }}" title="{{ __('header.header-nav-home') }}" class="{!! Request::is('/') ? 'active' : '' !!}">{{ __('header.header-nav-home') }}</a>
                             </li>
                             <li>
-                                <a href="{{ route('about', app()->getLocale() ) }}" title="{{ __('Sobre Nós') }}" class="{!! Request::is('/about') ? 'active' : '' !!}">{{ __('Sobre Nós') }}</a>
+                                <a href="{{ route('about', app()->getLocale() ) }}" title="{{ __('header.header-nav-about') }}" class="{!! Request::is('/about') ? 'active' : '' !!}">{{ __('header.header-nav-about') }}</a>
                             </li>
                             <li>
-                                <a href="{{ route('login', app()->getLocale()) }}" title="{{ __('Login Aderentes') }}" class="{!! Request::is('/login') ? 'active' : '' !!}">{{ __('Login Aderentes') }}</a>
+                                <a href="{{ route('login', app()->getLocale()) }}" title="{{ __('header.header-nav-login') }}" class="{!! Request::is('/login') ? 'active' : '' !!}">{{ __('header.header-nav-login') }}</a>
                             </li>
                         </ul>
                     </div>

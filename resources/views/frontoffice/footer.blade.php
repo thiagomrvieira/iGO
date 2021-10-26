@@ -19,13 +19,14 @@
             </div>
             <div class="block-footer-center">
                 <div class="column-left">
-                    <ul>
-                        <li>Av das Descobertas, 12</li>
-                        <li>Talatona, Luanda / Angola</li>
-                        <li>+244 345 678 908</li>
-                        <li>comercial@igo.com.ao</li>
-                    </ul>
-
+                    <div  class="footer-address">
+                        <ul>
+                            <li>Av das Descobertas, 12</li>
+                            <li>Talatona, Luanda / Angola</li>
+                            <li>+244 345 678 908</li>
+                            <li>comercial@igo.com.ao</li>
+                        </ul>
+                    </div>
                     <div class="block-social-media">
                         <ul>
                             <li>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="data_pedido" transform="translate(-249 -504)">
+    <rect id="Rectangle_8194" data-name="Rectangle 8194" width="16" height="16" transform="translate(249 504)" fill="none"/>
+    <g id="calendar_copy" data-name="calendar copy" transform="translate(228.867 504.2)">
+      <g id="Group_10048" data-name="Group 10048" transform="translate(21.333)">
+        <g id="Group_10047" data-name="Group 10047" transform="translate(0)">
+          <rect id="Rectangle_8195" data-name="Rectangle 8195" width="3.757" height="3.757" transform="translate(6.763 8.266)" fill="#687780"/>
+          <path id="Path_5390" data-name="Path 5390" d="M33.356,1.5H32.6V0H31.1V1.5H25.09V0h-1.5V1.5h-.751a1.5,1.5,0,0,0-1.5,1.5l-.008,10.52a1.5,1.5,0,0,0,1.5,1.5h10.52a1.5,1.5,0,0,0,1.5-1.5V3.006A1.5,1.5,0,0,0,33.356,1.5Zm0,12.023H22.836V5.26h10.52Z" transform="translate(-21.333)" fill="#687780"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+  <g id="notificacoes" transform="translate(-321 -48)">
+    <g id="Group_9556" data-name="Group 9556" transform="translate(470 -773)">
+      <g id="notification" transform="translate(-170.6 829)">
+        <path id="Path_4692" data-name="Path 4692" d="M47.758,18.4a2.826,2.826,0,0,0-.833-2.012,1.546,1.546,0,0,1-.456-1.1V9.023a5.162,5.162,0,0,1-5.156-5.156,5.1,5.1,0,0,1,.482-2.145,7.156,7.156,0,0,0-1.771-.374V0H38.734V1.322a7.1,7.1,0,0,0-6.445,7.057v6.909a1.546,1.546,0,0,1-.456,1.1A2.826,2.826,0,0,0,31,18.4v1.022H47.758Z" transform="translate(0 0)" fill="#072a40"/>
+        <path id="Path_4693" data-name="Path 4693" d="M304.867,7.734A3.867,3.867,0,1,0,301,3.867,3.867,3.867,0,0,0,304.867,7.734Zm-1.289-5.8h1.934V5.8h-1.289V3.223h-.645Z" transform="translate(-258.398)" fill="#f77415"/>
+        <path id="Path_4694" data-name="Path 4694" d="M168.945,483.289A3.209,3.209,0,0,0,171.506,482h-5.123A3.209,3.209,0,0,0,168.945,483.289Z" transform="translate(-129.566 -461.289)" fill="#072a40"/>
+      </g>
+      <rect id="Rectangle_8091" data-name="Rectangle 8091" width="24" height="24" transform="translate(-142 828)" fill="none"/>
+    </g>
+    <rect id="Rectangle_8187" data-name="Rectangle 8187" width="38" height="38" transform="translate(321 48)" fill="none"/>
+  </g>
+</svg>

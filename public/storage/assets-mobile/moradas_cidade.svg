@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="moradas_cidade" transform="translate(-5539 -748)">
+    <rect id="Rectangle_8088" data-name="Rectangle 8088" width="20" height="20" transform="translate(5539 748)" fill="none"/>
+    <g id="pin" transform="translate(5542.333 749.111)">
+      <g id="Group_10763" data-name="Group 10763" transform="translate(0)">
+        <g id="Group_10762" data-name="Group 10762">
+          <path id="Path_5864" data-name="Path 5864" d="M67.693,0A6.7,6.7,0,0,0,61,6.693c0,2.382.725,3.338,4.207,7.929.6.8,1.29,1.7,2.074,2.745a.515.515,0,0,0,.824,0c.779-1.04,1.462-1.939,2.064-2.733,3.491-4.6,4.217-5.562,4.217-7.941A6.7,6.7,0,0,0,67.693,0Zm1.655,14.011c-.494.652-1.043,1.375-1.655,2.189-.616-.819-1.168-1.546-1.665-2.2-3.387-4.466-4-5.27-4-7.306a5.663,5.663,0,0,1,11.326,0C73.356,8.725,72.744,9.532,69.348,14.011Z" transform="translate(-61)" fill="#072a40"/>
+        </g>
+      </g>
+      <g id="Group_10765" data-name="Group 10765" transform="translate(3.089 3.089)">
+        <g id="Group_10764" data-name="Group 10764">
+          <path id="Path_5865" data-name="Path 5865" d="M154.6,90a3.6,3.6,0,1,0,3.6,3.6A3.608,3.608,0,0,0,154.6,90Zm0,6.178a2.574,2.574,0,1,1,2.574-2.574A2.577,2.577,0,0,1,154.6,96.178Z" transform="translate(-151 -90)" fill="#072a40"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

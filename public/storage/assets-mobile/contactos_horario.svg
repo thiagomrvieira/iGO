@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="contactos_horario" transform="translate(-133 -496)">
+    <g id="clock" transform="translate(136.359 499.359)">
+      <path id="Path_6002" data-name="Path 6002" d="M15.338,4.511a.714.714,0,0,0-.332.954,7.07,7.07,0,0,1,.707,3.107A7.143,7.143,0,1,1,8.571,1.429,7.057,7.057,0,0,1,13.005,2.97a.714.714,0,1,0,.889-1.118,8.572,8.572,0,1,0,3.248,6.72,8.484,8.484,0,0,0-.85-3.729A.713.713,0,0,0,15.338,4.511Zm0,0" transform="translate(0 0)" fill="#09334d"/>
+      <path id="Path_6003" data-name="Path 6003" d="M176.714,64a.715.715,0,0,0-.714.714v5a.715.715,0,0,0,.714.714h3.571a.714.714,0,1,0,0-1.429h-2.857V64.714A.715.715,0,0,0,176.714,64Zm0,0" transform="translate(-168.143 -61.143)" fill="#09334d"/>
+    </g>
+    <rect id="Rectangle_8088" data-name="Rectangle 8088" width="24" height="24" transform="translate(133 496)" fill="none"/>
+  </g>
+</svg>

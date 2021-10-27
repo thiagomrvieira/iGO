@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="perfil_telf" transform="translate(-5600 -713)">
+    <g id="phone" transform="translate(5533.1 715)">
+      <g id="Group_10749" data-name="Group 10749" transform="translate(71.6)">
+        <path id="Path_5863" data-name="Path 5863" d="M81.346.453v0A1.531,1.531,0,0,0,80.261,0H73.135A1.54,1.54,0,0,0,71.6,1.535V14.645a1.541,1.541,0,0,0,1.535,1.536h7.128A1.541,1.541,0,0,0,81.8,14.647V1.536A1.531,1.531,0,0,0,81.346.453ZM76.7,15.14h0a.415.415,0,1,1,.415-.415A.415.415,0,0,1,76.7,15.14Zm3.88-2.6a1,1,0,0,1-1,1H73.82a1,1,0,0,1-1-1V2.767a1,1,0,0,1,1-1h5.757a1,1,0,0,1,1,1Z" transform="translate(-71.6)" fill="#072a40"/>
+      </g>
+    </g>
+    <rect id="Rectangle_8250" data-name="Rectangle 8250" width="20" height="20" transform="translate(5600 713)" fill="none"/>
+  </g>
+</svg>

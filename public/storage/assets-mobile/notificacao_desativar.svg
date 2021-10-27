@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="notificacao_desativar" transform="translate(-20759 -515)">
+    <g id="notificacoes" transform="translate(20735.832 517)">
+      <g id="Group_12361" data-name="Group 12361" transform="translate(26.667)">
+        <g id="Group_12360" data-name="Group 12360">
+          <path id="Path_6045" data-name="Path 6045" d="M143.934,8.863c0-3.206-1.7-5.881-4.692-6.59V1.564a1.564,1.564,0,0,0-3.128,0v.709c-.151.037-.3.078-.443.125-.109.037-.214.073-.318.115a.005.005,0,0,0-.005.005c-.005,0-.01.005-.016.005a7.135,7.135,0,0,0-.7.323c-.005,0-.01.005-.016.005l9.322,9.848V8.863Z" transform="translate(-129.336)" fill="#072a40"/>
+          <path id="Path_6046" data-name="Path 6046" d="M43.35,37.278,30.671,24.2,28,21.44l-1.329,1.324,2.92,2.92.005.005a7.594,7.594,0,0,0-.839,3.566v5.213l-2.085,2.085V37.6H40.983l2.085,2.085,1.324-1.329Z" transform="translate(-26.667 -20.392)" fill="#072a40"/>
+          <path id="Path_6047" data-name="Path 6047" d="M156.752,375.418a2.085,2.085,0,0,0,2.085-2.085h-4.171A2.085,2.085,0,0,0,156.752,375.418Z" transform="translate(-148.411 -355.086)" fill="#072a40"/>
+        </g>
+      </g>
+    </g>
+    <rect id="Rectangle_8429" data-name="Rectangle 8429" width="24" height="24" transform="translate(20759 515)" fill="none"/>
+  </g>
+</svg>

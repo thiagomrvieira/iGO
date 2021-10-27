@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="checkout_localizacao_atual" transform="translate(-5539 -748)">
+    <rect id="Rectangle_8088" data-name="Rectangle 8088" width="24" height="24" transform="translate(5539 748)" fill="none"/>
+    <g id="pin" transform="translate(5542.938 749.312)">
+      <g id="Group_10763" data-name="Group 10763" transform="translate(0)">
+        <g id="Group_10762" data-name="Group 10762">
+          <path id="Path_5864" data-name="Path 5864" d="M68.905,0A7.914,7.914,0,0,0,61,7.905c0,2.814.856,3.942,4.97,9.365.714.941,1.523,2.008,2.449,3.243a.608.608,0,0,0,.973,0c.921-1.228,1.726-2.291,2.437-3.229,4.123-5.439,4.981-6.57,4.981-9.379A7.914,7.914,0,0,0,68.905,0ZM70.86,16.55c-.584.77-1.232,1.625-1.955,2.586-.728-.968-1.38-1.826-1.967-2.6-4-5.275-4.722-6.225-4.722-8.63a6.689,6.689,0,0,1,13.378,0C75.595,10.306,74.872,11.259,70.86,16.55Z" transform="translate(-61)" fill="#072a40"/>
+        </g>
+      </g>
+      <g id="Group_10765" data-name="Group 10765" transform="translate(3.649 3.649)">
+        <g id="Group_10764" data-name="Group 10764">
+          <path id="Path_5865" data-name="Path 5865" d="M155.257,90a4.257,4.257,0,1,0,4.257,4.257A4.262,4.262,0,0,0,155.257,90Zm0,7.3a3.041,3.041,0,1,1,3.041-3.041A3.044,3.044,0,0,1,155.257,97.3Z" transform="translate(-151 -90)" fill="#072a40"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

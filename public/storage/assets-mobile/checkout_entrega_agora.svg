@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="checkout_entrega_agora" transform="translate(-16455 -1133)">
+    <rect id="Rectangle_8088" data-name="Rectangle 8088" width="24" height="24" transform="translate(16455 1133)" fill="none"/>
+    <g id="clock" transform="translate(16457 1135)">
+      <path id="Path_6028" data-name="Path 6028" d="M18.123,5.329a.844.844,0,0,0-.392,1.127,8.353,8.353,0,0,1,.835,3.671,8.439,8.439,0,1,1-8.439-8.439,8.338,8.338,0,0,1,5.239,1.821.844.844,0,1,0,1.05-1.321,10.128,10.128,0,1,0,3.838,7.939,10.024,10.024,0,0,0-1-4.406A.843.843,0,0,0,18.123,5.329Zm0,0" fill="#072a40"/>
+      <path id="Path_6029" data-name="Path 6029" d="M176.844,64a.844.844,0,0,0-.844.844v5.907a.844.844,0,0,0,.844.844h4.22a.844.844,0,1,0,0-1.688h-3.376V64.844A.844.844,0,0,0,176.844,64Zm0,0" transform="translate(-166.717 -60.624)" fill="#072a40"/>
+    </g>
+  </g>
+</svg>

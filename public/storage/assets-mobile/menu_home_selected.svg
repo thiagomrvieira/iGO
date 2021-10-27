@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="menu_home_selected" transform="translate(-847 -205)">
+    <rect id="Rectangle_8086" data-name="Rectangle 8086" width="30" height="30" transform="translate(847 205)" fill="none"/>
+    <g id="browser" transform="translate(849.4 208.391)">
+      <path id="Path_4678" data-name="Path 4678" d="M58.689,206.682H42.227A2.23,2.23,0,0,1,40,204.455V192.738a.775.775,0,1,1,1.549,0v11.718a.679.679,0,0,0,.678.678H58.689a.679.679,0,0,0,.678-.678V192.738a.775.775,0,1,1,1.549,0v11.718A2.23,2.23,0,0,1,58.689,206.682Z" transform="translate(-38.063 -183.444)" fill="#ffe414"/>
+      <path id="Path_4679" data-name="Path 4679" d="M24.015,28.021a.772.772,0,0,1-.548-.227L13.833,18.16a2.036,2.036,0,0,0-2.876,0L1.323,27.794a.775.775,0,0,1-1.1-1.1l9.634-9.634a3.587,3.587,0,0,1,5.067,0L24.562,26.7a.775.775,0,0,1-.548,1.322Z" transform="translate(0 -16.017)" fill="#ffe414"/>
+    </g>
+  </g>
+</svg>

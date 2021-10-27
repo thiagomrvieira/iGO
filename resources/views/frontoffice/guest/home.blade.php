@@ -431,7 +431,8 @@
            
             <div class="modal-body partner-error">
                 <h4 class="alert-heading">Erro!</h4>
-                <p>Não foi possível registar o aderente com os dados informados</p>
+                <p class="partner-error-email">Não foi possível registar o aderente com os dados informados</p>
+                <p class="partner-error-company">Não foi possível registar o aderente com os dados informados</p>
             </div>
 
             <div class="modal-body delivery-success" role="alert" v-if="deliverymanCreated">
@@ -441,7 +442,8 @@
 
             <div class="modal-body delivery-error">
                 <h4 class="alert-heading">Erro!</h4>
-                <p class="delManValidationError">Não foi possível registar o aderente com os dados informados</p>
+                <p class="delivery-error-email">Não foi possível registar o aderente com os dados informados</p>
+                {{-- <p class="delManValidationError">Não foi possível registar o aderente com os dados informados</p> --}}
             </div>
            
         </div>
@@ -490,7 +492,6 @@
                 //  Handle the form request
                 getFormRequest: function (form, event) {
                     event.preventDefault();
-                    console.log(form);
                     if (form == 'deliverymanCreation') {
                         this.resource = this.deliveryman;
                         if(this.checkForm(form) ){
@@ -498,7 +499,6 @@
                         }
                     } else {
                         this.resource = this.partner;
-                        console.log(this.checkForm(form) );
                         if(this.checkForm(form) ){
                             this.formAction = "{{ route('partner.store.home') }}";
                         }
@@ -534,7 +534,6 @@
                         resource: this.resource,
                     })
                     .then(response => {
-                        
                         if (Object.keys(response.data.resource).length > 6) {
                             // this.partnerCreated.name = (response.status == 201) ?  response.data.resource.name : null;
                             // this.partnerCreated.company_name = (response.status == 201) ?  response.data.resource.company_name : null;
@@ -550,8 +549,22 @@
                     })
                     .catch((error) => {
                         if (Object.keys(this.resource).length > 3) {
+                            console.log(error.response.data.errors);
+                            for (const [key, value] of Object.entries(error.response.data.errors)) {
+                                if (`${key}` === 'resource.company_name') {
+                                    modalElement.find('.partner-error .partner-error-company').html('O valor indicado para o campo <b>Estabelecimento</b> já se encontra registado.');
+                                } else {
+                                    modalElement.find('.partner-error .partner-error-email').html('O valor indicado para o campo <b>Email</b> já se encontra registado.');
+                                }
+                            }
                             modalElement.addClass('show-partner-error');
                         } else {
+                            console.log(error.response.data.errors);
+                            for (const [key, value] of Object.entries(error.response.data.errors)) {
+                                if (`${key}` === 'resource.email') {
+                                    modalElement.find('.delivery-error .delivery-error-email').html('O valor indicado para o campo <b>Email</b> já se encontra registado.');
+                                } 
+                            }
                             modalElement.addClass('show-delivery-error');
                         }
                     });

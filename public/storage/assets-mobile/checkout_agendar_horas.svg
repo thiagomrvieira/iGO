@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="checkout_agendar_horas" transform="translate(-1660.837 -538)">
+    <rect id="Rectangle_8088" data-name="Rectangle 8088" width="24" height="24" transform="translate(1660.837 538)" fill="none"/>
+    <g id="minute" transform="translate(1662.478 539.641)">
+      <g id="Group_12197" data-name="Group 12197">
+        <g id="Group_12196" data-name="Group 12196">
+          <path id="Path_6033" data-name="Path 6033" d="M10.359,0A10.359,10.359,0,1,0,20.719,10.359,10.354,10.354,0,0,0,10.359,0Zm0,19.338a8.978,8.978,0,1,1,8.978-8.978A8.988,8.988,0,0,1,10.359,19.338Z" fill="#516979"/>
+        </g>
+      </g>
+      <g id="Group_12199" data-name="Group 12199" transform="translate(8.856 5.615)">
+        <g id="Group_12198" data-name="Group 12198">
+          <path id="Path_6034" data-name="Path 6034" d="M222.491,143.3h-2.258v-3.847a.691.691,0,1,0-1.381,0v4.537a.691.691,0,0,0,.691.691h2.948a.691.691,0,0,0,0-1.381Z" transform="translate(-218.852 -138.765)" fill="#516979"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

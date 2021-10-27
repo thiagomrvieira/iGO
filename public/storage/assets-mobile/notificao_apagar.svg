@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="notificao_apagar" transform="translate(-20792 -456)">
+    <g id="lixo" transform="translate(20764 458)">
+      <g id="Group_12353" data-name="Group 12353" transform="translate(31)">
+        <g id="Group_12352" data-name="Group 12352">
+          <path id="Path_6041" data-name="Path 6041" d="M47.2,2.4H43.6V1.8A1.8,1.8,0,0,0,41.8,0H38.2a1.8,1.8,0,0,0-1.8,1.8v.6H32.8A1.8,1.8,0,0,0,31,4.2V5.4a.6.6,0,0,0,.6.6h.647L33.3,18.833v.005a1.791,1.791,0,0,0,1.792,1.637H44.9a1.791,1.791,0,0,0,1.792-1.637v-.005L47.748,6H48.4a.6.6,0,0,0,.6-.6V4.2A1.8,1.8,0,0,0,47.2,2.4Zm-9.6-.6a.6.6,0,0,1,.6-.6h3.6a.6.6,0,0,1,.6.6v.6H37.6Zm7.9,16.932a.6.6,0,0,1-.6.544H35.095a.6.6,0,0,1-.6-.544L33.451,6H46.545ZM47.8,4.8H32.2V4.2a.6.6,0,0,1,.6-.6H47.2a.6.6,0,0,1,.6.6Z" transform="translate(-31)" fill="#072a40"/>
+        </g>
+      </g>
+      <g id="Group_12355" data-name="Group 12355" transform="translate(39.398 7.198)">
+        <g id="Group_12354" data-name="Group 12354">
+          <path id="Path_6042" data-name="Path 6042" d="M241.6,180a.6.6,0,0,0-.6.6v8.478a.6.6,0,0,0,1.2,0V180.6A.6.6,0,0,0,241.6,180Z" transform="translate(-241 -180)" fill="#072a40"/>
+        </g>
+      </g>
+      <g id="Group_12357" data-name="Group 12357" transform="translate(42.997 7.198)">
+        <g id="Group_12356" data-name="Group 12356">
+          <path id="Path_6043" data-name="Path 6043" d="M331.6,180a.6.6,0,0,0-.6.6v8.478a.6.6,0,0,0,1.2,0V180.6A.6.6,0,0,0,331.6,180Z" transform="translate(-331 -180)" fill="#072a40"/>
+        </g>
+      </g>
+      <g id="Group_12359" data-name="Group 12359" transform="translate(35.799 7.198)">
+        <g id="Group_12358" data-name="Group 12358">
+          <path id="Path_6044" data-name="Path 6044" d="M151.6,180a.6.6,0,0,0-.6.6v8.478a.6.6,0,0,0,1.2,0V180.6A.6.6,0,0,0,151.6,180Z" transform="translate(-151 -180)" fill="#072a40"/>
+        </g>
+      </g>
+    </g>
+    <rect id="Rectangle_8430" data-name="Rectangle 8430" width="24" height="24" transform="translate(20792 456)" fill="none"/>
+  </g>
+</svg>

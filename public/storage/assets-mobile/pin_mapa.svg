@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <g id="pin_mapa" transform="translate(-3567 -416)">
+    <g id="pin_copy" data-name="pin copy" transform="translate(3575 416)">
+      <path id="Path_5988" data-name="Path 5988" d="M209.27,253.944h0l-3.543,16.987-3.543-16.987" transform="translate(-196.994 -237.227)" fill="#2f2f2f"/>
+      <path id="Path_5989" data-name="Path 5989" d="M205.727,211.572v19.777l-3.543-16.987" transform="translate(-196.994 -197.644)" fill="#5c5a5a"/>
+      <circle id="Ellipse_212" data-name="Ellipse 212" cx="8.733" cy="8.733" r="8.733" transform="translate(0 0)" fill="#e8181c"/>
+      <path id="Path_5990" data-name="Path 5990" d="M127.983,8.733A8.736,8.736,0,0,1,134.395.313a8.733,8.733,0,1,0,0,16.841A8.736,8.736,0,0,1,127.983,8.733Z" transform="translate(-123.34 0)" fill="#c1111a"/>
+      <circle id="Ellipse_213" data-name="Ellipse 213" cx="1.651" cy="1.651" r="1.651" transform="translate(11.934 5.674)" fill="#f5f5f5"/>
+    </g>
+    <rect id="Rectangle_8381" data-name="Rectangle 8381" width="34" height="34" transform="translate(3567 416)" fill="none"/>
+  </g>
+</svg>

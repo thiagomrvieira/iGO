@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="110" viewBox="0 0 80 110">
+  <defs>
+    <filter id="Ellipse_200" x="12" y="50" width="60" height="60" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="perfiL_foto" transform="translate(-148 -106)">
+    <g id="Group_12703" data-name="Group 12703">
+      <circle id="Ellipse_1109" data-name="Ellipse 1109" cx="40" cy="40" r="40" transform="translate(148 106)" fill="#fff49d"/>
+      <g id="Group_12702" data-name="Group 12702" transform="translate(155.961 114.678)">
+        <g id="Group_9547" data-name="Group 9547">
+          <rect id="Rectangle_8088" data-name="Rectangle 8088" width="64" height="63" transform="translate(0.039 0.322)" fill="none"/>
+          <g id="user" transform="translate(6.363 6.628)">
+            <g id="Group_9540" data-name="Group 9540">
+              <g id="Group_9539" data-name="Group 9539">
+                <path id="Path_4688" data-name="Path 4688" d="M25.359,0A25.359,25.359,0,1,0,50.718,25.359,25.388,25.388,0,0,0,25.359,0Zm0,46.7A21.344,21.344,0,1,1,46.7,25.36,21.369,21.369,0,0,1,25.359,46.7Z" fill="#ffe414"/>
+              </g>
+            </g>
+            <g id="Group_9542" data-name="Group 9542" transform="translate(6.571 29.859)">
+              <g id="Group_9541" data-name="Group 9541">
+                <path id="Path_4689" data-name="Path 4689" d="M85.119,301.425c-7.132,0-13.8,3.576-18.789,10.069l3.185,2.444c4.207-5.48,9.748-8.5,15.6-8.5s11.4,3.018,15.6,8.5l3.185-2.444C98.923,305,92.251,301.425,85.119,301.425Z" transform="translate(-66.33 -301.425)" fill="#ffe414"/>
+              </g>
+            </g>
+            <g id="Group_9544" data-name="Group 9544" transform="translate(14.921 9.1)">
+              <g id="Group_9543" data-name="Group 9543">
+                <path id="Path_4690" data-name="Path 4690" d="M161.066,91.863A10.505,10.505,0,1,0,171.5,102.368,10.484,10.484,0,0,0,161.066,91.863Zm0,17a6.491,6.491,0,1,1,6.423-6.49A6.464,6.464,0,0,1,161.066,108.858Z" transform="translate(-150.628 -91.863)" fill="#ffe414"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Group_12705" data-name="Group 12705" transform="translate(-22572 -21)">
+      <g transform="matrix(1, 0, 0, 1, 22720, 127)" filter="url(#Ellipse_200)">
+        <circle id="Ellipse_200-2" data-name="Ellipse 200" cx="18" cy="18" r="18" transform="translate(22 60)" fill="#ffe414"/>
+      </g>
+      <g id="Group_12704" data-name="Group 12704" transform="translate(-135 224)">
+        <g id="camera-fotografica" transform="translate(22886.58 -52)">
+          <g id="Group_12695" data-name="Group 12695" transform="translate(0 25)">
+            <g id="Group_12694" data-name="Group 12694">
+              <path id="Path_6067" data-name="Path 6067" d="M135.121,157a4.121,4.121,0,1,0,4.121,4.121A4.126,4.126,0,0,0,135.121,157Zm0,6.924a2.8,2.8,0,1,1,2.8-2.8A2.806,2.806,0,0,1,135.121,163.924Z" transform="translate(-126.681 -152.648)" fill="#fffad3"/>
+              <path id="Path_6068" data-name="Path 6068" d="M14.9,27.374H12.477a.2.2,0,0,1-.182-.11l-.671-1.41-.006-.012A1.516,1.516,0,0,0,10.255,25H6.672a1.516,1.516,0,0,0-1.363.842l-.006.012-.671,1.41a.2.2,0,0,1-.182.11H1.978A1.98,1.98,0,0,0,0,29.352v8.9a1.98,1.98,0,0,0,1.978,1.978H14.9a1.98,1.98,0,0,0,1.978-1.978v-8.9A1.98,1.98,0,0,0,14.9,27.374Zm.659,10.88a.66.66,0,0,1-.659.659H1.978a.66.66,0,0,1-.659-.659v-8.9a.66.66,0,0,1,.659-.659H4.451a1.516,1.516,0,0,0,1.363-.842l.006-.012.671-1.41a.2.2,0,0,1,.182-.11h3.583a.2.2,0,0,1,.182.11l.671,1.41.006.012a1.516,1.516,0,0,0,1.363.842H14.9a.66.66,0,0,1,.659.659Z" transform="translate(0 -25)" fill="#fffad3"/>
+              <rect id="Rectangle_8454" data-name="Rectangle 8454" width="1.678" height="1.678" transform="translate(12.686 4.788)" fill="#fffad3"/>
+            </g>
+          </g>
+        </g>
+        <rect id="Rectangle_8250" data-name="Rectangle 8250" width="20" height="20" transform="translate(22885 -29)" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

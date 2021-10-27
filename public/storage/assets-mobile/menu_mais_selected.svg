@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="menu_mais_selected" transform="translate(-1132 -205)">
+    <g id="menu_mais" transform="translate(1136 209)">
+      <g id="Group_12024" data-name="Group 12024">
+        <g id="Group_12023" data-name="Group 12023">
+          <path id="Path_6005" data-name="Path 6005" d="M7.651,0H2.562A2.565,2.565,0,0,0,0,2.562V7.651a2.565,2.565,0,0,0,2.562,2.562H7.651a2.565,2.565,0,0,0,2.562-2.562V2.562A2.565,2.565,0,0,0,7.651,0Zm.831,7.651a.832.832,0,0,1-.831.831H2.562a.832.832,0,0,1-.831-.831V2.562a.832.832,0,0,1,.831-.831H7.651a.832.832,0,0,1,.831.831Z" fill="#ffe414"/>
+        </g>
+      </g>
+      <g id="Group_12026" data-name="Group 12026" transform="translate(11.587)">
+        <g id="Group_12025" data-name="Group 12025">
+          <path id="Path_6006" data-name="Path 6006" d="M283.616,0H278.6A2.6,2.6,0,0,0,276,2.6v5.02a2.6,2.6,0,0,0,2.6,2.6h5.02a2.6,2.6,0,0,0,2.6-2.6V2.6A2.6,2.6,0,0,0,283.616,0Zm.865,7.616a.866.866,0,0,1-.865.865H278.6a.866.866,0,0,1-.865-.865V2.6a.866.866,0,0,1,.865-.865h5.02a.866.866,0,0,1,.865.865Z" transform="translate(-276)" fill="#ffe414"/>
+        </g>
+      </g>
+      <g id="Group_12028" data-name="Group 12028" transform="translate(0 11.587)">
+        <g id="Group_12027" data-name="Group 12027">
+          <path id="Path_6007" data-name="Path 6007" d="M7.651,276H2.562A2.565,2.565,0,0,0,0,278.562v5.088a2.565,2.565,0,0,0,2.562,2.562H7.651a2.565,2.565,0,0,0,2.562-2.562v-5.088A2.565,2.565,0,0,0,7.651,276Zm.831,7.651a.832.832,0,0,1-.831.831H2.562a.832.832,0,0,1-.831-.831v-5.088a.832.832,0,0,1,.831-.831H7.651a.832.832,0,0,1,.831.831Z" transform="translate(0 -276)" fill="#ffe414"/>
+        </g>
+      </g>
+      <g id="Group_12030" data-name="Group 12030" transform="translate(11.587 11.587)">
+        <g id="Group_12029" data-name="Group 12029">
+          <path id="Path_6008" data-name="Path 6008" d="M283.616,276H278.6a2.6,2.6,0,0,0-2.6,2.6v5.02a2.6,2.6,0,0,0,2.6,2.6h5.02a2.6,2.6,0,0,0,2.6-2.6V278.6A2.6,2.6,0,0,0,283.616,276Zm.865,7.616a.866.866,0,0,1-.865.865H278.6a.866.866,0,0,1-.865-.865V278.6a.866.866,0,0,1,.865-.865h5.02a.866.866,0,0,1,.865.865Z" transform="translate(-276 -276)" fill="#ffe414"/>
+        </g>
+      </g>
+    </g>
+    <rect id="Rectangle_8401" data-name="Rectangle 8401" width="30" height="30" transform="translate(1132 205)" fill="none"/>
+  </g>
+</svg>

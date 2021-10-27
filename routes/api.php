@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\AddressController;
-use App\Http\Controllers\Api\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CountyController;
 use App\Http\Controllers\Api\DeliverymanRatingController;
@@ -94,13 +94,10 @@ Route::group(['prefix' => 'v1'], function()
         #   Show Main and Sub categories
         Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
         Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
-        
-       
 
         #   COUNTIES
         Route::get('counties',      [CountyController::class, 'index']);
         Route::get('counties/{id}', [CountyController::class, 'show' ]);
-
 
     });
 });

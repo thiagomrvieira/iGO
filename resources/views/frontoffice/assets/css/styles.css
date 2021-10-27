@@ -417,7 +417,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	padding: 11px 15px;
 }
 .form-default-wrapper .block-form-group .block-field.block-field-active {
-	border: 1px solid blue;
+	border: 2px solid #FFE414;
 }
 .form-default-wrapper .block-form-group .block-field-error {
 	border: 2px solid #eb3e3e;
@@ -440,6 +440,57 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	line-height: 20px;
 	/* background-color: aqua; */
 }
+.select2-container .select2-dropdown {
+	width: 413px!important;
+	background-color: #FFFDEA;
+	border-radius: 4px;
+	box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.15);
+	border: none;
+	padding: 10px;
+}
+.select2-container .select2-dropdown .select2-search .select2-search__field {
+	background-color: #FFFDEA;
+	border: 1px solid #072A40;
+}
+.select2-container .select2-dropdown .select2-results .select2-results__option {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 500;
+	font-style: normal;
+	color: #687780;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: #FFFAD3;
+	color: #072A40!important;
+}
+.select2-container .select2-dropdown.county_select2_dropdown {
+	margin-left: -25px; 
+}
+.select2-results__options::-webkit-scrollbar {
+	width: 16px;
+	background-clip: padding-box;
+}
+.select2-results__options::-webkit-scrollbar-track {
+background-color: #FFFDEA;
+background-clip: padding-box;
+border-right: 15px solid rgba(0, 0, 0, 0);
+border-top: 15px solid rgba(0, 0, 0, 0);
+border-bottom: 15px solid rgba(0, 0, 0, 0);
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+background-clip: padding-box;
+background-color: #FFE414;
+border-right: 8px solid rgba(0, 0, 0, 0);
+border-top: 10px solid rgba(0, 0, 0, 0);
+border-bottom: 10px solid rgba(0, 0, 0, 0);
+border-radius: 4px;
+}
+
+/* .select2-results__options::-webkit-scrollbar-button {
+display: none;
+} */
 .form-default-wrapper .block-form-group .block-field .block-input input {
 	width: 100%;
 	font-family: 'Roboto', sans-serif;
@@ -923,6 +974,9 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	transition: background-color 0.2s linear;
 	border-bottom: 0.5px solid #ffe414;
 }
+.block-faq .faq-button h3 {
+	text-transform: uppercase;
+}
 .block-faq .faq-button svg {
 	transition: all 0.3s ease-in-out;
 }
@@ -986,6 +1040,9 @@ footer .block-footer-center .column-left ul li {
 	font-weight: 400;
 	font-style: normal;
 	color: #ffffff;
+}
+footer .block-footer-center .column-left .footer-address ul li:first-child {
+	margin-bottom: 12px;
 }
 footer .block-footer-center .column-left .block-social-media {
 	margin-top: 50px;

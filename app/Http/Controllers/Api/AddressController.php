@@ -20,7 +20,7 @@ class AddressController extends Controller
      * *
      * 
      * @OA\Get(path="/api/v1/client/addresses",
-     *   tags={"Clients"},
+     *   tags={"Client: Address"},
      *   summary="Get client addresses",
      *   description="Get list of all addresses from logged in client",
      *   operationId="getClientAddresses",
@@ -66,7 +66,7 @@ class AddressController extends Controller
      * *
      * 
      * @OA\Post(path="/api/v1/client/addresses",
-     *   tags={"Clients"},
+     *   tags={"Client: Address"},
      *   summary="Save client address",
      *   description="Create new client address - Update client address if address_id not null ",
      *   operationId="updateAddressData",
@@ -129,7 +129,7 @@ class AddressController extends Controller
      * *
      * 
      * @OA\Delete(path="/api/v1/client/addresses/{id}",
-     *   tags={"Clients"},
+     *   tags={"Client: Address"},
      *   summary="Remove address",
      *   description="Remove client address specified in addres id",
      *   operationId="removeClienteAddress",

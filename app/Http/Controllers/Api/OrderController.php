@@ -7,6 +7,7 @@ use App\Http\Resources\CheckoutOrderResource;
 use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderResource;
 use App\Http\Traits\OrderTrait;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -20,8 +21,8 @@ class OrderController extends Controller
      * DISPLAY A LIST OF ALL USER ORDERS
      * *
      * 
-     * @OA\Get(path="/api/v1/orders",
-     *   tags={"Orders"},
+     * @OA\Get(path="/api/v1/client/orders",
+     *   tags={"Client: Orders"},
      *   summary="Show all client order",
      *   description="Display a list of all client orders ",
      *   operationId="showOrders",
@@ -75,8 +76,8 @@ class OrderController extends Controller
      * DISPLAY A LIST OF ALL USER IN PROGRESS ORDERS 
      * *
      * 
-     * @OA\Get(path="/api/v1/order/inprogress",
-     *   tags={"Orders"},
+     * @OA\Get(path="/api/v1/client/order/inprogress",
+     *   tags={"Client: Orders"},
      *   summary="Show all client orders in progress ",
      *   description="Display a list of all client orders in progress (status id between 3 and 5)",
      *   operationId="showInProgressOrders",
@@ -130,8 +131,8 @@ class OrderController extends Controller
      * Display chekout data
      * *
      * 
-     * @OA\Get(path="/api/v1/order/checkout",
-     *   tags={"Orders"},
+     * @OA\Get(path="/api/v1/client/order/checkout",
+     *   tags={"Client: Orders"},
      *   summary="Display order data",
      *   description="Show order details - Products, delivery, schedule, tax and payment data",
      *   operationId="showOrdersDetails",
@@ -167,8 +168,10 @@ class OrderController extends Controller
      */
     public function checkout()
     {
-        $order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
-        if ($order) {
+        $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
+        $cartItems = Cart::where('order_id', $order)->get();
+        
+        if ($order && $cartItems->count() > 0) {
             $data    = new CheckoutOrderResource($order);
             $message = "Chekout";
         }
@@ -183,8 +186,8 @@ class OrderController extends Controller
      * UPDATE DATA FROM ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/order/checkout",
-     *   tags={"Orders"},
+     * @OA\post(path="/api/v1/client/order/checkout",
+     *   tags={"Client: Orders"},
      *   summary="Checkout order",
      *   description="Update order data and if sent any paramter",
      *   operationId="checkout",
@@ -231,7 +234,10 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-        if (isset(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart)) {
+        $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
+        $cartItems = Cart::where('order_id', $order)->get();
+        
+        if ($order && $cartItems->count() > 0) {
             
             $this->checkoutOrderData($request); 
             
@@ -249,8 +255,8 @@ class OrderController extends Controller
      * SUBMIT ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/order/submit",
-     *   tags={"Orders"},
+     * @OA\post(path="/api/v1/client/order/submit",
+     *   tags={"Client: Orders"},
      *   summary="Submit order",
      *   description="Change order status from Open to Submitted",
      *   operationId="submitOrder",
@@ -286,7 +292,10 @@ class OrderController extends Controller
      */
     public function submit()
     {
-        if (isset(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart)) {
+        $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
+        $cartItems = Cart::where('order_id', $order)->get();
+        
+        if ($order && $cartItems->count() > 0) {
             $this->finishOrder(); 
             $message = "O seu pedido foi submetido!";
         }
@@ -299,8 +308,8 @@ class OrderController extends Controller
     /**
      * GET THE SPECIFIED ORDER
      * *
-     * @OA\Get(path="/api/v1/order/{id}",
-     *   tags={"Orders"},
+     * @OA\Get(path="/api/v1/client/order/{id}",
+     *   tags={"Client: Orders"},
      *   summary="Get the specified order",
      *   description="Return data of the specified order",
      *   operationId="getOrder",
@@ -348,7 +357,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::where('id',  $id)->get();
+        $order = Order::where('id',  $id)->where('client_id', Auth::user()->client->id)->get();
         if ($order->count() > 0) {
             $data    = new CheckoutOrderResource( $order->first() );
             $message = "Dados do pedido";

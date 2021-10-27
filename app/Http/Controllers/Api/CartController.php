@@ -25,8 +25,8 @@ class CartController extends Controller
      * DISPLAY A LIST OF PRODUCTS IN THE CART
      * *
      * 
-     * @OA\Get(path="/api/v1/cart",
-     *   tags={"Cart"},
+     * @OA\Get(path="/api/v1/client/cart",
+     *   tags={"Client: Cart"},
      *   summary="Show products in the cart",
      *   description="Display a list of products added to the cart",
      *   operationId="showCart",
@@ -83,8 +83,8 @@ class CartController extends Controller
      * ADD ITEM TO THE CART
      * *
      * 
-     * @OA\Post(path="/api/v1/cart",
-     *   tags={"Cart"},
+     * @OA\Post(path="/api/v1/client/cart",
+     *   tags={"Client: Cart"},
      *   summary="Add item to the cart",
      *   description="Create/Update a product to/in the cart - Expect to recieve a product id and a quantity - If the product is already in the cart, updates the quantity",
      *   operationId="addToCart",
@@ -157,8 +157,8 @@ class CartController extends Controller
      * REMOVE ITEM FROM THE CART
      * *
      * 
-     * @OA\Delete(path="/api/v1/cart/{id}",
-     *   tags={"Cart"},
+     * @OA\Delete(path="/api/v1/client/cart/{id}",
+     *   tags={"Client: Cart"},
      *   summary="Remove item from the cart",
      *   description="Remove a specified product from the cart - Expect to recieve a valid product id",
      *   operationId="removeFromCart",

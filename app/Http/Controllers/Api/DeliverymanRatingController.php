@@ -18,7 +18,7 @@ class DeliverymanRatingController extends Controller
      * DELIVERYMAN RATING
      * *
      * @OA\Post(path="/api/v1/client/order/{id}/deliverymanrating",
-     *   tags={"Review & Rating"},
+     *   tags={"Client: Review & Rating"},
      *   summary="Delivery man rating",
      *   description="Rate the delivery man when he deliver the order",
      *   operationId="deliverymanRating",

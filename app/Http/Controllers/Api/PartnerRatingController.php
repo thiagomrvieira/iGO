@@ -19,7 +19,7 @@ class PartnerRatingController extends Controller
      * Partner RATING
      * *
      * @OA\Post(path="/api/v1/client/order/{id}/partnerrating",
-     *   tags={"Review & Rating"},
+     *   tags={"Client: Review & Rating"},
      *   summary="Partner rating",
      *   description="Rate a partner after the order arrives",
      *   operationId="partnerRating",

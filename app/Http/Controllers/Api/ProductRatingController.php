@@ -18,7 +18,7 @@ class ProductRatingController extends Controller
      * PRODUCT RATING
      * *
      * @OA\Post(path="/api/v1/client/order/{id}/productrating",
-     *   tags={"Review & Rating"},
+     *   tags={"Client: Review & Rating"},
      *   summary="Product rating",
      *   description="Rate a product after the order arrives",
      *   operationId="productRating",

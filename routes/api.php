@@ -48,21 +48,19 @@ Route::group(['prefix' => 'v1'], function()
         Route::apiResources([
             'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
-            'cart'         => CartController::class,
             'categories'   => PartnerCategoryController::class,
             'products'     => ProductController::class,
         ]);
 
-        
-        
         Route::group(['prefix' => 'client'], function() 
         {
-            #   Favorite/Unfavorite Partner
-            Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);
             
             #   Get/Update Client personal data
             Route::get('profile',   [ClientController::class, 'getPersonalData'   ]);
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
+            
+            #   Favorite/Unfavorite Partner
+            Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);
             
             #   ADDRESSES
             Route::get('addresses',         [AddressController::class, 'index'  ]);
@@ -75,6 +73,18 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('order/{id}/productrating',     [ProductRatingController::class,     'store']);
             Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
 
+            Route::apiResources([
+                'cart' => CartController::class,
+            ]);
+
+            #   ORDERS
+            Route::get('orders',            [OrderController::class, 'index']);
+            Route::get('order/checkout',    [OrderController::class, 'checkout']);
+            Route::post('order/checkout',   [OrderController::class, 'update']);
+            Route::post('order/submit',     [OrderController::class, 'submit']);
+            Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
+            Route::get('order/{id}',        [OrderController::class, 'show']);
+
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
@@ -85,13 +95,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
         Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
         
-        #   ORDERS
-        Route::get('orders',            [OrderController::class, 'index']);
-        Route::get('order/checkout',    [OrderController::class, 'checkout']);
-        Route::post('order/checkout',   [OrderController::class, 'update']);
-        Route::post('order/submit',     [OrderController::class, 'submit']);
-        Route::get('order/inprogress',  [OrderController::class, 'inProgress']);
-        Route::get('order/{id}',        [OrderController::class, 'show']);
+       
 
         #   COUNTIES
         Route::get('counties',      [CountyController::class, 'index']);

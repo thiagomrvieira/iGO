@@ -1,34 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\OrderTrait;
+use App\Models\DeliverymanRating;
 use App\Models\Order;
 use App\Models\OrderRating;
-use App\Models\ProductRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProductRatingController extends Controller
+class DeliverymanRatingController extends Controller
 {
     use OrderTrait;
     
     /**
-     * PRODUCT RATING
+     * DELIVERYMAN RATING
      * *
-     * @OA\Post(path="/api/v1/client/order/{id}/productrating",
+     * @OA\Post(path="/api/v1/client/order/{id}/deliverymanrating",
      *   tags={"Client: Review & Rating"},
-     *   summary="Product rating",
-     *   description="Rate a product after the order arrives",
-     *   operationId="productRating",
+     *   summary="Delivery man rating",
+     *   description="Rate the delivery man when he deliver the order",
+     *   operationId="deliverymanRating",
      *   @OA\RequestBody(
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="product_id", type="integer", example="4"),
-     *          @OA\Property(property="rate", type="integer", example="5"),
-     *          @OA\Property(property="review", type="string", example="Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."),
+     *          @OA\Property(property="rate", type="integer", example="4"),
+     *          @OA\Property(property="review", type="string", example="Mauris aliquet nunc non turpis scelerisque, eget. Diuretics paradis num copo é motivis de denguis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose."),
      *      )
      *   ),
      *   @OA\Response(
@@ -75,26 +74,38 @@ class ProductRatingController extends Controller
     {
         #   Check if the Order with teh specified Id is in Status 8 (delivered)
         if ($order = Order::where(['id' => $id, 'order_status_type_id' => 8])->first() ) {
+            #   Get the deliveryman 
+            $deliverymanOrder = $order->deliverymen->where('order_delivery_status_type_id', 3)->first();
             
-            $data = ProductRating::updateOrCreate([
+            $data = DeliverymanRating::updateOrCreate([
                 'order_id'  => $order->id,
                 'client_id' => Auth::user()->client->id,
             ],[
                 'order_id'       => $order->id,
                 'client_id'      => Auth::user()->client->id,
-                'product_id'     => $request->product_id,
+                'deliveryman_id' => $deliverymanOrder->deliveryman_id,
                 'rate'           => $request->rate,
                 'review'         => $request->review,
             ]);
 
-            $message = "Produto avaliado com sucesso!";
+            $message = "Estafeta avaliado com sucesso!";
         }
 
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
+                                 'message' => $message ?? 'Não foi possivel avaliar o estafeta no pedido especificado',
                                  'data'    => $data    ?? null], 200); 
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
     
 }

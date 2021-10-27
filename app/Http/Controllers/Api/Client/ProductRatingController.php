@@ -1,35 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CheckoutOrderResource;
-use App\Http\Resources\OrderCollection;
-use App\Http\Resources\OrderResource;
 use App\Http\Traits\OrderTrait;
-use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderRating;
+use App\Models\ProductRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class OrderRatingController extends Controller
+class ProductRatingController extends Controller
 {
     use OrderTrait;
     
     /**
-     * ORDER RATING
+     * PRODUCT RATING
      * *
-     * @OA\Post(path="/api/v1/client/order/{id}/orderrating",
+     * @OA\Post(path="/api/v1/client/order/{id}/productrating",
      *   tags={"Client: Review & Rating"},
-     *   summary="Order rating",
-     *   description="Rate the order when it arrive",
-     *   operationId="orderRating",
+     *   summary="Product rating",
+     *   description="Rate a product after the order arrives",
+     *   operationId="productRating",
      *   @OA\RequestBody(
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="rate", type="integer", example="2"),
+     *          @OA\Property(property="product_id", type="integer", example="4"),
+     *          @OA\Property(property="rate", type="integer", example="5"),
+     *          @OA\Property(property="review", type="string", example="Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."),
      *      )
      *   ),
      *   @OA\Response(
@@ -77,22 +76,25 @@ class OrderRatingController extends Controller
         #   Check if the Order with teh specified Id is in Status 8 (delivered)
         if ($order = Order::where(['id' => $id, 'order_status_type_id' => 8])->first() ) {
             
-            $data = OrderRating::updateOrCreate([
+            $data = ProductRating::updateOrCreate([
                 'order_id'  => $order->id,
                 'client_id' => Auth::user()->client->id,
             ],[
-                'order_id'  => $order->id,
-                'client_id' => Auth::user()->client->id,
-                'rate'      => $request->rate,
+                'order_id'       => $order->id,
+                'client_id'      => Auth::user()->client->id,
+                'product_id'     => $request->product_id,
+                'rate'           => $request->rate,
+                'review'         => $request->review,
             ]);
 
-            $message = "Pedido avaliado com sucesso!";
+            $message = "Produto avaliado com sucesso!";
         }
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
                                  'data'    => $data    ?? null], 200); 
     }
+
 
     
 }

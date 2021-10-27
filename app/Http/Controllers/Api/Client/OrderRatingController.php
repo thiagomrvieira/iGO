@@ -1,33 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CheckoutOrderResource;
+use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
 use App\Http\Traits\OrderTrait;
-use App\Models\DeliverymanRating;
+use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DeliverymanRatingController extends Controller
+class OrderRatingController extends Controller
 {
     use OrderTrait;
     
     /**
-     * DELIVERYMAN RATING
+     * ORDER RATING
      * *
-     * @OA\Post(path="/api/v1/client/order/{id}/deliverymanrating",
+     * @OA\Post(path="/api/v1/client/order/{id}/orderrating",
      *   tags={"Client: Review & Rating"},
-     *   summary="Delivery man rating",
-     *   description="Rate the delivery man when he deliver the order",
-     *   operationId="deliverymanRating",
+     *   summary="Order rating",
+     *   description="Rate the order when it arrive",
+     *   operationId="orderRating",
      *   @OA\RequestBody(
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="rate", type="integer", example="4"),
-     *          @OA\Property(property="review", type="string", example="Mauris aliquet nunc non turpis scelerisque, eget. Diuretics paradis num copo é motivis de denguis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose."),
+     *          @OA\Property(property="rate", type="integer", example="2"),
      *      )
      *   ),
      *   @OA\Response(
@@ -74,37 +76,22 @@ class DeliverymanRatingController extends Controller
     {
         #   Check if the Order with teh specified Id is in Status 8 (delivered)
         if ($order = Order::where(['id' => $id, 'order_status_type_id' => 8])->first() ) {
-            #   Get the deliveryman 
-            $deliverymanOrder = $order->deliverymen->where('order_delivery_status_type_id', 3)->first();
             
-            $data = DeliverymanRating::updateOrCreate([
+            $data = OrderRating::updateOrCreate([
                 'order_id'  => $order->id,
                 'client_id' => Auth::user()->client->id,
             ],[
-                'order_id'       => $order->id,
-                'client_id'      => Auth::user()->client->id,
-                'deliveryman_id' => $deliverymanOrder->deliveryman_id,
-                'rate'           => $request->rate,
-                'review'         => $request->review,
+                'order_id'  => $order->id,
+                'client_id' => Auth::user()->client->id,
+                'rate'      => $request->rate,
             ]);
 
-            $message = "Estafeta avaliado com sucesso!";
+            $message = "Pedido avaliado com sucesso!";
         }
 
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não foi possivel avaliar o estafeta no pedido especificado',
+                                 'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
                                  'data'    => $data    ?? null], 200); 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     

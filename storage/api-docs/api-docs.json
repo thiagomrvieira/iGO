@@ -169,7 +169,12 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Endereço removido"
+                                }
+                            }
                         }
                     },
                     "401": {

@@ -202,7 +202,11 @@ class AddressController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Endereço removido",
+     *          },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,

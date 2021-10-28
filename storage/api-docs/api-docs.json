@@ -209,7 +209,48 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de produtos no carrinho",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "extras": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float",
+                                                        "quantity": "integer"
+                                                    }
+                                                ],
+                                                "side": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "sauce": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "total_products": "integer",
+                                        "total_amount": "float"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -274,7 +315,48 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de produtos no carrinho",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "extras": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float",
+                                                        "quantity": "integer"
+                                                    }
+                                                ],
+                                                "side": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "sauce": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "total_products": "integer",
+                                        "total_amount": "float"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -320,7 +402,12 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Produto removido do carrinho!"
+                                }
+                            }
                         }
                     },
                     "401": {

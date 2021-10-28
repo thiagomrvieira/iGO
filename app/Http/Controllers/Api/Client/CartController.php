@@ -36,7 +36,48 @@ class CartController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de produtos no carrinho",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "extras": {
+     *                              {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                              }
+     *                          },
+     *                          "side": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "sauce": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  "total_products": "integer",
+     *                  "total_amount": "float"
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -104,7 +145,48 @@ class CartController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de produtos no carrinho",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "extras": {
+     *                              {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                              }
+     *                          },
+     *                          "side": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "sauce": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  "total_products": "integer",
+     *                  "total_amount": "float"
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -176,7 +258,11 @@ class CartController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Produto removido do carrinho!",
+     *          },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,

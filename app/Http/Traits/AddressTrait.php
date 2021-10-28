@@ -71,7 +71,7 @@ trait AddressTrait {
                  'id'      => $addressData['address_id']                ?? null],
                 ['address_name'    => $addressData['address_name']      ?? null, 
                  'user_id'         => Auth::user()->id,
-                 'address_type_id' => $addressData['address_type_id'],
+                 'address_type_id' => 2,
                  'line_1'          => $addressData['line_1']            ?? null,
                  'line_2'          => $addressData['line_2']            ?? null,
                  'county_id'       => $addressData['county_id']         ?? null,

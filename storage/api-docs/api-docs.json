@@ -11,13 +11,38 @@
                     "Client: Address"
                 ],
                 "summary": "Get client addresses",
-                "description": "Get list of all addresses from logged in client",
+                "description": "The first paragraph describes the call.\\n\\nAnother paragraph gives additional information about the call.",
                 "operationId": "getClientAddresses",
                 "responses": {
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Endereços",
+                                    "data": {
+                                        "addresses": [
+                                            {
+                                                "id": "integer",
+                                                "address_name": "string",
+                                                "address_type": "string",
+                                                "address_line_1": "string",
+                                                "address_line_2": "string",
+                                                "county": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "locality": "string",
+                                                "post_code": "string",
+                                                "country": "string",
+                                                "tax_name": "string",
+                                                "tax_number": "string"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -51,46 +76,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "properties": {
-                                    "address_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "address_type_id": {
-                                        "type": "integer",
-                                        "example": "2"
-                                    },
-                                    "address_name": {
-                                        "type": "string",
-                                        "example": "Trabalho"
-                                    },
-                                    "line_1": {
-                                        "type": "string",
-                                        "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
-                                    },
-                                    "line_2": {
-                                        "type": "string",
-                                        "example": "Address line 2. Eg: Praceta São João"
-                                    },
-                                    "county_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "locality": {
-                                        "type": "string",
-                                        "example": "Bairro"
-                                    },
-                                    "post_code": {
-                                        "type": "string",
-                                        "example": "46703"
-                                    },
-                                    "country": {
-                                        "type": "string",
-                                        "example": "Angola"
-                                    }
-                                },
                                 "type": "object"
-                            }
+                            },
+                            "example": [
+                                {
+                                    "address_id": 1,
+                                    "address_type_id": 2,
+                                    "address_name": "Trabalho",
+                                    "line_1": "Address line 1. Eg: Av. Mauris nec dolor, nº 50",
+                                    "line_2": "Address line 2. Eg: Praceta São João",
+                                    "county_id": 1,
+                                    "locality": "Bairro",
+                                    "post_code": "46703",
+                                    "country": "Angola"
+                                }
+                            ]
                         }
                     }
                 },
@@ -98,7 +98,32 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Endereços",
+                                    "data": {
+                                        "addresses": [
+                                            {
+                                                "id": "integer",
+                                                "address_name": "string",
+                                                "address_type": "string",
+                                                "address_line_1": "string",
+                                                "address_line_2": "string",
+                                                "county": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "locality": "string",
+                                                "post_code": "string",
+                                                "country": "string",
+                                                "tax_name": "string",
+                                                "tax_number": "string"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -525,6 +550,257 @@
                 ]
             }
         },
+        "/api/v1/client/orders": {
+            "get": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Show all client order",
+                "description": "Display a list of all client orders ",
+                "operationId": "showOrders",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/inprogress": {
+            "get": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Show all client orders in progress ",
+                "description": "Display a list of all client orders in progress (status id between 3 and 5)",
+                "operationId": "showInProgressOrders",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/checkout": {
+            "get": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Display order data",
+                "description": "Show order details - Products, delivery, schedule, tax and payment data",
+                "operationId": "showOrdersDetails",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Checkout order",
+                "description": "Update order data and if sent any paramter",
+                "operationId": "checkout",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "address_id": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    },
+                                    "deliver_at": {
+                                        "type": "string",
+                                        "example": "2022-12-21 19:44"
+                                    },
+                                    "tax_name": {
+                                        "type": "string",
+                                        "example": "Fulano da Silva"
+                                    },
+                                    "tax_number": {
+                                        "type": "integer",
+                                        "example": "300 322 984"
+                                    },
+                                    "campaign_code": {
+                                        "type": "string",
+                                        "example": "FERIAS2021"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/submit": {
+            "post": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Submit order",
+                "description": "Change order status from Open to Submitted",
+                "operationId": "submitOrder",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}": {
+            "get": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Get the specified order",
+                "description": "Return data of the specified order",
+                "operationId": "getOrder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/client/order/{id}/orderrating": {
             "post": {
                 "tags": [
@@ -867,257 +1143,6 @@
                         "description": "Forbidden"
                     }
                 }
-            }
-        },
-        "/api/v1/client/orders": {
-            "get": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Show all client order",
-                "description": "Display a list of all client orders ",
-                "operationId": "showOrders",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/inprogress": {
-            "get": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Show all client orders in progress ",
-                "description": "Display a list of all client orders in progress (status id between 3 and 5)",
-                "operationId": "showInProgressOrders",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/checkout": {
-            "get": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Display order data",
-                "description": "Show order details - Products, delivery, schedule, tax and payment data",
-                "operationId": "showOrdersDetails",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Checkout order",
-                "description": "Update order data and if sent any paramter",
-                "operationId": "checkout",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "address_id": {
-                                        "type": "integer",
-                                        "example": "2"
-                                    },
-                                    "deliver_at": {
-                                        "type": "string",
-                                        "example": "2022-12-21 19:44"
-                                    },
-                                    "tax_name": {
-                                        "type": "string",
-                                        "example": "Fulano da Silva"
-                                    },
-                                    "tax_number": {
-                                        "type": "integer",
-                                        "example": "300 322 984"
-                                    },
-                                    "campaign_code": {
-                                        "type": "string",
-                                        "example": "FERIAS2021"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/submit": {
-            "post": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Submit order",
-                "description": "Change order status from Open to Submitted",
-                "operationId": "submitOrder",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/{id}": {
-            "get": {
-                "tags": [
-                    "Client: Orders"
-                ],
-                "summary": "Get the specified order",
-                "description": "Return data of the specified order",
-                "operationId": "getOrder",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Order id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
             }
         },
         "/api/v1/client/categories": {

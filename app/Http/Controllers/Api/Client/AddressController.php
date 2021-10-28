@@ -22,14 +22,39 @@ class AddressController extends Controller
      * @OA\Get(path="/api/v1/client/addresses",
      *   tags={"Client: Address"},
      *   summary="Get client addresses",
-     *   description="Get list of all addresses from logged in client",
+     *   description= "The first paragraph describes the call.\n\nAnother paragraph gives additional information about the call.",
      *   operationId="getClientAddresses",
      *   @OA\Response(
      *      response=200,
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Endereços",
+     *              "data": { 
+     *                  "addresses": {
+     *                      { 
+     *                          "id": "integer",
+     *                          "address_name": "string",
+     *                          "address_type": "string",
+     *                          "address_line_1": "string",
+     *                          "address_line_2": "string",
+     *                          "county": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "locality": "string",
+     *                          "post_code": "string",
+     *                          "country": "string",
+     *                          "tax_name": "string",
+     *                          "tax_number": "string"
+     *                      }, 
+     *                  },
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -74,16 +99,21 @@ class AddressController extends Controller
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="address_id", type="integer", example="1"),
-     *          @OA\Property(property="address_type_id", type="integer", example="2"),
-     *          @OA\Property(property="address_name", type="string", example="Trabalho"),
-     *          @OA\Property(property="line_1", type="string", example="Address line 1. Eg: Av. Mauris nec dolor, nº 50"),
-     *          @OA\Property(property="line_2", type="string", example="Address line 2. Eg: Praceta São João"),
-     *          @OA\Property(property="county_id", type="integer", example="1"),
-     *          @OA\Property(property="locality", type="string", example="Bairro"),
-     *          @OA\Property(property="post_code", type="string", example="46703"),
-     *          @OA\Property(property="country", type="string", example="Angola"),
-     * 
+     *          example={
+     *              {
+     *                  "address_id": 1, 
+     *                  "address_type_id": 2, 
+     *                  "address_name": "Trabalho", 
+     *                  "line_1": "Address line 1. Eg: Av. Mauris nec dolor, nº 50", 
+     *                  "line_2": "Address line 2. Eg: Praceta São João", 
+     *                  "county_id": 1, 
+     *                  "locality": "Bairro", 
+     *                  "post_code": "46703", 
+     *                  "country": "Angola", 
+     *              }
+     *          }
+     *          
+     *          
      *      )
      *   ),
      *   @OA\Response(
@@ -91,7 +121,32 @@ class AddressController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Endereços",
+     *              "data": { 
+     *                  "addresses": {
+     *                      { 
+     *                          "id": "integer",
+     *                          "address_name": "string",
+     *                          "address_type": "string",
+     *                          "address_line_1": "string",
+     *                          "address_line_2": "string",
+     *                          "county": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "locality": "string",
+     *                          "post_code": "string",
+     *                          "country": "string",
+     *                          "tax_name": "string",
+     *                          "tax_number": "string"
+     *                      }, 
+     *                  },
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,

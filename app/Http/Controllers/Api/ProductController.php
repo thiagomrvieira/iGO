@@ -13,8 +13,8 @@ class ProductController extends Controller
     /**
      * Display a list of all products
      **
-     * @OA\Get(path="/api/v1/products",
-     *   tags={"Products"},
+     * @OA\Get(path="/api/v1/client/products",
+     *   tags={"Client: Products"},
      *   summary="Get all products",
      *   description="Get the list of all products",
      *   operationId="getAllProducts",
@@ -61,8 +61,8 @@ class ProductController extends Controller
     /**
      * Display a specified product data
      **
-     * @OA\Get(path="/api/v1/products/{id}",
-     *   tags={"Products"},
+     * @OA\Get(path="/api/v1/client/products/{id}",
+     *   tags={"Client: Products"},
      *   summary="Get a specified product",
      *   description="Get the details of a specified product",
      *   operationId="getAProduct",

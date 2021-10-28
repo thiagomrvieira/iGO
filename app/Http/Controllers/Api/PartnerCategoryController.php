@@ -12,8 +12,8 @@ class PartnerCategoryController extends Controller
     /**
      * Return a list of all active partners categories
      * *
-     * @OA\Get(path="/api/v1/categories",
-     *   tags={"Partner Categories"},
+     * @OA\Get(path="/api/v1/client/categories",
+     *   tags={"Client: Partner Categories"},
      *   summary="Get the list of categories",
      *   description="Return a list of all active partners categories",
      *   operationId="getListOfCategories",
@@ -61,8 +61,8 @@ class PartnerCategoryController extends Controller
     /**
      * Return data of the specified partners category
      * *
-     * @OA\Get(path="/api/v1/categories/{id}",
-     *   tags={"Partner Categories"},
+     * @OA\Get(path="/api/v1/client/categories/{id}",
+     *   tags={"Client: Partner Categories"},
      *   summary="Get partner category information",
      *   description="Return data of the specified partners category",
      *   operationId="getPartnerCategoryData",
@@ -118,8 +118,8 @@ class PartnerCategoryController extends Controller
     /**
      * Return a list of all active main partner categories
      * *
-     * @OA\Get(path="/api/v1/maincategories",
-     *   tags={"Partner Categories"},
+     * @OA\Get(path="/api/v1/client/maincategories",
+     *   tags={"Client: Partner Categories"},
      *   summary="Get the list of main categories",
      *   description="Return a list of all active main partner categories",
      *   operationId="getListOfMainCategories",
@@ -164,8 +164,8 @@ class PartnerCategoryController extends Controller
     /**
      * Return a list of all active sub partner categories
      * *
-     * @OA\Get(path="/api/v1/subcategories",
-     *   tags={"Partner Categories"},
+     * @OA\Get(path="/api/v1/client/subcategories",
+     *   tags={"Client: Partner Categories"},
      *   summary="Get the list of sub categories",
      *   description="Return a list of all active sub partner categories",
      *   operationId="getListOfSubCategories",

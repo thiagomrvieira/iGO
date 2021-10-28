@@ -47,10 +47,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::middleware('auth:api')->group(function () {
 
         Route::apiResources([
-            'partners'     => PartnerController::class,
             'shippingfees' => ShippingFeeController::class,
-            'categories'   => PartnerCategoryController::class,
-            'products'     => ProductController::class,
+            
         ]);
 
         Route::group(['prefix' => 'client'], function() 
@@ -75,7 +73,10 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
 
             Route::apiResources([
-                'cart' => ClientCartController::class,
+                'cart'         => ClientCartController::class,
+                'partners'     => PartnerController::class,
+                'categories'   => PartnerCategoryController::class,
+                'products'     => ProductController::class,
             ]);
 
             #   ORDERS
@@ -86,16 +87,17 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('order/inprogress',  [ClientOrderController::class, 'inProgress']);
             Route::get('order/{id}',        [ClientOrderController::class, 'show']);
 
+            #   Show Main and Sub categories
+            Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
+            Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
+
+            #   Show partner products
+            Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);
+
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
-        #   Show partner products
-        Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);
         
-        #   Show Main and Sub categories
-        Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
-        Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
-
         #   COUNTIES
         Route::get('counties',      [CountyController::class, 'index']);
         Route::get('counties/{id}', [CountyController::class, 'show' ]);

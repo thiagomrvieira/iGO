@@ -648,7 +648,22 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Estafeta avaliado com sucesso!",
+                                    "data": {
+                                        "order_id": "integer",
+                                        "client_id": "integer",
+                                        "deliveryman_id": "integer",
+                                        "rate": "integer",
+                                        "review": "string",
+                                        "updated_at": "datetime",
+                                        "created_at": "datetime",
+                                        "id": "integer"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -961,7 +976,20 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Pedido avaliado com sucesso!",
+                                    "data": {
+                                        "order_id": "integer",
+                                        "client_id": "integer",
+                                        "rate": "integer",
+                                        "updated_at": "datetime",
+                                        "created_at": "datetime",
+                                        "id": "integer"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1027,7 +1055,21 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Aderente avaliado com sucesso!",
+                                    "data": {
+                                        "order_id": "integer",
+                                        "client_id": "integer",
+                                        "rate": "integer",
+                                        "review": "string",
+                                        "updated_at": "datetime",
+                                        "created_at": "datetime",
+                                        "id": "integer"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1097,7 +1139,22 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Aderente avaliado com sucesso!",
+                                    "data": {
+                                        "order_id": "integer",
+                                        "client_id": "integer",
+                                        "product_id": "integer",
+                                        "rate": "integer",
+                                        "review": "string",
+                                        "updated_at": "datetime",
+                                        "created_at": "datetime",
+                                        "id": "integer"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {

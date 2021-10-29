@@ -35,7 +35,21 @@ class DeliverymanRatingController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Estafeta avaliado com sucesso!",
+     *              "data": {
+     *                  "order_id": "integer",
+     *                  "client_id": "integer",
+     *                  "deliveryman_id": "integer",
+     *                  "rate": "integer",
+     *                  "review": "string",
+     *                  "updated_at": "datetime",
+     *                  "created_at": "datetime",
+     *                  "id": "integer"
+     *              },
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -74,26 +88,31 @@ class DeliverymanRatingController extends Controller
     {
         #   Check if the Order with teh specified Id is in Status 8 (delivered)
         if ($order = Order::where(['id' => $id, 'order_status_type_id' => 8])->first() ) {
-            #   Get the deliveryman 
-            $deliverymanOrder = $order->deliverymen->where('order_delivery_status_type_id', 3)->first();
             
-            $data = DeliverymanRating::updateOrCreate([
-                'order_id'  => $order->id,
-                'client_id' => Auth::user()->client->id,
-            ],[
-                'order_id'       => $order->id,
-                'client_id'      => Auth::user()->client->id,
-                'deliveryman_id' => $deliverymanOrder->deliveryman_id,
-                'rate'           => $request->rate,
-                'review'         => $request->review,
-            ]);
-
-            $message = "Estafeta avaliado com sucesso!";
+            #   Get the deliveryman related to the order
+            if ($deliverymanOrder = $order->deliverymen->where('order_delivery_status_type_id', 3)->first() ) {
+                
+                $data = DeliverymanRating::updateOrCreate([
+                    'order_id'  => $order->id,
+                    'client_id' => Auth::user()->client->id,
+                ],[
+                    'order_id'       => $order->id,
+                    'client_id'      => Auth::user()->client->id,
+                    'deliveryman_id' => $deliverymanOrder->deliveryman_id,
+                    'rate'           => $request->rate,
+                    'review'         => $request->review,
+                ]);
+    
+                $status     = "success";
+                $message    = "Estafeta avaliado com sucesso!";
+                $statusCode = 200;
+            }
+            
         }
 
-        return response()->json(['status'  => $status  ?? 'success',
+        return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não foi possivel avaliar o estafeta no pedido especificado',
-                                 'data'    => $data    ?? null], 200); 
+                                 'data'    => $data    ?? null], $statusCode ?? 404); 
     }
 
     /**

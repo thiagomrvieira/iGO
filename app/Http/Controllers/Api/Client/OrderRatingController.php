@@ -37,7 +37,19 @@ class OrderRatingController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Pedido avaliado com sucesso!",
+     *              "data": {
+     *                  "order_id": "integer",
+     *                  "client_id": "integer",
+     *                  "rate": "integer",
+     *                  "updated_at": "datetime",
+     *                  "created_at": "datetime",
+     *                  "id": "integer"
+     *              },
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -86,12 +98,14 @@ class OrderRatingController extends Controller
                 'rate'      => $request->rate,
             ]);
 
-            $message = "Pedido avaliado com sucesso!";
+            $status     = "success";
+            $message    = "Pedido avaliado com sucesso!";
+            $statusCode = 200;
         }
 
-        return response()->json(['status'  => $status  ?? 'success',
+        return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
-                                 'data'    => $data    ?? null], 200); 
+                                 'data'    => $data    ?? null],  $statusCode ?? 404); 
     }
 
     

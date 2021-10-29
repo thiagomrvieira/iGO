@@ -36,7 +36,21 @@ class ProductRatingController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Aderente avaliado com sucesso!",
+     *              "data": {
+     *                  "order_id": "integer",
+     *                  "client_id": "integer",
+     *                  "product_id": "integer",
+     *                  "rate": "integer",
+     *                  "review": "string",
+     *                  "updated_at": "datetime",
+     *                  "created_at": "datetime",
+     *                  "id": "integer"
+     *              },
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -87,12 +101,14 @@ class ProductRatingController extends Controller
                 'review'         => $request->review,
             ]);
 
-            $message = "Produto avaliado com sucesso!";
+            $status     = "success";
+            $message    = "Produto avaliado com sucesso!";
+            $statusCode = 200;
         }
 
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
-                                 'data'    => $data    ?? null], 200); 
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possivel avaliar o Produto especificado',
+                                 'data'    => $data    ?? null],  $statusCode ?? 404); 
     }
 
 

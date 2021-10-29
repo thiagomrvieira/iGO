@@ -1536,7 +1536,29 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Web content",
+                                    "data": {
+                                        "webcontent": [
+                                            {
+                                                "id": "integer",
+                                                "title": "string",
+                                                "content_area": "string",
+                                                "content": "string",
+                                                "translations": [
+                                                    {
+                                                        "locale": "string",
+                                                        "title": "string",
+                                                        "content": "string"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "400": {
@@ -1574,7 +1596,29 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Web content",
+                                    "data": {
+                                        "webcontent": [
+                                            {
+                                                "id": "integer",
+                                                "title": "string",
+                                                "content_area": "string",
+                                                "content": "string",
+                                                "translations": [
+                                                    {
+                                                        "locale": "string",
+                                                        "title": "string",
+                                                        "content": "string"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "400": {

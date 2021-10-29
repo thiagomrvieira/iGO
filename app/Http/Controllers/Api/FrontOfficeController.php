@@ -24,7 +24,28 @@ class FrontOfficeController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Web content",
+     *              "data": {
+     *                  "webcontent": {
+     *                      {
+     *                          "id": "integer",
+     *                          "title": "string",
+     *                          "content_area": "string",
+     *                          "content": "string",
+     *                          "translations": {
+     *                              {
+     *                                  "locale": "string",
+     *                                  "title": "string",
+     *                                  "content": "string"
+     *                              },
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=400, 
@@ -63,7 +84,28 @@ class FrontOfficeController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Web content",
+     *              "data": {
+     *                  "webcontent": {
+     *                      {
+     *                          "id": "integer",
+     *                          "title": "string",
+     *                          "content_area": "string",
+     *                          "content": "string",
+     *                          "translations": {
+     *                              {
+     *                                  "locale": "string",
+     *                                  "title": "string",
+     *                                  "content": "string"
+     *                              },
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="content",
@@ -94,8 +136,9 @@ class FrontOfficeController extends Controller
      */
     public function showContent($content)
     {
-        return new WebContentCollection( 
-            WebContent::where('content_area', $content)->get()
-        );
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Web content',
+                                 'data'    => new WebContentCollection( WebContent::where('content_area', $content)->get() )], 200); 
+
     }
 }

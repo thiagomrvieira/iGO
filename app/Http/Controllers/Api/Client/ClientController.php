@@ -34,7 +34,18 @@ class ClientController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Dados pessoais",
+     *              "data": {
+     *                  "id": "Integer",
+     *                  "name": "String",
+     *                  "birth_date": "Datetime",
+     *                  "email": "String",
+     *                  "mobile_phone_number": "String"
+     *              },
+     *          },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -90,7 +101,18 @@ class ClientController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Dados atualizados",
+     *              "data": {
+     *                  "id": "Integer",
+     *                  "name": "String",
+     *                  "birth_date": "Datetime",
+     *                  "email": "String",
+     *                  "mobile_phone_number": "String"
+     *              },
+     *          },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -143,7 +165,11 @@ class ClientController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Aderente favoritado",
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",

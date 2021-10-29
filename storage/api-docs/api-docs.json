@@ -442,7 +442,19 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados pessoais",
+                                    "data": {
+                                        "id": "Integer",
+                                        "name": "String",
+                                        "birth_date": "Datetime",
+                                        "email": "String",
+                                        "mobile_phone_number": "String"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -507,7 +519,19 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados atualizados",
+                                    "data": {
+                                        "id": "Integer",
+                                        "name": "String",
+                                        "birth_date": "Datetime",
+                                        "email": "String",
+                                        "mobile_phone_number": "String"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -553,7 +577,12 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Aderente favoritado"
+                                }
+                            }
                         }
                     },
                     "401": {

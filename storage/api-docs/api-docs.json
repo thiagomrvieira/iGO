@@ -2313,7 +2313,35 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de produtos do aderente",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "id": "integer",
+                                                "name": "string",
+                                                "description": "string",
+                                                "category": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "image": "string",
+                                                "price": "float",
+                                                "final_price": "float",
+                                                "note": "string",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "created_at": "datetime",
+                                                "available": "boolean"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -2359,7 +2387,58 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados do produto",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "description": "string",
+                                        "category": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        },
+                                        "options": [
+                                            {
+                                                "text": "Side dishes",
+                                                "type": "radio",
+                                                "mandatory": "boolean",
+                                                "values": []
+                                            },
+                                            {
+                                                "text": "Sauces",
+                                                "type": "radio",
+                                                "mandatory": "boolean",
+                                                "values": []
+                                            },
+                                            {
+                                                "text": "Extras",
+                                                "type": "checkbox",
+                                                "mandatory": "boolean",
+                                                "values": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "Hyatt, Raynor and Hermann",
+                                                        "price": 8797
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "product_allergens": [],
+                                        "image": "string",
+                                        "price": "boolean",
+                                        "final_price": "float",
+                                        "note": "string",
+                                        "campaign": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        },
+                                        "created_at": "datetime",
+                                        "available": "boolean"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {

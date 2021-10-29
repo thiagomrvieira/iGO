@@ -23,7 +23,34 @@ class ProductController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de produtos do aderente",
+     *              "data": {
+     *                 "products": {
+     *                      {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "description": "string",
+     *                          "category": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "image": "string",
+     *                          "price": "float",
+     *                          "final_price": "float",
+     *                          "note": "string",
+     *                          "campaign": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "created_at": "datetime",
+     *                          "available": "boolean"
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -80,7 +107,58 @@ class ProductController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Dados do produto",
+     *              "data": {
+     *                  "id": "integer",
+     *                  "name": "string",
+     *                  "description": "string",
+     *                  "category": {
+     *                      "id": "integer",
+     *                      "name": "string"
+     *                   },
+     *                   "options": {
+     *                       {
+     *                           "text": "Side dishes",
+     *                           "type": "radio",
+     *                           "mandatory": "boolean",
+     *                           "values": {}
+     *                       },
+     *                       {
+     *                           "text": "Sauces",
+     *                           "type": "radio",
+     *                           "mandatory": "boolean",
+     *                           "values": {}
+     *                       },
+     *                       {
+     *                           "text": "Extras",
+     *                           "type": "checkbox",
+     *                           "mandatory": "boolean",
+     *                           "values": {
+     *                               {
+     *                                   "id": "integer",
+     *                                   "name": "string",
+     *                                   "price": "float"
+     *                               }
+     *                           }
+     *                       }
+     *                   },
+     *                   "product_allergens": {},
+     *                   "image": "string",
+     *                   "price": "boolean",
+     *                   "final_price": "float",
+     *                   "note": "string",
+     *                   "campaign": {
+     *                       "id": "integer",
+     *                       "name": "string"
+     *                   },
+     *                   "created_at": "datetime",
+     *                   "available": "boolean"
+     *               
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,

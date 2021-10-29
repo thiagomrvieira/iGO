@@ -97,8 +97,8 @@ class PassportAuthController extends Controller
      *          required=true,
      *          @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="email", type="string", example="mussum@igo.pt"),
-     *              @OA\Property(property="password", type="string", example="iGO@123"),
+     *              @OA\Property(property="email", type="string", example="client01@igo.pt"),
+     *              @OA\Property(property="password", type="string", example="iGOdelivery"),
      *          )
      *      ),
      *      @OA\Response(

@@ -32,7 +32,27 @@ class OrderController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "histórico de pedidos",
+     *              "data": {
+     *                  "orders" : {
+     *                      {
+     *                       "id": "integer",
+     *                       "status": "string",
+     *                       "description": "string",
+     *                       "date": "datetime",
+     *                       "partner": {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "image": "string",
+     *                       },
+     *                      }
+     *                  }
+
+     *              },
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -87,7 +107,26 @@ class OrderController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Pedidos em curso",
+     *              "data": {
+     *                  "orders" : {
+     *                      {
+     *                       "id": "integer",
+     *                       "status": "string",
+     *                       "description": "string",
+     *                       "date": "datetime",
+     *                       "partner": {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "image": "string",
+     *                       },
+     *                      }
+     *                  }
+     *              },
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -141,7 +180,74 @@ class OrderController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "checkout",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "extras": {
+     *                              {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                              }
+     *                          },
+     *                          "side": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "sauce": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  
+     *                  "delivery_address": {
+     *                      "id": "integer",
+     *                      "address_name": "string",
+     *                      "address_type": "string",
+     *                      "address_line_1": "string",
+     *                      "address_line_2": "string",
+     *                      "county": {
+     *                          "id": "integer",
+     *                          "name": "string"
+     *                      },
+     *                      "locality": "string",
+     *                      "post_code": "string",
+     *                      "country": "string",
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "delivery_time": "datetime",
+     *                  "tax_data": {
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "subtotal": "float",
+     *                  "shipping_fee": "float",
+     *                  "total": "float",
+     *                  "discount": "float",
+     *                  "total_final": "float"
+     *                  
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -169,7 +275,7 @@ class OrderController extends Controller
     public function checkout()
     {
         $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
-        $cartItems = Cart::where('order_id', $order)->get();
+        $cartItems = Cart::where('order_id', $order->id)->get();
         
         if ($order && $cartItems->count() > 0) {
             $data    = new CheckoutOrderResource($order);
@@ -207,7 +313,74 @@ class OrderController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "chekout",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "extras": {
+     *                              {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                              }
+     *                          },
+     *                          "side": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "sauce": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  
+     *                  "delivery_address": {
+     *                      "id": "integer",
+     *                      "address_name": "string",
+     *                      "address_type": "string",
+     *                      "address_line_1": "string",
+     *                      "address_line_2": "string",
+     *                      "county": {
+     *                          "id": "integer",
+     *                          "name": "string"
+     *                      },
+     *                      "locality": "string",
+     *                      "post_code": "string",
+     *                      "country": "string",
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "delivery_time": "datetime",
+     *                  "tax_data": {
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "subtotal": "float",
+     *                  "shipping_fee": "float",
+     *                  "total": "float",
+     *                  "discount": "float",
+     *                  "total_final": "float"
+     *                  
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -234,12 +407,13 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
+       
         $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
-        $cartItems = Cart::where('order_id', $order)->get();
+        $cartItems = Cart::where('order_id', $order->id)->get();
         
         if ($order && $cartItems->count() > 0) {
             
-            $this->checkoutOrderData($request); 
+            $this->checkoutOrderData($request, $cartItems); 
             
             return $this->checkout();
         }
@@ -265,7 +439,11 @@ class OrderController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "O seu pedido foi submetido!",
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -292,16 +470,22 @@ class OrderController extends Controller
      */
     public function submit()
     {
-        $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
-        $cartItems = Cart::where('order_id', $order)->get();
-        
-        if ($order && $cartItems->count() > 0) {
-            $this->finishOrder(); 
-            $message = "O seu pedido foi submetido!";
+        #   Check if exist an Order in status Opened
+        if ($order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()) {
+            
+            #   Chek if the Order has any Cart Item/Product associated 
+            if (Cart::where('order_id', $order->id)->count() > 0) {
+            
+                $this->finishOrder(); 
+            
+                $message    = "O seu pedido foi submetido!";
+                $status     = "success";
+                $statusCode = 200;
+            }
         }
         
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não há produtos no carrinho'], 200); 
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há produtos no carrinho'], $statusCode ?? 404); 
        
     }
     
@@ -313,12 +497,79 @@ class OrderController extends Controller
      *   summary="Get the specified order",
      *   description="Return data of the specified order",
      *   operationId="getOrder",
-     *   @OA\Response(
+      *   @OA\Response(
      *      response=200,
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "checkout",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "extras": {
+     *                              {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                              }
+     *                          },
+     *                          "side": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "sauce": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  
+     *                  "delivery_address": {
+     *                      "id": "integer",
+     *                      "address_name": "string",
+     *                      "address_type": "string",
+     *                      "address_line_1": "string",
+     *                      "address_line_2": "string",
+     *                      "county": {
+     *                          "id": "integer",
+     *                          "name": "string"
+     *                      },
+     *                      "locality": "string",
+     *                      "post_code": "string",
+     *                      "country": "string",
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "delivery_time": "datetime",
+     *                  "tax_data": {
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "subtotal": "float",
+     *                  "shipping_fee": "float",
+     *                  "total": "float",
+     *                  "discount": "float",
+     *                  "total_final": "float"
+     *                  
+     *              },
+     *          },
+     *      ),
+     *      
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -360,12 +611,15 @@ class OrderController extends Controller
         $order = Order::where('id',  $id)->where('client_id', Auth::user()->client->id)->get();
         if ($order->count() > 0) {
             $data    = new CheckoutOrderResource( $order->first() );
-            $message = "Dados do pedido";
+            
+            $status      = "success";
+            $message     = "Dados do pedido";
+            $statusCode  = 200;
         }
         
-        return response()->json(['status'  => $status  ?? 'success',
+        return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não foi possivel encontrar o pedido especificado',
-                                 'data'    => $data    ?? null], 200); 
+                                 'data'    => $data    ?? null], $statusCode ?? 404); 
     }
 
     /**

@@ -698,7 +698,27 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "histórico de pedidos",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -733,7 +753,27 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Pedidos em curso",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -768,7 +808,72 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "checkout",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "extras": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float",
+                                                        "quantity": "integer"
+                                                    }
+                                                ],
+                                                "side": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "sauce": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "delivery_address": {
+                                            "id": "integer",
+                                            "address_name": "string",
+                                            "address_type": "string",
+                                            "address_line_1": "string",
+                                            "address_line_2": "string",
+                                            "county": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            },
+                                            "locality": "string",
+                                            "post_code": "string",
+                                            "country": "string",
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "delivery_time": "datetime",
+                                        "tax_data": {
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "subtotal": "float",
+                                        "shipping_fee": "float",
+                                        "total": "float",
+                                        "discount": "float",
+                                        "total_final": "float"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -833,7 +938,72 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "chekout",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "extras": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float",
+                                                        "quantity": "integer"
+                                                    }
+                                                ],
+                                                "side": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "sauce": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "delivery_address": {
+                                            "id": "integer",
+                                            "address_name": "string",
+                                            "address_type": "string",
+                                            "address_line_1": "string",
+                                            "address_line_2": "string",
+                                            "county": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            },
+                                            "locality": "string",
+                                            "post_code": "string",
+                                            "country": "string",
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "delivery_time": "datetime",
+                                        "tax_data": {
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "subtotal": "float",
+                                        "shipping_fee": "float",
+                                        "total": "float",
+                                        "discount": "float",
+                                        "total_final": "float"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -868,7 +1038,12 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "O seu pedido foi submetido!"
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -914,7 +1089,72 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "checkout",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "extras": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float",
+                                                        "quantity": "integer"
+                                                    }
+                                                ],
+                                                "side": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "sauce": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "delivery_address": {
+                                            "id": "integer",
+                                            "address_name": "string",
+                                            "address_type": "string",
+                                            "address_line_1": "string",
+                                            "address_line_2": "string",
+                                            "county": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            },
+                                            "locality": "string",
+                                            "post_code": "string",
+                                            "country": "string",
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "delivery_time": "datetime",
+                                        "tax_data": {
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "subtotal": "float",
+                                        "shipping_fee": "float",
+                                        "total": "float",
+                                        "discount": "float",
+                                        "total_final": "float"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1678,11 +1918,11 @@
                                 "properties": {
                                     "email": {
                                         "type": "string",
-                                        "example": "mussum@igo.pt"
+                                        "example": "client01@igo.pt"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "example": "iGO@123"
+                                        "example": "iGOdelivery"
                                     }
                                 },
                                 "type": "object"

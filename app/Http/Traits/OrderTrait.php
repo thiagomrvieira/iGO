@@ -32,7 +32,7 @@ trait OrderTrait {
     }
 
     # Checkout order
-    public function checkoutOrderData($request)
+    public function checkoutOrderData($request, $cartItems)
     {   
         
         return Order::updateOrCreate(
@@ -46,7 +46,7 @@ trait OrderTrait {
                 'tax_number'           => $request->tax_number  ?? Auth::user()->client->tax_number,
                 'deliver_at'           => $request->deliver_at  ?? null,
                 'campaign_id'          => $this->checkCampaignCode($request->campaign_code),
-                'partner_id'           => Product::where('id', $request->product_id)->first()->partner_id,
+                'partner_id'           => $cartItems->first()->product->partner_id,
 
             ]
         );

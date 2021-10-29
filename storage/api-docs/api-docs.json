@@ -2039,7 +2039,7 @@
                                                     "name": "string"
                                                 },
                                                 "created_at": "datetime",
-                                                "available": true
+                                                "available": "boolean"
                                             }
                                         ]
                                     }
@@ -2119,11 +2119,59 @@
                     "201": {
                         "description": "Resource created",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de aderentes",
+                                    "data": {
+                                        "user": {
+                                            "name": "string",
+                                            "email": "string",
+                                            "active": "boolean",
+                                            "is_admin": "boolean",
+                                            "is_partner": "boolean",
+                                            "is_deliveryman": "boolean",
+                                            "is_client": "boolean",
+                                            "created_at": "datetime",
+                                            "available": "boolean",
+                                            "id": "integer"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "422": {
-                        "description": "Validation error"
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "name": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "email": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "mobile_phone_number": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "line_1": [
+                                            [
+                                                "string"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -2160,11 +2208,39 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Utilizador logado!",
+                                    "data": {
+                                        "user": {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "email": "string",
+                                            "email_verified_at": "datetime",
+                                            "active": "boolean",
+                                            "is_admin": "boolean",
+                                            "is_partner": "boolean",
+                                            "is_deliveryman": "boolean",
+                                            "is_client": "boolean",
+                                            "created_at": "datetime",
+                                            "updated_at": "boolean"
+                                        },
+                                        "token": "string"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {
-                        "description": "Unauthenticated"
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "string"
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Bad Request"
@@ -2190,11 +2266,23 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Logout efetuado!"
+                                }
+                            }
                         }
                     },
                     "401": {
-                        "description": "Unauthenticated"
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "string"
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Bad Request"

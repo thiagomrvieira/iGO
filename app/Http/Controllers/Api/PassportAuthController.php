@@ -46,11 +46,58 @@ class PassportAuthController extends Controller
      *          description="Resource created",
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *              example= {
+     *                  "status": "success",
+     *                  "message": "Lista de aderentes",
+     *                  "data": {
+     *                      "user": {
+     *                          "name": "string",
+     *                          "email": "string",
+     *                          "active": "boolean",
+     *                          "is_admin": "boolean",
+     *                          "is_partner": "boolean",
+     *                          "is_deliveryman": "boolean",
+     *                          "is_client": "boolean",
+     *                          "created_at": "datetime",
+     *                          "available": "boolean",
+     *                          "id": "integer"
+     *                      }, 
+     *                  }
+     *              }
      *          )
      *      ),
      *      @OA\Response(
      *          response=422,
-     *          description="Validation error"
+     *          description="Validation error",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              example= {
+     *                  "message": "The given data was invalid.",
+     *                  "errors": {
+     *                      "name" : {
+     *                          {
+     *                              "string",
+     *                          },
+     *                      },
+     *                      "email" : {
+     *                          {
+     *                              "string",
+     *                          },
+     *                      },
+     *                      "mobile_phone_number" : {
+     *                          {
+     *                              "string",
+     *                          },
+     *                      },
+     *                      "line_1" : {
+     *                          {
+     *                              "string",
+     *                          },
+     *                      },
+     *                      
+     *                  },
+     *              },
+     *          )
      *      ),
      *  )
      *
@@ -101,16 +148,43 @@ class PassportAuthController extends Controller
      *              @OA\Property(property="password", type="string", example="iGOdelivery"),
      *          )
      *      ),
-     *      @OA\Response(
+     *     @OA\Response(
      *          response=200,
      *          description="Success",
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *              example= {
+     *                  "status": "success",
+     *                  "message": "Utilizador logado!",
+     *                  "data": {
+     *                      "user": {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "email": "string",
+     *                          "email_verified_at": "datetime",
+     *                          "active": "boolean",
+     *                          "is_admin": "boolean",
+     *                          "is_partner": "boolean",
+     *                          "is_deliveryman": "boolean",
+     *                          "is_client": "boolean",
+     *                          "created_at": "datetime",
+     *                          "created_at": "datetime",
+     *                          "updated_at": "boolean",
+     *                      },
+     *                      "token": "string", 
+     *                  }
+     *              }
      *          )
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Unauthenticated"
+     *          description="Unauthenticated",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              example= {
+     *                  "error": "string",
+     *              },
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=400,
@@ -162,16 +236,26 @@ class PassportAuthController extends Controller
      *      summary="Logout",
      *      description="Remove api token for logged user",
      *      operationId="logout",
-     *      @OA\Response(
+     *     @OA\Response(
      *          response=200,
      *          description="Success",
      *          @OA\MediaType(
      *              mediaType="application/json",
+     *              example= {
+     *                  "status": "success",
+     *                  "message": "Logout efetuado!"
+     *              }
      *          )
      *      ),
      *      @OA\Response(
      *          response=401,
-     *          description="Unauthenticated"
+     *          description="Unauthenticated",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              example= {
+     *                  "error": "string",
+     *              },
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=400,

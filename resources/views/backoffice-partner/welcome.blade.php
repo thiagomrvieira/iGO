@@ -7,49 +7,51 @@
 @endphp
 
 @section('content')
-<div id="page-backoffice">
-    <div class="block-home-find">
-        <div class="main-fluid">
-            <div class="limit-wrapper">
-                <div class="block-title"><h2>{{ __('backoffice-aderentes.partner-title') }}</h2></div>
-                <div class="block-lead"><span>{{ __('backoffice-aderentes.partner-subtitle') }}</span></div>
-                <div class="row-fluid">
-                    <div class="column-4">
-                        <div class="block-find-icon">
-                           <img src="{{ asset('assets-frontoffice/images/icon-time.svg') }}" alt="{{ __('homepage.home-find-delivery') }}" title="{{ __('homepage.home-find-delivery') }}"/>
-                        </div>
-                        <div class="number-circle"><span>1</span></div>
-                        <div class="block-find-lead"><span>{{ __('homepage.home-find-delivery') }}</span></div>
+    <div id="page-backoffice">
+        <div class="block-home-find">
+            <div class="main-fluid">
+                <div class="limit-wrapper">
+                    <div class="block-title"><h2>{{ __('backoffice-aderentes.partner-title') }}</h2></div>
+                    <div class="block-lead">
+                        <p>{{ __('backoffice-aderentes.partner-subtitle') }}</p>
                     </div>
-                    <div class="column-4">
-                        <div class="block-find-icon">
-                           <img src="{{ asset('assets-frontoffice/images/icon-info.svg') }}" alt="{{ __('homepage.home-find-information') }}" title="{{ __('homepage.home-find-information') }}"/>
+                    <div class="row-fluid">
+                        <div class="column-4">
+                            <div class="block-find-icon">
+                            <img src="{{ asset('assets-backoffice-partner/images/completar_perfil.png') }}" alt="{{ __('backoffice-aderentes.partner-complete-profile') }}" title="{{ __('backoffice-aderentes.partner-complete-profile') }}"/>
+                            </div>
+                            <div class="number-circle"><span>1</span></div>
+                            <div class="block-find-lead"><span>{{ __('backoffice-aderentes.partner-complete-profile') }}</span></div>
                         </div>
-                        <div class="number-circle"><span>2</span></div>
-                        <div class="block-find-lead"><span>{{ __('homepage.home-find-information') }}</span></div>
-                    </div>
-                    <div class="column-4">
-                        <div class="block-find-icon">
-                           <img src="{{ asset('assets-frontoffice/images/icon-bussiness.svg') }}" alt="{{ __('homepage.home-find-business') }}" title="{{ __('homepage.home-find-business') }}"/>
+                        <div class="column-4">
+                            <div class="block-find-icon">
+                            <img src="{{ asset('assets-backoffice-partner/images/inserir_produtos.png') }}" alt="{{ __('backoffice-aderentes.partner-products') }}" title="{{ __('backoffice-aderentes.partner-products') }}"/>
+                            </div>
+                            <div class="number-circle"><span>2</span></div>
+                            <div class="block-find-lead"><span>{{ __('backoffice-aderentes.partner-products') }}</span></div>
                         </div>
-                        <div class="number-circle"><span>3</span></div>
-                        <div class="block-find-lead"><span>{{ __('homepage.home-find-business') }}</span></div>
-                    </div>
-                    <div class="column-4">
-                        <div class="block-find-icon">
-                           <img src="{{ asset('assets-frontoffice/images/icon-comunication.svg') }}" alt="{{ __('homepage.home-find-comunication') }}" title="{{ __('homepage.home-find-comunication') }}"/>
+                        <div class="column-4">
+                            <div class="block-find-icon">
+                            <img src="{{ asset('assets-backoffice-partner/images/enviar_revisao.png') }}" alt="{{ __('backoffice-aderentes.partner-send') }}" title="{{ __('backoffice-aderentes.partner-send') }}"/>
+                            </div>
+                            <div class="number-circle"><span>3</span></div>
+                            <div class="block-find-lead"><span>{{ __('backoffice-aderentes.partner-send') }}</span></div>
                         </div>
-                        <div class="number-circle"><span>4</span></div>
-                        <div class="block-find-lead"><span>{{ __('homepage.home-find-comunication') }}</span></div>
+                        <div class="column-4">
+                            <div class="block-find-icon">
+                            <img src="{{ asset('assets-backoffice-partner/images/validar_perfil.png') }}" alt="{{ __('backoffice-aderentes.partner-validate') }}" title="{{ __('backoffice-aderentes.partner-validate') }}"/>
+                            </div>
+                            <div class="number-circle"><span>4</span></div>
+                            <div class="block-find-lead"><span>{{ __('backoffice-aderentes.partner-validate') }}</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="block-start">
-                    <a href="{{ route('partner.createBusiness.data') }}" class="button button-primary">Iniciar</a>
+                    <div class="block-start">
+                        <a href="{{ route('partner.createBusiness.data') }}" class="button button-primary">Iniciar</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     {{-- <div class="container">
         <h4>Bem-vindo!</h4>
         <p>Está a um passo de se tornar parceiro iGO  <br>

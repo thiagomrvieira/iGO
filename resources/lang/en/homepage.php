@@ -22,6 +22,10 @@ return [
 	'home-partner-form-company-name' => 'Establishment',
 	'home-partner-form-tax-number' => 'NIF',
 	'home-partner-form-error' => 'Required field',
+	// Home partner form
+	'home-delivey-form-name' => 'Name',
+	'home-delivey-form-email' => 'Email',
+	'home-delivey-form-phone-number' => 'Phone number',
 	// Home team
 	'home-find-title' => 'You mean “iGO”?',
 	'home-find-subtitle' => 'Join our courier team.',

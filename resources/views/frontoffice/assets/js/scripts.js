@@ -25,7 +25,11 @@ $j(document).ready(function ($) {
   })
 
   // Close modal
-  $j('.modal').on('click', function(){
+  const modal = $j('.modal');
+  modal.on('click', function(){
+    modal.find('.partner-error .partner-error-company').html('');
+    modal.find('.partner-error .partner-error-email').html('');
+    modal.find('.delivery-error .delivery-error-email').html('');
     $j(this).removeClass('show-partner-success show-partner-error show-delivery-success show-delivery-error');
   });
 

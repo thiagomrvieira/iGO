@@ -22,7 +22,46 @@ class PartnerController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de aderentes",
+     *              "data": {
+     *                  "partners": {
+     *                      {
+     *                          "id": "integer",
+     *                          "company_name": "string",
+     *                          "responsible_name": "string",
+     *                          "phone_number": "string",
+     *                          "mobile_phone_number": "string",
+     *                          "tax_number": "string",
+     *                          "category": "string",
+     *                          "sub_categories": {
+     *                              {
+     *                                  
+     *                              },
+     *                          },
+     *                          "average_order_time": "string",
+     *                          "premium": "boolean",
+     *                          "account_created_at": "datetime",
+     *                          "account_approved_at": "datetime",
+     *                          "images": {
+     *                              "id": "integer",
+     *                              "partner_id": "integer",
+     *                              "image_cover": "string",
+     *                              "image_01": "string",
+     *                              "image_02": "string",
+     *                              "image_03": "string",
+     *                              "created_at": "datetime",
+     *                              "updated_at": "datetime",
+     *                          },
+     *                          "total_products": "integer",
+     *                          "total_reviews": "integer",
+     *                          "rating": "integer",
+     *                      }
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -80,7 +119,46 @@ class PartnerController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de aderentes",
+     *              "data": {
+     *                  "partners": {
+     *                      {
+     *                          "id": "integer",
+     *                          "company_name": "string",
+     *                          "responsible_name": "string",
+     *                          "phone_number": "string",
+     *                          "mobile_phone_number": "string",
+     *                          "tax_number": "string",
+     *                          "category": "string",
+     *                          "sub_categories": {
+     *                              {
+     *                                  
+     *                              },
+     *                          },
+     *                          "average_order_time": "string",
+     *                          "premium": "boolean",
+     *                          "account_created_at": "datetime",
+     *                          "account_approved_at": "datetime",
+     *                          "images": {
+     *                              "id": "integer",
+     *                              "partner_id": "integer",
+     *                              "image_cover": "string",
+     *                              "image_01": "string",
+     *                              "image_02": "string",
+     *                              "image_03": "string",
+     *                              "created_at": "datetime",
+     *                              "updated_at": "datetime",
+     *                          },
+     *                          "total_products": "integer",
+     *                          "total_reviews": "integer",
+     *                          "rating": "integer",
+     *                      }
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -136,7 +214,34 @@ class PartnerController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de aderentes",
+     *              "data": {
+     *                 "products": {
+     *                      {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "description": "string",
+     *                          "category": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "image": "string",
+     *                          "price": "float",
+     *                          "final_price": "float",
+     *                          "note": "string",
+     *                          "campaign": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "created_at": "datetime",
+     *                          "available": "boolean"
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",

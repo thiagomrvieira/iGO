@@ -1,8 +1,14 @@
+const { unset } = require("lodash")
+
 var $j = jQuery.noConflict(),
     $w = $j(window)
 
 $j(document).ready(function ($) {
   scrollMenuFixed()
+
+  $j('.block-accordion').on('click', '.accordion-button', function(){
+    this.classList.toggle('is-open')
+  })
 })
 
 function scrollMenuFixed() {

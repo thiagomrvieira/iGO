@@ -39,6 +39,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 
 });
 
+#   ROUTES FOR BACKOFICE/DELIVERYMAN
+Route::group(['prefix' => 'deliveryman', 'middleware' => ['auth','deliveryman']], function() {
+
+    Route::get('/', function () {
+        return 'DELIVERYMAN';
+    });
+});
+
+#   ROUTES FOR FRONTOFFICE
+
+Route::get('/',           [FrontOfficeController::class, 'showHomePage'      ])->name('home');
+Route::get('/about',      [FrontOfficeController::class, 'showAboutPage'     ])->name('about');
+Route::get('/faq',        [FrontOfficeController::class, 'showFaqPage'       ])->name('faq');
+Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage'])->name('conditions');
+Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])->name('contact');
+
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
 #   ROUTES FOR BACKOFICE/PARTNER
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], function() {
     Route::get('/', [BackofficePartnerController::class, 'index'])->name('home');
@@ -60,22 +78,3 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','partner']], functi
     // Route::post('/productdata', [BackofficeProductController::class, 'storeProductData' ])->name('partner.storeProduct.data');
 
 });
-
-#   ROUTES FOR BACKOFICE/DELIVERYMAN
-Route::group(['prefix' => 'deliveryman', 'middleware' => ['auth','deliveryman']], function() {
-
-    Route::get('/', function () {
-        return 'DELIVERYMAN';
-    });
-});
-
-#   ROUTES FOR FRONTOFFICE
-
-Route::get('/',           [FrontOfficeController::class, 'showHomePage'      ])->name('home');
-Route::get('/about',      [FrontOfficeController::class, 'showAboutPage'     ])->name('about');
-Route::get('/faq',        [FrontOfficeController::class, 'showFaqPage'       ])->name('faq');
-Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage'])->name('conditions');
-Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])->name('contact');
-
-
-Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');

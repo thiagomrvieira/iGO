@@ -1,19 +1,34 @@
-<nav class="navbar ">
-    <ul class="nav navbar-nav ms-auto">
+<nav class="navbar">
+    <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{route('home')}}"> Home </a>
+            <a class="nav-link" href="{{ route('home') }}"> 
+                <img src="{{  asset('/assets-backoffice-partner/images/home.png') }}" alt="">
+                <span>Home</span> 
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('partner.createBusiness.data')}}"> Dados negócios </a>
+            <a class="nav-link" href="{{ route('partner.createBusiness.data') }}">
+                <img src="{{  Route::currentRouteName() === 'partner.createBusiness.data' ? asset('/assets-backoffice-partner/images/dados_rest_sel.png')  : asset('/assets-backoffice-partner/images/dados_rest.png')  }}" alt="">
+                <span>Dados negócios</span> 
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('products.index')}}"> Dados produtos </a>
+            <a class="nav-link" href="{{ route('products.index') }}"> 
+                <img src="{{  Route::currentRouteName() === 'products.index' ? asset('/assets-backoffice-partner/images/dados_prod_rest_sel.png')  : asset('/assets-backoffice-partner/images/dados_prod_rest.png')  }}" alt="">
+                <span>Dados produtos</span> 
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('partner.profile.edit')}}"> Perfil </a>
+            <a class="nav-link" href="{{ route('partner.profile.edit') }}">  
+                <img src="{{  Route::currentRouteName() === 'partner.profile.edit' ? asset('/assets-backoffice-partner/images/perfil_sel.png')  : asset('/assets-backoffice-partner/images/perfil.png')  }}" alt="">
+                <span>Perfil</span> 
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('logout')}}"> Logout </a>
+            <a class="nav-link" href="{{ route('logout') }}">
+                <img src="{{ asset('/assets-backoffice-partner/images/logout.png') }}" alt="">
+                <span>Logout</span> 
+            </a>
         </li>
     </ul>
 </nav>

@@ -350,7 +350,7 @@
                                             </svg>
                                         </div>
                                         <div class="block-input">
-                                            <input type="text" id="name" placeholder="{{ __('homepage.') }}" @change="removeClassError('deliverymanCreation', 'name')" v-model="deliveryman.name">
+                                            <input type="text" id="name" placeholder="{{ __('homepage.home-delivey-form-name') }}" @change="removeClassError('deliverymanCreation', 'name')" v-model="deliveryman.name">
                                         </div>
                                     </div> 
                                     <div class="block-field-msg">
@@ -372,7 +372,7 @@
                                             </svg>
                                         </div>
                                         <div class="block-input">
-                                            <input  type="email"  id="email" placeholder="Email" @change="removeClassError('deliverymanCreation', 'email')" v-model="deliveryman.email">
+                                            <input  type="email"  id="email" placeholder="{{ __('homepage.home-delivey-form-email') }}" @change="removeClassError('deliverymanCreation', 'email')" v-model="deliveryman.email">
                                         </div>
                                     </div>
                                     <div class="block-field-msg">
@@ -394,7 +394,7 @@
                                             </svg>
                                         </div>
                                         <div class="block-input">
-                                            <input type="text" id="mobile_phone_number" placeholder="Telemóvel" @change="removeClassError('deliverymanCreation', 'mobile_phone_number')" v-model="deliveryman.mobile_phone_number">
+                                            <input type="text" id="mobile_phone_number" placeholder="{{ __('homepage.home-delivey-form-phone-number') }}" @change="removeClassError('deliverymanCreation', 'mobile_phone_number')" v-model="deliveryman.mobile_phone_number">
                                         </div>
                                     </div>
                                     <div class="block-field-msg">
@@ -426,7 +426,7 @@
             </div>
             <div class="modal-body partner-success" role="alert" v-if="partnerCreated.company_name">
                 <h4 class="alert-heading">Olá, <span></span></h4>
-                <p>O pré-registo da <b></b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
+                <p>O pré-registo <b></b> foi efetuado. Em breve entraremos em contacto através do e-mail e telemóvel informado. </p>
             </div>
            
             <div class="modal-body partner-error">

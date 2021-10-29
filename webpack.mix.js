@@ -24,11 +24,10 @@ mix
   .postCss('resources/views/frontoffice/assets/css/styles.css', 'public/assets-frontoffice/css/styles.css')
   .js('resources/views/frontoffice/assets/js/scripts.js', 'public/assets-frontoffice/js/scripts.js')
   .copy('resources/views/frontoffice/assets/images',  'public/assets-frontoffice/images')
-  .copy('resources/views/frontoffice/assets/libs',  'public/assets-frontoffice/libs')
+  .copy('resources/libs',  'public/libs')
 
   // Assets backoffice partner
   .postCss('resources/views/backoffice-partner/assets/css/styles.css', 'public/assets-backoffice-partner/css/styles.css')
   .js('resources/views/backoffice-partner/assets/js/scripts.js', 'public/assets-backoffice-partner/js/scripts.js')
   .copy('resources/views/backoffice-partner/assets/images',  'public/assets-backoffice-partner/images')
-  .copy('resources/views/backoffice-partner/assets/libs',  'public/assets-backoffice-partner/libs')
   

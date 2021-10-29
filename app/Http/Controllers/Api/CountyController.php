@@ -36,7 +36,20 @@ class CountyController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "County list",
+     *              "data": {
+     *                  {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "country": "string",
+     *                      "created_at": "datetime",
+     *                      "updated_at": "datetime",
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -92,7 +105,18 @@ class CountyController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "County list",
+     *              "data": {
+     *                  "id": "integer",
+     *                  "name": "string",
+     *                  "country": "string",
+     *                  "created_at": "datetime",
+     *                  "updated_at": "datetime",
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,

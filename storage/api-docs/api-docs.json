@@ -1429,7 +1429,21 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "County list",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "country": "string",
+                                            "created_at": "datetime",
+                                            "updated_at": "datetime"
+                                        }
+                                    ]
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1475,7 +1489,19 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "County list",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "country": "string",
+                                        "created_at": "datetime",
+                                        "updated_at": "datetime"
+                                    }
+                                }
+                            }
                         }
                     },
                     "401": {

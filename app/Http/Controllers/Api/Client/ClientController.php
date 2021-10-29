@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClientAddressCollection;
@@ -25,7 +25,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Get(path="/api/v1/client/profile",
-     *   tags={"Clients"},
+     *   tags={"Client: Profile & Favorite partners"},
      *   summary="Get client profile",
      *   description="Get data from logged in client",
      *   operationId="getClientProfile",
@@ -70,7 +70,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Patch(path="/api/v1/client/profile",
-     *   tags={"Clients"},
+     *   tags={"Client: Profile & Favorite partners"},
      *   summary="Set client profile",
      *   description="Update client profile data",
      *   operationId="setClientProfile",
@@ -134,7 +134,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Post(path="/api/v1/client/favorite/{id}",
-     *   tags={"Clients"},
+     *   tags={"Client: Profile & Favorite partners"},
      *   summary="Set favorite partners",
      *   description="Set/Unset a partner as favorite - Expect to receive a valid partner id",
      *   operationId="setFavoritePartners",

@@ -1,34 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CheckoutOrderResource;
+use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
 use App\Http\Traits\OrderTrait;
+use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderRating;
-use App\Models\PartnerRating;
-use App\Models\ProductRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PartnerRatingController extends Controller
+class OrderRatingController extends Controller
 {
     use OrderTrait;
     
     /**
-     * Partner RATING
+     * ORDER RATING
      * *
-     * @OA\Post(path="/api/v1/client/order/{id}/partnerrating",
-     *   tags={"Review & Rating"},
-     *   summary="Partner rating",
-     *   description="Rate a partner after the order arrives",
-     *   operationId="partnerRating",
+     * @OA\Post(path="/api/v1/client/order/{id}/orderrating",
+     *   tags={"Client: Review & Rating"},
+     *   summary="Order rating",
+     *   description="Rate the order when it arrive",
+     *   operationId="orderRating",
      *   @OA\RequestBody(
      *      required=true,
      *      @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="rate", type="integer", example="5"),
-     *          @OA\Property(property="review", type="string", example="Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."),
+     *          @OA\Property(property="rate", type="integer", example="2"),
      *      )
      *   ),
      *   @OA\Response(
@@ -76,25 +77,22 @@ class PartnerRatingController extends Controller
         #   Check if the Order with teh specified Id is in Status 8 (delivered)
         if ($order = Order::where(['id' => $id, 'order_status_type_id' => 8])->first() ) {
             
-            $data = PartnerRating::updateOrCreate([
+            $data = OrderRating::updateOrCreate([
                 'order_id'  => $order->id,
                 'client_id' => Auth::user()->client->id,
             ],[
-                'order_id'       => $order->id,
-                'client_id'      => Auth::user()->client->id,
-                'partner_id'     => $order->partner_id,
-                'rate'           => $request->rate,
-                'review'         => $request->review,
+                'order_id'  => $order->id,
+                'client_id' => Auth::user()->client->id,
+                'rate'      => $request->rate,
             ]);
 
-            $message = "Aderente avaliado com sucesso!";
+            $message = "Pedido avaliado com sucesso!";
         }
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Não foi possivel avaliar o pedido especificado',
                                  'data'    => $data    ?? null], 200); 
     }
-
 
     
 }

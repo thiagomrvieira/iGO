@@ -8,7 +8,7 @@
         "/api/v1/client/addresses": {
             "get": {
                 "tags": [
-                    "Clients"
+                    "Client: Address"
                 ],
                 "summary": "Get client addresses",
                 "description": "Get list of all addresses from logged in client",
@@ -41,7 +41,7 @@
             },
             "post": {
                 "tags": [
-                    "Clients"
+                    "Client: Address"
                 ],
                 "summary": "Save client address",
                 "description": "Create new client address - Update client address if address_id not null ",
@@ -124,7 +124,7 @@
         "/api/v1/client/addresses/{id}": {
             "delete": {
                 "tags": [
-                    "Clients"
+                    "Client: Address"
                 ],
                 "summary": "Remove address",
                 "description": "Remove client address specified in addres id",
@@ -167,10 +167,10 @@
                 ]
             }
         },
-        "/api/v1/cart": {
+        "/api/v1/client/cart": {
             "get": {
                 "tags": [
-                    "Cart"
+                    "Client: Cart"
                 ],
                 "summary": "Show products in the cart",
                 "description": "Display a list of products added to the cart",
@@ -203,7 +203,7 @@
             },
             "post": {
                 "tags": [
-                    "Cart"
+                    "Client: Cart"
                 ],
                 "summary": "Add item to the cart",
                 "description": "Create/Update a product to/in the cart - Expect to recieve a product id and a quantity - If the product is already in the cart, updates the quantity",
@@ -267,10 +267,10 @@
                 ]
             }
         },
-        "/api/v1/cart/{id}": {
+        "/api/v1/client/cart/{id}": {
             "delete": {
                 "tags": [
-                    "Cart"
+                    "Client: Cart"
                 ],
                 "summary": "Remove item from the cart",
                 "description": "Remove a specified product from the cart - Expect to recieve a valid product id",
@@ -316,7 +316,7 @@
         "/api/v1/client/profile": {
             "get": {
                 "tags": [
-                    "Clients"
+                    "Client: Profile & Favorite partners"
                 ],
                 "summary": "Get client profile",
                 "description": "Get data from logged in client",
@@ -349,7 +349,7 @@
             },
             "patch": {
                 "tags": [
-                    "Clients"
+                    "Client: Profile & Favorite partners"
                 ],
                 "summary": "Set client profile",
                 "description": "Update client profile data",
@@ -416,7 +416,7 @@
         "/api/v1/client/favorite/{id}": {
             "post": {
                 "tags": [
-                    "Clients"
+                    "Client: Profile & Favorite partners"
                 ],
                 "summary": "Set favorite partners",
                 "description": "Set/Unset a partner as favorite - Expect to receive a valid partner id",
@@ -432,6 +432,270 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}/deliverymanrating": {
+            "post": {
+                "tags": [
+                    "Client: Review & Rating"
+                ],
+                "summary": "Delivery man rating",
+                "description": "Rate the delivery man when he deliver the order",
+                "operationId": "deliverymanRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "review": {
+                                        "type": "string",
+                                        "example": "Mauris aliquet nunc non turpis scelerisque, eget. Diuretics paradis num copo é motivis de denguis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}/orderrating": {
+            "post": {
+                "tags": [
+                    "Client: Review & Rating"
+                ],
+                "summary": "Order rating",
+                "description": "Rate the order when it arrive",
+                "operationId": "orderRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}/partnerrating": {
+            "post": {
+                "tags": [
+                    "Client: Review & Rating"
+                ],
+                "summary": "Partner rating",
+                "description": "Rate a partner after the order arrives",
+                "operationId": "partnerRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    },
+                                    "review": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/{id}/productrating": {
+            "post": {
+                "tags": [
+                    "Client: Review & Rating"
+                ],
+                "summary": "Product rating",
+                "description": "Rate a product after the order arrives",
+                "operationId": "productRating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "product_id": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    },
+                                    "rate": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    },
+                                    "review": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -540,72 +804,6 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}/deliverymanrating": {
-            "post": {
-                "tags": [
-                    "Review & Rating"
-                ],
-                "summary": "Delivery man rating",
-                "description": "Rate the delivery man when he deliver the order",
-                "operationId": "deliverymanRating",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Order id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "rate": {
-                                        "type": "integer",
-                                        "example": "4"
-                                    },
-                                    "review": {
-                                        "type": "string",
-                                        "example": "Mauris aliquet nunc non turpis scelerisque, eget. Diuretics paradis num copo é motivis de denguis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose."
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
         "/api/v1/contents": {
             "get": {
                 "tags": [
@@ -671,10 +869,10 @@
                 }
             }
         },
-        "/api/v1/orders": {
+        "/api/v1/client/orders": {
             "get": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Show all client order",
                 "description": "Display a list of all client orders ",
@@ -706,10 +904,10 @@
                 ]
             }
         },
-        "/api/v1/order/inprogress": {
+        "/api/v1/client/order/inprogress": {
             "get": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Show all client orders in progress ",
                 "description": "Display a list of all client orders in progress (status id between 3 and 5)",
@@ -741,10 +939,10 @@
                 ]
             }
         },
-        "/api/v1/order/checkout": {
+        "/api/v1/client/order/checkout": {
             "get": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Display order data",
                 "description": "Show order details - Products, delivery, schedule, tax and payment data",
@@ -777,7 +975,7 @@
             },
             "post": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Checkout order",
                 "description": "Update order data and if sent any paramter",
@@ -841,10 +1039,10 @@
                 ]
             }
         },
-        "/api/v1/order/submit": {
+        "/api/v1/client/order/submit": {
             "post": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Submit order",
                 "description": "Change order status from Open to Submitted",
@@ -876,10 +1074,10 @@
                 ]
             }
         },
-        "/api/v1/order/{id}": {
+        "/api/v1/client/order/{id}": {
             "get": {
                 "tags": [
-                    "Orders"
+                    "Client: Orders"
                 ],
                 "summary": "Get the specified order",
                 "description": "Return data of the specified order",
@@ -922,72 +1120,10 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}/orderrating": {
-            "post": {
-                "tags": [
-                    "Review & Rating"
-                ],
-                "summary": "Order rating",
-                "description": "Rate the order when it arrive",
-                "operationId": "orderRating",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Order id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "rate": {
-                                        "type": "integer",
-                                        "example": "2"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/categories": {
+        "/api/v1/client/categories": {
             "get": {
                 "tags": [
-                    "Partner Categories"
+                    "Client: Partner Categories"
                 ],
                 "summary": "Get the list of categories",
                 "description": "Return a list of all active partners categories",
@@ -1019,10 +1155,10 @@
                 ]
             }
         },
-        "/api/v1/categories/{id}": {
+        "/api/v1/client/categories/{id}": {
             "get": {
                 "tags": [
-                    "Partner Categories"
+                    "Client: Partner Categories"
                 ],
                 "summary": "Get partner category information",
                 "description": "Return data of the specified partners category",
@@ -1065,10 +1201,10 @@
                 ]
             }
         },
-        "/api/v1/maincategories": {
+        "/api/v1/client/maincategories": {
             "get": {
                 "tags": [
-                    "Partner Categories"
+                    "Client: Partner Categories"
                 ],
                 "summary": "Get the list of main categories",
                 "description": "Return a list of all active main partner categories",
@@ -1100,10 +1236,10 @@
                 ]
             }
         },
-        "/api/v1/subcategories": {
+        "/api/v1/client/subcategories": {
             "get": {
                 "tags": [
-                    "Partner Categories"
+                    "Client: Partner Categories"
                 ],
                 "summary": "Get the list of sub categories",
                 "description": "Return a list of all active sub partner categories",
@@ -1135,10 +1271,10 @@
                 ]
             }
         },
-        "/api/v1/partners": {
+        "/api/v1/client/partners": {
             "get": {
                 "tags": [
-                    "Partners"
+                    "Client: Partners"
                 ],
                 "summary": "Get the list of partners",
                 "description": "Return a list of all active partners",
@@ -1170,10 +1306,10 @@
                 ]
             }
         },
-        "/api/v1/partners/{id}": {
+        "/api/v1/client/partners/{id}": {
             "get": {
                 "tags": [
-                    "Partners"
+                    "Client: Partners"
                 ],
                 "summary": "Get partner information",
                 "description": "Expect to receive a valid ID and return partner and his products data",
@@ -1216,10 +1352,10 @@
                 ]
             }
         },
-        "/api/v1/partners/{id}/products": {
+        "/api/v1/client/partners/{id}/products": {
             "get": {
                 "tags": [
-                    "Partners"
+                    "Client: Partners"
                 ],
                 "summary": "Get partner products",
                 "description": "Expect to receive a valid ID and return partner products data",
@@ -1235,72 +1371,6 @@
                         }
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/{id}/partnerrating": {
-            "post": {
-                "tags": [
-                    "Review & Rating"
-                ],
-                "summary": "Partner rating",
-                "description": "Rate a partner after the order arrives",
-                "operationId": "partnerRating",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Order id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "rate": {
-                                        "type": "integer",
-                                        "example": "5"
-                                    },
-                                    "review": {
-                                        "type": "string",
-                                        "example": "Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1474,10 +1544,10 @@
                 ]
             }
         },
-        "/api/v1/products": {
+        "/api/v1/client/products": {
             "get": {
                 "tags": [
-                    "Products"
+                    "Client: Products"
                 ],
                 "summary": "Get all products",
                 "description": "Get the list of all products",
@@ -1509,10 +1579,10 @@
                 ]
             }
         },
-        "/api/v1/products/{id}": {
+        "/api/v1/client/products/{id}": {
             "get": {
                 "tags": [
-                    "Products"
+                    "Client: Products"
                 ],
                 "summary": "Get a specified product",
                 "description": "Get the details of a specified product",
@@ -1528,76 +1598,6 @@
                         }
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/order/{id}/productrating": {
-            "post": {
-                "tags": [
-                    "Review & Rating"
-                ],
-                "summary": "Product rating",
-                "description": "Rate a product after the order arrives",
-                "operationId": "productRating",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Order id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "product_id": {
-                                        "type": "integer",
-                                        "example": "4"
-                                    },
-                                    "rate": {
-                                        "type": "integer",
-                                        "example": "5"
-                                    },
-                                    "review": {
-                                        "type": "string",
-                                        "example": "Mussum Ipsum, cacilds vidis litro abertis. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Praesent vel viverra nisi."
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Success",

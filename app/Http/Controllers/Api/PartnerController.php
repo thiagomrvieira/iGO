@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class PartnerController extends Controller
 {
     /**
-     * @OA\Get(path="/api/v1/partners",
-     *   tags={"Partners"},
+     * @OA\Get(path="/api/v1/client/partners",
+     *   tags={"Client: Partners"},
      *   summary="Get the list of partners",
      *   description="Return a list of all active partners",
      *   operationId="getListOfPartners",
@@ -70,8 +70,8 @@ class PartnerController extends Controller
 
 
     /**
-     * @OA\Get(path="/api/v1/partners/{id}",
-     *   tags={"Partners"},
+     * @OA\Get(path="/api/v1/client/partners/{id}",
+     *   tags={"Client: Partners"},
      *   summary="Get partner information",
      *   description="Expect to receive a valid ID and return partner and his products data",
      *   operationId="getPartnerData",
@@ -126,8 +126,8 @@ class PartnerController extends Controller
     }
 
     /**
-     * @OA\Get(path="/api/v1/partners/{id}/products",
-     *   tags={"Partners"},
+     * @OA\Get(path="/api/v1/client/partners/{id}/products",
+     *   tags={"Client: Partners"},
      *   summary="Get partner products",
      *   description="Expect to receive a valid ID and return partner products data",
      *   operationId="getPartnerProducts",

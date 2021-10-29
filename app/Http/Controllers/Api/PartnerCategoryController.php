@@ -22,7 +22,19 @@ class PartnerCategoryController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Todas as categorias",
+     *              "data": {
+     *                  {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string",
+     *                      "parent_category": "string"
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -71,7 +83,19 @@ class PartnerCategoryController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Dados da categoria",
+     *              "data": {
+     *                  {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string",
+     *                      "parent_category": "string"
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -128,7 +152,19 @@ class PartnerCategoryController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Categorias Principais",
+     *              "data": {
+     *                  {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string",
+     *                      "parent_category": "string"
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,
@@ -174,7 +210,19 @@ class PartnerCategoryController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Sub Categorias",
+     *              "data": {
+     *                  {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string",
+     *                      "parent_category": "string"
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=401,

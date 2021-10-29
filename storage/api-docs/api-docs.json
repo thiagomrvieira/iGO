@@ -1645,7 +1645,20 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Todas as categorias",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1691,7 +1704,20 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados da categoria",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1726,7 +1752,20 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Categorias Principais",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
                         }
                     },
                     "401": {
@@ -1761,7 +1800,20 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Sub Categorias",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
                         }
                     },
                     "401": {

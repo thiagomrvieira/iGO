@@ -24,7 +24,23 @@ class ShippingFeeController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Lista de taxas de entrega",
+     *              "data": {
+     *                 "shipping_fees": {
+     *                      {
+     *                          "id": "integer",
+     *                          "delivery_from_id": "integer",
+     *                          "delivery_from_name": "string",
+     *                          "delivery_to_id": "integer",
+     *                          "delivery_to_name": "string",
+     *                          "price": "float",
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=400, 
@@ -67,7 +83,23 @@ class ShippingFeeController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Taxas de entrega",
+     *              "data": {
+     *                 "shipping_fees": {
+     *                      {
+     *                          "id": "integer",
+     *                          "delivery_from_id": "integer",
+     *                          "delivery_from_name": "string",
+     *                          "delivery_to_id": "integer",
+     *                          "delivery_to_name": "string",
+     *                          "price": "float",
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="id",
@@ -120,7 +152,23 @@ class ShippingFeeController extends Controller
      *      description="Success",
      *      @OA\MediaType(
      *           mediaType="application/json",
-     *      )
+     *           example= {
+     *              "status": "success",
+     *              "message": "Taxas de entrega",
+     *              "data": {
+     *                 "shipping_fees": {
+     *                      {
+     *                          "id": "integer",
+     *                          "delivery_from_id": "integer",
+     *                          "delivery_from_name": "string",
+     *                          "delivery_to_id": "integer",
+     *                          "delivery_to_name": "string",
+     *                          "price": "float",
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
      *   ),
      *   @OA\Parameter(
      *      name="from",

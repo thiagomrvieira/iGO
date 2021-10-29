@@ -2419,8 +2419,8 @@
                                                 "values": [
                                                     {
                                                         "id": "integer",
-                                                        "name": "Hyatt, Raynor and Hermann",
-                                                        "price": 8797
+                                                        "name": "string",
+                                                        "price": "float"
                                                     }
                                                 ]
                                             }
@@ -2473,7 +2473,24 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "400": {
@@ -2516,7 +2533,24 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "400": {
@@ -2568,7 +2602,24 @@
                     "200": {
                         "description": "Success",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         }
                     },
                     "400": {

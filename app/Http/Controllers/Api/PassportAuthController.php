@@ -216,6 +216,8 @@ class PassportAuthController extends Controller
             if (Auth::user()->is_deliveryman == 1) {
                 $message = 'Estafeta logado!';
                 $user    = new DeliverymanResource( Auth::user()->deliveryman );
+                
+                #   Check if the account was approved by the admin
                 if (Auth::user()->deliveryman->active == false) {
                     return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
                 }

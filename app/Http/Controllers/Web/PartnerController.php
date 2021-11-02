@@ -140,6 +140,7 @@ class PartnerController extends Controller
             $partner->user()->update(array('active' => $request->active));
         }
 
+        # Update Address
         if (!is_null($request->addressData)) { 
             $address = $this->getAddressRequest($request, $partner->user->id); 
         }

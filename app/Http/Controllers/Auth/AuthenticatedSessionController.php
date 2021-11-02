@@ -35,6 +35,15 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         
         if(auth()->user()->is_partner == 1){
+            if (is_null(Auth::user()->partner->approved_at)) {
+               
+                Auth::guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                
+                return redirect('/login')->withErrors(['email' => 'Sua conta necessita de aprovação']);
+
+            }
             return redirect('/partner');
         }
 

@@ -34,12 +34,16 @@ class OrderRating extends Model
 
     public function getCreatedAtAttribute($value){  
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
     
     public function getUpdatedAtAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
 

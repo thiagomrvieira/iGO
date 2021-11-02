@@ -80,17 +80,17 @@ class UserSeeder extends Seeder
 
         $partners = array(
             array(  
-                'name'           => 'Parceiro 01',
+                'name'           => $partner01->name,
                 'email'          => 'partner01@igo.pt',
-                'company_name'   => 'iGO Delivery',
+                'company_name'   => 'Fake company 01',
                 'category_id'    => 1,
                 'user_id'        => $partner01->id,
                 'active'         => 1,
             ),
             array( 
-                'name'           => 'Parceiro 02',
+                'name'           => $partner02->name,
                 'email'          => 'partner02@igo.pt',
-                'company_name'   => 'iGO Delivery',
+                'company_name'   => 'Fake company 02',
                 'category_id'    => 1,
                 'user_id'        => $partner02->id,
                 'active'         => 1,

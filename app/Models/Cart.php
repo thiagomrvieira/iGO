@@ -95,17 +95,23 @@ class Cart extends Model
 
     public function getDeletedAtAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
     public function getCreatedAtAttribute($value){  
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
     
     public function getUpdatedAtAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
     public function getActiveAttribute($value){

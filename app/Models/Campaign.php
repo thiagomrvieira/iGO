@@ -31,22 +31,30 @@ class Campaign extends Model
 
     public function getStartDateAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
     public function getFinishDateAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
     public function getCreatedAtAttribute($value){  
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
     
     public function getUpdatedAtAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('Y-m-d H:i:s');
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
     }
 
     public function getActiveAttribute($value){

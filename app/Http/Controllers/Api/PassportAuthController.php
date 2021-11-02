@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientStoreRequest;
+use App\Http\Resources\DeliverymanResource;
 use App\Http\Traits\AddressTrait;
 use App\Http\Traits\ClientTrait;
 use App\Http\Traits\UserTrait;
@@ -210,20 +211,30 @@ class PassportAuthController extends Controller
         ];
  
         if (auth()->attempt($data)) {
-             
+
+            #   Check if the request is for deliveryman login
+            if (Auth::user()->is_deliveryman == 1) {
+                $message = 'Estafeta logado!';
+                $user    = new DeliverymanResource( Auth::user()->deliveryman );
+                if (Auth::user()->deliveryman->active == false) {
+                    return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
+                }
+            }
+
+            #   Create token 
             $token = auth()->user()->createToken('igoApiToken')->accessToken;
 
             return response()->json([
                 'status'  => 'success',
-                'message' => 'Utilizador logado!',
+                'message' => $message ?? 'Utilizador logado!',
                 'data' => [  
-                    'user'  => auth()->user(),
+                    'user'  => $user ?? auth()->user(),
                     'token' => $token,
                 ],
             ], 200);
 
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => $error ?? 'Unauthorised'], 401);
         }
     } 
     

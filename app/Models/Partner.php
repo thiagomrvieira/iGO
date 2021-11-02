@@ -134,4 +134,12 @@ class Partner extends Model
     {
         return $this->hasMany(PartnerRating::class);
     }
+
+    /**
+     * Get the Partner Orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

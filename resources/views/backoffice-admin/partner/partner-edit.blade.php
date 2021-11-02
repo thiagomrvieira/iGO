@@ -6,7 +6,6 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">{{ __('backoffice/partners.editPartner') }}</h1>
-                @dump($partner->approvedfd_at)
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -52,17 +51,27 @@
                                 <b>{{ __('backoffice/partners.createdAt') }}</b> <a class="float-right">{{ date('d-m-Y', strtotime($partner->created_at))  ?? 'Pendente'}}</a>
                             </li>
                             <li class="list-group-item">
-                                {{$partner->approved_at}}
-                                {{-- @if (is_null($partner->approved_at))
+                                @if (is_null($partner->approved_at))
                                     <b>{{ __('backoffice/partners.pendingApproval') }}</b>
                                 @else
                                     <b>{{ __('backoffice/partners.approvedAt') }}</b> <a class="float-right">{{ date('d-m-Y', strtotime($partner->approved_at))  ?? 'Pendente'}}</a>
-                                @endif --}}
+                                @endif
                             </li>
                             <li class="list-group-item">
-                                <b>{{ __('backoffice/partners.totalOrders') }}</b> <a class="float-right">0</a>
+                                <b>{{ __('backoffice/partners.totalOrders') }}</b> <a class="float-right">{{ $partner->orders->where('order_status_type_id', 8)->count() }}</a>
                             </li>
                         </ul>
+
+                        {{-- Button approve account --}}
+                        {!! Form::open(['class' => 'form-horizontal mt-1 mb-1', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}
+                            @csrf
+                            {{ method_field('PATCH') }}
+                            {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}
+                            {!! Form::submit( is_null($partner->approved_at) ? 'Aprovar conta' : 'Conta aprovada',
+                                                ['type' => 'submit', 'class' =>  ' ' . is_null($partner->approved_at)    ? 
+                                                                                            'btn btn-primary btn-block'  : 
+                                                                                            'btn btn-danger btn-block ' ]) !!}
+                        {!! Form::close() !!}
 
                         {{-- Button activate account --}}
                         @if ($partner->active == false)
@@ -70,7 +79,6 @@
                                 @csrf
                                 {{ method_field('PATCH') }}
                                 @if (is_null($partner->approved_at))
-                                    {{-- {!! Form::hidden('approved_at', date('Y/m/d H:i:s') ) !!}  --}}
                                     {!! Form::hidden('approved_at', Carbon::now() ) !!} 
                                 @endif
                                 {!! Form::hidden('active', 1 ) !!}

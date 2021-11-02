@@ -73,7 +73,7 @@ class Cart extends Model
     public function totalAmount()
     {
         $total = 0;
-        foreach (Cart::where('client_id', $this->client_id)->get() as $cart) {
+        foreach (Cart::where('client_id', $this->client_id)->where('order_id', $this->order_id)->get() as $cart) {
             $total += $cart->amount();
         }
         return $total;

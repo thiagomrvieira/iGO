@@ -90,7 +90,7 @@ class ClientController extends Controller
      *      @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="name", type="string", example="Mussum Ipsum"),
-     *          @OA\Property(property="birth_date", type="string", example="09/07/1988"),
+     *          @OA\Property(property="birth_date", type="string", example="1988-07-09"),
      *          @OA\Property(property="email", type="string", example="mussum@igo.pt"),
      *          @OA\Property(property="mobile_phone_number", type="integer", example="978 645 312"),
      *          @OA\Property(property="password", type="string", example="iGO@123"),
@@ -171,14 +171,15 @@ class ClientController extends Controller
      */
     public function updatePersonalData(Request $request)
     {
+
         $validated = $request->validate([
             'email' => 'email|unique:users',
         ]);
-        
-        # Update User data
+
+        // # Update User data
         $user = $this->updateUserFromApi($request);
 
-        # Update Client
+        // # Update Client
         $client = $this->updateClient($request);
 
         return response()->json(['status'  => $status  ?? 'success',

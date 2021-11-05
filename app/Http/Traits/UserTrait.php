@@ -76,18 +76,12 @@ trait UserTrait {
     #   Create user data - API
     public function updateUserFromApi($request) 
     { 
-        $user = User::where('id', Auth::user()->id)->update([
-            'name'           => $request['name'], 
-            'email'          => $request['email'],
-            'password'       => bcrypt( $request['password'] ),
-            'active'         => true,
-            'is_admin'       => false,
-            'is_partner'     => false,
-            'is_deliveryman' => false,
-            'is_client'      => true,
-        ]);
 
-        return $user;
+        $updateData = [];
+        $request['name' ] ? $updateData['name']  = $request['name'] : null; 
+        $request['email'] ? $updateData['email'] = $request['email'] : null; 
+
+        return  User::where('id', Auth::user()->id)->update( $updateData );
     }
     
     

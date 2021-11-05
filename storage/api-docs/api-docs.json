@@ -495,7 +495,7 @@
                                     },
                                     "birth_date": {
                                         "type": "string",
-                                        "example": "09/07/1988"
+                                        "example": "1988-07-09"
                                     },
                                     "email": {
                                         "type": "string",

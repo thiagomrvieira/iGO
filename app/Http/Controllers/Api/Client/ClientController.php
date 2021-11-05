@@ -130,6 +130,39 @@ class ClientController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
+     *   @OA\Response(
+     *      response=422,
+     *      description="Validation error",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *          example= {
+     *              "message": "The given data was invalid.",
+     *              "errors": {
+     *                  "name" : {
+     *                      {
+     *                          "string",
+     *                      },
+     *                  },
+     *                  "email" : {
+     *                      {
+     *                          "string",
+     *                      },
+     *                  },
+     *                  "mobile_phone_number" : {
+     *                     {
+     *                          "string",
+     *                      },
+     *                  },
+     *                  "line_1" : {
+     *                      {
+     *                          "string",
+     *                      },
+     *                  },
+     *                      
+     *              },
+     *          },
+     *      )
+     *  ),
      *   security={
      *     {"api_key": {}}
      *   }
@@ -138,6 +171,9 @@ class ClientController extends Controller
      */
     public function updatePersonalData(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'email|unique:users',
+        ]);
         
         # Update User data
         $user = $this->updateUserFromApi($request);

@@ -545,6 +545,38 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "name": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "email": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "mobile_phone_number": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "line_1": [
+                                            [
+                                                "string"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [

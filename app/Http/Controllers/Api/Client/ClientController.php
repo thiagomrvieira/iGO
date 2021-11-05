@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Resources\ClientAddressCollection;
 use App\Http\Resources\ClientPersonalDataResource;
 use App\Http\Resources\ClientResource;
@@ -25,7 +26,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Get(path="/api/v1/client/profile",
-     *   tags={"Client: Profile & Favorite partners"},
+     *   tags={"Client: Profile, Password & Favorite partners"},
      *   summary="Get client profile",
      *   description="Get data from logged in client",
      *   operationId="getClientProfile",
@@ -81,7 +82,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Patch(path="/api/v1/client/profile",
-     *   tags={"Client: Profile & Favorite partners"},
+     *   tags={"Client: Profile, Password & Favorite partners"},
      *   summary="Set client profile",
      *   description="Update client profile data",
      *   operationId="setClientProfile",
@@ -93,7 +94,6 @@ class ClientController extends Controller
      *          @OA\Property(property="birth_date", type="string", example="1988-07-09"),
      *          @OA\Property(property="email", type="string", example="mussum@igo.pt"),
      *          @OA\Property(property="mobile_phone_number", type="integer", example="978 645 312"),
-     *          @OA\Property(property="password", type="string", example="iGO@123"),
      *      )
      *   ),
      *   @OA\Response(
@@ -193,7 +193,7 @@ class ClientController extends Controller
      * *
      * 
      * @OA\Post(path="/api/v1/client/favorite/{id}",
-     *   tags={"Client: Profile & Favorite partners"},
+     *   tags={"Client: Profile, Password & Favorite partners"},
      *   summary="Set favorite partners",
      *   description="Set/Unset a partner as favorite - Expect to receive a valid partner id",
      *   operationId="setFavoritePartners",
@@ -257,4 +257,93 @@ class ClientController extends Controller
                                  'message' => $message ?? 'Aderente desfavoritado'], 200);
     }
 
+
+
+
+    /**
+     * UPDATE CLIENT PASSWORD
+     * *
+     * 
+     * @OA\Patch(path="/api/v1/client/password",
+     *   tags={"Client: Profile, Password & Favorite partners"},
+     *   summary="Set client profile",
+     *   description="Update client password",
+     *   operationId="updatePassWord",
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="current_password", type="string", example="iGO@123"),
+     *          @OA\Property(property="new_password", type="string", example="iGOdelivery"),
+     *          @OA\Property(property="confirm_new_password", type="string", example="iGOdelivery"),
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Password alterado!",
+     *          },
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   @OA\Response(
+     *      response=422,
+     *      description="Validation error",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *          example= {
+     *              "message": "The given data was invalid.",
+     *              "errors": {
+     *                  "current_password" : {
+     *                      {
+     *                          "string",
+     *                      },
+     *                  },
+     *                  "new_password" : {
+     *                      {
+     *                          "string",
+     *                      },
+     *                  },
+     *                  "confirm_new_password" : {
+     *                     {
+     *                          "string",
+     *                      },
+     *                  },
+     *              },
+     *          },
+     *      )
+     *  ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function updatePassWord(UpdateUserPasswordRequest $request)
+    {
+        $this->updateUserPassWord($request);
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? "Password alterado!"], 200); 
+        
+    }
 }

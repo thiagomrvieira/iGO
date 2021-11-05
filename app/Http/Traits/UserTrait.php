@@ -84,5 +84,14 @@ trait UserTrait {
         return  User::where('id', Auth::user()->id)->update( $updateData );
     }
     
+    #   Update password - API
+    public function updateUserPassWord($request) 
+    { 
+        return  User::where('id', Auth::user()->id)->update( 
+            [
+                'password' => bcrypt($request->new_password),
+            ]
+        );
+    }
     
 }

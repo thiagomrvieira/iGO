@@ -57,6 +57,8 @@ Route::group(['prefix' => 'v1'], function()
             #   Get/Update Client personal data
             Route::get('profile',   [ClientController::class, 'getPersonalData'   ]);
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
+
+            Route::patch('password', [ClientController::class, 'updatePassWord']);
             
             #   Favorite/Unfavorite Partner
             Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);

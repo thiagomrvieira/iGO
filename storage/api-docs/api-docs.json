@@ -433,7 +433,7 @@
         "/api/v1/client/profile": {
             "get": {
                 "tags": [
-                    "Client: Profile & Favorite partners"
+                    "Client: Profile, Password & Favorite partners"
                 ],
                 "summary": "Get client profile",
                 "description": "Get data from logged in client",
@@ -478,7 +478,7 @@
             },
             "patch": {
                 "tags": [
-                    "Client: Profile & Favorite partners"
+                    "Client: Profile, Password & Favorite partners"
                 ],
                 "summary": "Set client profile",
                 "description": "Update client profile data",
@@ -504,10 +504,6 @@
                                     "mobile_phone_number": {
                                         "type": "integer",
                                         "example": "978 645 312"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "example": "iGO@123"
                                     }
                                 },
                                 "type": "object"
@@ -589,7 +585,7 @@
         "/api/v1/client/favorite/{id}": {
             "post": {
                 "tags": [
-                    "Client: Profile & Favorite partners"
+                    "Client: Profile, Password & Favorite partners"
                 ],
                 "summary": "Set favorite partners",
                 "description": "Set/Unset a partner as favorite - Expect to receive a valid partner id",
@@ -628,6 +624,97 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/password": {
+            "patch": {
+                "tags": [
+                    "Client: Profile, Password & Favorite partners"
+                ],
+                "summary": "Set client profile",
+                "description": "Update client password",
+                "operationId": "updatePassWord",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "current_password": {
+                                        "type": "string",
+                                        "example": "iGO@123"
+                                    },
+                                    "new_password": {
+                                        "type": "string",
+                                        "example": "iGOdelivery"
+                                    },
+                                    "confirm_new_password": {
+                                        "type": "string",
+                                        "example": "iGOdelivery"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Password alterado!"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "current_password": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "new_password": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "confirm_new_password": [
+                                            [
+                                                "string"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [

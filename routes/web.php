@@ -39,22 +39,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
 
 });
 
-#   ROUTES FOR BACKOFICE/DELIVERYMAN
+# ROUTES FOR BACKOFICE/DELIVERYMAN
 Route::group(['prefix' => 'deliveryman', 'middleware' => ['auth','deliveryman']], function() {
-
     Route::get('/', function () {
         return 'DELIVERYMAN';
     });
 });
 
-#   ROUTES FOR FRONTOFFICE
-
-Route::get('/',           [FrontOfficeController::class, 'showHomePage'      ])->name('home');
-Route::get('/about',      [FrontOfficeController::class, 'showAboutPage'     ])->name('about');
-Route::get('/faq',        [FrontOfficeController::class, 'showFaqPage'       ])->name('faq');
+# ROUTES FOR FRONTOFFICE
+Route::get('/', [FrontOfficeController::class, 'showHomePage'])->name('homepage');
+Route::get('/about', [FrontOfficeController::class, 'showAboutPage'])->name('about');
+Route::get('/faq', [FrontOfficeController::class, 'showFaqPage'])->name('faq');
 Route::get('/conditions', [FrontOfficeController::class, 'showConditionsPage'])->name('conditions');
-Route::get('/contact',    [FrontOfficeController::class, 'showContactsPage'  ])->name('contact');
-
+Route::get('/contact', [FrontOfficeController::class, 'showContactsPage'])->name('contact');
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 #   ROUTES FOR BACKOFICE/PARTNER

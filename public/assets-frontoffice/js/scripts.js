@@ -6,6 +6,12 @@ var __webpack_exports__ = {};
 var $j = jQuery.noConflict(),
     $w = $j(window);
 $j(document).ready(function ($) {
+  $j(document).on('click', 'header .row-fluid .column-right .block-menu-mobile', function () {
+    $j('header .row-fluid .column-middle').addClass('showMenu');
+  });
+  $j(document).on('click', 'header .column-middle .block-close-mobile', function () {
+    $j('header .row-fluid .column-middle').removeClass('showMenu');
+  });
   scrollMenuFixed(); // select2
 
   var category = $j('.category_id').select2();
@@ -18,19 +24,6 @@ $j(document).ready(function ($) {
   });
   county.on("change", function (e) {
     removeClassErrorSelect2('partnerCreation', 'county_id');
-  }); // Block Faq
-
-  $j('.faqs').on('click', '.faq-button', function () {
-    this.classList.toggle('is-open');
-    var content = this.nextElementSibling;
-
-    if (content.style.maxHeight) {
-      // accordion is currently open, so close it
-      content.style.maxHeight = null;
-    } else {
-      // accordion is currently closed, so open it
-      content.style.maxHeight = content.scrollHeight + 'px';
-    }
   }); // Close modal
 
   var modal = $j('.modal');
@@ -49,7 +42,17 @@ $j(document).ready(function ($) {
         $j(this).parents('.block-field').removeClass("block-field-active");
       }
     });
+  }); // Block Faq
+
+  $j(document).on("click", ".block-faqs .block-faqs-list .block-faqs-item .block-faqs-header", function () {
+    $j(this).parent().toggleClass('active').children('.block-faqs-body').stop().slideToggle();
   });
+
+  if (window.location.hash) {
+    $j('html, body').animate({
+      scrollTop: $j(window.location.hash).offset().top - $j('header').height() + 40
+    }, 1000, 'swing');
+  }
 });
 
 function scrollMenuFixed() {

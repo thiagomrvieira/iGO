@@ -22,6 +22,7 @@ mix
 
   // Assets frontoffice
   .postCss('resources/views/frontoffice/assets/css/styles.css', 'public/assets-frontoffice/css/styles.css')
+  .postCss('resources/views/frontoffice/assets/css/media.css', 'public/assets-frontoffice/css/media.css')
   .js('resources/views/frontoffice/assets/js/scripts.js', 'public/assets-frontoffice/js/scripts.js')
   .copy('resources/views/frontoffice/assets/images',  'public/assets-frontoffice/images')
   .copy('resources/libs',  'public/libs')

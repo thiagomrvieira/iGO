@@ -8,7 +8,13 @@
                 <div class="limit-wrapper">
                     <div class="row-fluid">
                         <div class="column-left">
-                            <div class="block-image"><img src="{{ asset('assets-frontoffice/images/telephone-app-igo.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/></div>
+                            <div class="block-image">
+                                @if(App::getLocale() == 'en')
+                                    <img src="{{ asset('assets-frontoffice/images/telephone-app-igo-en.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/>
+                                @else
+                                    <img src="{{ asset('assets-frontoffice/images/telephone-app-igo-pt.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/>
+                                @endif
+                            </div>
                         </div>
                         <div class="column-right">
                             <div class="block-title"><h1>{{ __('homepage.header-title') }}</h1></div>
@@ -29,25 +35,25 @@
                     <div class="row-fluid">
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-time.svg') }}" alt="{{ __('homepage.home-find-delivery') }}" title="{{ __('homepage.home-find-delivery') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-home-time.svg') }}" alt="{{ __('homepage.home-find-delivery') }}" title="{{ __('homepage.home-find-delivery') }}"/>
                             </div>
                             <div class="block-find-lead"><span>{{ __('homepage.home-find-delivery') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-info.svg') }}" alt="{{ __('homepage.home-find-information') }}" title="{{ __('homepage.home-find-information') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-home-info.svg') }}" alt="{{ __('homepage.home-find-information') }}" title="{{ __('homepage.home-find-information') }}"/>
                             </div>
                             <div class="block-find-lead"><span>{{ __('homepage.home-find-information') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-bussiness.svg') }}" alt="{{ __('homepage.home-find-business') }}" title="{{ __('homepage.home-find-business') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-home-bussiness.svg') }}" alt="{{ __('homepage.home-find-business') }}" title="{{ __('homepage.home-find-business') }}"/>
                             </div>
                             <div class="block-find-lead"><span>{{ __('homepage.home-find-business') }}</span></div>
                         </div>
                         <div class="column-4">
                             <div class="block-find-icon">
-                               <img src="{{ asset('assets-frontoffice/images/icon-comunication.svg') }}" alt="{{ __('homepage.home-find-comunication') }}" title="{{ __('homepage.home-find-comunication') }}"/>
+                               <img src="{{ asset('assets-frontoffice/images/icon-home-comunication.svg') }}" alt="{{ __('homepage.home-find-comunication') }}" title="{{ __('homepage.home-find-comunication') }}"/>
                             </div>
                             <div class="block-find-lead"><span>{{ __('homepage.home-find-comunication') }}</span></div>
                         </div>
@@ -55,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="block-home-partner">
+        <div id="block-form-partner" class="block-home-partner">
             <div class="main-fluid">
                 <div class="limit-wrapper">
                     <div class="row-fluid">
@@ -75,7 +81,14 @@
                             </div>
                             <div class="block-title"><h2>{{ __('homepage.home-partner-title') }}</h2></div>
                             <div class="block-lead"><span>{{ __('homepage.home-partner-subtitle') }}</span></div>
-                            <div class="block-image"><img src="{{ asset('assets-frontoffice/images/phone-app-igo.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/></div>
+
+                            <div class="block-image">
+                                @if(App::getLocale() == 'en')
+                                    <img src="{{ asset('assets-frontoffice/images/phone-app-igo-en.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/>
+                                @else
+                                    <img src="{{ asset('assets-frontoffice/images/phone-app-igo-pt.png') }}" alt="{{ __('iGO APP') }}" title="{{ __('iGO APP') }}"/>
+                                @endif
+                            </div>
                         </div>
                         <div class="column-right">
                             <div class="block-form">
@@ -294,6 +307,21 @@
                                     </div>
                                     <div class="block-form-group">
                                         <div class="block-field block-field-big block-field-entity-partner-category">
+                                            <div class="block-icon" style="visibility: hidden;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                    <g transform="translate(-3137 -900)" opacity="0.7">
+                                                        <rect width="20" height="20" transform="translate(3137 900)" fill="none"/>
+                                                        <g transform="translate(3137.5 902.3)">
+                                                            <g>
+                                                                <path d="M.866,63.07H1.18V54.757A2.61,2.61,0,0,1,0,52.569a.284.284,0,0,1,.036-.139l2.191-3.891a.866.866,0,0,1,.752-.443H15.867a.866.866,0,0,1,.752.443L18.81,52.43a.284.284,0,0,1,.036.139,2.61,2.61,0,0,1-1.18,2.188V63.07h.314a.28.28,0,0,1,0,.56H.866a.28.28,0,0,1,0-.56ZM18.275,52.849H17.39a.28.28,0,0,1,0-.56h.7L16.14,48.817a.314.314,0,0,0-.273-.161H2.979a.314.314,0,0,0-.273.161L.752,52.289h.7a.28.28,0,0,1,0,.56H.571A2.024,2.024,0,0,0,2.563,54.61a2.024,2.024,0,0,0,1.991-1.761H2.637a.28.28,0,0,1,0-.56H16.21a.28.28,0,0,1,0,.56H14.292a2.007,2.007,0,0,0,3.983,0Zm-13.13,0a2.006,2.006,0,0,0,3.983,0Zm4.574,0a2.006,2.006,0,0,0,3.983,0ZM3.208,63.07H6.2v-.937H3.208Zm0-1.5H6.2v-5.13H3.208Zm-1.475,1.5h.923V56.163a.278.278,0,0,1,.276-.28H6.472a.278.278,0,0,1,.276.28V63.07H17.114V55.029a2.516,2.516,0,0,1-.83.141A2.562,2.562,0,0,1,14,53.743a2.545,2.545,0,0,1-4.574,0,2.545,2.545,0,0,1-4.574,0A2.562,2.562,0,0,1,2.563,55.17a2.518,2.518,0,0,1-.83-.141Z" transform="translate(0 -48.096)" fill="#072a40" stroke="#072a40" stroke-width="0.4"/>
+                                                            </g>
+                                                            <g transform="translate(7.504 7.787)">
+                                                                <path d="M72.425,256.516h8.086a.28.28,0,0,1,.28.28v5.69a.28.28,0,0,1-.28.28H72.425a.28.28,0,0,1-.28-.28V256.8A.28.28,0,0,1,72.425,256.516Zm.28,5.69h7.526v-5.13H72.705Z" transform="translate(-72.145 -256.516)" fill="#072a40" stroke="#072a40" stroke-width="0.4"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </div>
                                             <div class="block-input">
                                                 <select id="category_id" class="category_id" name="category_id" @change="removeClassError('partnerCreation', 'category_id')" v-select="partner.category_id">
                                                     <option value="" disabled selected>{{ __('Categoria') }}</option>
@@ -319,7 +347,7 @@
                 </div>
             </div>
         </div>
-        <div class="block-home-team">
+        <div id="block-form-deliveryman" class="block-home-team">
             <div class="main-fluid">
                 <div class="limit-wrapper">
                     <div class="row-fluid">

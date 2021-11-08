@@ -83,8 +83,8 @@ class ClientController extends Controller
      * 
      * @OA\Patch(path="/api/v1/client/profile",
      *   tags={"Client: Profile, Password & Favorite partners"},
-     *   summary="Set client profile",
-     *   description="Update client profile data",
+     *   summary="Change client password",
+     *   description="Update client password",
      *   operationId="setClientProfile",
      *   @OA\RequestBody(
      *      required=true,
@@ -266,7 +266,7 @@ class ClientController extends Controller
      * 
      * @OA\Patch(path="/api/v1/client/password",
      *   tags={"Client: Profile, Password & Favorite partners"},
-     *   summary="Set client profile",
+     *   summary="Update client password",
      *   description="Update client password",
      *   operationId="updatePassWord",
      *   @OA\RequestBody(

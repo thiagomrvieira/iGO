@@ -1,0 +1,206 @@
+@media all and (max-width: 960px) {
+    header .row-fluid .column-middle {
+        position: fixed;
+        display: block;
+        top: 0;
+        right: -150%;
+        width: 100%;
+        height: 100vh;
+        background-color: #FFFFFF;
+        background-image: url(/images/bg-home-top-2.png?811257f14fd7aefb11a8b0fd8657d208);
+        background-repeat: no-repeat;
+        background-position: top right;
+        z-index: 1000;
+        transition: right .3s ease-in-out;
+    }
+    header .row-fluid .column-middle.showMenu {
+        right: 0;
+    }
+    header .row-fluid .column-middle .block-main-menu  .block-close-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+    header .row-fluid .column-middle .block-main-menu {
+        width: 100%; max-width: 640px;
+        padding: 60px 15px 20px 15px;
+        margin: 0 auto;
+    }
+    header .row-fluid .column-middle .block-main-menu ul {
+        flex-direction: column;
+    }
+    header .row-fluid .column-middle .block-main-menu ul li {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+    }
+    header .row-fluid .column-middle .block-main-menu ul li a {
+        color: #072a40;
+    }
+    header .row-fluid .column-middle .block-social-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; max-width: 640px;
+        padding: 0px 15px 0px 15px;
+        margin: 0 auto;
+    }
+    header .row-fluid .column-middle .block-social-mobile a svg path {
+        fill: #072a40;
+    }
+    header .row-fluid .column-right .block-social-media {
+        display: none;
+    }
+    header .row-fluid .column-right .block-menu-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+    }
+
+    #page-front .block-home-find {
+        padding: 150px 0 80px 0;
+    }
+    #page-front .block-home-find .row-fluid {
+        flex-wrap: wrap;
+    }
+    #page-front .block-home-find .row-fluid .column-4 {
+        width: calc(50% - 30px);
+        margin: 0 15px 40px 15px !important;
+    }
+    #page-front .block-home-partner .row-fluid {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #page-front .block-home-partner .row-fluid .column-left {
+        width: 100%;
+        max-width: 445px;
+        margin: 0 auto;
+    }
+    #page-front .block-home-partner .row-fluid .column-left .block-lead {
+        margin-bottom: 40px;
+    }
+    #page-front .block-home-partner .row-fluid .column-right {
+        width: 100%;
+        text-align: center;
+    }
+    #page-front .block-home-partner .row-fluid .column-right .form-default-wrapper {
+        margin: 0 auto !important;
+    }
+    #page-front .block-home-team .row-fluid {
+        justify-content: center;
+        flex-direction: column;
+    }
+    #page-front .block-home-team .row-fluid .column-left {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    #page-front .block-home-team .row-fluid .column-right {
+        width: 100%;
+    }
+    #page-front .block-home-team .row-fluid .column-right .block-image {
+        margin: 0 auto;
+    }
+
+    footer .block-footer-middle {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    footer .block-footer-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    footer .block-footer-middle .column-left {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    footer .block-footer-middle .column-left span {
+        align-items: center;
+        justify-content: center;
+    }
+    footer .block-footer-middle .column-left .block-social-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    footer .block-footer-middle .column-middle {
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+    footer .block-footer-middle .column-middle ul {
+        align-items: center;
+        padding: 0;
+    }
+    footer .block-footer-middle .column-right {
+        padding: 0;
+    }
+    footer .block-footer-bottom .row-fluid {
+        flex-direction: column;
+        align-items: center;
+    }
+    footer .block-footer-bottom .row-fluid .column-left {
+        margin-bottom: 20px;
+    }
+    footer .block-footer-bottom .row-fluid .column-right .block-footer-apps {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    footer .block-footer-bottom .row-fluid .column-right .block-footer-apps span {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+@media all and (max-width: 767px) {
+    #page-front .block-home-top .row-fluid {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    #page-front .block-home-top .row-fluid .column-left {
+        margin: 0;
+    }
+    #page-front .block-home-top .row-fluid .column-right {
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    #page-front .block-home-top .row-fluid .column-right .block-apps {
+        justify-content: center;
+    }
+}
+
+@media all and (max-width: 640px) {
+    #page-front .block-home-find .row-fluid .column-4 {
+        width: 100%;
+        margin: 0 0 40px 0 !important;
+    }
+
+    .block-about-us .block-about-banner .limit-wrapper {
+        justify-content: center;
+        text-align: center;
+    }
+    .block-about-us .block-about-banner:before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgb(255 255 255 / 30%);
+        z-index: 0;
+    }
+    .block-about-us .block-about-body .block-about-how-use .block-about-how-use-list {
+        flex-direction: column;
+    }
+    .block-about-us .block-about-body .block-about-how-use .block-about-how-use-list .block-how-use-column:not(:last-child) {
+        margin-bottom: 50px;
+    }
+}

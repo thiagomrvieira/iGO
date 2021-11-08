@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{ asset('assets-frontoffice/libs/select2/select2.min.css') }}">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('assets-frontoffice/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets-frontoffice/css/media.css') }}">
         
     </head>
     <body>

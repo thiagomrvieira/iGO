@@ -50,7 +50,8 @@ Route::group(['prefix' => 'v1'], function()
             'shippingfees' => ShippingFeeController::class,
             
         ]);
-
+        
+        #   CLIENT ENDPOINTS
         Route::group(['prefix' => 'client'], function() 
         {
             
@@ -96,6 +97,13 @@ Route::group(['prefix' => 'v1'], function()
             #   Show partner products
             Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);
 
+        });
+
+        #   DELIVERYMAN ENDPOINTS
+        Route::group(['prefix' => 'deliveryman'], function() 
+        {
+            #   ORDERS
+            Route::get('orders', [ClientOrderController::class, 'index']);
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);

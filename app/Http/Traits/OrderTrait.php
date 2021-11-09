@@ -85,8 +85,10 @@ trait OrderTrait {
 
 
     /**
-     * GET ORDERS IN PROGRESS (order status type id between 4, 5, 6, 7 and related to the logged deliveryman)
+     * DELIVERYMAN FUNCTIONS 
      */
+    
+    #   GET ORDERS IN PROGRESS (order status type id between 4, 5, 6, 7 and related to the logged deliveryman)
     public function inProgressOrders()
     {
         return Order::whereIn('order_status_type_id', array(4, 5, 6, 7) )->whereHas('deliverymen', function (Builder $query) {
@@ -95,9 +97,8 @@ trait OrderTrait {
         })->get() ?? [];
     }
 
-    /**
-     * GET ORDERS COMPLETED (order status type id 8 and related to the logged deliveryman)
-     */
+    
+    #   GET ORDERS COMPLETED (order status type id 8 and related to the logged deliveryman)
     public function completedOrders()
     {
         return Order::where('order_status_type_id', 8)->whereHas('deliverymen', function (Builder $query) {

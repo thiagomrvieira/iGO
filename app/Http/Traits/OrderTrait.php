@@ -90,7 +90,8 @@ trait OrderTrait {
     public function inProgressOrders()
     {
         return Order::whereIn('order_status_type_id', array(4, 5, 6, 7) )->whereHas('deliverymen', function (Builder $query) {
-            $query->where('deliveryman_id',  Auth::user()->deliveryman->id);
+            $query->where('deliveryman_id',  Auth::user()->deliveryman->id)
+                  ->where('order_delivery_status_type_id',  2);
         })->get() ?? [];
     }
 
@@ -100,7 +101,9 @@ trait OrderTrait {
     public function completedOrders()
     {
         return Order::where('order_status_type_id', 8)->whereHas('deliverymen', function (Builder $query) {
-            $query->where('deliveryman_id',  Auth::user()->deliveryman->id);
+            $query->where('deliveryman_id',  Auth::user()->deliveryman->id)
+                  ->where('order_delivery_status_type_id',  3);
+            
         })->get() ?? [];
     }
 

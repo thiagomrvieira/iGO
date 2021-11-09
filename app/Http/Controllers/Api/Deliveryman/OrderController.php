@@ -24,7 +24,7 @@ class OrderController extends Controller
     }
 
     /**
-     * DISPLAY 
+     * SHOW ORDERS DATA - Dashboard 
      * *
      * 
      * @OA\Get(path="/api/v1/deliveryman/orders",

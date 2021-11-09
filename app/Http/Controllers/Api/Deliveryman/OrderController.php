@@ -24,6 +24,7 @@ class OrderController extends Controller
         $this->newOrders = Order::whereIn('order_status_type_id', array(4, 5, 6) )->doesntHave('deliverymen')->get() ?? [];   
     }
 
+    
     /**
      * SHOW ORDERS DATA - Dashboard 
      * *
@@ -105,6 +106,7 @@ class OrderController extends Controller
                                  'data'    => new DashboardOrdersResource($data) ?? null], $statusCode ?? 200); 
     }
 
+
     /**
      * SHOW IN NEW ORDERS 
      * *
@@ -171,6 +173,7 @@ class OrderController extends Controller
                                  'data'    => new OrderCollection( $this->newOrders ) ?? null 
                                 ], $statusCode ?? 200); 
     }
+
 
     /**
      * SHOW IN PROGRESS ORDERS 
@@ -239,4 +242,139 @@ class OrderController extends Controller
                                 ], $statusCode ?? 200); 
     }
    
+
+    /**
+     * SHOW COMPLETED ORDERS 
+     * *
+     * 
+     * @OA\Get(path="/api/v1/deliveryman/orders/completed",
+     *   tags={"Deliveryman: Orders"},
+     *   summary="Show completed orders",
+     *   description="Display a list of all completed orders to deliveryman",
+     *   operationId="completedOrdersForDeliveryman",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedidos concluídos",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string"
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCompletedOrderList()
+    {
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Pedidos concluídos',
+                                 'data'    => new OrderCollection( $this->completedOrders() ) ?? null 
+                                ], $statusCode ?? 200); 
+    }
+
+
+    /**
+     * SHOW REFUSED ORDERS 
+     * *
+     * 
+     * @OA\Get(path="/api/v1/deliveryman/orders/refused",
+     *   tags={"Deliveryman: Orders"},
+     *   summary="Show refused orders",
+     *   description="Display a list of all refused orders to deliveryman",
+     *   operationId="refusedOrdersForDeliveryman",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedidos recusados",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string"
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRefusedOrderList()
+    {
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Pedidos recusados',
+                                 'data'    => new OrderCollection( $this->refusedOrders() ) ?? null 
+                                ], $statusCode ?? 200); 
+    }
 }

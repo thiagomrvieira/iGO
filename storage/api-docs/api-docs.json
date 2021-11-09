@@ -1815,6 +1815,116 @@
                 ]
             }
         },
+        "/api/v1/deliveryman/orders/completed": {
+            "get": {
+                "tags": [
+                    "Deliveryman: Orders"
+                ],
+                "summary": "Show completed orders",
+                "description": "Display a list of all completed orders to deliveryman",
+                "operationId": "completedOrdersForDeliveryman",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Pedidos concluídos",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/deliveryman/orders/refused": {
+            "get": {
+                "tags": [
+                    "Deliveryman: Orders"
+                ],
+                "summary": "Show refused orders",
+                "description": "Display a list of all refused orders to deliveryman",
+                "operationId": "refusedOrdersForDeliveryman",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Pedidos recusados",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/contents": {
             "get": {
                 "tags": [

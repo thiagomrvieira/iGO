@@ -106,14 +106,14 @@ class OrderController extends Controller
     }
 
     /**
-     * SHOW IN PROGRESS ORDERS 
+     * SHOW IN NEW ORDERS 
      * *
      * 
-     * @OA\Get(path="/api/v1/deliveryman/orders/inprogress",
+     * @OA\Get(path="/api/v1/deliveryman/orders/new",
      *   tags={"Deliveryman: Orders"},
-     *   summary="Show in progress orders",
-     *   description="Display a list of all in progress orders to deliveryman",
-     *   operationId="inProgressOrdersForDeliveryman",
+     *   summary="Show new orders",
+     *   description="Display a list of new orders to deliveryman",
+     *   operationId="newOrdersForDeliveryman",
      *   
      *   @OA\Response(
      *      response=200,
@@ -122,7 +122,7 @@ class OrderController extends Controller
      *           mediaType="application/json",
      *           example= {
      *               "status": "success",
-     *               "message": "Dados dos pedidos",
+     *               "message": "Novos pedidos",
      *               "data": {
      *                  "orders": {
      *                      {
@@ -164,13 +164,79 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function inProgress()
+    public function getNewOrderList()
+    {
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Novos pedidos',
+                                 'data'    => new OrderCollection( $this->newOrders ) ?? null 
+                                ], $statusCode ?? 200); 
+    }
+
+    /**
+     * SHOW IN PROGRESS ORDERS 
+     * *
+     * 
+     * @OA\Get(path="/api/v1/deliveryman/orders/inprogress",
+     *   tags={"Deliveryman: Orders"},
+     *   summary="Show in progress orders",
+     *   description="Display a list of all in progress orders to deliveryman",
+     *   operationId="inProgressOrdersForDeliveryman",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedidos em andamento",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string"
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getInProgressOrderList()
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Pedidos em andamento',
                                  'data'    => new OrderCollection( $this->inProgressOrders() ) ?? null 
                                 ], $statusCode ?? 200); 
     }
-
    
 }

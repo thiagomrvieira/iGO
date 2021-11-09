@@ -1705,6 +1705,61 @@
                 ]
             }
         },
+        "/api/v1/deliveryman/orders/new": {
+            "get": {
+                "tags": [
+                    "Deliveryman: Orders"
+                ],
+                "summary": "Show new orders",
+                "description": "Display a list of new orders to deliveryman",
+                "operationId": "newOrdersForDeliveryman",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Novos pedidos",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/deliveryman/orders/inprogress": {
             "get": {
                 "tags": [
@@ -1720,7 +1775,7 @@
                             "application/json": {
                                 "example": {
                                     "status": "success",
-                                    "message": "Dados dos pedidos",
+                                    "message": "Pedidos em andamento",
                                     "data": {
                                         "orders": [
                                             {

@@ -105,7 +105,8 @@ Route::group(['prefix' => 'v1'], function()
         {
             #   ORDERS
             Route::get('orders',            [DeliverymanOrderController::class, 'index']);
-            Route::get('orders/inprogress', [DeliverymanOrderController::class, 'inProgress']);
+            Route::get('orders/new',        [DeliverymanOrderController::class, 'getNewOrderList']);
+            Route::get('orders/inprogress', [DeliverymanOrderController::class, 'getInProgressOrderList']);
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);

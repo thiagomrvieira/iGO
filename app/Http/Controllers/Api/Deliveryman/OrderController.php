@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Deliveryman;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DashboardOrdersResource;
 use App\Models\DeliverymanOrder;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
@@ -81,22 +82,17 @@ class OrderController extends Controller
      */
     public function index()
     {
-        #   Count new orders
-        $this->newOrders->count();
-        #   Count order in progress
-        $this->inProgressOrders()->count();
-        #   Count order completed
-        $this->completedOrders()->count();
-        #   Count order refused
-        $this->refusedOrders()->count();
 
-        
-        $data = [];
-       
-        
+        $data = (object) [
+            'newOrders'        => $this->newOrders,
+            'inProgressOrders' => $this->inProgressOrders(),
+            'completedOrders'  => $this->completedOrders(),
+            'refusedOrders'    => $this->refusedOrders(),
+        ];
+
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Não há pedidos para exibir!',
-                                 'data'    => $data    ?? null], $statusCode ?? 200); 
+                                 'message' => $message ?? 'Dados dos pedidos',
+                                 'data'    => new DashboardOrdersResource($data) ?? null], $statusCode ?? 200); 
     }
 
     

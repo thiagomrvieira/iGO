@@ -1643,6 +1643,61 @@
                 ]
             }
         },
+        "/api/v1/deliveryman/orders": {
+            "get": {
+                "tags": [
+                    "Deliveryman: Orders"
+                ],
+                "summary": "Show all client order",
+                "description": "Display a list of all client orders ",
+                "operationId": "showOrdersForDeliveryman",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "histórico de pedidos",
+                                    "data": {
+                                        "orders": [
+                                            {
+                                                "id": "integer",
+                                                "status": "string",
+                                                "description": "string",
+                                                "date": "datetime",
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/contents": {
             "get": {
                 "tags": [

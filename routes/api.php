@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
 
+use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,7 +104,7 @@ Route::group(['prefix' => 'v1'], function()
         Route::group(['prefix' => 'deliveryman'], function() 
         {
             #   ORDERS
-            Route::get('orders', [ClientOrderController::class, 'index']);
+            Route::get('orders', [DeliverymanOrderController::class, 'index']);
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);

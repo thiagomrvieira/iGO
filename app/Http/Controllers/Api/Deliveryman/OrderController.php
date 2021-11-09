@@ -20,17 +20,17 @@ class OrderController extends Controller
     public function __construct()
     {
         #   Get new orders
-        $this->newOrders        = Order::whereIn('order_status_type_id', array(4, 5, 6) )->doesntHave('deliverymen')->get() ?? [];   
+        $this->newOrders = Order::whereIn('order_status_type_id', array(4, 5, 6) )->doesntHave('deliverymen')->get() ?? [];   
     }
 
     /**
-     * DISPLAY A LIST OF USER ORDERS FOR DELIVERYMAN
+     * DISPLAY 
      * *
      * 
      * @OA\Get(path="/api/v1/deliveryman/orders",
      *   tags={"Deliveryman: Orders"},
-     *   summary="Show all client order",
-     *   description="Display a list of all client orders ",
+     *   summary="Show orders data to deliveryman",
+     *   description="Display quantity and last entry for new, in progress, finished and refused orders",
      *   operationId="showOrdersForDeliveryman",
      *   
      *   @OA\Response(
@@ -39,25 +39,31 @@ class OrderController extends Controller
      *      @OA\MediaType(
      *           mediaType="application/json",
      *           example= {
-     *              "status": "success",
-     *              "message": "histórico de pedidos",
-     *              "data": {
-     *                  "orders" : {
-     *                      {
-     *                       "id": "integer",
-     *                       "status": "string",
-     *                       "description": "string",
-     *                       "date": "datetime",
-     *                       "partner": {
-     *                          "id": "integer",
-     *                          "name": "string",
-     *                          "image": "string",
-     *                       },
-     *                      }
-     *                  }
-
-     *              },
-     *           },
+     *               "status": "success",
+     *               "message": "Dados dos pedidos",
+     *               "data": {
+     *                   "new_orders": {
+     *                      "label": "string",
+     *                      "orders_count": "integer",
+     *                      "last_entry": "datetime or null"
+     *                   },
+     *                   "in_progress_orders": {
+     *                      "label": "string",
+     *                      "orders_count": "integer",
+     *                      "last_entry": "datetime or null"
+     *                   },
+     *                   "completed_orders": {
+     *                      "label": "string",
+     *                      "orders_count": "integer",
+     *                      "last_entry":"datetime or null"
+     *                   },
+     *                   "refused_orders": {
+     *                      "label": "string",
+     *                      "orders_count": "integer",
+     *                      "last_entry": "datetime or null"
+     *                   }
+     *               }
+     *           }
      *      ),
      *   ),
      *   @OA\Response(

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Deliveryman;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardOrdersResource;
+use App\Http\Resources\DeliverymanOrderCollection;
 use App\Http\Resources\OrderCollection;
 use App\Http\Traits\OrderTrait;
 use App\Models\DeliverymanOrder;
@@ -168,10 +169,17 @@ class OrderController extends Controller
      */
     public function getNewOrderList()
     {
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Novos pedidos',
-                                 'data'    => new OrderCollection( $this->newOrders ) ?? null 
-                                ], $statusCode ?? 200); 
+        if ($this->newOrders->count() > 0) {
+            $data       = new DeliverymanOrderCollection( $this->newOrders );
+            $status     = "success";
+            $message    = "Novos pedidos"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há novos pedidos',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
     }
 
 
@@ -236,10 +244,17 @@ class OrderController extends Controller
      */
     public function getInProgressOrderList()
     {
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Pedidos em andamento',
-                                 'data'    => new OrderCollection( $this->inProgressOrders() ) ?? null 
-                                ], $statusCode ?? 200); 
+        if ($this->inProgressOrders()->count() > 0) {
+            $data       = new DeliverymanOrderCollection( $this->inProgressOrders() );
+            $status     = "success";
+            $message    = "Pedidos andamento"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos andamento',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
     }
    
 
@@ -304,10 +319,18 @@ class OrderController extends Controller
      */
     public function getCompletedOrderList()
     {
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Pedidos concluídos',
-                                 'data'    => new OrderCollection( $this->completedOrders() ) ?? null 
-                                ], $statusCode ?? 200); 
+        if ($this->completedOrders()->count() > 0) {
+            $data       = new DeliverymanOrderCollection( $this->completedOrders() );
+            $status     = "success";
+            $message    = "Pedidos concluídos"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos concluídos',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+
     }
 
 
@@ -372,9 +395,16 @@ class OrderController extends Controller
      */
     public function getRefusedOrderList()
     {
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Pedidos recusados',
-                                 'data'    => new OrderCollection( $this->refusedOrders() ) ?? null 
-                                ], $statusCode ?? 200); 
+        if ($this->refusedOrders()->count() > 0) {
+            $data       = new DeliverymanOrderCollection( $this->refusedOrders() );
+            $status     = "success";
+            $message    = "Pedidos recusados"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos recusados',
+                                 'data'    => $data ?? null 
+                                ], $statusCode ?? 404); 
     }
 }

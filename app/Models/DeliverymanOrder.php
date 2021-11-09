@@ -36,5 +36,13 @@ class DeliverymanOrder extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+    /**
+     * Get the Order Status.
+     */
+    public function orderDeliveryStatusType()
+    {
+        return $this->belongsTo(OrderDeliveryStatusType::class);
+    }
     
 }

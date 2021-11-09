@@ -104,11 +104,13 @@ Route::group(['prefix' => 'v1'], function()
         Route::group(['prefix' => 'deliveryman'], function() 
         {
             #   ORDERS
-            Route::get('orders',            [DeliverymanOrderController::class, 'index'                 ]);
-            Route::get('orders/new',        [DeliverymanOrderController::class, 'getNewOrderList'       ]);
-            Route::get('orders/inprogress', [DeliverymanOrderController::class, 'getInProgressOrderList']);
-            Route::get('orders/completed',  [DeliverymanOrderController::class, 'getCompletedOrderList' ]);
-            Route::get('orders/refused',    [DeliverymanOrderController::class, 'getRefusedOrderList'   ]);
+            Route::get('orders',             [DeliverymanOrderController::class, 'index'                 ]);
+            Route::get('orders/new',         [DeliverymanOrderController::class, 'getNewOrderList'       ]);
+            Route::get('orders/inprogress',  [DeliverymanOrderController::class, 'getInProgressOrderList']);
+            Route::get('orders/completed',   [DeliverymanOrderController::class, 'getCompletedOrderList' ]);
+            Route::get('orders/refused',     [DeliverymanOrderController::class, 'getRefusedOrderList'   ]);
+            Route::get('orders/{id}/accept', [DeliverymanOrderController::class, 'acceptOrder'           ]);
+
         });
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);

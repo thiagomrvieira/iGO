@@ -472,7 +472,7 @@ class OrderController extends Controller
             ]);
 
             $status     = "success";
-            $message    = "Pedidos aceito"; 
+            $message    = "Pedido aceito"; 
             $statusCode = 200;
         }
 

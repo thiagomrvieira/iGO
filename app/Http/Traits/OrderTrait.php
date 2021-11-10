@@ -93,7 +93,7 @@ trait OrderTrait {
     {
         return Order::whereIn('order_status_type_id', array(4, 5, 6, 7) )->whereHas('deliverymen', function (Builder $query) {
             $query->where('deliveryman_id',  Auth::user()->deliveryman->id)
-                  ->where('order_delivery_status_type_id',  2);
+                  ->whereIn('order_delivery_status_type_id', array(1, 2) );
         })->get() ?? [];
     }
 

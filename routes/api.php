@@ -84,16 +84,16 @@ Route::group(['prefix' => 'v1'], function()
             ]);
 
             #   ORDERS
-            Route::get('orders',            [ClientOrderController::class, 'index']);
-            Route::get('order/checkout',    [ClientOrderController::class, 'checkout']);
-            Route::post('order/checkout',   [ClientOrderController::class, 'update']);
-            Route::post('order/submit',     [ClientOrderController::class, 'submit']);
+            Route::get('orders',            [ClientOrderController::class, 'index'     ]);
+            Route::get('order/checkout',    [ClientOrderController::class, 'checkout'  ]);
+            Route::post('order/checkout',   [ClientOrderController::class, 'update'    ]);
+            Route::post('order/submit',     [ClientOrderController::class, 'submit'    ]);
             Route::get('order/inprogress',  [ClientOrderController::class, 'inProgress']);
-            Route::get('order/{id}',        [ClientOrderController::class, 'show']);
+            Route::get('order/{id}',        [ClientOrderController::class, 'show'      ]);
 
             #   Show Main and Sub categories
             Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
-            Route::get('subcategories',  [PartnerCategoryController::class, 'showSub' ]);
+            Route::get('subcategories',  [PartnerCategoryController::class,  'showSub' ]);
 
             #   Show partner products
             Route::get('partners/{id}/products',    [PartnerController::class, 'showProducts' ]);

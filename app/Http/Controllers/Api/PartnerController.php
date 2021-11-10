@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PartnerCollection;
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ReviewCollection;
 use App\Models\Partner;
+use App\Models\PartnerRating;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -286,6 +288,99 @@ class PartnerController extends Controller
                                  'data'    => new ProductCollection( Product::where('partner_id', $id)->where('available', 1)->get() )], 200); 
     }
 
+    /**
+     * @OA\Get(path="/api/v1/client/partners/{id}/reviews",
+     *   tags={"Client: Partners"},
+     *   summary="Get partner reviews",
+     *   description="Expect to receive a valid ID and return partner reviews data",
+     *   operationId="getPartnerReviews",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Reviews do aderente",
+     *              "data": {
+     *                 "products": {
+     *                      {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                          "description": "string",
+     *                          "category": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "image": "string",
+     *                          "price": "float",
+     *                          "final_price": "float",
+     *                          "note": "string",
+     *                          "campaign": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                          },
+     *                          "created_at": "datetime",
+     *                          "available": "boolean"
+     *                      }, 
+     *                  }
+     *              }
+     *           },
+     *      ),
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Partner id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     *
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showReviews($id)
+    {
+        $review = PartnerRating::where('partner_id', $id)->get();
+
+        if ($review->count() > 0) {
+            $data       = new ReviewCollection( $review );
+            $status     = "success";
+            $message    = "Reviews do aderente"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há reviews para o aderente',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+
+    }
     /**
      * Update the specified resource in storage.
      *

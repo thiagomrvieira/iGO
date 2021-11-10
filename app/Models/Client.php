@@ -59,4 +59,6 @@ class Client extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+            
+
 }

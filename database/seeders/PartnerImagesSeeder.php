@@ -21,10 +21,10 @@ class PartnerImagesSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         #   Cria imagens para cada aderente
-        foreach (Partner::all() as $partner) {
+        foreach (Partner::all() as $key => $partner) {
             Image::create([
                 'partner_id'  => $partner->id, 
-                'image_cover' => $faker->image(), 
+                'image_cover' => 'storage/images/partners/sample0' . $key + 1 . '.png', 
                 'image_01'    => $faker->image(), 
                 'image_02'    => $faker->image(), 
                 'image_03'    => $faker->image(), 

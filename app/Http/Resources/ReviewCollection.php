@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\PartnerCategory;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ReviewCollection extends ResourceCollection
@@ -16,6 +17,8 @@ class ReviewCollection extends ResourceCollection
     {
         return [
             'partner'       => $this->collection->first()->partner->name,
+            'category_icon' => config('app.url') . PartnerCategory::where('id', $this->collection->first()->partner->category_id)->first()->image ?? 
+                                    'storage/assets-mobile/default_32',
             'total_reviews' => $this->collection->count(),
             'reviews'       => $this->collection
         ];

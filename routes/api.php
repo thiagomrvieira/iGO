@@ -53,7 +53,7 @@ Route::group(['prefix' => 'v1'], function()
         ]);
         
         #   CLIENT ENDPOINTS
-        Route::group(['prefix' => 'client'], function() 
+        Route::group(['prefix' => 'client', 'middleware' => ['client']], function() 
         {
             
             #   Get/Update Client personal data
@@ -101,7 +101,7 @@ Route::group(['prefix' => 'v1'], function()
         });
 
         #   DELIVERYMAN ENDPOINTS
-        Route::group(['prefix' => 'deliveryman'], function() 
+        Route::group(['prefix' => 'deliveryman', 'middleware' => ['deliveryman']], function() 
         {
             #   ORDERS
             Route::get('orders',             [DeliverymanOrderController::class, 'index'                 ]);

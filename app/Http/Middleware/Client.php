@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Deliveryman
+class Client
 {
     /**
      * Handle an incoming request.
@@ -16,20 +16,21 @@ class Deliveryman
      */
     public function handle(Request $request, Closure $next)
     {
-        #   Check if the user is a Delivery man 
-        if(auth()->user()->is_deliveryman == 1){
+        #   Check if the user is a Client
+        if (auth()->user()->is_client == 1 && auth()->user()->active == 1) {
             return $next($request);
         }
-        
+
         #   Check if the request is from Web or Mobile (api) 
         if( $request->is('api/*')){
             #   Return for api
             return response()->json(['status'  => $status  ?? 'Forbidden',
-                                     'message' => $message ?? 'Only delivery man can access the data!',
+                                     'message' => $message ?? 'Only Client can access this data!',
                                     ], $statusCode ?? 403); 
         }
 
         #   Return for web
-        return redirect('/')->with('error',"Only delivery man can access!");
+        // return redirect()->route('client.login')->withErrors(['Only Client can access this area!']);
+
     }
 }

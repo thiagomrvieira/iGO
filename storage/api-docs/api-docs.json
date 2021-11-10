@@ -480,8 +480,8 @@
                 "tags": [
                     "Client: Profile, Password & Favorite partners"
                 ],
-                "summary": "Set client profile",
-                "description": "Update client profile data",
+                "summary": "Change client password",
+                "description": "Update client password",
                 "operationId": "setClientProfile",
                 "requestBody": {
                     "required": true,
@@ -638,7 +638,7 @@
                 "tags": [
                     "Client: Profile, Password & Favorite partners"
                 ],
-                "summary": "Set client profile",
+                "summary": "Update client password",
                 "description": "Update client password",
                 "operationId": "updatePassWord",
                 "requestBody": {

@@ -77,6 +77,7 @@ class UserSeeder extends Seeder
             'is_admin'       => 0,
             'is_partner'     => 0,
             'is_deliveryman' => 1,
+            'active'         => 1,
         ]);
 
         $partners = array(
@@ -108,6 +109,7 @@ class UserSeeder extends Seeder
             'email'               => 'estafeta@igo.pt',
             'mobile_phone_number' => '987 654 321',
             'user_id'             => $deliveryman->id,
+            'active'              => 1,
         ]);
 
       

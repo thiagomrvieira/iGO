@@ -17,7 +17,7 @@ class ReviewResource extends JsonResource
         return [
             'id'           => $this->id,
             'client_name'  => $this->client->name,
-            'client_image' => $this->client->image,
+            'client_image' => $this->client->image  ?? config('app.url') . 'storage/assets-mobile/profile_img',
             'review'       => $this->review         ?? null,
             'rating'       => $this->rate           ?? null,
             'date'         => $this->created_at,

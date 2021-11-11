@@ -15,7 +15,7 @@ class OrderDeliveryStatusTypeSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array('name' => 'Aceito',    'description' => 'Pedido Aceito'),
+            array('name' => 'Em curso',  'description' => 'Pedido Aceito'),
             array('name' => 'Em curso',  'description' => 'Pedido em Curso'),
             array('name' => 'Entregue',  'description' => 'Pedido Entregue'),
             array('name' => 'Recusado',  'description' => 'Pedido Recusado'),

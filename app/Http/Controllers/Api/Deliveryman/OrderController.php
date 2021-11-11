@@ -463,7 +463,7 @@ class OrderController extends Controller
     public function acceptOrder($id)
     {
         #   Check if the Order is related with any deliveryman 
-        if (Order::where('id', $id )->doesntHave('deliverymen')->get()->count() > 0) {
+        if (Order::where('id', $id )->whereIn('order_status_type_id', array(4, 5, 6))->doesntHave('deliverymen')->get()->count() > 0) {
 
             DeliverymanOrder::create([
                 'deliveryman_id'                => Auth::user()->deliveryman->id, 

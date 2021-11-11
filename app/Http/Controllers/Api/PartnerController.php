@@ -303,26 +303,18 @@ class PartnerController extends Controller
      *              "status": "success",
      *              "message": "Reviews do aderente",
      *              "data": {
-     *                 "products": {
+     *                  "partner": "string",
+     *                   "category_icon": "string",
+     *                   "total_reviews": "integer",
+     *                   "reviews": {
      *                      {
      *                          "id": "integer",
-     *                          "name": "string",
-     *                          "description": "string",
-     *                          "category": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "image": "string",
-     *                          "price": "float",
-     *                          "final_price": "float",
-     *                          "note": "string",
-     *                          "campaign": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "created_at": "datetime",
-     *                          "available": "boolean"
-     *                      }, 
+     *                          "client_name": "string",
+     *                          "client_image": "string",
+     *                          "review": "string",
+     *                          "rating": "integer",
+     *                          "date": "datetime"
+     *                       },
      *                  }
      *              }
      *           },

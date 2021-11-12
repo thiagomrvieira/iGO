@@ -24,7 +24,7 @@ class PartnerImagesSeeder extends Seeder
         foreach (Partner::all() as $key => $partner) {
             Image::create([
                 'partner_id'  => $partner->id, 
-                'image_cover' => 'storage/images/partners/sample0' . ($key + 1) . '.png', 
+                'image_cover' => 'storage/images/sample-partners/sample0' . ($key + 1) . '.png', 
                 'image_01'    => $faker->image(), 
                 'image_02'    => $faker->image(), 
                 'image_03'    => $faker->image(), 

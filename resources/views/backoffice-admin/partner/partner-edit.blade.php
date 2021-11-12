@@ -36,7 +36,7 @@
                         <div class="text-center">
                             @if (isset($partner->images->image_cover))
                                 <img class="profile-user-img img-fluid img-circle"
-                                    src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="User profile picture">
+                                    src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="User profile picture">
                             @else
                                 <img class="profile-user-img img-fluid img-circle"
                                     src="{{ asset('assets-backoffice/dist/img/store.png')}}" alt="User profile picture">

@@ -76,7 +76,7 @@
                                         <div class="card-body">
                                             <div style="float: left;">
                                                 @if ($featuredProduct->image)
-                                                    <img src="{{url('/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
+                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
                                                         alt="Product Image" height="90px">
                                                     <br>
                                                 @endif
@@ -129,7 +129,7 @@
                                         <div class="card-body">
                                             <div style="float: left;">
                                                 @if ($product->image)
-                                                    <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
                                                         alt="Product Image" height="90px">
                                                     <br>
                                                 @endif
@@ -182,7 +182,7 @@
                                     <div class="card-body">
                                         <div style="float: left;">
                                             @if ($product->image)
-                                                <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
                                                     alt="Product Image" height="90px">
                                                 <br>
                                             @endif

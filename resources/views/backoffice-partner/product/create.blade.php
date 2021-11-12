@@ -70,7 +70,7 @@
                         <div class="accordion-body">
                             <div class="form-group">
                                 @if (isset($product) && $product->image)
-                                    <img src="{{url('/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
                                         alt="Product Image" height="90px">
                                     <br>
                                 @endif

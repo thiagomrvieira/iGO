@@ -51,7 +51,7 @@
                             <div class="form-group">
 
                                 @if (isset($partner->images->image_cover))
-                                    <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" 
+                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" 
                                         alt="Partner Image" height="90px">
                                     <br>
                                     {!! Form::label('image_cover', 'Alterar foto' , ['class' => 'form-check-label']) !!}

@@ -43,7 +43,7 @@ class ProductDetailResource extends JsonResource
                 ],
             ],
             'product_allergens' => ProductAllergenResource::collection($this->allergens),
-            'image'             => $this->image,
+            'image'             => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image)  ?? null,  
             'price'             => $this->price,
             'final_price'       => $this->finalPrice() ?? null,
             'note'              => $this->note,

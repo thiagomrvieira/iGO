@@ -13,7 +13,7 @@ trait ImagesTrait {
     {
     
         $image = $request->file('image_cover');
-        $destinationPath = 'storage/storage/images/partner/' . Auth::user()->partner->id . '/';
+        $destinationPath = 'storage/images/partner/' . Auth::user()->partner->id . '/';
         $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
         $image->move($destinationPath, $imgName);
         $image_cover = $imgName;
@@ -41,7 +41,7 @@ trait ImagesTrait {
 
         foreach ($imagesTypes as $imgType) {
             if ($image = $request->file('image-'.$imgType)) {
-                $destinationPath = 'storage/storage/images/partner/' . Auth::user()->partner->id . '/';
+                $destinationPath = 'storage/images/partner/' . Auth::user()->partner->id . '/';
                 $imgName = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
                 $image->move($destinationPath, $imgName);
 
@@ -66,7 +66,7 @@ trait ImagesTrait {
         $partner_id  = Auth::user()->partner->id;
 
         if ($image = $request->file('image')) {
-            $destinationPath = 'storage/storage/images/partner/'. $partner_id .'/products' ;
+            $destinationPath = 'storage/images/partner/'. $partner_id .'/products' ;
             $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imgName);
             

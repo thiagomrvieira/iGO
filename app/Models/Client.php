@@ -17,6 +17,7 @@ class Client extends Model
         'birth_date',
         'mobile_phone_number',
         'active',
+        'profile_image',
     ];
     
     /**

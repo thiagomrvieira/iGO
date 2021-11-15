@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->date('birth_date')->nullable();
             $table->string('mobile_phone_number')->nullable();
             $table->boolean('active')->default(false);
+            $table->string('profile_image')->nullable();
             $table->timestamps();
         });
     }

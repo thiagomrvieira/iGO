@@ -9,6 +9,7 @@ use App\Http\Resources\ClientPersonalDataResource;
 use App\Http\Resources\ClientResource;
 use App\Http\Traits\AddressTrait;
 use App\Http\Traits\ClientTrait;
+use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\UserTrait;
 use App\Models\Address;
 use App\Models\Client;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    use AddressTrait, UserTrait, ClientTrait;
+    use AddressTrait, UserTrait, ClientTrait, ImagesTrait;
 
     /**
      * GET CLIENT PROFILE
@@ -43,7 +44,8 @@ class ClientController extends Controller
      *                  "name": "String",
      *                  "birth_date": "Datetime",
      *                  "email": "String",
-     *                  "mobile_phone_number": "String"
+     *                  "mobile_phone_number": "String",
+     *                  "profile_image": "String"
      *              },
      *          },
      *      ),
@@ -109,7 +111,8 @@ class ClientController extends Controller
      *                  "name": "String",
      *                  "birth_date": "Datetime",
      *                  "email": "String",
-     *                  "mobile_phone_number": "String"
+     *                  "mobile_phone_number": "String",
+     *                  "profile_image": "String"
      *              },
      *          },
      *      ),
@@ -344,6 +347,83 @@ class ClientController extends Controller
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? "Password alterado!"], 200); 
+        
+    }
+
+
+    /**
+     * UPDATE CLIENT PROFILE IMAGE
+     * *
+     * 
+     * @OA\Post(path="/api/v1/client/image",
+     *   tags={"Client: Profile, Password & Favorite partners"},
+     *   summary="Update client profile image",
+     *   description="Update profile image",
+     *   operationId="updateImage",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 allOf={
+     *                     @OA\Schema(ref="#components/schemas/item"),
+     *                     @OA\Schema(
+     *                         @OA\Property(
+     *                             property="image",
+     *                             type="string", format="binary"
+     *                         )
+     *                     )
+     *                 }
+     *             )
+     *         )
+     *     ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Imagem alterada!",
+     *          },
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   @OA\Response(
+     *      response=422,
+     *      description="Validation error",
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *          
+     *      )
+     *  ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function updateImage(Request $request)
+    {
+        // Store Images 
+        $this->UpateClientImage($request);   
+
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? "Imagem alterada!"], 200); 
         
     }
 }

@@ -22,7 +22,8 @@ class OrderResource extends JsonResource
             'partner'     => [
                 'id'    => $this->cart->first()->product->partner->id,  
                 'name'  => $this->cart->first()->product->partner->name,  
-                'image' => config('app.url') . $this->cart->first()->product->partner->images->image_cover ?? null,  
+                'image' => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->cart->first()->product->partner->images->image_cover)  ?? null,  
+
             ],
             
             

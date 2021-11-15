@@ -30,7 +30,7 @@ class PartnerResource extends JsonResource
             'premium'             => $this->premium,
             'account_created_at'  => $this->created_at,
             'account_approved_at' => $this->approved_at,
-            'images'              => $this->images,
+            'images'              => new PartnerImageResource($this->images),
             'total_products'      => $this->products->count(),
             'total_reviews'       => $this->reviewsAndRatings->count('review'),
             'rating'              => $this->reviewsAndRatings->avg('rate'),

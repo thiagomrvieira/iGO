@@ -451,7 +451,8 @@
                                         "name": "String",
                                         "birth_date": "Datetime",
                                         "email": "String",
-                                        "mobile_phone_number": "String"
+                                        "mobile_phone_number": "String",
+                                        "profile_image": "String"
                                     }
                                 }
                             }
@@ -524,7 +525,8 @@
                                         "name": "String",
                                         "birth_date": "Datetime",
                                         "email": "String",
-                                        "mobile_phone_number": "String"
+                                        "mobile_phone_number": "String",
+                                        "profile_image": "String"
                                     }
                                 }
                             }
@@ -714,6 +716,74 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/image": {
+            "post": {
+                "tags": [
+                    "Client: Profile, Password & Favorite partners"
+                ],
+                "summary": "Update client profile image",
+                "description": "Update profile image",
+                "operationId": "updateImage",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#components/schemas/item"
+                                    },
+                                    {
+                                        "properties": {
+                                            "image": {
+                                                "type": "string",
+                                                "format": "binary"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Imagem alterada!"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {}
                         }
                     }
                 },

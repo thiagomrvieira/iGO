@@ -43,7 +43,7 @@
                         @endif
                         {!! Form::open(['class'  => '', 'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                             @csrf
-                            <div class="" id="accordionBusinessData">
+                            <div class="accordionBusinessData" id="accordionBusinessData">
                                 
                                 {{-- Category item--}}
                                 <div class="accordion-item">
@@ -364,39 +364,40 @@
                                         </svg>
                                     </button>
                                     <div class="accordion-content">
-                                        @if (isset($partner->images->image_cover))
+                                        {{-- @if (isset($partner->images->image_cover))
                                             <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
-                                        @endif
+                                        @endif --}}
                                         <div class="form-group">
                                             {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input']) !!}
+                                            {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input form-input-image']) !!}
                                         </div>
 
-                                        @if (isset($partner->images->image_01))
+                                        {{-- @if (isset($partner->images->image_01))
                                             <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_01)}}" alt="" height="90px">
-                                        @endif
+                                        @endif --}}
                                         <div class="form-group">
                                             {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input']) !!}
+                                            {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input form-input-image']) !!}
                                         </div>
 
-                                        @if (isset($partner->images->image_02))
+                                        {{-- @if (isset($partner->images->image_02))
                                             <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_02)}}" alt="" height="90px">
-                                        @endif
+                                        @endif --}}
                                         <div class="form-group">
                                             {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input']) !!}
+                                            {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input form-input-image']) !!}
                                         </div>
 
-                                        @if (isset($partner->images->image_03))
+                                        {{-- @if (isset($partner->images->image_03))
                                             <img src="{{url('/images/partner/'.$partner->id. '/' .$partner->images->image_03)}}" alt="" height="90px">
-                                        @endif
+                                        @endif --}}
                                         <div class="form-group">
                                             {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input']) !!}
+                                            {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input form-input-image']) !!}
                                         </div>
                                     </div>
                                 </div> 
+                                <h3>*Dados de preenchimento obrigatório.</h3>
                                 {{-- <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -441,8 +442,10 @@
                                 </div> --}}
                                 
                             </div>
-                            {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formBusinessData'   ]) !!}
-                            {!! Form::close() !!}
+                            <div class="button-next-container">
+                                {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formBusinessData'   ]) !!}
+                                {!! Form::close() !!}
+                            </div>
                         <div class="nav-menu-fixed">
                             @include('backoffice-partner.layouts.sidebar') 
                         </div>

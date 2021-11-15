@@ -554,3 +554,47 @@ header .row-fluid .column-right img {
 .accordion-item.avegare-time .accordion-content input:checked:before {
 	visibility: visible;
 }
+/* images styling */
+.accordion-item.image-items .accordion-content .form-group {
+	width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+	margin-bottom: 25px;
+}
+.accordion-item.image-items .accordion-content .form-group label {
+	width: 100%;
+	background-color: #FFF6B0;
+	padding: 16px;
+	color: #072A40;
+	border-radius: 20px;
+}
+.accordion-item.image-items .accordion-content .form-group input[type="file" i]::-webkit-file-upload-button {
+	display: none;
+}
+.accordion-item.image-items .accordion-content .form-group input[type="file" i]::-webkit-file-upload-button > span {
+	color: #F77415;
+	padding: auto 0;
+	background-color: #FFFFFF;
+	box-shadow: none;
+	border-style: none;
+	border-bottom: 1px solid #F77415;
+	cursor: pointer;
+}
+.accordionBusinessData h3 {
+	font-size: 10px;
+	font-weight: 20px;
+	color: #072A40;
+	margin-top: 16px;
+}
+.accordionBusinessData .form-group .form-input-image {
+	color: red;
+}
+.accordionBusinessData + .button-next-container {
+	display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+	margin-top: 56px;
+}
+	

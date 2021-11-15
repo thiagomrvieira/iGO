@@ -44,7 +44,8 @@ class ClientController extends Controller
      *                  "name": "String",
      *                  "birth_date": "Datetime",
      *                  "email": "String",
-     *                  "mobile_phone_number": "String"
+     *                  "mobile_phone_number": "String",
+     *                  "profile_image": "String"
      *              },
      *          },
      *      ),
@@ -110,7 +111,8 @@ class ClientController extends Controller
      *                  "name": "String",
      *                  "birth_date": "Datetime",
      *                  "email": "String",
-     *                  "mobile_phone_number": "String"
+     *                  "mobile_phone_number": "String",
+     *                  "profile_image": "String"
      *              },
      *          },
      *      ),

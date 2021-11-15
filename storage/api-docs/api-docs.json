@@ -451,7 +451,8 @@
                                         "name": "String",
                                         "birth_date": "Datetime",
                                         "email": "String",
-                                        "mobile_phone_number": "String"
+                                        "mobile_phone_number": "String",
+                                        "profile_image": "String"
                                     }
                                 }
                             }
@@ -524,7 +525,8 @@
                                         "name": "String",
                                         "birth_date": "Datetime",
                                         "email": "String",
-                                        "mobile_phone_number": "String"
+                                        "mobile_phone_number": "String",
+                                        "profile_image": "String"
                                     }
                                 }
                             }

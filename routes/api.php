@@ -61,6 +61,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::patch('profile', [ClientController::class, 'updatePersonalData']);
 
             Route::patch('password', [ClientController::class, 'updatePassWord']);
+            Route::post('image',     [ClientController::class, 'updateImage'   ]);
             
             #   Favorite/Unfavorite Partner
             Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);

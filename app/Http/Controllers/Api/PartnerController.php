@@ -28,6 +28,15 @@ class PartnerController extends Controller
      *          type="string"
      *      )
      *   ),
+     *   @OA\Parameter(
+     *      name="search",
+     *      description="Query",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -94,8 +103,7 @@ class PartnerController extends Controller
      *     {"api_key": {}}
      *   }
      * )
-     */
-    /**
+     *
      * Display a listing of the Partner resource.
      *
      * @return \Illuminate\Http\Response
@@ -103,7 +111,8 @@ class PartnerController extends Controller
     public function index(Request $request)
     {
         
-        $partners = Partner::with('address')->with('images')->where('active', true)->get();
+        $partners = Partner::with('address')->with('images')->where('active', true)
+                           ->filter( request(['search']) )->get();
 
         if ($request->location) {
             $partners = $partners->where('address.county_id', $request->location);

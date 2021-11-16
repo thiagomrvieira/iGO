@@ -142,4 +142,13 @@ class Partner extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn ($query, $search) => 
+            $query
+                ->where('company_name', 'like', '%' . $search . '%'));
+                // ->orWhere('body', 'like', '%' . $search . '%'));
+         
+    }
 }

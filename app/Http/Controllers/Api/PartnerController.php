@@ -17,8 +17,17 @@ class PartnerController extends Controller
      * @OA\Get(path="/api/v1/client/partners",
      *   tags={"Client: Partners"},
      *   summary="Get the list of partners",
-     *   description="Return a list of all active partners",
+     *   description="If the <b> location </b> parameter is null it will return a list of all active <i>Partners</i> <br> If the <b>location</b> parameter receive a valid <b>county_id</b>, it will return all <i>Partners</i> in that Location",
      *   operationId="getListOfPartners",
+     *   @OA\Parameter(
+     *      name="location",
+     *      description="County id",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -91,11 +100,18 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+        $partners = Partner::with('address')->with('images')->where('active', true)->get();
+
+        if ($request->location) {
+            $partners = $partners->where('address.county_id', $request->location);
+        }
+
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de aderentes',
-                                 'data'    => new PartnerCollection( Partner::where('active', true)->with('images')->get() )], 200); 
+                                 'data'    => new PartnerCollection( $partners )], 200); 
     }
 
     /**

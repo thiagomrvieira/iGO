@@ -2364,8 +2364,19 @@
                     "Client: Partners"
                 ],
                 "summary": "Get the list of partners",
-                "description": "Return a list of all active partners",
+                "description": "If the <b> location </b> parameter is null it will return a list of all active <i>Partners</i> <br> If the <b>location</b> parameter receive a valid <b>county_id</b>, it will return all <i>Partners</i> in that Location",
                 "operationId": "getListOfPartners",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "description": "County id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",

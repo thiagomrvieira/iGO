@@ -596,7 +596,7 @@ header .row-fluid .column-right img {
 .accordionBusinessData .form-group .form-input-image {
 	color: red;
 }
-.accordionBusinessData + .button-next-container {
+.button-next-container {
 	display: flex;
     flex-wrap: nowrap;
     justify-content: center;

@@ -72,33 +72,14 @@
                                     </button>
                                     <div class="accordion-content">
                                         @foreach ($categories as $category)
-                                        <div class="form-check">
-                                            {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, 
-                                                ['class' => 'form-check-input']) !!}
-                                            {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
-                                        </div>
-                                    @endforeach
+                                            <div class="form-check">
+                                                {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, 
+                                                    ['class' => 'form-check-input']) !!}
+                                                {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div> 
-
-                                {{-- <div class="accordion-item"> 
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Subcategorias*
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionBusinessData">
-                                        <div class="accordion-body">
-                                            @foreach ($categories as $category)
-                                                <div class="form-check">
-                                                    {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, 
-                                                        ['class' => 'form-check-input']) !!}
-                                                    {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                 {{--  Schedules item --}}
 
@@ -192,108 +173,6 @@
                                         </div>
                                     </div>
                                 </div> 
-
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Horários*
-                                        </button>
-                                    </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionBusinessData">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    Dias:
-                                                </div>
-                                                <div class="col-8">
-                                                    Horário:
-                                                </div>
-                                            </div>
-                                            
-                                            @php $schedule = $partner->schedule @endphp
-                                            
-                                            @foreach ($workDays as $workday)
-                                                <div class="row"> --}}
-                                                    {{-- DAYS --}}
-                                                    {{-- <div class="col-4">
-                                                        <div class="form-check">
-                                                            {!! Form::checkbox($workday, null, $schedule->where('day', $workday)->count() > 0 ? true : false, 
-                                                                            ['class' => 'form-check-input checkDay', 'data-day' => $workday]) !!}
-                                                            {!! Form::label($workday, $workday, ['class' => 'form-check-label']) !!}
-                                                        </div>
-                                                    </div> --}}
-
-                                                    {{-- PERIODS --}}
-                                                    {{-- <div class="col-8"> --}}
-                                                        {{-- Morning --}}
-                                                        {{-- <div class="row">
-                                                            <div class="col-2">
-                                                                <div class="form-check">
-                                                                    {!! Form::checkbox($workday.'Morning', null, $schedule->where('day', $workday)
-                                                                        ->where('period', 'morning')->count() > 0 ? true : false, ['class' => 'form-check-input checkPeriod check'.$workday, 'id' => $workday.'Morning']) !!}
-                                                                    {!! Form::label($workday.'Morning', 'Manhã', ['class' => 'form-check-label']) !!}
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-10 ">
-                                                                <div class="form-inline">
-                                                                    {{ Form::time($workday.'MorningOpening', $schedule->where('day', $workday)
-                                                                        ->where('period', 'morning')->pluck('open')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Morning input'.$workday]) }}
-                                                                    às
-                                                                    {{ Form::time($workday.'MorningClosing', $schedule->where('day', $workday)
-                                                                        ->where('period', 'morning')->pluck('close')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Morning input'.$workday]) }}
-                                                                </div>
-                                                            </div>
-                                                        </div> --}}
-
-                                                        {{-- Afternoon --}}
-                                                        {{-- <div class="row">
-                                                            <div class="col-2">
-                                                                <div class="form-check">
-                                                                    {!! Form::checkbox($workday.'Afternoon', null, $schedule->where('day', $workday)
-                                                                        ->where('period', 'afternoon')->count() > 0 ? true : false, ['class' => 'form-check-input checkPeriod check'.$workday , 'id' => $workday.'Afternoon']) !!}
-                                                                    {!! Form::label($workday.'Afternoon', 'Tarde', ['class' => 'form-check-label']) !!}
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-10 ">
-                                                                <div class="form-inline">
-                                                                    {{ Form::time($workday.'AfternoonOpening', $schedule->where('day', $workday)
-                                                                        ->where('period', 'afternoon')->pluck('open')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Afternoon input'.$workday]) }}
-                                                                    às
-                                                                    {{ Form::time($workday.'AfternoonClosing', $schedule->where('day', $workday)
-                                                                        ->where('period', 'afternoon')->pluck('close')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Afternoon input'.$workday]) }}
-                                                                </div>
-                                                            </div>
-                                                        </div> --}}
-
-                                                        {{-- Evening --}}
-                                                        {{-- <div class="row">
-                                                            <div class="col-2">
-                                                                <div class="form-check">
-                                                                    {!! Form::checkbox($workday.'Evening', null, $schedule->where('day', $workday)
-                                                                        ->where('period', 'evening')->count() > 0 ? true : false, ['class' => 'form-check-input checkPeriod check'.$workday, 'id' => $workday.'Evening']) !!}
-                                                                    {!! Form::label($workday.'Evening', 'Noite', ['class' => 'form-check-label']) !!}
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-10 ">
-                                                                <div class="form-inline">
-                                                                    {{ Form::time($workday.'EveningOpening', $schedule->where('day', $workday)
-                                                                        ->where('period', 'evening')->pluck('open')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Evening input'.$workday]) }}
-                                                                    às
-                                                                    {{ Form::time($workday.'EveningClosing', $schedule->where('day', $workday)
-                                                                        ->where('period', 'evening')->pluck('close')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Evening input'.$workday]) }}
-                                                                </div>
-                                                            </div>
-                                                        </div> --}}
-                                                    {{-- </div>
-                                                </div>
-                                                <hr>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 
                                 {{--  Average time item --}}
                                 <div class="accordion-item avegare-time">
@@ -323,31 +202,7 @@
                                             {!! Form::label('avgtime', '45 - 60 minutos', ['class' => 'form-check-label']) !!}
                                         </div>
                                     </div>
-                                </div>  
-
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            Tempo médio de preparação do pedido*
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionBusinessData">
-                                        <div class="accordion-body">
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                {!! Form::radio('avgtime', '0-30', $partner->average_order_time == '0-30' ? true : false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label('avgtime', '0 - 30 minutos', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                {!! Form::radio('avgtime', '30-45', $partner->average_order_time == '30-45' ? true : false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label('avgtime', '30 - 45 minutos', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                {!! Form::radio('avgtime', '45-60', $partner->average_order_time == '45-60' ? true : false, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label('avgtime', '45 - 60 minutos', ['class' => 'form-check-label']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                </div>
 
                                 {{--  Images item --}}
                                 <div class="accordion-item image-items">
@@ -450,14 +305,15 @@
                                 {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formBusinessData'   ]) !!}
                                 {!! Form::close() !!}
                             </div>
-                        <div class="nav-menu-fixed">
-                            @include('backoffice-partner.layouts.sidebar') 
-                        </div>
+                            <div class="nav-menu-fixed">
+                                @include('backoffice-partner.layouts.sidebar') 
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 @endsection
 
 @section('jquery')

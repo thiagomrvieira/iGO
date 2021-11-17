@@ -145,10 +145,15 @@ class Partner extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        
         $query->when($filters['search'] ?? false, fn ($query, $search) => 
-            $query
-                ->where('company_name', 'like', '%' . $search . '%'));
-                // ->orWhere('body', 'like', '%' . $search . '%'));
-         
+            $query->where('company_name', 'like', '%' . $search . '%')
+        );
+
+        $query->when($filters['cat'] ?? false, fn ($query, $search) => 
+            $query->whereIn('category_id', $filters['cat'] )
+        );
+       
     }
+    
 }

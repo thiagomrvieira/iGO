@@ -17,7 +17,7 @@ class PartnerController extends Controller
      * @OA\Get(path="/api/v1/client/partners",
      *   tags={"Client: Partners"},
      *   summary="Get the list of partners",
-     *   description="If the <b> location </b> parameter is null it will return a list of all active <i>Partners</i> <br> If the <b>location</b> parameter receive a valid <b>county_id</b>, it will return all <i>Partners</i> in that Location",
+     *   description="If the <b> location </b> parameter is null it will return a list of all active <i> Partners </i> - Eg.: api/v1/client/partners <br> If the <b> location </b> parameter receive a valid <b> county_id </b>, it will return all <i> Partners </i> in that Location Eg.: api/v1/client/partners?location=1 <br> If the <b> search </b> parameter receive any value, it will search for <i> Partners </i> with that Business name - Eg.: api/v1/client/partners?search=espetadas <br> If the <b> cat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that main Category - Eg.: api/v1/client/partners?cat[]=1&cat[]=2",
      *   operationId="getListOfPartners",
      *   @OA\Parameter(
      *      name="location",
@@ -25,7 +25,7 @@ class PartnerController extends Controller
      *      required=false,
      *      in="query",
      *      @OA\Schema(
-     *          type="string"
+     *          type="integer"
      *      )
      *   ),
      *   @OA\Parameter(
@@ -37,6 +37,21 @@ class PartnerController extends Controller
      *          type="string"
      *      )
      *   ),
+     *   @OA\Parameter(
+     *      name="cat[]",
+     *      description="Category",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="array",
+     *          @OA\Items(
+     *              type="integer",
+     *              format="int32",
+     *          ),
+     *          collectionFormat="csv",
+     *      )
+     *   ),
+     * 
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -112,7 +127,7 @@ class PartnerController extends Controller
     {
         
         $partners = Partner::with('address')->with('images')->where('active', true)
-                           ->filter( request(['search']) )->get();
+                           ->filter( $request->all() )->get();
 
         if ($request->location) {
             $partners = $partners->where('address.county_id', $request->location);

@@ -2364,7 +2364,7 @@
                     "Client: Partners"
                 ],
                 "summary": "Get the list of partners",
-                "description": "If the <b> location </b> parameter is null it will return a list of all active <i>Partners</i> <br> If the <b>location</b> parameter receive a valid <b>county_id</b>, it will return all <i>Partners</i> in that Location",
+                "description": "If the <b> location </b> parameter is null it will return a list of all active <i> Partners </i> - Eg.: api/v1/client/partners <br> If the <b> location </b> parameter receive a valid <b> county_id </b>, it will return all <i> Partners </i> in that Location Eg.: api/v1/client/partners?location=1 <br> If the <b> search </b> parameter receive any value, it will search for <i> Partners </i> with that Business name - Eg.: api/v1/client/partners?search=espetadas <br> If the <b> cat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that main Category - Eg.: api/v1/client/partners?cat[]=1&cat[]=2",
                 "operationId": "getListOfPartners",
                 "parameters": [
                     {
@@ -2373,7 +2373,7 @@
                         "description": "County id",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -2383,6 +2383,20 @@
                         "required": false,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cat[]",
+                        "in": "query",
+                        "description": "Category",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "collectionFormat": "csv"
                         }
                     }
                 ],

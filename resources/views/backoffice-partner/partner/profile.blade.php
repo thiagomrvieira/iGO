@@ -25,7 +25,6 @@
             <div class="block-accordion">
                 <div class="main-fluid">
                     <div class="limit-wrapper">
-            
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -35,11 +34,9 @@
                                 </ul>
                             </div>
                         @endif
-
                         {!! Form::open(['class'  => '', 'id' => 'formProfileData', 'route' => array('partner.profile.update', ['partner' => $partner]), 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                         @csrf
                         {{ method_field('PATCH') }}
-
                         <div class="accordion" id="accordionProfileData">
                             
                             {{-- Product name item--}}
@@ -64,9 +61,7 @@
                                             alt="Partner Image" height="90px">
                                         <br>
                                         {!! Form::label('image_cover', 'Alterar foto' , ['class' => 'form-check-label']) !!}
-
                                     @endif
-
                                     {!! Form::label('image_cover', 'Inserir foto*', ['class' => 'form-check-label']) !!}
                                     {!! Form::file ('image_cover', null, false,     ['class' => 'form-check-input']) !!}
                                 </div>

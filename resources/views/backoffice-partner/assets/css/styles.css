@@ -280,6 +280,15 @@ header .row-fluid .column-right img {
 	width: 48px;
 	margin-left: 15px;
 }
+header.fixed {
+	background-color: #ffffff;
+	box-shadow: 0 0 10px rgba(0,0,0,0.16); 
+}
+header.fixed .row-fluid {
+	padding: 10px 0;
+}
+
+/* page content */
 #page-backoffice .block-home-find {
 	position: relative;
 	background-color: #ffffff;
@@ -290,6 +299,8 @@ header .row-fluid .column-right img {
 }
 #page-backoffice .block-home-find .block-title {
 	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 25px;
 }
 #page-backoffice .block-home-find .block-lead {
 	width: 480px;
@@ -315,11 +326,11 @@ header .row-fluid .column-right img {
 	justify-content: center;
 	flex-direction: column;
 	width: calc(25% - 15px);
-	margin-left: 30px;
+	margin-right: 30px;
 	margin-bottom: 56px;
 }
 #page-backoffice .block-home-find .row-fluid .column-4:last-child {
-	margin-left: 0px;
+	margin-right: 0px;
 }
 #page-backoffice .block-home-find .row-fluid .column-4 .block-find-icon {
 	margin-bottom: 30px;
@@ -392,6 +403,7 @@ header .row-fluid .column-right img {
 	line-height: 12px;
 	font-weight: 400;
 	font-style: normal;
+	color: rgba(7, 42, 64, 0.6);
 }
 .block-accordion .main-fluid .nav-menu-fixed .navbar .nav-link img {
 	width: 56px;
@@ -427,12 +439,21 @@ header .row-fluid .column-right img {
     justify-content: flex-start;
     align-items: center;
 }
+/* form check */
 .block-accordion .sub-categories .accordion-content .form-check {
 	width: calc(100%/3);
 	display: flex;
     justify-content: flex-start;
     align-items: center;
 	margin-bottom: 34px;
+}
+.block-accordion .sub-categories .accordion-content .form-check label {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #072A40;
 }
 .block-accordion .accordion-content .form-check input {
 	margin-right: 10px;
@@ -442,12 +463,19 @@ header .row-fluid .column-right img {
 	border: 1px solid #072A40;
 	padding: 0;
 	background-position: center;
+	cursor: pointer;
+}
+.block-accordion .accordion-content .form-check input label,
+.block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-inline input span {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #072A40;
 }
 .block-accordion .accordion-content .form-check input:checked {
 	background-image: url('/assets-backoffice-partner/images/check_box_sel.png');
-}
-.block-accordion .accordion-button h3 {
-	text-transform: uppercase;
 }
 .block-accordion .accordion-button svg {
 	transition: all 0.3s ease-in-out;
@@ -493,6 +521,12 @@ header .row-fluid .column-right img {
 }
 .block-accordion .accordion-content .accordion-body .partner-business-times .col-4 label {
 	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #072A40;
 }
 .block-accordion .accordion-content .accordion-body .partner-business-header .partner-business-timer,
 .block-accordion .accordion-content .accordion-body .partner-business-times .col-8 {
@@ -503,14 +537,18 @@ header .row-fluid .column-right img {
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: stretch;
+	width: 100%;
 }
-.block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row {
+.block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row{
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 16px;
 }
+.block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-inline span {
+	margin: 0 25px;
+} 
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-4 .form-check,
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-check {
 	display: flex;
@@ -537,6 +575,20 @@ header .row-fluid .column-right img {
 	align-items: center;
 	justify-content: space-between;
 }
+.accordion-item.avegare-time .accordion-content .average-time-check {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+}
+.accordion-item.avegare-time .accordion-content .average-time-check {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #072A40;
+}
 .accordion-item.avegare-time .accordion-content input {
 	width: 18px;
 	height: 18px;
@@ -546,6 +598,8 @@ header .row-fluid .column-right img {
 	flex-flow: row nowrap;
 	justify-content: center;
 	align-items: center;
+	margin: 0 15px 0 0;
+	cursor: pointer;
 }
 .accordion-item.avegare-time .accordion-content input:before {
 	display: block;
@@ -575,10 +629,27 @@ header .row-fluid .column-right img {
 	color: #072A40;
 	border-radius: 20px;
 }
-.accordion-item.image-items .accordion-content .form-group input[type="file" i]::-webkit-file-upload-button {
-	display: none;
+.accordion-item.image-items .accordion-content .form-group .form-file-button {
+	position: relative;
 }
-.accordion-item.image-items .accordion-content .form-group input[type="file" i]::-webkit-file-upload-button > span {
+.accordion-item.image-items .accordion-content .form-group .form-file-button input[type="file"] {
+	opacity: 0;
+    left: 0;
+	top: 0;
+    position: absolute;
+    cursor: pointer;
+    margin-bottom: 0!important;
+    padding-left: 0!important;
+    width: 100%;
+    z-index: 1;
+}
+.accordion-item.image-items .accordion-content .form-group .form-file-button .form-fild-text span {
+	color: #F77415;
+	text-decoration: underline;
+	margin-left: 35px;
+
+}
+.accordion-item.image-items .accordion-content .form-group input[type="file"] {
 	color: #F77415;
 	padding: auto 0;
 	background-color: #FFFFFF;
@@ -587,14 +658,10 @@ header .row-fluid .column-right img {
 	border-bottom: 1px solid #F77415;
 	cursor: pointer;
 }
-.accordionBusinessData h3 {
-	font-size: 10px;
+.accordion .accordion-button h3 strong {
+	font-size: 12px;
 	font-weight: 20px;
 	color: #072A40;
-	margin-top: 16px;
-}
-.accordionBusinessData .form-group .form-input-image {
-	color: red;
 }
 .button-next-container {
 	display: flex;

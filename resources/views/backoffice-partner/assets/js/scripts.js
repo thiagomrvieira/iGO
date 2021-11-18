@@ -9,6 +9,8 @@ $j(document).ready(function ($) {
   $j('.block-accordion').on('click', '.accordion-button', function(){
     this.classList.toggle('is-open')
   })
+
+  alert('teste');
 })
 
 function scrollMenuFixed() {

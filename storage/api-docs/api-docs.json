@@ -280,6 +280,7 @@
                 "description": "Create/Update a product to/in the cart - Expect to recieve a product id and a quantity - If the product is already in the cart, updates the quantity",
                 "operationId": "addToCart",
                 "requestBody": {
+                    "description": "The field '<b>options</b>' should be the option that user can choose when ordering a product. <i>Eg.: Sauce or extras in a food type product </i> <br>The first field '<b>id</b>' should be the id of the <b>kind</b> of option. <i>Eg.: sauce or extra</i> <br>The '<b>values</b>' array should be filled with the  <b>option id</b>.",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -293,17 +294,34 @@
                                         "type": "integer",
                                         "example": "2"
                                     },
-                                    "side": {
-                                        "type": "integer",
-                                        "example": "1"
+                                    "options": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": ""
+                                                },
+                                                "values": {
+                                                    "type": "object",
+                                                    "example": ""
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "id": 1,
+                                                "values": [
+                                                    54,
+                                                    1
+                                                ]
+                                            }
+                                        ]
                                     },
-                                    "sauce": {
-                                        "type": "integer",
-                                        "example": "6"
-                                    },
-                                    "extras": {
+                                    "notes": {
                                         "type": "string",
-                                        "example": "[{'extra_id':'3','extra_quantity':'1'}]"
+                                        "example": "Remove pickles from the sandwich"
                                     }
                                 },
                                 "type": "object"

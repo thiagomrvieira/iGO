@@ -130,15 +130,37 @@ class CartController extends Controller
      *   description="Create/Update a product to/in the cart - Expect to recieve a product id and a quantity - If the product is already in the cart, updates the quantity",
      *   operationId="addToCart",
      *   @OA\RequestBody(
-     *      required=true,
+     *      required = true,
+     *      description = "The field '<b>options</b>' should be the option that user can choose when ordering a product. <i>Eg.: Sauce or extras in a food type product </i> <br>The first field '<b>id</b>' should be the id of the <b>kind</b> of option. <i>Eg.: sauce or extra</i> <br>The '<b>values</b>' array should be filled with the  <b>option id</b>.",
      *      @OA\JsonContent(
-     *          type="object",
-     *          @OA\Property(property="product_id", type="integer", example="4"),
-     *          @OA\Property(property="quantity", type="integer", example="2"),
-     *          @OA\Property(property="side", type="integer", example="1"),
-     *          @OA\Property(property="sauce", type="integer", example="6"),
-     *          @OA\Property(property="extras", type="string", example="[{'extra_id':'3','extra_quantity':'1'}]"),
-     *      )
+     *           type="object",
+     *           @OA\Property(property="product_id", type="integer", example="4"),
+     *           @OA\Property(property="quantity", type="integer", example="2"),
+     *           @OA\Property(
+     *              property="options",
+     *              type="array",
+     *              example={
+     *                  {
+     *                      "id": 1,
+     *                      "values": {54, 1},
+     *                  }
+     *              },
+     *              @OA\Items(
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="integer",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                   property="values",
+     *                     type="object",
+     *                     example=""
+     *                  ),
+     *              ),
+     *           ),
+     *           @OA\Property(property="notes", type="string", example="Remove pickles from the sandwich"),
+     * 
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=200,

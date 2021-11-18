@@ -82,10 +82,19 @@ class PartnerController extends Controller
      *                          "phone_number": "string",
      *                          "mobile_phone_number": "string",
      *                          "tax_number": "string",
-     *                          "category": "string",
+     *                          "category": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string",
+     *                              "parent_category": "string",
+     *                           },
+     *                          
      *                          "sub_categories": {
      *                              {
-     *                                  
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "image": "string",
+     *                                  "parent_category": "string",
      *                              },
      *                          },
      *                          "average_order_time": "string",
@@ -184,10 +193,18 @@ class PartnerController extends Controller
      *                          "phone_number": "string",
      *                          "mobile_phone_number": "string",
      *                          "tax_number": "string",
-     *                          "category": "string",
+     *                          "category": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string",
+     *                              "parent_category": "string",
+     *                           },
      *                          "sub_categories": {
      *                              {
-     *                                  
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "image": "string",
+     *                                  "parent_category": "string",
      *                              },
      *                          },
      *                          "average_order_time": "string",

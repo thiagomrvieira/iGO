@@ -17,8 +17,54 @@ class PartnerController extends Controller
      * @OA\Get(path="/api/v1/client/partners",
      *   tags={"Client: Partners"},
      *   summary="Get the list of partners",
-     *   description="Return a list of all active partners",
+     *   description="If the <b> location </b> parameter is null it will return a list of all active <i> Partners </i> - Eg.: api/v1/client/partners <br> If the <b> location </b> parameter receive a valid <b> county_id </b>, it will return all <i> Partners </i> in that Location Eg.: api/v1/client/partners?location=1 <br> If the <b> search </b> parameter receive any value, it will search for <i> Partners </i> with that Business name - Eg.: api/v1/client/partners?search=company <br> If the <b> cat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that main Category - Eg.: api/v1/client/partners?cat[]=1&cat[]=2 <br> If the <b> subcat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that Sub Category - Eg.: api/v1/client/partners?subcat[]=1&subcat[]=2",
      *   operationId="getListOfPartners",
+     *   @OA\Parameter(
+     *      name="location",
+     *      description="County id",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="search",
+     *      description="Query",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="cat[]",
+     *      description="Category",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="array",
+     *          @OA\Items(
+     *              type="integer",
+     *              format="int32",
+     *          ),
+     *          collectionFormat="csv",
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="subcat[]",
+     *      description="Sub categories",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="array",
+     *          @OA\Items(
+     *              type="integer",
+     *              format="int32",
+     *          ),
+     *          collectionFormat="csv",
+     *      )
+     *   ),
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -85,17 +131,22 @@ class PartnerController extends Controller
      *     {"api_key": {}}
      *   }
      * )
-     */
-    /**
+     *
      * Display a listing of the Partner resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+        $partners = Partner::with('address')->with('images')->with('subCategories')
+                           ->where('active', true)
+                           ->filter( $request->all() )->get();
+
+
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de aderentes',
-                                 'data'    => new PartnerCollection( Partner::where('active', true)->with('images')->get() )], 200); 
+                                 'data'    => new PartnerCollection( $partners )], 200); 
     }
 
     /**

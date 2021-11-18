@@ -333,12 +333,12 @@
                 $('.input' + id).val('');
             };
         });
-
-        $(document).ready(
-            alert('teste');
+        // alert('teste');
+        // $(document).ready(
+           
             let inptu = document.getElementsByClassName("form-image-input");
-            alert(inptu);
-        )
+            alert('inptu');
+        // )
 
     </script>
 @endsection

@@ -20,10 +20,11 @@ class CartProductResource extends JsonResource
                 'name' => $this->product->partner->name,
             ],
             'product' => [
-                'id'       => $this->product_id,
-                'name'     => $this->product->name,
-                'price'    => $this->product->price,
-                'quantity' => $this->quantity,
+                'id'          => $this->product_id,
+                'name'        => $this->product->name,
+                'description' => $this->product->description,
+                'price'       => $this->product->price,
+                'quantity'    => $this->quantity,
             ],
            
             'extras' => CartProductExtraResource::collection($this->cartExtras),

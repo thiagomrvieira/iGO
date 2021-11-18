@@ -1011,6 +1011,7 @@
                                                 "product": {
                                                     "id": "integer",
                                                     "name": "string",
+                                                    "description": "string",
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
@@ -1141,6 +1142,7 @@
                                                 "product": {
                                                     "id": "integer",
                                                     "name": "string",
+                                                    "description": "string",
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },

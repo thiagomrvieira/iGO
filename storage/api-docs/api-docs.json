@@ -2379,7 +2379,7 @@
                     {
                         "name": "search",
                         "in": "query",
-                        "description": "Query",
+                        "description": "Query - <small><i>'Fake company' will return two partners</i></small>",
                         "required": false,
                         "schema": {
                             "type": "string"

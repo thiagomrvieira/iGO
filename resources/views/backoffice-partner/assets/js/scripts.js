@@ -46,6 +46,9 @@ $j(document).ready(function ($) {
       $(this).parent().prev().text(last);
     }
   });
+
+  // profile photo
+  
   
 })
 

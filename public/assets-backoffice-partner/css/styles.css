@@ -275,7 +275,7 @@ header .row-fluid .column-right > div {
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-evenly;
-	align-items: center;
+	align-items: flex-end;
 }
 header .row-fluid .column-right > div small{
 	margin-bottom: 5px;
@@ -469,7 +469,7 @@ header.fixed .row-fluid {
 	background-position: center;
 	cursor: pointer;
 }
-.block-accordion .accordion-content .form-check input label,
+.block-accordion .accordion-content .form-check label,
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-inline input span {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
@@ -556,6 +556,12 @@ header.fixed .row-fluid {
 }
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-inline span {
 	margin: 0 25px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #072A40;
 } 
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-4 .form-check,
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 .row .form-check {
@@ -681,5 +687,64 @@ header.fixed .row-fluid {
     flex-wrap: nowrap;
     justify-content: center;
 	margin-top: 56px;
+}
+
+/* profile area */
+.accordion-content.profile-content {
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap ;
+	justify-content: center;
+}
+.accordion-content.profile-content .block-form,
+.accordion-content.profile-content .block-form input.accordion-content,
+.accordion-content.profile-content .block-form .block-field,
+.accordion-content.profile-content div.block-form .block-form-group .block-input,
+.accordion-content.profile-content div.block-form .block-form-group input {
+	width: 100%;
+}
+.accordion-content.profile-content div.block-form .block-form-group {
+	margin-bottom: 25px;	
+}
+.accordion-content.profile-content div.block-form .block-form-group .block-field .block-icon svg {
+	margin: 0 10px 0 15px;
+}
+.accordion-content.profile-content div.block-form .block-form-group input {
+	border: none;
+	background-color: #FFF6B0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 25px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64);
+}
+.accordion-content.profile-content .profile-image-cover {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background-image: url('/assets-backoffice-partner/images/photo_loja.png'); 
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.accordion-content.profile-content .block-form .block-form-group {
+	width: 100%;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fff6b0;
+	border: 2px solid transparent;
+	border-radius: 20px;
+}
+.accordion-content.profile-content .block-form .block-field {
+	display: flex;
+	align-items: center;
+}
+.accordion-content.profile-content .block-form .block-field .block-icon {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 	

@@ -41,7 +41,9 @@
                                 </ul>
                             </div>
                         @endif
+
                         {!! Form::open(['class'  => '', 'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                        
                         @csrf
                         <div class="accordion" id="accordionBusinessData">
                             
@@ -58,7 +60,7 @@
                             {{-- Subcategory item--}}
 
                             <div class="accordion-item sub-categories">
-                                <button class="accordion-button" type="button">
+                                <button class="accordion-button is-open" type="button">
                                     <h3><strong>Sub-categorias*</strong></h3>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
                                         <g id="arrow" transform="translate(282 -315) rotate(90)">
@@ -73,8 +75,7 @@
                                 <div class="accordion-content">
                                     @foreach ($categories as $category)
                                         <div class="form-check">
-                                            {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, 
-                                                ['class' => 'form-check-input']) !!}
+                                            {!! Form::checkbox($category->slug, null, ($partner->subCategories->where('id', $category->id)->first() != null ) ? true : false, ['class' => 'form-check-input']) !!}
                                             {!! Form::label($category->slug, $category->name, ['class' => 'form-check-label']) !!}
                                         </div>
                                     @endforeach

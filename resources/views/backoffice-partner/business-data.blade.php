@@ -127,7 +127,7 @@
                                                                 {!! Form::label($workday.'Morning', 'Manhã', ['class' => 'form-check-label']) !!}
                                                             </div>                                                            
                                                             <div class="form-inline">
-                                                                {{ Form::time($workday.'MorningOpening', $schedule->where('day', $workday)->where('period', 'morning')->pluck('open')->first() ?? \Carbon\Carbon::now()->timezone('Europe/Lisbon')->format('H:i'), ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Morning input'.$workday]) }}
+                                                                {{ Form::time($workday.'MorningOpening', $schedule->where('day', $workday)->where('period', 'morning')->pluck('open')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Morning input'.$workday]) }}
                                                                 <span>Às</span> 
                                                                 {{ Form::time($workday.'MorningClosing', $schedule->where('day', $workday)->where('period', 'morning')->pluck('close')->first() ?? null, ['class' => 'custom-select my-1 mr-sm-2 input'.$workday.'Morning input'.$workday]) }}
                                                             </div>
@@ -209,7 +209,7 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <div class="accordion-content">
+                                <div class="accordion-content business-image-content">
                                     {{-- @if (isset($partner->images->image_cover))
                                         <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
                                     @endif --}}
@@ -333,12 +333,5 @@
                 $('.input' + id).val('');
             };
         });
-        // alert('teste');
-        // $(document).ready(
-           
-            let inptu = document.getElementsByClassName("form-image-input");
-            alert('inptu');
-        // )
-
-    </script>
+    </script>   
 @endsection

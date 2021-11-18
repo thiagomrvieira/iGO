@@ -276,6 +276,15 @@ header .row-fluid .column-right {
 	justify-content: space-evenly;
 	align-items: center;
 }
+header .row-fluid .column-right > div {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+header .row-fluid .column-right > div small{
+	margin-bottom: 5px;
+}
 header .row-fluid .column-right img {
 	width: 48px;
 	margin-left: 15px;
@@ -491,6 +500,10 @@ header.fixed .row-fluid {
 .block-accordion button.is-open {
 	color: #ffe414;
 }
+.block-accordion .accordion-button.is-open + .accordion-content.business-image-content {
+	max-height: unset;
+	padding: 35px 0 0 0;
+}
 .block-accordion .accordion-button.is-open + .accordion-content {
 	max-height: unset;
 	padding: 35px 0;
@@ -626,8 +639,13 @@ header.fixed .row-fluid {
 	width: 100%;
 	background-color: #FFF6B0;
 	padding: 16px;
-	color: #072A40;
 	border-radius: 20px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64, 0.5);
 }
 .accordion-item.image-items .accordion-content .form-group .form-file-button {
 	position: relative;

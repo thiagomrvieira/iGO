@@ -61,6 +61,14 @@ class Partner extends Model
         return $this->belongsToMany(PartnerCategory::class, 'category_partner', 'partner_id', 'category_id');
     }
 
+    /** 
+     * Access pivot table directly
+     */
+    public function subCat()
+    {
+        return $this->hasMany(CategoryPartner::class,  'partner_id', 'id');
+    }
+
     /**
      * Get the main Category that owns the Partner profile.
      */
@@ -142,4 +150,33 @@ class Partner extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    /**
+     * FILTER
+     */
+    public function scopeFilter($query, array $filters)
+    {
+        #   Search in Company name
+        $query->when($filters['search'] ?? false, fn ($query, $search) => 
+            $query->where('company_name', 'like', '%' . $search . '%')
+        );
+        #   Search in Main category
+        $query->when($filters['cat'] ?? false, fn ($query, $search) => 
+            $query->whereIn('category_id', $filters['cat'] )
+        );
+        #   Search in Sub category
+        if ($filters['subcat'] ?? false) {
+            $query->whereHas('subCat', function ($query) use ($filters) {
+                $query->whereIn('category_id', $filters['subcat']);
+            });
+        }
+        #   Filter by location
+        if ($filters['location'] ?? false) {
+            $query->whereHas('address', function ($query) use ($filters) {
+                $query->where('county_id', $filters['location']);
+            });
+        }
+       
+    }
+    
 }

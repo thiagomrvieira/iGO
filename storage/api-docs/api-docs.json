@@ -2398,6 +2398,20 @@
                             },
                             "collectionFormat": "csv"
                         }
+                    },
+                    {
+                        "name": "subcat[]",
+                        "in": "query",
+                        "description": "Sub categories",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "collectionFormat": "csv"
+                        }
                     }
                 ],
                 "responses": {

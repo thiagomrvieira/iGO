@@ -51,7 +51,20 @@ class PartnerController extends Controller
      *          collectionFormat="csv",
      *      )
      *   ),
-     * 
+     *  @OA\Parameter(
+     *      name="subcat[]",
+     *      description="Sub categories",
+     *      required=false,
+     *      in="query",
+     *      @OA\Schema(
+     *          type="array",
+     *          @OA\Items(
+     *              type="integer",
+     *              format="int32",
+     *          ),
+     *          collectionFormat="csv",
+     *      )
+     *   ),
      *   @OA\Response(
      *      response=200,
      *      description="Success",
@@ -126,12 +139,10 @@ class PartnerController extends Controller
     public function index(Request $request)
     {
         
-        $partners = Partner::with('address')->with('images')->where('active', true)
+        $partners = Partner::with('address')->with('images')->with('subCategories')
+                           ->where('active', true)
                            ->filter( $request->all() )->get();
 
-        if ($request->location) {
-            $partners = $partners->where('address.county_id', $request->location);
-        }
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de aderentes',

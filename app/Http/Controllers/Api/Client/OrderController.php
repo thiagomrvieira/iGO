@@ -193,6 +193,7 @@ class OrderController extends Controller
      *                          "product": {
      *                              "id": "integer",
      *                              "name": "string",
+     *                              "description": "string",
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
@@ -326,6 +327,7 @@ class OrderController extends Controller
      *                          "product": {
      *                              "id": "integer",
      *                              "name": "string",
+     *                              "description": "string",
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },

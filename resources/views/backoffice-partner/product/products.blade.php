@@ -270,10 +270,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'),  
-                                       ['type' => 'button', 'class' => 'btn btn-secondary', 'data-bs-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), 
-                                       ['type' => 'submit', 'class' => 'btn btn-danger'   , 'form' => 'formDelete'      ]) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'), ['type' => 'button', 'class' => 'btn btn-secondary', 'data-bs-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger'   , 'form' => 'formDelete']) !!}
                 </div>
             </div>
         </div>

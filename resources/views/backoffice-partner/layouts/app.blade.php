@@ -31,6 +31,9 @@
     <!-- Custom JS -->
     <script src="{{ asset('assets-backoffice-partner/js/scripts.js') }}" type="text/javascript"></script>
 
+    :
+    @yield('jquery');
+
 
 </body>
 </html>

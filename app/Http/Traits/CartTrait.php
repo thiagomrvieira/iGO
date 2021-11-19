@@ -26,6 +26,7 @@ trait CartTrait {
                 'client_id'  => Auth::user()->client->id,
                 'product_id' => $request->product_id,
                 'quantity'   => $request->quantity,
+                'note'       => $request->note,
             ]
         );
     }

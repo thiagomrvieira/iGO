@@ -17,6 +17,7 @@ class Cart extends Model
         'client_id',
         'product_id',
         'quantity',
+        'note',
     ];
 
     /**

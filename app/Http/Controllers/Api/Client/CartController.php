@@ -166,7 +166,7 @@ class CartController extends Controller
      *                  ),
      *              ),
      *           ),
-     *           @OA\Property(property="notes", type="string", example="Remove pickles from the sandwich"),
+     *           @OA\Property(property="note", type="string", example="Remove pickles from the sandwich"),
      * 
      *      ),
      *   ),

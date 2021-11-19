@@ -13,19 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 trait CartTrait {
     
-    # Add Product to a cart or update if exist
+    # Add Product to a cart
     public function AddProductToCart($request, $order)
     {
-        return Cart::updateOrCreate(
+        return Cart::create(
             [
                 'client_id'  => Auth::user()->client->id,
                 'order_id'   => $order->id,
                 'product_id' => $request->product_id,
-            ],
-            [
-                'client_id'  => Auth::user()->client->id,
-                'product_id' => $request->product_id,
-                'quantity'   => $request->quantity,
+                'quantity'   => $request->quantity ?? 1,
                 'note'       => $request->note,
             ]
         );

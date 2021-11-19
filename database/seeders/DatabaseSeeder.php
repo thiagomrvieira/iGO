@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderDeliveryStatusTypeSeeder::class);
         $this->call(OrderSeeder::class);
         $this->call(PartnerReviewSeeder::class);
+        $this->call(ProductOptionSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

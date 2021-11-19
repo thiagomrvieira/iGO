@@ -31,62 +31,7 @@ trait CartTrait {
         );
     }
 
-
-    // # Add Extra to a cart or update if exist
-    // public function AddExtraToCart($request, $cartProduct)
-    // {
-    //     if (isset($request->extras)) {
-    //         $str = str_replace('\'', '"', $request->extras);
-
-    //         foreach (json_decode($str) as $extras) {
-    //             CartExtra::updateOrCreate(
-    //                 [
-    //                     'cart_id'  => $cartProduct->id,
-    //                     'extra_id' => $extras->extra_id,
-    //                 ],
-    //                 [
-    //                     'cart_id'  => $cartProduct->id,
-    //                     'extra_id' => $extras->extra_id,
-    //                     'quantity' => $extras->extra_quantity,
-    //                 ]
-    //             );
-    //         }
-    //     }
-    // }
-
-
-    // # Add Side to a cart or update if exist
-    // public function AddSideToCart($request, $cartProduct)
-    // {
-    //     if (isset($request->side)) {
-    //         CartSide::updateOrCreate(
-    //             [
-    //                 'cart_id' => $cartProduct->id,
-    //             ],
-    //             [
-    //                 'cart_id'  => $cartProduct->id,
-    //                 'side_id'  => $request->side,
-    //             ]
-    //         );
-    //     }
-    // }
-
-    // # Add Sauce to a cart or update if exist
-    // public function AddSauceToCart($request, $cartProduct)
-    // {
-    //     if (isset($request->sauce)) {
-    //         CartSauce::updateOrCreate(
-    //             [
-    //                 'cart_id' => $cartProduct->id,
-    //             ],
-    //             [
-    //                 'cart_id'  => $cartProduct->id,
-    //                 'sauce_id' => $request->sauce,
-    //             ]
-    //         );
-    //     }
-    // }
-
+    
     # Add Product Option to a cart or update if exist
     public function AddProductOptionToCart($request, $cartProduct)
     {

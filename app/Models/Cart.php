@@ -61,7 +61,7 @@ class Cart extends Model
         $extras  = 0;
         
         foreach ($this->cartExtras as $cartExtra) {
-            $extras += ($cartExtra->quantity * $cartExtra->extra->price);
+            $extras += $cartExtra->extra->price;
         }
         
         return $product + $extras;

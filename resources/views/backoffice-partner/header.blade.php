@@ -22,8 +22,8 @@
                 
                 <div class="column-right">
                     <div>
-                        <small>{{ $partner->company_name ?? null}} </small>
-                        <small>Aderente {{ $partner->user_id }}</small>
+                        <small>{{ $partner->company_name ?? null }} </small>
+                        <small>Aderente {{ $partner->user_id ?? null }}</small>
                     </div>
                     <div>
                         <img class="profile-user-img img-fluid img-circle" src="{{ asset('assets-backoffice/dist/img/store.png')}}" alt="User profile picture" width="45px">

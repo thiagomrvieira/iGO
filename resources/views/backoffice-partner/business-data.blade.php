@@ -41,9 +41,8 @@
                                 </ul>
                             </div>
                         @endif
-
-                        {!! Form::open(['class'  => '', 'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                         
+                        {!! Form::open(['class'  => '', 'id' => 'formBusinessData', 'route' => 'partner.storeBusiness.data', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                         @csrf
                         <div class="accordion" id="accordionBusinessData">
                             

@@ -17317,7 +17317,7 @@ $j(document).ready(function ($) {
     if (path.length >= 1 && path[0] !== '') {
       $(this).parent().prev().text(last);
     }
-  }); // profile photo
+  });
 });
 
 function showImageName(val) {

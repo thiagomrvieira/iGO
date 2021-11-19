@@ -300,11 +300,12 @@ header.fixed .row-fluid {
 /* page content */
 #page-backoffice .block-home-find {
 	position: relative;
+	padding-top: 150px;
+	height: 100vh;
 	background-color: #ffffff;
 	background-image: url('../images/bg-home-top.png');
 	background-repeat: no-repeat;
 	background-position: top right;
-	padding-top: 150px;
 }
 #page-backoffice .block-home-find .block-title {
 	text-align: center;
@@ -545,6 +546,17 @@ header.fixed .row-fluid {
 .block-accordion .accordion-content .accordion-body .partner-business-times .col-8 {
 	width: 65%;
 }
+header.fixed {
+	background-color: #ffffff;
+	box-shadow: 0 0 10px rgba(0,0,0,0.16); 
+}
+header.fixed .row-fluid {
+	padding: 10px 0;
+}
+header.fixed .row-fluid .column-left .block-logo a svg {
+	width: 45px;
+	height: 50px;
+}
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 {
 	display: flex;
 	flex-flow: column nowrap;
@@ -599,8 +611,6 @@ header.fixed .row-fluid {
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: space-between;
-}
-.accordion-item.avegare-time .accordion-content .average-time-check {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	line-height: 12px;
@@ -691,7 +701,7 @@ header.fixed .row-fluid {
 	display: flex;
     flex-wrap: nowrap;
     justify-content: center;
-	margin-top: 56px;
+	margin: 55px;
 }
 
 /* profile area */
@@ -725,6 +735,7 @@ header.fixed .row-fluid {
 	color: rgba(7, 42, 64);
 }
 .accordion-content.profile-content .profile-image-cover {
+	position: relative;
 	width: 90px;
 	height: 90px;
 	border-radius: 50%;
@@ -732,6 +743,7 @@ header.fixed .row-fluid {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	margin-bottom: 15px;
 }
 .accordion-content.profile-content .block-form .block-form-group {
 	width: 100%;
@@ -752,4 +764,51 @@ header.fixed .row-fluid {
 	align-items: center;
 	justify-content: space-between;
 }
-	
+.accordion-content.profile-content .profile-image-cover input[type="file"] {
+	opacity: 0;
+    left: 0;
+	top: 0;
+    position: absolute;
+    cursor: pointer;
+    margin-bottom: 0!important;
+    padding-left: 0!important;
+    width: 100%;
+	height: 100px;
+    z-index: 1;
+}
+.accordion-content.profile-content .profile-image-cover .form-fild-text span {
+	display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 20%;
+    bottom: -30%;
+}
+.accordion-content.profile-content h3 {
+	margin: 5px 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64);
+}
+.accordion-content.profile-content p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 10px;
+	line-height: 11px;
+	font-weight: 400;
+	font-style: normal;
+	color: rgba(7, 42, 64);
+}
+
+/* Product area */
+.accordion-item .accordion-content .col-checkbox,
+.accordion-item .accordion-content .col-checkbox .form-check {
+	width: 100%;
+	display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}	

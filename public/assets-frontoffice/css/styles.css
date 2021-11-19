@@ -360,10 +360,6 @@ header.fixed {
 header.fixed .row-fluid {
 	padding: 10px 0;
 }
-header.fixed .row-fluid .column-left .block-logo a svg {
-	width: 45px;
-	height: 50px;
-}
 
 /* Form */
 .form-default-wrapper {

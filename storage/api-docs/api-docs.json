@@ -331,7 +331,7 @@
                                             }
                                         ]
                                     },
-                                    "notes": {
+                                    "note": {
                                         "type": "string",
                                         "example": "Remove pickles from the sandwich"
                                     }

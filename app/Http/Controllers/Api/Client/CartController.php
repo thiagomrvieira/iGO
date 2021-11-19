@@ -143,6 +143,14 @@ class CartController extends Controller
      *                  {
      *                      "id": 1,
      *                      "values": {54, 1},
+     *                  },
+     *                  {
+     *                      "id": 2,
+     *                      "values": {1},
+     *                  },
+     *                  {
+     *                      "id": 3,
+     *                      "values": {3},
      *                  }
      *              },
      *              @OA\Items(

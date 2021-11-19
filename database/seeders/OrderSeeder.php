@@ -79,7 +79,7 @@ class OrderSeeder extends Seeder
                     [
                         'cart_id'  => $cart01->id,
                         'extra_id' => $extra->id,
-                        'quantity' => random_int(1, 3),
+                        // 'quantity' => random_int(1, 3),
                     ]
                 );
             }

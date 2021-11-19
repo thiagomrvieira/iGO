@@ -16,6 +16,7 @@ class CreateProductOptionsTable extends Migration
         Schema::create('product_options', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('model');
             $table->string('description')->nullable();
             $table->string('partner_category_id')->constrained();
             $table->timestamps();

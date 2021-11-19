@@ -13,7 +13,6 @@ class CartExtra extends Model
     protected $fillable = [
         'cart_id',
         'extra_id',
-        'quantity',
     ];
 
     /**

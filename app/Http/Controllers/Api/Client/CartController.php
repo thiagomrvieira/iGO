@@ -237,6 +237,8 @@ class CartController extends Controller
     public function store(Request $request)
     {
 
+        // return $request->all();
+
         # Create a new order or get an opened one - OrderTrait
         $order = $this->firstOrCreateOrder($request);     
 
@@ -244,13 +246,16 @@ class CartController extends Controller
         $cartProduct = $this->AddProductToCart($request, $order);
 
         # Add Extra to a cart or update if exist
-        $this->AddExtraToCart($request, $cartProduct);
+        // $this->AddExtraToCart($request, $cartProduct);
 
         # Add Side to a cart or update if exist
-        $this->AddSideToCart($request, $cartProduct);
+        // $this->AddSideToCart($request, $cartProduct);
 
         # Add Sauce to a cart or update if exist
-        $this->AddSauceToCart($request, $cartProduct);
+        // $this->AddSauceToCart($request, $cartProduct);
+        
+        # Add Product Option to a cart or update if exist
+        $this->AddProductOptionToCart($request, $cartProduct);
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho!',

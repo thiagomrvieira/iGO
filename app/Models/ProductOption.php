@@ -13,6 +13,7 @@ class ProductOption extends Model
     protected $fillable = [
        'id',
        'name',
+       'model',
        'description',
        'partner_category_id'
     ];

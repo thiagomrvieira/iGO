@@ -609,9 +609,9 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::where('id',  $id)->where('client_id', Auth::user()->client->id)->get();
+
         if ($order->count() > 0) {
-            $data    = new CheckoutOrderResource( $order->first() );
-            
+            $data        = new CheckoutOrderResource( $order->first() );
             $status      = "success";
             $message     = "Dados do pedido";
             $statusCode  = 200;

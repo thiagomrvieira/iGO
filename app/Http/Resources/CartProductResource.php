@@ -31,7 +31,7 @@ class CartProductResource extends JsonResource
         
         
         #   Check if exists Extras in the cart to append in options array  
-        if ($this->cartExtras)
+        if (count($this->cartExtras) > 0 )
         {
             $checkout ['options'][] =   
                 [
@@ -42,7 +42,7 @@ class CartProductResource extends JsonResource
         }
 
         #   Check if exists Side in the cart to append in options array  
-        if ($this->cartSide->side)
+        if ($this->cartSide ?? null)
         {
             $checkout ['options'][] =   
                 [
@@ -57,7 +57,7 @@ class CartProductResource extends JsonResource
         }
 
         #   Check if exists Sauce in the cart to append in options array  
-        if ($this->cartSauce->sauce)
+        if ($this->cartSauce ?? null)
         {
             $checkout ['options'][] =   
                 [

@@ -16,8 +16,8 @@ class CheckoutOrderResource extends JsonResource
     {
         return [
             'partner' => [
-                'id'   => $this->cart->first()->product->partner->id,
-                'name' => $this->cart->first()->product->partner->name,
+                'id'   => $this->cart->first()->product->partner->id   ?? null,
+                'name' => $this->cart->first()->product->partner->name ?? null,
             ],
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),

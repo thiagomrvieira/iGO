@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ProductOption;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductDetailResource extends JsonResource
@@ -24,18 +25,21 @@ class ProductDetailResource extends JsonResource
             ],
             'options' => [
                 [
+                    'id'        => ProductOption::where('name', 'side')->first()->id,
                     'text'      => 'Side dishes',
                     'type'      => 'radio',
                     'mandatory' => true,
                     'values'    => ProductSideResource::collection($this->sides)
                 ],
                 [
+                    'id'        => ProductOption::where('name', 'sauce')->first()->id,
                     'text'      => 'Sauces',
                     'type'      => 'radio',
                     'mandatory' => false,
                     'values'    => ProductSauceResource::collection($this->sauces)
                 ],
                 [
+                    'id'        => ProductOption::where('name', 'extra')->first()->id,
                     'text'      => 'Extras',
                     'type'      => 'checkbox',
                     'mandatory' => false,

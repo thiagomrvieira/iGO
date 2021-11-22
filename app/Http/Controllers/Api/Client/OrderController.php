@@ -184,34 +184,33 @@ class OrderController extends Controller
      *              "status": "success",
      *              "message": "checkout",
      *              "data": { 
+     *                "partner": {
+     *                  "id": "integer",
+     *                  "name": "string"
+     *                },
      *                  "products": {
      *                      { 
-     *                          "partner": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                           },
      *                          "product": {
      *                              "id": "integer",
      *                              "name": "string",
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
+     *                          },   
      *                          "amount": "float",
      *                          "created_at": "datetime"
      *                      }, 

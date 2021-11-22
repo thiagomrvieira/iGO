@@ -260,6 +260,86 @@ class CartController extends Controller
     }
 
     /**
+     * CHANGE THE QUANTITY OF A SPECIFIED PRODUCT IN THE CART
+     * *
+     * 
+     * @OA\Patch(path="/api/v1/client/cart/{id}",
+     *   tags={"Client: Cart"},
+     *   summary="Change the quantity of a specified product in the cart",
+     *   description="If the quantity < 1, the product will be removed to the cart",
+     *   operationId="changeINTheCart",
+     *  @OA\Parameter(
+     *      name="id",
+     *      description="Product id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="quantity", type="integer", example="2"),
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Quantidade de itens alterada",
+     *           },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // DISCUTIR COM A EQUIPA DE MOBILE 
+        // $order = Order::where([
+        //     'client_id'            => Auth::user()->client->id,
+        //     'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
+        // ]);
+
+        // $cartItem = Cart::where([
+        //     'client_id'  => Auth::user()->client->id,
+        //     'order_id'   => $order->id,
+        //     'product_id' => $id,
+        // ]->whereHas('deliverymen', function (Builder $query) {
+        //     $query->where('deliveryman_id',  Auth::user()->deliveryman->id)
+        //           ->where('order_delivery_status_type_id',  4);
+        // })->get() ?? [];
+    }
+
+
+    /**
      * REMOVE ITEM FROM THE CART
      * *
      * 

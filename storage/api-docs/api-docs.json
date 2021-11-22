@@ -458,6 +458,71 @@
                         "api_key": []
                     }
                 ]
+            },
+            "patch": {
+                "tags": [
+                    "Client: Cart"
+                ],
+                "summary": "Change the quantity of a specified product in the cart",
+                "description": "If the quantity < 1, the product will be removed to the cart",
+                "operationId": "changeINTheCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Quantidade de itens alterada"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         },
         "/api/v1/client/profile": {
@@ -1032,34 +1097,31 @@
                                     "status": "success",
                                     "message": "checkout",
                                     "data": {
+                                        "partner": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        },
                                         "products": [
                                             {
-                                                "partner": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "product": {
                                                     "id": "integer",
                                                     "name": "string",
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
-                                                "extras": [
+                                                "options": [
                                                     {
                                                         "id": "integer",
                                                         "name": "string",
-                                                        "price": "float",
-                                                        "quantity": "integer"
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
                                                     }
                                                 ],
-                                                "side": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "sauce": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "amount": "float",
                                                 "created_at": "datetime"
                                             }

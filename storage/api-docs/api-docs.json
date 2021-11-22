@@ -226,22 +226,19 @@
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
-                                                "extras": [
+                                                "options": [
                                                     {
                                                         "id": "integer",
                                                         "name": "string",
-                                                        "price": "float",
-                                                        "quantity": "integer"
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
                                                     }
                                                 ],
-                                                "side": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "sauce": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "amount": "float",
                                                 "created_at": "datetime"
                                             }
@@ -362,22 +359,19 @@
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
-                                                "extras": [
+                                                "options": [
                                                     {
                                                         "id": "integer",
                                                         "name": "string",
-                                                        "price": "float",
-                                                        "quantity": "integer"
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
                                                     }
                                                 ],
-                                                "side": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "sauce": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "amount": "float",
                                                 "created_at": "datetime"
                                             }
@@ -470,7 +464,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "This <b>id </b>represents <i>'cart_product_id'</i> returned in (GET) Checkout request ",
+                        "description": "This <b>id </b>represents <i>'cart_product_id'</i> returned in (GET)Cart and (GET)Checkout request ",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1237,22 +1231,19 @@
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
-                                                "extras": [
+                                                "options": [
                                                     {
                                                         "id": "integer",
                                                         "name": "string",
-                                                        "price": "float",
-                                                        "quantity": "integer"
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
                                                     }
                                                 ],
-                                                "side": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "sauce": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "amount": "float",
                                                 "created_at": "datetime"
                                             }
@@ -1388,22 +1379,19 @@
                                                     "price": "float",
                                                     "quantity": "integer"
                                                 },
-                                                "extras": [
+                                                "options": [
                                                     {
                                                         "id": "integer",
                                                         "name": "string",
-                                                        "price": "float",
-                                                        "quantity": "integer"
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
                                                     }
                                                 ],
-                                                "side": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "sauce": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
                                                 "amount": "float",
                                                 "created_at": "datetime"
                                             }

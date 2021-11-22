@@ -191,7 +191,8 @@ class OrderController extends Controller
      *                  "products": {
      *                      { 
      *                          "product": {
-     *                              "id": "integer",
+     *                              "cart_product_id": "integer - Used to update quantity of a specified product in the cart",
+     *                              "id": "integer - Used to identify the product itself",
      *                              "name": "string",
      *                              "price": "float",
      *                              "quantity": "integer"

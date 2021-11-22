@@ -17,10 +17,11 @@ class CartProductResource extends JsonResource
     {
         $checkout = [
             'product' => [
-                'id'       => $this->product_id,
-                'name'     => $this->product->name,
-                'price'    => $this->product->price,
-                'quantity' => $this->quantity,
+                'cart_product_id' => $this->id,
+                'product_id'      => $this->product_id,
+                'name'            => $this->product->name,
+                'price'           => $this->product->price,
+                'quantity'        => $this->quantity,
             ],
             'options' => [],
             'note'       => $this->note,

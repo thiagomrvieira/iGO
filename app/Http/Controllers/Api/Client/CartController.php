@@ -270,7 +270,7 @@ class CartController extends Controller
      *   operationId="changeINTheCart",
      *  @OA\Parameter(
      *      name="id",
-     *      description="Product id",
+     *      description="This <b>id </b>represents <i>'cart_product_id'</i> returned in (GET)Cart and (GET)Checkout request ",
      *      required=true,
      *      in="path",
      *      @OA\Schema(
@@ -322,20 +322,16 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // DISCUTIR COM A EQUIPA DE MOBILE 
-        // $order = Order::where([
-        //     'client_id'            => Auth::user()->client->id,
-        //     'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
-        // ]);
 
-        // $cartItem = Cart::where([
-        //     'client_id'  => Auth::user()->client->id,
-        //     'order_id'   => $order->id,
-        //     'product_id' => $id,
-        // ]->whereHas('deliverymen', function (Builder $query) {
-        //     $query->where('deliveryman_id',  Auth::user()->deliveryman->id)
-        //           ->where('order_delivery_status_type_id',  4);
-        // })->get() ?? [];
+        if ( Cart::where(['client_id'  => Auth::user()->client->id, 'id' => $id,])->update($request->all()) ) {
+            $status     = "success";
+            $message    = "Produto atualizado"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possível encontrar o produto especificado',
+                                ], $statusCode ?? 404); 
     }
 
 

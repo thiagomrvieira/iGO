@@ -470,7 +470,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Product id",
+                        "description": "This <b>id </b>represents <i>'cart_product_id'</i> returned in (GET) Checkout request ",
                         "required": true,
                         "schema": {
                             "type": "integer"

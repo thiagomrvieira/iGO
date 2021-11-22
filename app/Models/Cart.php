@@ -17,6 +17,7 @@ class Cart extends Model
         'client_id',
         'product_id',
         'quantity',
+        'note',
     ];
 
     /**
@@ -61,7 +62,7 @@ class Cart extends Model
         $extras  = 0;
         
         foreach ($this->cartExtras as $cartExtra) {
-            $extras += ($cartExtra->quantity * $cartExtra->extra->price);
+            $extras += $cartExtra->extra->price;
         }
         
         return $product + $extras;

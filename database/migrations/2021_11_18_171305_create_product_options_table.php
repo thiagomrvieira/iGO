@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartExtraTable extends Migration
+class CreateProductOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateCartExtraTable extends Migration
      */
     public function up()
     {
-        Schema::create('cart_extra', function (Blueprint $table) {
+        Schema::create('product_options', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cart_id')->constrained();
-            $table->foreignId('extra_id')->constrained();
+            $table->string('name');
+            $table->string('model');
+            $table->string('description')->nullable();
+            $table->string('partner_category_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateCartExtraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart_extra');
+        Schema::dropIfExists('product_options');
     }
 }

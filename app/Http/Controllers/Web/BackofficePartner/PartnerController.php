@@ -55,8 +55,7 @@ class PartnerController extends Controller
     public function dashboard()
     {
 
-        $products = Product::where('partner_id', Auth::user()->partner->id)
-                            ->orderBy('created_at', 'DESC')->get();
+        $products = Product::where('partner_id', Auth::user()->partner->id)->orderBy('created_at', 'DESC')->get();
 
         return view('backoffice-partner.dashboard.dashboard', [
             'products' => $products,

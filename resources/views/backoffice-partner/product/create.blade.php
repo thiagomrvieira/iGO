@@ -129,13 +129,16 @@
                                     <div class="accordion-content">
                                         {{-- List product categories --}}
                                         @if (isset($productCategories))
-                                            @foreach ($productCategories as $prodCategory)
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    {!! Form::radio('category_id', $prodCategory->id, ( isset($product) && $product->category_id == $prodCategory->id ? true : false) ?? false, 
-                                                                    ['class' => 'form-check-input', 'id' => $prodCategory->slug]) !!}
-                                                    {!! Form::label('category_id', $prodCategory->name,      ['class' => 'form-check-label']) !!}
+                                            <div class="col-checkbox">
+                                                <div class="form-check">
+                                                    @foreach ($productCategories as $prodCategory)
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            {!! Form::radio('category_id', $prodCategory->id, ( isset($product) && $product->category_id == $prodCategory->id ? true : false) ?? false, ['class' => 'form-check-input', 'id' => $prodCategory->slug]) !!}
+                                                            {!! Form::label('category_id', $prodCategory->name,      ['class' => 'form-check-label']) !!}
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         @endif
                                         {{-- Featured Product --}}
                                         {!! Form::label('featured', 'Deseja colocar o produto na secção de destaques?', ['class' => 'form-check-label']) !!}

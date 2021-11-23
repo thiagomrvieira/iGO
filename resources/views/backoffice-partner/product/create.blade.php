@@ -49,7 +49,7 @@
                                 
                                 {{-- Product name item--}}
                                 <div class="accordion-item sub-categories">
-                                    <button class="accordion-button" type="button">
+                                    <button class="accordion-button is-open" type="button">
                                         <h3><strong>Nome do produto*</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
                                             <g id="arrow" transform="translate(282 -315) rotate(90)">
@@ -141,21 +141,25 @@
                                             </div>
                                         @endif
                                         {{-- Featured Product --}}
-                                        {!! Form::label('featured', 'Deseja colocar o produto na secção de destaques?', ['class' => 'form-check-label']) !!}
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            {!! Form::radio('featured', 1, ( isset($product) && $product->featured ? true : false) ?? false, ['class' => 'form-check-input']) !!}
-                                            {!! Form::label('featured', 'Sim', ['class' => 'form-check-label']) !!}
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            {!! Form::radio('featured', 0, ( isset($product) && $product->featured ? false : true) ?? true, ['class' => 'form-check-input']) !!}
-                                            {!! Form::label('featured', 'Não', ['class' => 'form-check-label']) !!}
+                                        <div class="menu-label-radio">
+                                            {!! Form::label('featured', 'Deseja colocar o produto na secção de destaques?', ['class' => 'form-check-label menu-label']) !!}
+                                            <div class="product-checks">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    {!! Form::radio('featured', 1, ( isset($product) && $product->featured ? true : false) ?? false, ['class' => 'form-check-input']) !!}
+                                                    {!! Form::label('featured', 'Sim', ['class' => 'form-check-label']) !!}
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    {!! Form::radio('featured', 0, ( isset($product) && $product->featured ? false : true) ?? true, ['class' => 'form-check-input']) !!}
+                                                    {!! Form::label('featured', 'Não', ['class' => 'form-check-label']) !!}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> 
 
                                 @if ($partner->mainCategory->slug == 'restaurantes')
                                     {{--  Side Product item --}}
-                                    <div class="accordion-item sub-categories">
+                                    <div class="accordion-item side-product">
                                         <button class="accordion-button" type="button">
                                             <h3><strong>Acompanhamentos*</strong></h3>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -187,7 +191,7 @@
                                         </div>
                                     </div> 
                                     {{--  Sauce item --}}
-                                    <div class="accordion-item sub-categories">
+                                    <div class="accordion-item sauce-product">
                                         <button class="accordion-button" type="button">
                                             <h3><strong>Molhos*</strong></h3>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -228,65 +232,25 @@
                                                     $pepper = $product->sauces->where('slug', 'picante')->count() > 0 ? true : false;
                                                 }
                                             @endphp
-
-                                            {!! Form::label('picante', 'O seu prato tem picante?', 
-                                                                                        ['class' => 'form-check-label']) !!}
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                {!! Form::radio('picante', 1, $pepper,  ['class' => 'form-check-input']) !!}
-                                                {!! Form::label('picante', 'Sim',       ['class' => 'form-check-label']) !!}
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                {!! Form::radio('picante', 0, !$pepper, ['class' => 'form-check-input']) !!}
-                                                {!! Form::label('picante', 'Não',       ['class' => 'form-check-label']) !!}
-                                            </div>
-                                        </div>
-                                    </div> 
-
-                                    {{--  Allergens item --}}
-                                    <div class="accordion-item sub-categories">
-                                        <button class="accordion-button" type="button">
-                                            <h3><strong>Alergénios*</strong></h3>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
-                                                <g id="arrow" transform="translate(282 -315) rotate(90)">
-                                                <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
-                                                    <path id="MAPA" d="M-3.816-.278,2.652-4.553l-6.469-4.3,1.411-2.215,9.569,6.5-9.569,6.5Z" transform="translate(335.385 249.847)" fill="#687780"></path>
-                                                    <rect id="Rectangle_8291" data-name="Rectangle 8291" width="14" height="14" transform="translate(330 238.117)" fill="none"></rect>
-                                                </g>
-                                                <rect id="Rectangle_8292" data-name="Rectangle 8292" width="44" height="44" transform="translate(315 238)" fill="none"></rect>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                        <div class="accordion-content">
-                                                @forelse ($allergens as $allergen)
-                                                {{-- Set 'checked' for checkboxes --}}
-                                                @php
-                                                    $checked = false;
-                                                    if (isset($product)) {
-                                                        $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
-                                                    }
-                                                @endphp
-                                                <div class="custom-control custom-control-inline">
-                                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
-                                                    {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                            <div class="menu-label-radio">
+                                                {!! Form::label('picante', 'O seu prato tem picante?', ['class' => 'form-check-label']) !!}
+                                                <div class="product-checks">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        {!! Form::radio('picante', 1, $pepper,  ['class' => 'form-check-input']) !!}
+                                                        {!! Form::label('picante', 'Sim',       ['class' => 'form-check-label']) !!}
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        {!! Form::radio('picante', 0, !$pepper, ['class' => 'form-check-input']) !!}
+                                                        {!! Form::label('picante', 'Não',       ['class' => 'form-check-label']) !!}
+                                                    </div>
                                                 </div>
-                                            @empty
-                                                Sem allergen
-                                            @endforelse
-                                            <div class="custom-control custom-control-inline">
-                                                {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
-                                                                                        ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
-                                                {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                                             </div>
-                                        </div>
-                                    </div> 
-                                @endif
-                                
+                                        </div> 
 
-                                {{--  Extras item --}}
-
-                                <div class="accordion-item sub-categories">
+                                {{--  Allergens item --}}
+                                <div class="accordion-item allergens-product">
                                     <button class="accordion-button" type="button">
-                                        <h3><strong>Extras</strong></h3>
+                                        <h3><strong>Alergénios*</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
                                             <g id="arrow" transform="translate(282 -315) rotate(90)">
                                             <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
@@ -298,49 +262,108 @@
                                         </svg>
                                     </button>
                                     <div class="accordion-content">
+                                            @forelse ($allergens as $allergen)
+                                            {{-- Set 'checked' for checkboxes --}}
+                                            @php
+                                                $checked = false;
+                                                if (isset($product)) {
+                                                    $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
+                                                }
+                                            @endphp
+                                            <div class="custom-control custom-control-inline">
+                                                {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
+                                                {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                            </div>
+                                        @empty
+                                            Sem allergen
+                                        @endforelse
+                                        <div class="custom-control custom-control-inline">
+                                            {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
+                                                                                    ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
+                                            {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
+                                        </div>
+                                    </div>
+                                </div> 
+                                @endif
+                                
+
+                                {{--  Extras item --}}
+
+                                <div class="accordion-item extra-products">
+                                    <button class="accordion-button" type="button">
+                                        <h3><strong>Extras</strong></h3>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+                                            <g id="arrow" transform="translate(282 -315) rotate(90)">
+                                                <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
+                                                    <path id="MAPA" d="M-3.816-.278,2.652-4.553l-6.469-4.3,1.411-2.215,9.569,6.5-9.569,6.5Z" transform="translate(335.385 249.847)" fill="#687780"></path>
+                                                    <rect id="Rectangle_8291" data-name="Rectangle 8291" width="14" height="14" transform="translate(330 238.117)" fill="none"></rect>
+                                                </g>
+                                                <rect id="Rectangle_8292" data-name="Rectangle 8292" width="44" height="44" transform="translate(315 238)" fill="none"></rect>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                    <div class="accordion-content">
                                         {!! Form::hidden('extras', null, ['id' => 'extras'] ) !!} 
-                                        @if (isset($product) && count($product->extras) > 0 )
-                                            @foreach ($product->extras as $extra)
+                                        <div id="extrasContent">
+                                            @if (isset($product) && count($product->extras) > 0 )
+                                                @foreach ($product->extras as $extra)
+                                                    <div class="row mb-2">
+                                                        <div class="col-6">
+                                                            {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1', 'disabled']) !!}
+                                                        </div>
+                                                        <div class="col-4">
+                                                            {!! Form::number('extraPrice1', number_format($extra->price,2), ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any', 'disabled']) !!}
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <a href="#" class="removeExtra" data-product-id="{{ $product->id }}" data-extra-id="{{ $extra->id }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                                    <g id="Group_13732" data-name="Group 13732" transform="translate(-14154 334)">
+                                                                    <g id="trash" transform="translate(14109 -332.5)" opacity="0.3">
+                                                                        <path id="Path_6491" data-name="Path 6491" d="M60.383,2.108h-2.9V1.581A1.583,1.583,0,0,0,55.9,0H53.8a1.583,1.583,0,0,0-1.581,1.581v.527h-2.9A1.319,1.319,0,0,0,48,3.425V5.269a.527.527,0,0,0,.527.527h.288l.455,9.56a1.579,1.579,0,0,0,1.579,1.506h8a1.579,1.579,0,0,0,1.579-1.506l.455-9.56h.288a.527.527,0,0,0,.527-.527V3.425A1.319,1.319,0,0,0,60.383,2.108Zm-7.114-.527a.528.528,0,0,1,.527-.527H55.9a.528.528,0,0,1,.527.527v.527H53.269ZM49.054,3.425a.264.264,0,0,1,.263-.263H60.383a.264.264,0,0,1,.263.263V4.742H49.054ZM59.377,15.306a.526.526,0,0,1-.526.5h-8a.526.526,0,0,1-.526-.5L49.87,5.8h9.96Z" fill="#072a40"/>
+                                                                        <path id="Path_6492" data-name="Path 6492" d="M240.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,240.527,215.9Z" transform="translate(-185.677 -201.15)" fill="#072a40"/>
+                                                                        <path id="Path_6493" data-name="Path 6493" d="M320.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,320.527,215.9Z" transform="translate(-263.042 -201.15)" fill="#072a40"/>
+                                                                        <path id="Path_6494" data-name="Path 6494" d="M160.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,160.527,215.9Z" transform="translate(-108.312 -201.15)" fill="#072a40"/>
+                                                                    </g>
+                                                                    <rect id="Rectangle_8725" data-name="Rectangle 8725" width="20" height="20" transform="translate(14154 -334)" fill="none"/>
+                                                                    </g>
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                @endforeach    
+                                            @else
                                                 <div class="row mb-2">
                                                     <div class="col-6">
-                                                        {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 
-                                                                                                    'placeholder' => 'Extra #1', 'disabled']) !!}
+                                                        {!! Form::text('extraName1', null, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1']) !!}
                                                     </div>
                                                     <div class="col-4">
-                                                        {!! Form::number('extraPrice1', number_format($extra->price,2), ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 
-                                                                                                                        'min' => 1, 'step' => 'any', 'disabled']) !!}
+                                                        {!! Form::number('extraPrice1', null , ['class' => 'form-control inputExtraPrice ', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                                     </div>
                                                     <div class="col-2">
-                                                        <a href="#" class="editExtra">Edit</a>
-                                                        <a href="#" class="removeExtra" data-product-id="{{ $product->id }}" data-extra-id="{{ $extra->id }}">
-                                                            Remove
+                                                        <a href="#" class="removeExtra">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                                <g id="Group_13732" data-name="Group 13732" transform="translate(-14154 334)">
+                                                                <g id="trash" transform="translate(14109 -332.5)" opacity="0.3">
+                                                                    <path id="Path_6491" data-name="Path 6491" d="M60.383,2.108h-2.9V1.581A1.583,1.583,0,0,0,55.9,0H53.8a1.583,1.583,0,0,0-1.581,1.581v.527h-2.9A1.319,1.319,0,0,0,48,3.425V5.269a.527.527,0,0,0,.527.527h.288l.455,9.56a1.579,1.579,0,0,0,1.579,1.506h8a1.579,1.579,0,0,0,1.579-1.506l.455-9.56h.288a.527.527,0,0,0,.527-.527V3.425A1.319,1.319,0,0,0,60.383,2.108Zm-7.114-.527a.528.528,0,0,1,.527-.527H55.9a.528.528,0,0,1,.527.527v.527H53.269ZM49.054,3.425a.264.264,0,0,1,.263-.263H60.383a.264.264,0,0,1,.263.263V4.742H49.054ZM59.377,15.306a.526.526,0,0,1-.526.5h-8a.526.526,0,0,1-.526-.5L49.87,5.8h9.96Z" fill="#072a40"/>
+                                                                    <path id="Path_6492" data-name="Path 6492" d="M240.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,240.527,215.9Z" transform="translate(-185.677 -201.15)" fill="#072a40"/>
+                                                                    <path id="Path_6493" data-name="Path 6493" d="M320.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,320.527,215.9Z" transform="translate(-263.042 -201.15)" fill="#072a40"/>
+                                                                    <path id="Path_6494" data-name="Path 6494" d="M160.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,160.527,215.9Z" transform="translate(-108.312 -201.15)" fill="#072a40"/>
+                                                                </g>
+                                                                <rect id="Rectangle_8725" data-name="Rectangle 8725" width="20" height="20" transform="translate(14154 -334)" fill="none"/>
+                                                                </g>
+                                                            </svg>
                                                         </a>
                                                     </div>
                                                 </div>
-                                            @endforeach    
-                                        @else
-                                            <div class="row mb-2">
-                                                <div class="col-6">
-                                                    {!! Form::text('extraName1', null, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1']) !!}
-                                                </div>
-                                                <div class="col-4">
-                                                    {!! Form::number('extraPrice1', null , ['class' => 'form-control inputExtraPrice ', 'placeholder' => 'Custo*', 
-                                                                                                                    'min' => 1, 'step' => 'any']) !!}
-                                                </div>
-                                                <div class="col-2">
-                                                    <a href="#" class="editExtra">Edit</a>
-                                                    <a href="#" class="removeExtra">Remove</a>
-
-                                                </div>
-                                            </div>
-                                        @endif
+                                            @endif
+                                        </div>
                                         <a href="#" id="addExtra">Adicionar Extra</a>
                                     </div>
                                 </div> 
 
                                 {{--  Campaign item --}}
 
-                                <div class="accordion-item sub-categories">
+                                <div class="accordion-item campaign-product">
                                     <button class="accordion-button" type="button">
                                         <h3><strong>Campanhas</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -367,7 +390,7 @@
                             
                                 {{--  Notes item --}}
 
-                                <div class="accordion-item sub-categories">
+                                <div class="accordion-item notes-products">
                                     <button class="accordion-button" type="button">
                                         <h3><strong>Notas especiais</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -384,7 +407,7 @@
                                         {!! Form::textarea('note', (isset($product) && $product->note) ? $product->note : null, ['class' => 'form-control', 'placeholder' => 'Indique-nos informações que não estejam previstas no dados acima e que possam ser úteis para os seus clientes']) !!}
                                     </div>
                                 </div> 
-                                <h3>*Dados de preenchimento obrigatório.</h3>
+                                <h3 class="page-bottom-message">*Dados de preenchimento obrigatório.</h3>
                             </div>
                             {!! Form::close() !!}
                             <div class="button-next-container">
@@ -411,9 +434,8 @@
         var count = "{{isset($product->extras) ? $product->extras->count() : 1}}";
 
         // Add new extra item
-        $(document).on("click", "#addExtra", function (event) {
+        jQuery(document).on("click", "#addExtra", function (event) {
             event.preventDefault();
-            
             count++;
             var newInputExtra = `<div class="row mb-2">
                                     <div class="col-6">
@@ -423,20 +445,30 @@
                                         {!! Form::number('extraPrice${count}', null , ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                     </div>
                                     <div class="col-2">
-                                        <a href="#" class="editExtra">Edit</a>
-                                        <a href="#" class="removeExtra">Remove</a>
+                                        <a href="#" class="removeExtra">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <g id="Group_13732" data-name="Group 13732" transform="translate(-14154 334)">
+                                                    <g id="trash" transform="translate(14109 -332.5)" opacity="0.3">
+                                                    <path id="Path_6491" data-name="Path 6491" d="M60.383,2.108h-2.9V1.581A1.583,1.583,0,0,0,55.9,0H53.8a1.583,1.583,0,0,0-1.581,1.581v.527h-2.9A1.319,1.319,0,0,0,48,3.425V5.269a.527.527,0,0,0,.527.527h.288l.455,9.56a1.579,1.579,0,0,0,1.579,1.506h8a1.579,1.579,0,0,0,1.579-1.506l.455-9.56h.288a.527.527,0,0,0,.527-.527V3.425A1.319,1.319,0,0,0,60.383,2.108Zm-7.114-.527a.528.528,0,0,1,.527-.527H55.9a.528.528,0,0,1,.527.527v.527H53.269ZM49.054,3.425a.264.264,0,0,1,.263-.263H60.383a.264.264,0,0,1,.263.263V4.742H49.054ZM59.377,15.306a.526.526,0,0,1-.526.5h-8a.526.526,0,0,1-.526-.5L49.87,5.8h9.96Z" fill="#072a40"/>
+                                                    <path id="Path_6492" data-name="Path 6492" d="M240.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,240.527,215.9Z" transform="translate(-185.677 -201.15)" fill="#072a40"/>
+                                                    <path id="Path_6493" data-name="Path 6493" d="M320.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,320.527,215.9Z" transform="translate(-263.042 -201.15)" fill="#072a40"/>
+                                                    <path id="Path_6494" data-name="Path 6494" d="M160.527,215.9a.527.527,0,0,0,.527-.527v-6.85a.527.527,0,0,0-1.054,0v6.85A.527.527,0,0,0,160.527,215.9Z" transform="translate(-108.312 -201.15)" fill="#072a40"/>
+                                                    </g>
+                                                    <rect id="Rectangle_8725" data-name="Rectangle 8725" width="20" height="20" transform="translate(14154 -334)" fill="none"/>
+                                                </g>
+                                            </svg>    
+                                        </a>
                                     </div>
                                 </div> `;
             
-            $("#extrasContent").append(newInputExtra);
-            
+            jQuery("#extrasContent").append(newInputExtra);
         });
 
         // Prepare data after submit
-        $(document).on("click", "#submitFormProductData", function (event) {
+        jQuery(document).on("click", "#submitFormProductData", function (event) {
             event.preventDefault();
             getExtraInputs();
-            $("#formProductData").submit();
+            jQuery("#formProductData").submit();
         });
 
         // Get extra items and send them to an input as an array
@@ -445,12 +477,12 @@
             var key     = [];
             var val     = [];
 
-            $('.inputExtraName').each(function() { 
-                key.push( $(this).val() );
+            jQuery('.inputExtraName').each(function() { 
+                key.push( jQuery(this).val() );
             });
             
-            $('.inputExtraPrice').each(function() { 
-                val.push( $(this).val() );
+            jQuery('.inputExtraPrice').each(function() { 
+                val.push( jQuery(this).val() );
             });
 
             for (let i = 0; i < key.length; i++) {
@@ -461,35 +493,35 @@
                 
             }
 
-            $('.inputExtraName').prop('disabled', true);
-            $('.inputExtraPrice').prop('disabled', true);
+            jQuery('.inputExtraName').prop('disabled', true);
+            jQuery('.inputExtraPrice').prop('disabled', true);
 
-            $('#extras').val(JSON.stringify(extras));
+            jQuery('#extras').val(JSON.stringify(extras));
         }
         
         // Remove disabled property from inputs
-        $(document).on("click", ".editExtra", function (event) {    
+        jQuery(document).on("click", ".editExtra", function (event) {    
             event.preventDefault();
-            $(this).closest('.row').find('input').removeAttr("disabled");
+            jQuery(this).closest('.row').find('input').removeAttr("disabled");
         });
 
         // Seta action do modal de confirmação de remoção de Extra
-        $(document).on("click", ".removeExtra", function (event) {
+        jQuery(document).on("click", ".removeExtra", function (event) {
             event.preventDefault();
             
             var extra        = {};
-            extra.id         = $(this).data('extra-id');
-            extra.product_id = $(this).data('product-id');
+            extra.id         = jQuery(this).data('extra-id');
+            extra.product_id = jQuery(this).data('product-id');
             extra._token     = '{{ csrf_token() }}',
             
-            $.ajax({
+            jQuery.ajax({
                 url: '{{ route("extra.remove") }}',
                 type: 'POST',
                 data: extra,
                 cache: false,
                 context: this,
                 success: function (data) {
-                    $(this).closest('.row').remove();
+                    jQuery(this).closest('.row').remove();
                     return data;
                 },
                 error: function () {
@@ -500,15 +532,15 @@
         });
 
         // Remove check e desabilita checkboxes de alergênios
-        $(document).on("click", "#removeAllergens", function (event) {
-            $('.inputAllergen').prop('checked', false).removeAttr('checked');
-            $('.inputAllergen').val('');
+        jQuery(document).on("click", "#removeAllergens", function (event) {
+            jQuery('.inputAllergen').prop('checked', false).removeAttr('checked');
+            jQuery('.inputAllergen').val('');
         });
 
         // Remove check de removeAllergens
-        $(document).on("click", ".inputAllergen", function (event) {
-            $('#removeAllergens').prop('checked', false).removeAttr('checked');
-            $('#removeAllergens').val('');
+        jQuery(document).on("click", ".inputAllergen", function (event) {
+            jQuery('#removeAllergens').prop('checked', false).removeAttr('checked');
+            jQuery('#removeAllergens').val('');
         });
 
 

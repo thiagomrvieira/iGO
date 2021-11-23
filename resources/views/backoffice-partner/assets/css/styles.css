@@ -246,7 +246,37 @@ a:hover {
 .is-invalid {
 	border: 2px solid #eb3e3e !important;
 }
-
+input[type="text"],
+input[type="number"],
+textarea {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	background-color: #fff6b0;
+	border: 2px solid transparent;
+	border-radius: 20px;
+	padding: 11px 15px;
+}
+textarea {
+	resize: none;
+}
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+.page-bottom-message {
+	font-family: 'Krona One', sans-serif;
+	font-size: 10px;
+	line-height: 20px;
+	font-weight: 400;
+	font-style: normal;
+	color: #072a40;
+	margin-top: 15px;
+}
 /* Header */
 header {
 	position: fixed;
@@ -484,7 +514,10 @@ header.fixed .row-fluid {
 	font-style: normal;
 	color: #072A40;
 }
-.block-accordion .accordion-content .form-check input:checked {
+.block-accordion .accordion-content .form-check input[type="checkbox"]:checked,
+.accordion-item.side-product .accordion-content .custom-control input[type="checkbox"]:checked,
+.accordion-item.sauce-product .accordion-content .custom-control input[type="checkbox"]:checked,
+.accordion-item.allergens-product .accordion-content .custom-control input[type="checkbox"]:checked  {
 	background-image: url('/assets-backoffice-partner/images/check_box_sel.png');
 }
 .block-accordion .accordion-button svg {
@@ -493,10 +526,6 @@ header.fixed .row-fluid {
 .block-accordion .accordion-button.is-open svg {
 	transform: rotate(180deg);
 }
-/* .block-accordion .accordion-button:after {
-	content: url("assets-frontoffice/images/seta_drop.png");
-	float: right;
-} */
 .block-accordion button:hover,
 .block-accordion button.is-open {
 	color: #ffe414;
@@ -508,6 +537,9 @@ header.fixed .row-fluid {
 .block-accordion .accordion-button.is-open + .accordion-content {
 	max-height: unset;
 	padding: 35px 0;
+}
+.block-accordion .accordion-button.is-open + .accordion-content:last-child {
+	padding-bottom: 0;
 }
 .block-accordion .accordion-content {
 	max-height: 0;
@@ -630,7 +662,8 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	margin: 0 15px 0 0;
 	cursor: pointer;
 }
-.accordion-item.avegare-time .accordion-content input:before {
+.accordion-item.avegare-time .accordion-content input:before
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:checked {
 	display: block;
 	content: '';
 	width: 8px;
@@ -639,7 +672,8 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	border-radius: 50px;
 	visibility: hidden;
 }
-.accordion-item.avegare-time .accordion-content input:checked:before {
+.accordion-item.avegare-time .accordion-content input:checked:before,
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:checked:before {
 	visibility: visible;
 }
 /* images styling */
@@ -812,3 +846,152 @@ header.fixed .row-fluid .column-left .block-logo a svg {
     align-items: center;
     justify-content: space-between;
 }	
+.accordion-item .accordion-content, 
+.accordion-item .accordion-content .custom-control-inline,
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio,
+.accordion-item .menu-label-radio .product-checks {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio input,
+.accordion-item .accordion-content .menu-label-radiu .custom-radio input,
+.accordion-item.sauce-product .accordion-content .custom-control input,
+.accordion-item.allergens-product .accordion-content .custom-control input,
+.accordion-item .menu-label-radio .product-checks input {
+	width: 18px;
+	height: 18px;
+	border: 2px solid black;
+	border-radius: 50%;
+	display: inline-flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 0 15px 0 0;
+	cursor: pointer;
+}
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio .form-check-input:before,
+.accordion-item .accordion-content .menu-label-radio .product-checks .custom-control input[type="radio"]:before,
+.accordion-item.campaign-product .accordion-content .custom-control input[type="radio"]:before,
+.accordion-item .accordion-content .menu-label-radiu .custom-radio input:before {
+	display: block;
+	content: '';
+	width: 8px;
+	height: 8px;
+	background-color: #FFE414;
+	border-radius: 50px;
+	visibility: hidden;
+}
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio .form-check-input:checked:before,
+.accordion-item .accordion-content .menu-label-radio .product-checks .custom-control input[type="radio"]:checked:before,
+.accordion-item.campaign-product .accordion-content .custom-control input[type="radio"]:checked:before {
+	visibility: visible;
+}
+.accordion-item .accordion-content .menu-label,
+.accordion-item .accordion-content .menu-label-radiu .custom-radio,
+.accordion-item.side-product .accordion-content .custom-control .form-check-label{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64);
+	width: calc(100% - 33px);
+}
+.accordion-item .accordion-content .menu-label-radio .product-checks {
+	width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+.accordion-item .accordion-content .menu-label-radio .product-checks .custom-control {
+	margin-left: 30px;
+}
+.accordion-item .accordion-content .menu-label-radio {
+	width: 100%;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+	justify-content: space-between;
+}
+.accordion-item.side-product .accordion-content .custom-control,
+.accordion-item.sauce-product .accordion-content .custom-control,
+.accordion-item.allergens-product .accordion-content .custom-control{
+	width: calc(100%/3);
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 34px;
+}
+.accordion-item.side-product .accordion-content .custom-control input[type="checkbox"],
+.accordion-item.sauce-product .accordion-content .custom-control input[type="checkbox"] {
+	margin-right: 10px;
+	width: 14px;
+	height: 14px;
+	border-radius: 4px;
+	border: 1px solid #072A40;
+	padding: 0;
+	background-position: center;
+	cursor: pointer;
+}
+.accordion-item.notes-products .accordion-content {
+	display: flex;
+	justify-content: center;
+}
+.accordion-item.notes-products .accordion-content textarea {
+	width: 100%;
+	background-color: #FFF6B0;
+	border: none;
+	border-radius: 20px;
+	padding: 15px;
+}
+.accordion-item.notes-products .accordion-content textarea::placeholder {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64, 0.5);
+}
+.accordion-item.extra-products .accordion-content .row,
+.accordion-item.extra-products .accordion-content #extrasContent,
+.accordion-item.extra-products .accordion-content #extrasContent .row {
+	width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-item.extra-products .accordion-content .row {
+	margin-bottom: 15px;
+}
+.accordion-item.extra-products .accordion-content #addExtra {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.accordion-item.extra-products .accordion-content .row .col-6,
+.accordion-item.extra-products .accordion-content #extrasContent .row .col-6 {
+	width: 60%;
+}
+.accordion-item.extra-products .accordion-content .row .col-4,
+.accordion-item.extra-products .accordion-content #extrasContent .row .col-4 {
+	width: 20%;
+}
+.accordion-item.extra-products .accordion-content .row .col-2,
+.accordion-item.extra-products .accordion-content #extrasContent .row .col-2 {
+	width: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+a#addExtra {
+    color: #F77415;
+	margin: 35px 0;
+}

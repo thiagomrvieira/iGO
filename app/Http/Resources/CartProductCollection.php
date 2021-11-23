@@ -15,6 +15,10 @@ class CartProductCollection extends ResourceCollection
     public function toArray($request)
     {   
         return [
+            'partner' => [
+                'id'   => $this->collection->first()->product->partner->id,
+                'name' => $this->collection->first()->product->partner->name,
+            ],
             'products'       => $this->collection,
             'total_products' => $this->collection->sum('quantity'),
             'total_amount'   => ($this->collection->count() > 0 ? $this->collection->first()->totalAmount() : 0) ?? null,

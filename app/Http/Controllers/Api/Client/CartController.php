@@ -52,21 +52,19 @@ class CartController extends Controller
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
      *                          },
      *                          "amount": "float",
      *                          "created_at": "datetime"
@@ -130,15 +128,45 @@ class CartController extends Controller
      *   description="Create/Update a product to/in the cart - Expect to recieve a product id and a quantity - If the product is already in the cart, updates the quantity",
      *   operationId="addToCart",
      *   @OA\RequestBody(
-     *      required=true,
+     *      required = true,
+     *      description = "The field '<b>options</b>' should be the option that user can choose when ordering a product. <i>Eg.: Sauce or extras in a food type product </i> <br>The first field '<b>id</b>' should be the id of the <b>kind</b> of option. <i>Eg.: sauce or extra</i> <br>The '<b>values</b>' array should be filled with the  <b>option id</b>.",
      *      @OA\JsonContent(
-     *          type="object",
-     *          @OA\Property(property="product_id", type="integer", example="4"),
-     *          @OA\Property(property="quantity", type="integer", example="2"),
-     *          @OA\Property(property="side", type="integer", example="1"),
-     *          @OA\Property(property="sauce", type="integer", example="6"),
-     *          @OA\Property(property="extras", type="string", example="[{'extra_id':'3','extra_quantity':'1'}]"),
-     *      )
+     *           type="object",
+     *           @OA\Property(property="product_id", type="integer", example="4"),
+     *           @OA\Property(property="quantity", type="integer", example="2"),
+     *           @OA\Property(
+     *              property="options",
+     *              type="array",
+     *              example={
+     *                  {
+     *                      "id": 1,
+     *                      "values": {54, 1},
+     *                  },
+     *                  {
+     *                      "id": 2,
+     *                      "values": {1},
+     *                  },
+     *                  {
+     *                      "id": 3,
+     *                      "values": {3},
+     *                  }
+     *              },
+     *              @OA\Items(
+     *                  @OA\Property(
+     *                      property="id",
+     *                      type="integer",
+     *                      example=""
+     *                  ),
+     *                  @OA\Property(
+     *                   property="values",
+     *                     type="object",
+     *                     example=""
+     *                  ),
+     *              ),
+     *           ),
+     *           @OA\Property(property="note", type="string", example="Remove pickles from the sandwich"),
+     * 
+     *      ),
      *   ),
      *   @OA\Response(
      *      response=200,
@@ -161,21 +189,19 @@ class CartController extends Controller
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
      *                          },
      *                          "amount": "float",
      *                          "created_at": "datetime"
@@ -221,19 +247,89 @@ class CartController extends Controller
         # Add Product to a cart or update if exist
         $cartProduct = $this->AddProductToCart($request, $order);
 
-        # Add Extra to a cart or update if exist
-        $this->AddExtraToCart($request, $cartProduct);
-
-        # Add Side to a cart or update if exist
-        $this->AddSideToCart($request, $cartProduct);
-
-        # Add Sauce to a cart or update if exist
-        $this->AddSauceToCart($request, $cartProduct);
+        # Add Product Option to a cart or update if exist
+        $this->AddProductOptionToCart($request, $cartProduct);
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto adicionado ao carrinho!',
                                  'data'    => new CartProductResource($cartProduct)], 200); 
     }
+
+    /**
+     * CHANGE THE QUANTITY OF A SPECIFIED PRODUCT IN THE CART
+     * *
+     * 
+     * @OA\Patch(path="/api/v1/client/cart/{id}",
+     *   tags={"Client: Cart"},
+     *   summary="Change the quantity of a specified product in the cart",
+     *   description="If the quantity < 1, the product will be removed to the cart",
+     *   operationId="changeINTheCart",
+     *  @OA\Parameter(
+     *      name="id",
+     *      description="This <b>id </b>represents <i>'cart_product_id'</i> returned in (GET)Cart and (GET)Checkout request ",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="quantity", type="integer", example="2"),
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Quantidade de itens alterada",
+     *           },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        if ( Cart::where(['client_id'  => Auth::user()->client->id, 'id' => $id,])->update($request->all()) ) {
+            $status     = "success";
+            $message    = "Produto atualizado"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possível encontrar o produto especificado',
+                                ], $statusCode ?? 404); 
+    }
+
 
     /**
      * REMOVE ITEM FROM THE CART

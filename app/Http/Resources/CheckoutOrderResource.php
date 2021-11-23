@@ -15,6 +15,10 @@ class CheckoutOrderResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'partner' => [
+                'id'   => $this->cart->first()->product->partner->id   ?? null,
+                'name' => $this->cart->first()->product->partner->name ?? null,
+            ],
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),
             'delivery_time'    => $this->deliver_at ?? '30 a 60 min' ,

@@ -184,35 +184,35 @@ class OrderController extends Controller
      *              "status": "success",
      *              "message": "checkout",
      *              "data": { 
+     *                "partner": {
+     *                  "id": "integer",
+     *                  "name": "string"
+     *                },
      *                  "products": {
      *                      { 
-     *                          "partner": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                           },
      *                          "product": {
-     *                              "id": "integer",
+     *                              "cart_product_id": "integer - Used to update quantity of a specified product in the cart",
+     *                              "id": "integer - Used to identify the product itself",
      *                              "name": "string",
      *                              "description": "string",
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
+     *                          },   
      *                          "amount": "float",
      *                          "created_at": "datetime"
      *                      }, 
@@ -331,21 +331,19 @@ class OrderController extends Controller
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
      *                          },
      *                          "amount": "float",
      *                          "created_at": "datetime"
@@ -520,21 +518,19 @@ class OrderController extends Controller
      *                              "price": "float",
      *                              "quantity": "integer"
      *                          },
-     *                          "extras": {
+     *                          "options":
+     *                          {
      *                              {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                              }
-     *                          },
-     *                          "side": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                          },
-     *                          "sauce": {
-     *                              "id": "integer",
-     *                              "name": "string"
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
      *                          },
      *                          "amount": "float",
      *                          "created_at": "datetime"
@@ -611,9 +607,9 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::where('id',  $id)->where('client_id', Auth::user()->client->id)->get();
+
         if ($order->count() > 0) {
-            $data    = new CheckoutOrderResource( $order->first() );
-            
+            $data        = new CheckoutOrderResource( $order->first() );
             $status      = "success";
             $message     = "Dados do pedido";
             $statusCode  = 200;

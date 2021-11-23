@@ -739,6 +739,7 @@ class OrderController extends Controller
     public function replicate($id)
     {
         if ($oldOrder = Order::where('id', $id)->first()) {
+            #   Replicate the Order
             $newOrder = $oldOrder->replicate(['order_status_type_id']);
             $newOrder->push();
 

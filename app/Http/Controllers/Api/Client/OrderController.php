@@ -47,9 +47,9 @@ class OrderController extends Controller
      *                          "name": "string",
      *                          "image": "string",
      *                       },
+     *                       "can_reorder" : "boolean",                    
      *                      }
      *                  }
-
      *              },
      *           },
      *      ),

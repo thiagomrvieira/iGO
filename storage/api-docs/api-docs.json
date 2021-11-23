@@ -991,7 +991,8 @@
                                                     "id": "integer",
                                                     "name": "string",
                                                     "image": "string"
-                                                }
+                                                },
+                                                "reorder": "boolean"
                                             }
                                         ]
                                     }

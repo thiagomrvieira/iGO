@@ -170,4 +170,17 @@ class Order extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+    /**
+     * Check if the Products in the Order are available
+     */
+    public function canReorder()
+    {
+        foreach ($this->cart as $cartItem) {
+            if ($cartItem->product->available == false) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

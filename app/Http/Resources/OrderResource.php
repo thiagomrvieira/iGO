@@ -23,10 +23,8 @@ class OrderResource extends JsonResource
                 'id'    => $this->cart->first()->product->partner->id,  
                 'name'  => $this->cart->first()->product->partner->name,  
                 'image' => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->cart->first()->product->partner->images->image_cover)  ?? null,  
-
             ],
-            
-            
+            'can_reorder' => $this->canReorder(),
         ];
     }
 }

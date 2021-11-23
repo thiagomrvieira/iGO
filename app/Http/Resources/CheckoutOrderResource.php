@@ -31,6 +31,8 @@ class CheckoutOrderResource extends JsonResource
             'total'          => $this->total(),
             'discount'       => $this->discount(),
             'total_final'    => $this->total() - $this->discount() ?? null,
+            'can_reorder'    => $this->canReorder(),
+
         ];
         
     }

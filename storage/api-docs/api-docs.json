@@ -992,7 +992,7 @@
                                                     "name": "string",
                                                     "image": "string"
                                                 },
-                                                "reorder": "boolean"
+                                                "can_reorder": "boolean"
                                             }
                                         ]
                                     }
@@ -1047,7 +1047,8 @@
                                                     "id": "integer",
                                                     "name": "string",
                                                     "image": "string"
-                                                }
+                                                },
+                                                "can_reorder": "boolean"
                                             }
                                         ]
                                     }
@@ -1424,7 +1425,8 @@
                                         "shipping_fee": "float",
                                         "total": "float",
                                         "discount": "float",
-                                        "total_final": "float"
+                                        "total_final": "float",
+                                        "can_reorder": "boolean"
                                     }
                                 }
                             }

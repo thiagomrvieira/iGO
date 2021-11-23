@@ -122,6 +122,7 @@ class OrderController extends Controller
      *                          "name": "string",
      *                          "image": "string",
      *                       },
+     *                       "can_reorder" : "boolean",                    
      *                      }
      *                  }
      *              },
@@ -562,8 +563,8 @@ class OrderController extends Controller
      *                  "shipping_fee": "float",
      *                  "total": "float",
      *                  "discount": "float",
-     *                  "total_final": "float"
-     *                  
+     *                  "total_final": "float",
+     *                  "can_reorder" : "boolean",                    
      *              },
      *          },
      *      ),

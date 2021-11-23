@@ -130,7 +130,6 @@ trait OrderTrait {
             #   Create new Cart Items = 'Add products to the cart'
             $newCartItem = $newOrder->cart()->create($oldCartItem->toArray());
             
-            
             #   SET THE RELATIONS
             #   Add Side to the Cart if exist in the old one 
             if ($oldCartItem->cartSide) {

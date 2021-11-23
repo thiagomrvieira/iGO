@@ -738,14 +738,14 @@ class OrderController extends Controller
      */
     public function replicate($id)
     {
-        if ($oldOrder = Order::where('id', $id)->first()) {
+        if (($oldOrder = Order::where('id', $id)->first()) && $oldOrder->canReorder()) {
             $this->replicateOrder($oldOrder);
             return $this->checkout();
         }
         
-        return response()->json(['status'  => $status  ?? 'not found',
-                                 'message' => $message ?? 'Não foi possivel encontrar o pedido especificado',
-                                 'data'    => $data    ?? null], $statusCode ?? 404); 
+        return response()->json(['status'  => $status  ?? 'forbiden',
+                                 'message' => $message ?? 'Não foi possivel refazer o pedido especificado',
+                                 'data'    => $data    ?? null], $statusCode ?? 403); 
     }
 
     

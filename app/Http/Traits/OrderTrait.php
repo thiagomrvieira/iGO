@@ -119,4 +119,35 @@ trait OrderTrait {
         })->get() ?? [];
     }
     
+    public function replicateOrder(Order $oldOrder)
+    {
+        #   Replicate the Order
+        $newOrder = $oldOrder->replicate(['order_status_type_id']);
+        $newOrder->push();
+
+        foreach($oldOrder->cart as $oldCartItem)
+        {
+            #   Create new Cart Items = 'Add products to the cart'
+            $newCartItem = $newOrder->cart()->create($oldCartItem->toArray());
+            
+            
+            #   SET THE RELATIONS
+            #   Add Side to the Cart if exist in the old one 
+            if ($oldCartItem->cartSide) {
+                $newCartItem->cartSide()->create($oldCartItem->cartSide->toArray());
+            }
+            #   Add Sauce to the Cart if exist in the old one 
+            if ($oldCartItem->cartSauce) {
+                $newCartItem->cartSauce()->create($oldCartItem->cartSauce->toArray());
+            }
+            #   Add Extras to the Cart if exist in the old one
+            if ($oldCartItem->cartExtras) {
+                foreach ($oldCartItem->cartExtras as $newCartExtra) {
+                    $newCartItem->cartExtras()->create($newCartExtra->toArray());
+                }
+            }
+            
+        }
+        return true;
+    }
 }

@@ -739,31 +739,7 @@ class OrderController extends Controller
     public function replicate($id)
     {
         if ($oldOrder = Order::where('id', $id)->first()) {
-            #   Replicate the Order
-            $newOrder = $oldOrder->replicate(['order_status_type_id']);
-            $newOrder->push();
-
-            foreach($oldOrder->cart as $oldCartItem)
-            {
-                #   Create new Cart Items = Add products to the cart
-                $newCartItem = $newOrder->cart()->create($oldCartItem->toArray());
-                
-                if ($oldCartItem->cartSide) {
-                    #   Add Side to the Cart if exist in the old one 
-                    $newCartItem->cartSide()->create($oldCartItem->cartSide->toArray());
-                }
-                if ($oldCartItem->cartSauce) {
-                    #   Add Sauce to the Cart if exist in the old one 
-                    $newCartItem->cartSauce()->create($oldCartItem->cartSauce->toArray());
-                }
-                if ($oldCartItem->cartExtras) {
-                    #   Add Extras to the Cart if exist in the old one
-                    foreach ($oldCartItem->cartExtras as $newCartExtra) {
-                        $newCartItem->cartExtras()->create($newCartExtra->toArray());
-                    }
-                }
-                
-            }
+            $this->replicateOrder($oldOrder);
             return $this->checkout();
         }
         

@@ -121,10 +121,21 @@ trait OrderTrait {
     
     public function replicateOrder(Order $oldOrder)
     {
-        #   Replicate the Order
-        $newOrder = $oldOrder->replicate(['order_status_type_id']);
-        $newOrder->push();
+        #   Check if exist an opened Order before replicate
+        if ($order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first() ) 
+        {
+            #   Uses the opened Order
+            $newOrder = $order;
+        } 
+        else 
+        {
+            #   Replicates the old Order if there is no Order Opened
+            $newOrder = $oldOrder->replicate(['order_status_type_id']);
+            $newOrder->push();
+        }
 
+       
+        #   Get Carts (Products, Side, Sauce, Extras and other options) from old Order
         foreach($oldOrder->cart as $oldCartItem)
         {
             #   Create new Cart Items = 'Add products to the cart'

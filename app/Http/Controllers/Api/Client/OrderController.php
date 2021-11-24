@@ -168,7 +168,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display chekout data
+     * Display checkout data
      * *
      * 
      * @OA\Get(path="/api/v1/client/order/checkout",
@@ -281,7 +281,7 @@ class OrderController extends Controller
         
         if ($order && $cartItems->count() > 0) {
             $data    = new CheckoutOrderResource($order);
-            $message = "Chekout";
+            $message = "Checkout";
         }
         
         return response()->json(['status'  => $status  ?? 'success',
@@ -317,7 +317,7 @@ class OrderController extends Controller
      *           mediaType="application/json",
      *           example= {
      *              "status": "success",
-     *              "message": "chekout",
+     *              "message": "checkout",
      *              "data": { 
      *                  "products": {
      *                      { 

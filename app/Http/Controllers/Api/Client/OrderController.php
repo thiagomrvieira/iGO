@@ -627,7 +627,7 @@ class OrderController extends Controller
      * @OA\Post(path="/api/v1/client/order/{id}/replicate",
      *   tags={"Client: Orders"},
      *   summary="Replicate an specified order",
-     *   description="Creates a new Order with the same data as another one",
+     *   description="Creates a new Order with the same data as another one <br>● This method uses the field <i>'can_reorder'</i> as a validation before replicating the order; <br>● If there are any items in the cart, it keeps them;",
      *   operationId="replicateOrder",
       *   @OA\Response(
      *      response=200,

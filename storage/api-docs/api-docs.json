@@ -1220,7 +1220,7 @@
                             "application/json": {
                                 "example": {
                                     "status": "success",
-                                    "message": "chekout",
+                                    "message": "checkout",
                                     "data": {
                                         "products": [
                                             {
@@ -1458,7 +1458,7 @@
                     "Client: Orders"
                 ],
                 "summary": "Replicate an specified order",
-                "description": "Creates a new Order with the same data from as another one",
+                "description": "Creates a new Order with the same data as another one <br>● This method uses the field <i>'can_reorder'</i> as a validation before replicating the order; <br>● If there are any items in the cart, it keeps them;",
                 "operationId": "replicateOrder",
                 "parameters": [
                     {

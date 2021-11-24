@@ -47,9 +47,9 @@ class OrderController extends Controller
      *                          "name": "string",
      *                          "image": "string",
      *                       },
+     *                       "can_reorder" : "boolean",                    
      *                      }
      *                  }
-
      *              },
      *           },
      *      ),
@@ -122,6 +122,7 @@ class OrderController extends Controller
      *                          "name": "string",
      *                          "image": "string",
      *                       },
+     *                       "can_reorder" : "boolean",                    
      *                      }
      *                  }
      *              },
@@ -167,7 +168,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display chekout data
+     * Display checkout data
      * *
      * 
      * @OA\Get(path="/api/v1/client/order/checkout",
@@ -280,7 +281,7 @@ class OrderController extends Controller
         
         if ($order && $cartItems->count() > 0) {
             $data    = new CheckoutOrderResource($order);
-            $message = "Chekout";
+            $message = "Checkout";
         }
         
         return response()->json(['status'  => $status  ?? 'success',
@@ -316,7 +317,7 @@ class OrderController extends Controller
      *           mediaType="application/json",
      *           example= {
      *              "status": "success",
-     *              "message": "chekout",
+     *              "message": "checkout",
      *              "data": { 
      *                  "products": {
      *                      { 
@@ -562,8 +563,8 @@ class OrderController extends Controller
      *                  "shipping_fee": "float",
      *                  "total": "float",
      *                  "discount": "float",
-     *                  "total_final": "float"
-     *                  
+     *                  "total_final": "float",
+     *                  "can_reorder" : "boolean",                    
      *              },
      *          },
      *      ),
@@ -621,14 +622,130 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * REPLICATE A SPECIFIED ORDER
+     * *
+     * @OA\Post(path="/api/v1/client/order/{id}/replicate",
+     *   tags={"Client: Orders"},
+     *   summary="Replicate an specified order",
+     *   description="Creates a new Order with the same data as another one",
+     *   operationId="replicateOrder",
+      *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "checkout",
+     *              "data": { 
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string"
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "options":
+     *                          {
+     *                              {
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  
+     *                  "delivery_address": {
+     *                      "id": "integer",
+     *                      "address_name": "string",
+     *                      "address_type": "string",
+     *                      "address_line_1": "string",
+     *                      "address_line_2": "string",
+     *                      "county": {
+     *                          "id": "integer",
+     *                          "name": "string"
+     *                      },
+     *                      "locality": "string",
+     *                      "post_code": "string",
+     *                      "country": "string",
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "delivery_time": "datetime",
+     *                  "tax_data": {
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "subtotal": "float",
+     *                  "shipping_fee": "float",
+     *                  "total": "float",
+     *                  "discount": "float",
+     *                  "total_final": "float",
+     *                  "can_reorder" : "boolean",                    
+     *              },
+     *          },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function replicate($id)
     {
-        //
+        if (($oldOrder = Order::where('id', $id)->first()) && $oldOrder->canReorder()) {
+            $this->replicateOrder($oldOrder);
+            return $this->checkout();
+        }
+        
+        return response()->json(['status'  => $status  ?? 'forbiden',
+                                 'message' => $message ?? 'Não foi possivel refazer o pedido especificado',
+                                 'data'    => $data    ?? null], $statusCode ?? 403); 
     }
 
     

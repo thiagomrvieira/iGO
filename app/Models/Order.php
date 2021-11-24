@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -170,4 +170,19 @@ class Order extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+    /**
+     * Check if the Products in the Order are available
+     */
+    public function canReorder()
+    {
+        foreach ($this->cart as $cartItem) {
+            if ($cartItem->product->available == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }

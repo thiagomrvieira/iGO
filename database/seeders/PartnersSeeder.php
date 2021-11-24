@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CategoryPartner;
 use App\Models\Image;
 use App\Models\Partner;
 use App\Models\PartnerCategory;
@@ -23,46 +24,43 @@ class PartnersSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        #   Users
-        $user01 = User::create([
-            'name'           => $faker->name(),
-            'email'          => $faker->unique()->safeEmail(),
-            'password'       => bcrypt('iGOdelivery'),
-            'is_admin'       => 0,
-            'is_partner'     => 1,
-            'is_deliveryman' => 0,
-        ]);
-        
-        $user02 = User::create([
-            'name'           => $faker->name(),
-            'email'          => $faker->unique()->safeEmail(),
-            'password'       => bcrypt('iGOdelivery'),
-            'is_admin'       => 0,
-            'is_partner'     => 1,
-            'is_deliveryman' => 0,
-        ]);
+        for ($i=0; $i < 25; $i++) { 
+            
+            #   Users
+            $user = User::create([
+                'name'           => $faker->name(),
+                'email'          => $faker->unique()->safeEmail(),
+                'password'       => bcrypt('iGOdelivery'),
+                'is_admin'       => 0,
+                'is_partner'     => 1,
+                'is_deliveryman' => 0,
+            ]);
+            
+            $partnerCategory = PartnerCategory::where(['parent_id' => null, 'active' => 1])->inRandomOrder()->first();
+            
+            #   Cria partners
+            $partner = Partner::create([
+                'user_id'      => $user->id, 
+                'name'         => $user->name, 
+                'email'        => $user->email, 
+                'company_name' => $faker->company(), 
+                'active'       => true, 
+                'category_id'  => $partnerCategory->id,
+            ]);
 
-        $user03 = User::create([
-            'name'           => $faker->name(),
-            'email'          => $faker->unique()->safeEmail(),
-            'password'       => bcrypt('iGOdelivery'),
-            'is_admin'       => 0,
-            'is_partner'     => 1,
-            'is_deliveryman' => 0,
-        ]);
+            $subCats = PartnerCategory::where(['parent_id' => $partnerCategory->id, 'active' => 1])->get()->random(random_int(1, 2));
+            
+            #   Add subcategorias
+            foreach ($subCats as $subCat) {
+                CategoryPartner::create([
+                    'partner_id'  => $partner->id,
+                    'category_id' => $subCat->id,
+                ]);
+            }
+
+        }
+
         
-        #   Partners
-        $data = array(
-            array('user_id' => $user01->id, 'name' => $user01->name, 'email'=> $user01->email, 'company_name' => $faker->company(), 'active' => true, 
-                    'category_id' => PartnerCategory::where(['parent_id' => null, 'active' => 1])->inRandomOrder()->first()->id ),
-            array('user_id' => $user02->id, 'name' => $user02->name, 'email'=> $user02->email, 'company_name' => $faker->company(), 'active' => true, 
-                    'category_id' => PartnerCategory::where(['parent_id' => null, 'active' => 1])->inRandomOrder()->first()->id ),
-            array('user_id' => $user03->id, 'name' => $user03->name, 'email'=> $user03->email, 'company_name' => $faker->company(), 'active' => true, 
-                    'category_id' => PartnerCategory::where(['parent_id' => null, 'active' => 1])->inRandomOrder()->first()->id ),
-        );
-        
-        #   Cria partners
-        Partner::insert($data);
 
     }
 }

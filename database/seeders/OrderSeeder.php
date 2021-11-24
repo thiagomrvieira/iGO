@@ -34,8 +34,7 @@ class OrderSeeder extends Seeder
         $user    = $client->user;
         $address = $user->addresses->first();
         
-        for ($i=0; $i < 1; $i++) { 
-        // for ($i=0; $i < 12; $i++) { 
+        for ($i=0; $i < 12; $i++) { 
             
             $product = Product::inRandomOrder()->first();
             $extra   = $product->extras->first();

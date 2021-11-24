@@ -532,10 +532,7 @@ header.fixed .row-fluid {
 }
 .block-accordion .accordion-button.is-open + .accordion-content {
 	max-height: unset;
-	padding: 35px 0;
-}
-.block-accordion .accordion-button.is-open + .accordion-content:last-child {
-	padding-bottom: 0;
+	padding: 35px 0 0 0;
 }
 .block-accordion .accordion-content {
 	max-height: 0;
@@ -735,26 +732,26 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 }
 
 /* profile area */
-.accordion-content.profile-content {
+.accordion-content.top-image {
 	width: 100%;
 	display: flex;
 	flex-flow: column nowrap ;
 	justify-content: center;
 }
-.accordion-content.profile-content .block-form,
-.accordion-content.profile-content .block-form input.accordion-content,
-.accordion-content.profile-content .block-form .block-field,
-.accordion-content.profile-content div.block-form .block-form-group .block-input,
-.accordion-content.profile-content div.block-form .block-form-group input {
+.accordion-content.top-image .block-form,
+.accordion-content.top-image .block-form input.accordion-content,
+.accordion-content.top-image .block-form .block-field,
+.accordion-content.top-image div.block-form .block-form-group .block-input,
+.accordion-content.top-image div.block-form .block-form-group input {
 	width: 100%;
 }
-.accordion-content.profile-content div.block-form .block-form-group {
+.accordion-content.top-image div.block-form .block-form-group {
 	margin-bottom: 25px;	
 }
-.accordion-content.profile-content div.block-form .block-form-group .block-field .block-icon svg {
+.accordion-content.top-image div.block-form .block-form-group .block-field .block-icon svg {
 	margin: 0 10px 0 15px;
 }
-.accordion-content.profile-content div.block-form .block-form-group input {
+.accordion-content.top-image div.block-form .block-form-group input {
 	border: none;
 	background-color: #FFF6B0;
 	font-family: 'Roboto', sans-serif;
@@ -764,7 +761,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	font-style: normal;
 	color: rgba(7, 42, 64);
 }
-.accordion-content.profile-content .profile-image-cover {
+.accordion-content.top-image .profile-image-cover {
 	position: relative;
 	width: 90px;
 	height: 90px;
@@ -775,7 +772,10 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	background-size: cover;
 	margin-bottom: 15px;
 }
-.accordion-content.profile-content .block-form .block-form-group {
+.accordion-content.top-image .profile-image-cover.product-cover {
+	background-image: url('/assets-backoffice-partner/images/rest_photo.png'); 
+}
+.accordion-content.top-image .block-form .block-form-group {
 	width: 100%;
 	height: 45px;
 	display: flex;
@@ -785,16 +785,16 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	border: 2px solid transparent;
 	border-radius: 20px;
 }
-.accordion-content.profile-content .block-form .block-field {
+.accordion-content.top-image .block-form .block-field {
 	display: flex;
 	align-items: center;
 }
-.accordion-content.profile-content .block-form .block-field .block-icon {
+.accordion-content.top-image .block-form .block-field .block-icon {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
-.accordion-content.profile-content .profile-image-cover input[type="file"] {
+.accordion-content.top-image .profile-image-cover input[type="file"] {
 	opacity: 0;
     left: 0;
 	top: 0;
@@ -806,7 +806,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	height: 100px;
     z-index: 1;
 }
-.accordion-content.profile-content .profile-image-cover .form-fild-text span {
+.accordion-content.top-image .profile-image-cover .form-fild-text span {
 	display: flex;
     justify-content: center;
     flex-direction: row;
@@ -815,7 +815,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
     left: 20%;
     bottom: -30%;
 }
-.accordion-content.profile-content h3 {
+.accordion-content.top-image h3 {
 	margin: 5px 0;
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
@@ -824,7 +824,7 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	font-style: normal;
 	color: rgba(7, 42, 64);
 }
-.accordion-content.profile-content p {
+.accordion-content.top-image p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 10px;
 	line-height: 11px;
@@ -834,6 +834,24 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 }
 
 /* Product area */
+.accordion-item.name-product .form-group {
+	width: 100%;
+}
+.accordion-item.name-product .form-group.product-price {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: flex-start;
+}
+.accordion-item.name-product .form-group.product-price input{
+	width: 160px;
+}
+.accordion-item.name-product .form-group input,
+.accordion-item.name-product .form-group textarea{
+	margin-bottom: 15px;
+}
+.accordion-item.name-product .available-product {
+	width: 100%;
+}
 .accordion-item .accordion-content .col-checkbox,
 .accordion-item .accordion-content .col-checkbox .form-check {
 	width: 100%;
@@ -847,7 +865,6 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 .accordion-content .col-checkbox .form-check .custom-control.custom-radio,
 .accordion-item .menu-label-radio .product-checks {
 	display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -884,6 +901,14 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 .accordion-item.campaign-product .accordion-content .custom-control input[type="radio"]:checked:before {
 	visibility: visible;
 }
+.accordion-item.campaign-product .accordion-content .custom-control label {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 500;
+	font-style: normal;
+	color: rgba(7, 42, 64);
+}
 .accordion-item .accordion-content .menu-label,
 .accordion-item .accordion-content .menu-label-radiu .custom-radio,
 .accordion-item.side-product .accordion-content .custom-control .form-check-label{
@@ -895,6 +920,15 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 	color: rgba(7, 42, 64);
 	width: calc(100% - 33px);
 }
+.accordion-item .accordion-content .menu-label-radio {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: space-between;
+	margin-bottom: 25px;
+}
 .accordion-item .accordion-content .menu-label-radio .product-checks {
 	width: 50%;
     display: flex;
@@ -905,14 +939,6 @@ header.fixed .row-fluid .column-left .block-logo a svg {
 }
 .accordion-item .accordion-content .menu-label-radio .product-checks .custom-control {
 	margin-left: 30px;
-}
-.accordion-item .accordion-content .menu-label-radio {
-	width: 100%;
-	display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-	justify-content: space-between;
 }
 .accordion-item.side-product .accordion-content .custom-control,
 .accordion-item.sauce-product .accordion-content .custom-control,

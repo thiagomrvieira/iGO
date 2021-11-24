@@ -55,7 +55,7 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <div class="accordion-content profile-content">
+                                <div class="accordion-content top-image">
                                     <div class="profile-image-cover">
                                         {!! Form::file ('image_cover', null, false,     ['class' => 'form-check-input']) !!}
                                         <div class="form-fild-text"><span>
@@ -91,8 +91,6 @@
                                         <img src="{{url('/assets-backoffice-partner/images/photo_loja.png')}}" alt="Partner Image" height="90px">
                                         {!! Form::label('image_cover', 'Inserir foto*', ['class' => 'form-check-label']) !!}
                                     @endif --}}
-                                    
-
                                     <div class="block-form">
                                         <div class="block-form-group">
                                             <div class="block-field block-field-entity-partner-name">

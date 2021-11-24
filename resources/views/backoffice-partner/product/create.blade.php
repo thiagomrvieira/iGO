@@ -48,7 +48,7 @@
                             <div class="accordionProductData" id="accordionProductData">
                                 
                                 {{-- Product name item--}}
-                                <div class="accordion-item sub-categories">
+                                <div class="accordion-item name-product">
                                     <button class="accordion-button is-open" type="button">
                                         <h3><strong>Nome do produto*</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -61,7 +61,38 @@
                                             </g>
                                         </svg>
                                     </button>
-                                    <div class="accordion-content">
+                                    <div class="accordion-content top-image">
+
+                                        <div class="profile-image-cover product-cover">
+                                            {!! Form::file ('image', null, false, ['class' => 'form-check-input']) !!}
+                                            <div class="form-fild-text">
+                                                <span>
+                                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g filter="url(#filter0_d_307_2)">
+                                                            <path d="M28 46C37.9411 46 46 37.9411 46 28C46 18.0589 37.9411 10 28 10C18.0589 10 10 18.0589 10 28C10 37.9411 18.0589 46 28 46Z" fill="#FFE414"/>
+                                                        </g>
+                                                        <path d="M28.0201 24.352C27.205 24.352 26.4082 24.5937 25.7306 25.0465C25.0529 25.4993 24.5247 26.1429 24.2127 26.896C23.9008 27.649 23.8192 28.4776 23.9782 29.277C24.1372 30.0764 24.5297 30.8106 25.1061 31.387C25.6824 31.9633 26.4167 32.3558 27.2161 32.5148C28.0155 32.6738 28.8441 32.5922 29.5971 32.2803C30.3501 31.9684 30.9937 31.4402 31.4465 30.7625C31.8994 30.0848 32.1411 29.288 32.1411 28.473C32.1397 27.3804 31.7051 26.333 30.9326 25.5605C30.16 24.7879 29.1126 24.3533 28.0201 24.352V24.352ZM28.0201 31.276C27.4663 31.276 26.9249 31.1118 26.4645 30.8041C26.004 30.4964 25.6451 30.0591 25.4332 29.5475C25.2213 29.0359 25.1658 28.4729 25.2739 27.9297C25.3819 27.3866 25.6486 26.8877 26.0402 26.4961C26.4317 26.1045 26.9307 25.8378 27.4738 25.7298C28.017 25.6218 28.5799 25.6772 29.0916 25.8891C29.6032 26.1011 30.0405 26.4599 30.3482 26.9204C30.6558 27.3809 30.8201 27.9222 30.8201 28.476C30.8185 29.2181 30.523 29.9294 29.9982 30.4541C29.4734 30.9789 28.7622 31.2744 28.0201 31.276V31.276Z" fill="#072A40"/>
+                                                        <path d="M34.4801 22.374H32.0571C32.0195 22.3746 31.9824 22.3647 31.9502 22.3452C31.9181 22.3257 31.892 22.2976 31.8751 22.264L31.2041 20.854L31.1981 20.842C31.0722 20.5884 30.8778 20.3751 30.6369 20.2263C30.396 20.0774 30.1182 19.9991 29.8351 20H26.2521C25.9689 19.9991 25.6912 20.0774 25.4503 20.2263C25.2094 20.3751 25.015 20.5884 24.8891 20.842L24.8831 20.854L24.2121 22.264C24.1952 22.2976 24.1691 22.3257 24.1369 22.3452C24.1047 22.3647 24.0677 22.3746 24.0301 22.374H21.5581C21.0336 22.3745 20.5308 22.5831 20.16 22.9539C19.7892 23.3248 19.5806 23.8276 19.5801 24.352V33.252C19.5806 33.7764 19.7892 34.2793 20.16 34.6501C20.5308 35.0209 21.0336 35.2295 21.5581 35.23H34.4801C35.0045 35.2295 35.5073 35.0209 35.8782 34.6501C36.249 34.2793 36.4575 33.7764 36.4581 33.252V24.352C36.4575 23.8276 36.249 23.3248 35.8782 22.9539C35.5073 22.5831 35.0045 22.3745 34.4801 22.374V22.374ZM35.1391 33.254C35.1388 33.4287 35.0693 33.5962 34.9458 33.7197C34.8222 33.8432 34.6548 33.9127 34.4801 33.913H21.5581C21.3834 33.9127 21.2159 33.8432 21.0924 33.7197C20.9689 33.5962 20.8993 33.4287 20.8991 33.254V24.354C20.8993 24.1793 20.9689 24.0118 21.0924 23.8883C21.2159 23.7648 21.3834 23.6953 21.5581 23.695H24.0311C24.3142 23.696 24.592 23.6176 24.8329 23.4688C25.0738 23.3199 25.2682 23.1066 25.3941 22.853L25.4001 22.841L26.0711 21.431C26.088 21.3974 26.1141 21.3693 26.1462 21.3498C26.1784 21.3304 26.2155 21.3204 26.2531 21.321H29.8361C29.8737 21.3204 29.9107 21.3304 29.9429 21.3498C29.9751 21.3693 30.0012 21.3974 30.0181 21.431L30.6891 22.841L30.6951 22.853C30.821 23.1066 31.0154 23.3199 31.2563 23.4688C31.4972 23.6176 31.7749 23.696 32.0581 23.695H34.4801C34.6548 23.6953 34.8222 23.7648 34.9458 23.8883C35.0693 24.0118 35.1388 24.1793 35.1391 24.354V33.254Z" fill="#072A40"/>
+                                                        <path d="M33.9441 24.788H32.2661V26.466H33.9441V24.788Z" fill="#072A40"/>
+                                                        <defs>
+                                                            <filter id="filter0_d_307_2" x="4" y="4" width="52" height="52" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                                <feOffset dx="2" dy="2"/>
+                                                                <feGaussianBlur stdDeviation="4"/>
+                                                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.161 0"/>
+                                                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_307_2"/>
+                                                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_307_2" result="shape"/>
+                                                            </filter>
+                                                        </defs>
+                                                    </svg>
+                                                </span>
+                                            </div> 
+     
+                                        </div>
+                                        <h3>Inserir foto*</h3>
+                                        <p>Formato jpeg/png</p>  
+{{-- 
                                         <div class="form-group">
                                             @if (isset($product) && $product->image)
                                                 <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
@@ -70,7 +101,10 @@
                                             @endif
                                             {!! Form::label('image', isset($product) && $product->image ? 'Alterar foto*' : 'Inserir foto*', ['class' => 'form-check-label']) !!}
                                             {!! Form::file ('image', null, false,     ['class' => 'form-check-input']) !!}
-                                        </div>
+                                        </div> --}}
+
+
+
                                         <div class="form-group">
                                             {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null, 
                                                         ['class' => 'form-control', 'placeholder' => 'Nome do produto*']) !!}
@@ -79,22 +113,24 @@
                                             {!! Form::textarea('description', (isset($product) && $product->description) ? $product->description : null, 
                                                             ['class' => 'form-control', 'placeholder' => 'Descrição do produto*']) !!}
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group product-price">
                                             {!! Form::number('price', (isset($product) && $product->price) ? number_format($product->price,2) : null, 
                                                             ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                         </div>
-                                        
-                                        {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}
-
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            {!! Form::radio('available', 1, ( isset($product) && $product->available == 0 ? false : true) ?? true,      
-                                                            ['class' => 'form-check-input']) !!}
-                                            {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            {!! Form::radio('available', 0, ( isset($product) && $product->available == 0 ? true : false) ?? false,  
-                                                            ['class' => 'form-check-input']) !!}
-                                            {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
+                                        <div class="menu-label-radio">
+                                            {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}
+                                            <div class="product-checks">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    {!! Form::radio('available', 1, ( isset($product) && $product->available == 0 ? false : true) ?? true,      
+                                                                    ['class' => 'form-check-input']) !!}
+                                                    {!! Form::label('available', 'Sim', ['class' => 'form-check-label']) !!}
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    {!! Form::radio('available', 0, ( isset($product) && $product->available == 0 ? true : false) ?? false,  
+                                                                    ['class' => 'form-check-input']) !!}
+                                                    {!! Form::label('available', 'Não', ['class' => 'form-check-label']) !!}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> 
@@ -360,6 +396,7 @@
                                         <a href="#" id="addExtra">Adicionar Extra</a>
                                     </div>
                                 </div> 
+
 
                                 {{--  Campaign item --}}
 

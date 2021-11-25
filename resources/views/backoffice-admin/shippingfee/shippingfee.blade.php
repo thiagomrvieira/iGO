@@ -67,7 +67,7 @@
                                                     data-shipping-id="{{ $shipping->id }}"
                                                     data-shipping-from="{{ $shipping->from->name }}"
                                                     data-shipping-to="{{ $shipping->to->name }}"
-                                                    data-shipping-price="{{ $shipping->price }}">
+                                                    data-shipping-price="{{ $shipping->price / 100 }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </td>

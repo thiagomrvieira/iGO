@@ -88,7 +88,9 @@ class UserSeeder extends Seeder
                 'category_id'    => 1,
                 'user_id'        => $partner01->id,
                 'active'         => 1,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'approved_at'    => Carbon::now()
+                
             ),
             array( 
                 'name'           => $partner02->name,
@@ -97,7 +99,8 @@ class UserSeeder extends Seeder
                 'category_id'    => 1,
                 'user_id'        => $partner02->id,
                 'active'         => 1,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'approved_at'    => Carbon::now()
 
             ) ,
         );

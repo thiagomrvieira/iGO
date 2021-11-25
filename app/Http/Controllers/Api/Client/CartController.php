@@ -47,7 +47,8 @@ class CartController extends Controller
      *                              "name": "string"
      *                           },
      *                          "product": {
-     *                              "id": "integer",
+     *                              "cart_product_id": "integer",
+     *                              "product_id": "integer",
      *                              "name": "string",
      *                              "price": "float",
      *                              "quantity": "integer"
@@ -338,11 +339,11 @@ class CartController extends Controller
      * @OA\Delete(path="/api/v1/client/cart/{id}",
      *   tags={"Client: Cart"},
      *   summary="Remove item from the cart",
-     *   description="Remove a specified product from the cart - Expect to recieve a valid product id",
+     *   description="Remove a specified product from the cart - Expect to recieve a valid <b>cart_product_id</b>",
      *   operationId="removeFromCart",
      *  @OA\Parameter(
      *      name="id",
-     *      description="Product id",
+     *      description="cart_product_id",
      *      required=true,
      *      in="path",
      *      @OA\Schema(

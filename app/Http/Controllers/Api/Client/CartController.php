@@ -386,8 +386,10 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
+        
         $cartItem = Cart::where('client_id', Auth::user()->client->id)
-                        ->where('product_id', $id)->first();
+                        ->where('id', $id)->first();
+
         if (!$cartItem) {
             $status      = 'Error';
             $message     = 'Produto não encontrado';
@@ -396,7 +398,6 @@ class CartController extends Controller
             $cartItem->delete();
         }
 
-
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Produto removido do carrinho!'], $status_code ?? 200); 
 
@@ -404,6 +405,65 @@ class CartController extends Controller
     }
 
 
+    /**
+     * REMOVE ALL ITEMS FROM THE CART
+     * *
+     * 
+     * @OA\Delete(path="/api/v1/client/cleancart",
+     *   tags={"Client: Cart"},
+     *   summary="Remove all items from the cart",
+     *   description="Remove all products from the cart",
+     *   operationId="removeAllFromCart",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Produtos removidos do Carrinho!",
+     *          },
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function removeAll()
+    {
+        if($order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first() ?? null) 
+        {
+            $order->cart()->delete();
+            $order->delete();
+
+            $status      = 'success';
+            $message     = 'Produtos removidos do carrinho!';
+            $status_code = 200;
+        } 
+
+        return response()->json(['status'  => $status  ?? 'error',
+                                 'message' => $message ?? 'Não há produtos no carrinho'], $status_code ?? 404); 
+
+    }
 
     
 }

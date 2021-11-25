@@ -11,7 +11,7 @@
                     "Client: Address"
                 ],
                 "summary": "Get client addresses",
-                "description": "The first paragraph describes the call.\\n\\nAnother paragraph gives additional information about the call.",
+                "description": "Return all addresses related to the user",
                 "operationId": "getClientAddresses",
                 "responses": {
                     "200": {

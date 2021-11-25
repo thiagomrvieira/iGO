@@ -92,18 +92,6 @@
                                         </div>
                                         <h3>Inserir foto*</h3>
                                         <p>Formato jpeg/png</p>  
-{{-- 
-                                        <div class="form-group">
-                                            @if (isset($product) && $product->image)
-                                                <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
-                                                    alt="Product Image" height="90px">
-                                                <br>
-                                            @endif
-                                            {!! Form::label('image', isset($product) && $product->image ? 'Alterar foto*' : 'Inserir foto*', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image', null, false,     ['class' => 'form-check-input']) !!}
-                                        </div> --}}
-
-
 
                                         <div class="form-group">
                                             {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null, 
@@ -134,21 +122,8 @@
                                         </div>
                                     </div>
                                 </div> 
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingProduct">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
-                                        Nome do produto*
-                                        </button>
-                                    </h2>
-                                    <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct" data-bs-parent="#accordionProductData">
-                                        <div class="accordion-body">
-                                            
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- Product category item--}}
-
+                                
+                                {{-- Product Categories --}}
                                 <div class="accordion-item sub-categories">
                                     <button class="accordion-button" type="button">
                                         <h3><strong>{{ $partner->mainCategory->slug == 'restaurantes' ? 'Ementa(categorias)*' : 'Categoria' }}</strong></h3>

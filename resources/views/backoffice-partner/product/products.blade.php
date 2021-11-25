@@ -23,7 +23,7 @@
 @endphp
 
 
-@section('navbar')
+{{-- @section('navbar')
     <!-- Image and text -->
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand float-left pl-3" href="#">
@@ -35,226 +35,239 @@
                 alt="User profile picture" width="45px">
         </a>
     </nav>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="container">
-        
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <h4>All products view</h4>
-
-        {{-- {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
-                        'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
-            @csrf
-            
-            {!! Form::hidden('partner_id', $partner->id ) !!}  --}}
-
-            <div class="accordion" id="accordionProducts">
+        <div id="page-backoffice">
+            <div class="block-home-find">
+                <div class="block-accordion">
+                    <div class="main-fluid">
+                        <div class="limit-wrapper">
                 
-                {{-- Featured item--}}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFeatured">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeatured" aria-expanded="false" aria-controls="collapseFeatured">
-                            Destaques
-                        </button>
-                    </h2>
-                    <div id="collapseFeatured" class="accordion-collapse collapse" aria-labelledby="headingFeatured" data-bs-parent="#accordionProducts">
-                        <div class="accordion-body">
-                            {{-- List of Featured Products --}}
-                            @forelse ($products as $featuredProduct)
-                                @if (isset($featuredProduct->featured->created_at))
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div style="float: left;">
-                                                @if ($featuredProduct->image)
-                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
-                                                        alt="Product Image" height="90px">
-                                                    <br>
-                                                @endif
-                                                <strong>{{$featuredProduct->name}}</strong>
-                                                <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
-                                                <p>{{$featuredProduct->price}}€</p>
-                                            </div>
-                                            <div style="float: right;">
-                                                
-                                                <div id="pen">
-                                                    <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}">
-                                                        pen
-                                                    </a>
-                                                </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
-                                                <div id="trash">
-                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $featuredProduct->id }}"  
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        trash
-                                                    </a>
-                                                </div>
-                                                <div id="plus">
-                                                    plus
-                                                </div>
-                                            </div>
+                            <h4>All products view</h4>
+
+                            {{-- {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
+                                            'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                                @csrf
+                                
+                                {!! Form::hidden('partner_id', $partner->id ) !!}  --}}
+
+                            <div class="accordion" id="accordionProducts">
+                                
+                                {{-- Featured item--}}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFeatured">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeatured" aria-expanded="false" aria-controls="collapseFeatured">
+                                            Destaques
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFeatured" class="accordion-collapse collapse" aria-labelledby="headingFeatured" data-bs-parent="#accordionProducts">
+                                        <div class="accordion-body">
+                                            {{-- List of Featured Products --}}
+                                            @forelse ($products as $featuredProduct)
+                                                @if (isset($featuredProduct->featured->created_at))
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div style="float: left;">
+                                                                @if ($featuredProduct->image)
+                                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
+                                                                        alt="Product Image" height="90px">
+                                                                    <br>
+                                                                @endif
+                                                                <strong>{{$featuredProduct->name}}</strong>
+                                                                <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
+                                                                <p>{{$featuredProduct->price}}€</p>
+                                                            </div>
+                                                            <div style="float: right;">
+                                                                
+                                                                <div id="pen">
+                                                                    <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}">
+                                                                        pen
+                                                                    </a>
+                                                                </div>
+
+                                                                <div id="trash">
+                                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $featuredProduct->id }}"  
+                                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                        trash
+                                                                    </a>
+                                                                </div>
+                                                                <div id="plus">
+                                                                    plus
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @empty
+                                                Sem produtos destacados
+                                            @endforelse
+                                        
                                         </div>
                                     </div>
-                                @endif
-                            @empty
-                                Sem produtos destacados
-                            @endforelse
-                           
-                        </div>
-                    </div>
-                </div>
+                                </div>
 
-                {{-- List Product Categories --}}
-                @foreach ($products->unique('category')->pluck('category') as $productCategory)
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id='{{ "heading" . $productCategory->slug}}'>
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target='{{ "#collapse".$productCategory->slug}}'  aria-expanded="false" aria-controls='{{"collapse".$productCategory->slug}}'>
-                                {{$productCategory->name}}
-                            </button>
-                        </h2>
-                        <div id='{{"collapse".$productCategory->slug}}' class="accordion-collapse collapse" aria-labelledby='{{"heading".$productCategory->slug}}' data-bs-parent="#accordionProducts">
-                            <div class="accordion-body">
-                                {{-- List Products --}}
-                                @foreach ($products->where('category_id', $productCategory->id) as $product)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div style="float: left;">
-                                                @if ($product->image)
-                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
-                                                        alt="Product Image" height="90px">
-                                                    <br>
-                                                @endif
-                                                <strong>{{$product->name}}</strong>
-                                                <p>{{ Str::limit($product->description, 60, '...') }}</p>
-                                                <p>{{$product->price}}€</p>
+                                {{-- List Product Categories --}}
+                                @foreach ($products->unique('category')->pluck('category') as $productCategory)
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id='{{ "heading" . $productCategory->slug}}'>
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target='{{ "#collapse".$productCategory->slug}}'  aria-expanded="false" aria-controls='{{"collapse".$productCategory->slug}}'>
+                                                {{$productCategory->name}}
+                                            </button>
+                                        </h2>
+                                        <div id='{{"collapse".$productCategory->slug}}' class="accordion-collapse collapse" aria-labelledby='{{"heading".$productCategory->slug}}' data-bs-parent="#accordionProducts">
+                                            <div class="accordion-body">
+                                                {{-- List Products --}}
+                                                @foreach ($products->where('category_id', $productCategory->id) as $product)
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div style="float: left;">
+                                                                @if ($product->image)
+                                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                                        alt="Product Image" height="90px">
+                                                                    <br>
+                                                                @endif
+                                                                <strong>{{$product->name}}</strong>
+                                                                <p>{{ Str::limit($product->description, 60, '...') }}</p>
+                                                                <p>{{$product->price}}€</p>
+                                                            </div>
+                                                            <div style="float: right;">
+                                                                
+                                                                <div id="pen">
+                                                                    <a href="{{ route('products.edit', ['product' => $product] ) }}">
+                                                                        pen
+                                                                    </a>
+                                                                </div>
+
+                                                                <div id="trash">
+                                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
+                                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                        trash
+                                                                    </a>
+                                                                </div>
+                                                                <div id="plus">
+                                                                    plus
+                                                                </div>
+
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
                                             </div>
-                                            <div style="float: right;">
-                                                
-                                                <div id="pen">
-                                                    <a href="{{ route('products.edit', ['product' => $product] ) }}">
-                                                        pen
-                                                    </a>
-                                                </div>
-
-                                                <div id="trash">
-                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        trash
-                                                    </a>
-                                                </div>
-                                                <div id="plus">
-                                                    plus
-                                                </div>
-
-                                            </div>
-                                            
                                         </div>
                                     </div>
                                 @endforeach
+                                
+
+                                {{-- Main dishes item--}}
+                                {{-- <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingMain">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMain" aria-expanded="true" aria-controls="collapseMain">
+                                        Pratos Principais
+                                        </button>
+                                    </h2>
+                                    <div id="collapseMain" class="accordion-collapse collapse show" aria-labelledby="headingMain" data-bs-parent="#accordionProducts">
+                                        <div class="accordion-body">
+
+                                            @foreach ($products as $product)
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div style="float: left;">
+                                                            @if ($product->image)
+                                                                <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
+                                                                    alt="Product Image" height="90px">
+                                                                <br>
+                                                            @endif
+                                                            <strong>{{$product->name}}</strong>
+                                                            <p>{{ Str::limit($product->description, 60, '...') }}</p>
+                                                            <p>{{$product->price}}€</p>
+                                                        </div>
+                                                        <div style="float: right;">
+                                                            
+                                                            <div id="pen">
+                                                                <a href="{{ route('products.edit', ['product' => $product] ) }}">
+                                                                    pen
+                                                                </a>
+                                                            </div>
+
+                                                            <div id="trash">
+                                                                <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
+                                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                    trash
+                                                                </a>
+                                                            </div>
+                                                            <div id="plus">
+                                                                plus
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                
+
+                                {{-- Dessert item--}}
+                                {{-- <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingDessert">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDessert" aria-expanded="false" aria-controls="collapseDessert">
+                                            Sobremesas
+                                        </button>
+                                    </h2>
+                                    <div id="collapseDessert" class="accordion-collapse collapse" aria-labelledby="headingDessert" data-bs-parent="#accordionProducts">
+                                        <div class="accordion-body">
+                                            
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                {{-- Drink item--}}
+                                {{-- <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingDrink">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDrink" aria-expanded="false" aria-controls="collapseDrink">
+                                            Bebidas*
+                                        </button>
+                                    </h2>
+                                    <div id="collapseDrink" class="accordion-collapse collapse" aria-labelledby="headingDrink" data-bs-parent="#accordionProducts">
+                                        <div class="accordion-body">
+                                            
+                                        </div>
+                                    </div>
+                                </div> --}}
 
                             </div>
-                        </div>
+                        {{-- {!! Form::close() !!} --}}
+                        
+                        {{-- {!! Form::submit('Adicionar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData']) !!} --}}
+                        <a class="btn btn-primary" href="{{ route('products.create') }}">
+                            Adicionar produto
+                        </a>
                     </div>
-                @endforeach
-                
-
-                {{-- Main dishes item--}}
-                {{-- <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingMain">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMain" aria-expanded="true" aria-controls="collapseMain">
-                        Pratos Principais
-                        </button>
-                    </h2>
-                    <div id="collapseMain" class="accordion-collapse collapse show" aria-labelledby="headingMain" data-bs-parent="#accordionProducts">
-                        <div class="accordion-body">
-
-                            @foreach ($products as $product)
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div style="float: left;">
-                                            @if ($product->image)
-                                                <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$product->image)}}" 
-                                                    alt="Product Image" height="90px">
-                                                <br>
-                                            @endif
-                                            <strong>{{$product->name}}</strong>
-                                            <p>{{ Str::limit($product->description, 60, '...') }}</p>
-                                            <p>{{$product->price}}€</p>
-                                        </div>
-                                        <div style="float: right;">
-                                            
-                                            <div id="pen">
-                                                <a href="{{ route('products.edit', ['product' => $product] ) }}">
-                                                    pen
-                                                </a>
-                                            </div>
-
-                                            <div id="trash">
-                                                <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    trash
-                                                </a>
-                                            </div>
-                                            <div id="plus">
-                                                plus
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
+                    <div class="nav-menu-fixed">
+                        @include('backoffice-partner.layouts.sidebar') 
                     </div>
-                </div> --}}
-                
-
-                {{-- Dessert item--}}
-                {{-- <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingDessert">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDessert" aria-expanded="false" aria-controls="collapseDessert">
-                            Sobremesas
-                        </button>
-                    </h2>
-                    <div id="collapseDessert" class="accordion-collapse collapse" aria-labelledby="headingDessert" data-bs-parent="#accordionProducts">
-                        <div class="accordion-body">
-                            
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- Drink item--}}
-                {{-- <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingDrink">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDrink" aria-expanded="false" aria-controls="collapseDrink">
-                            Bebidas*
-                        </button>
-                    </h2>
-                    <div id="collapseDrink" class="accordion-collapse collapse" aria-labelledby="headingDrink" data-bs-parent="#accordionProducts">
-                        <div class="accordion-body">
-                            
-                        </div>
-                    </div>
-                </div> --}}
-
+                </div>
             </div>
-        {{-- {!! Form::close() !!} --}}
-        
-        {{-- {!! Form::submit('Adicionar', ['type' => 'submit', 'class' => 'btn btn-primary' , 'form' => 'formProductData']) !!} --}}
-        <a class="btn btn-primary" href="{{ route('products.create') }}">
-            Adicionar produto
-        </a>
+        </div>
     </div>
+
 
     {{-- Modal de confirmação de remoção --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -282,13 +295,13 @@
 @section('jquery')
     <script type="text/javascript">
         // Seta action do modal de confirmação de remoção de produto
-        $(document).on("click", ".openDeleteDialog", function (event) {
+        jQuery(document).on("click", ".openDeleteDialog", function (event) {
             event.preventDefault();
 
-            var productId = $(this).data('product-id');
-            var action   = `/partner/products/${productId}`;
+            var productId = jQuery(this).data('product-id');
+            var action   = `/partner/products/jQuery{productId}`;
 
-            $('#formDelete').attr('action', action );
+            jQuery('#formDelete').attr('action', action );
         });
         
     </script>

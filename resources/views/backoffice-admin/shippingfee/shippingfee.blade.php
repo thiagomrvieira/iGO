@@ -58,16 +58,16 @@
                                 <tbody>
                                     @forelse ($shippingFees as $shipping) 
                                         <tr>
-                                            <td> {{ $shipping->id                      ?? null }} </td>
-                                            <td> {{ $shipping->from->name              ?? null }} </td>
-                                            <td> {{ $shipping->to->name                ?? null }} </td>
-                                            <td> {{ number_format($shipping->price, 2) ?? null }} </td>
+                                            <td> {{ $shipping->id                              ?? null }} </td>
+                                            <td> {{ $shipping->from->name                      ?? null }} </td>
+                                            <td> {{ $shipping->to->name                        ?? null }} </td>
+                                            <td> {{ number_format(($shipping->price / 100), 2) ?? null }} </td>
                                             <td style="text-align: center">
                                                 <a class="editShippingFee" href="#" data-toggle="modal" data-target="#modal-md"
                                                     data-shipping-id="{{ $shipping->id }}"
                                                     data-shipping-from="{{ $shipping->from->name }}"
                                                     data-shipping-to="{{ $shipping->to->name }}"
-                                                    data-shipping-price="{{ $shipping->price }}">
+                                                    data-shipping-price="{{ $shipping->price / 100 }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </td>

@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('tax_name')->nullable();
             $table->string('tax_number')->nullable();
             
-            $table->float('amount')->nullable();
+            $table->integer('amount')->nullable();
 
             $table->timestamp('deliver_at')->nullable();	
             $table->timestamp('delivered_at')->nullable();	

@@ -101,6 +101,9 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('partners/{id}/products', [PartnerController::class, 'showProducts']);
             #   Show partner reviews
             Route::get('partners/{id}/reviews',  [PartnerController::class, 'showReviews' ]);
+            
+            #   Remove all Products from Cart
+            Route::delete('cleancart', [ClientCartController::class, 'removeAll']);
 
         });
 

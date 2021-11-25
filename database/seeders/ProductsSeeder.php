@@ -27,7 +27,7 @@ class ProductsSeeder extends Seeder
                 'image'       => 'storage/images/sample-partners/image_0' . random_int(1, 13) . '.png',   
                 'name'        => $faker->company(), 
                 'description' => $faker->text(),
-                'price'       => $faker->randomNumber(4), 
+                'price'       => $faker->randomNumber(5) * 100 , 
                 'available'   => (bool)random_int(0, 1),
                 'note'        => $i % 2 == 0 ? $faker->text() : null,
                 'campaign_id' => $i % 3 == 0 ? Campaign::inRandomOrder()->first()->id : null,

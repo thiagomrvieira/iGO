@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('name');
             $table->text('description');
-            $table->float('price');
+            $table->integer('price');
             $table->boolean('available')->default(true);
             $table->text('note')->nullable();
             $table->foreignId('campaign_id')->nullable()->constrained();

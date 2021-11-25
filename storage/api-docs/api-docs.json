@@ -11,7 +11,7 @@
                     "Client: Address"
                 ],
                 "summary": "Get client addresses",
-                "description": "The first paragraph describes the call.\\n\\nAnother paragraph gives additional information about the call.",
+                "description": "Return all addresses related to the user",
                 "operationId": "getClientAddresses",
                 "responses": {
                     "200": {
@@ -221,7 +221,8 @@
                                                     "name": "string"
                                                 },
                                                 "product": {
-                                                    "id": "integer",
+                                                    "cart_product_id": "integer",
+                                                    "product_id": "integer",
                                                     "name": "string",
                                                     "price": "float",
                                                     "quantity": "integer"
@@ -409,13 +410,13 @@
                     "Client: Cart"
                 ],
                 "summary": "Remove item from the cart",
-                "description": "Remove a specified product from the cart - Expect to recieve a valid product id",
+                "description": "Remove a specified product from the cart - Expect to recieve a valid <b>cart_product_id</b>",
                 "operationId": "removeFromCart",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Product id",
+                        "description": "cart_product_id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -495,6 +496,46 @@
                                 "example": {
                                     "status": "success",
                                     "message": "Quantidade de itens alterada"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/cleancart": {
+            "delete": {
+                "tags": [
+                    "Client: Cart"
+                ],
+                "summary": "Remove all items from the cart",
+                "description": "Remove all products from the cart",
+                "operationId": "removeAllFromCart",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Produtos removidos do Carrinho!"
                                 }
                             }
                         }

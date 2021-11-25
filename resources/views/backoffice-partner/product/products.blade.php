@@ -91,7 +91,7 @@
                                                             @endif
                                                             <strong>{{$featuredProduct->name}}</strong>
                                                             <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
-                                                            <p>{{$featuredProduct->price}}€</p>
+                                                            <p>{{ number_format(($product->price / 100), 2) }}AKZ</p>
                                                         </div>
                                                         <div>
                                                             
@@ -205,7 +205,7 @@
                                                                     <div class="card-body-values">   
                                                                         <h3>{{$product->name}}</h3>
                                                                         <p>{{ Str::limit($product->description, 60, '...') }}</p>
-                                                                        <p>{{$product->price}}€</p>
+                                                                        <p>{{ number_format(($product->price / 100), 2) }}AKZ</p>
                                                                     </div>
                                                                 </div>
                                                                

@@ -22,7 +22,7 @@ class AddressController extends Controller
      * @OA\Get(path="/api/v1/client/addresses",
      *   tags={"Client: Address"},
      *   summary="Get client addresses",
-     *   description= "The first paragraph describes the call.\n\nAnother paragraph gives additional information about the call.",
+     *   description= "Return all addresses related to the user",
      *   operationId="getClientAddresses",
      *   @OA\Response(
      *      response=200,

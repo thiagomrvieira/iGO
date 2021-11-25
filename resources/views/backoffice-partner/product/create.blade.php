@@ -124,7 +124,7 @@
                                 </div> 
                                 
                                 {{-- Product Categories --}}
-                                <div class="accordion-item sub-categories">
+                                <div class="accordion-item product-categories">
                                     <button class="accordion-button" type="button">
                                         <h3><strong>{{ $partner->mainCategory->slug == 'restaurantes' ? 'Ementa(categorias)*' : 'Categoria' }}</strong></h3>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
@@ -258,43 +258,43 @@
                                             </div>
                                         </div> 
 
-                                {{--  Allergens item --}}
-                                <div class="accordion-item allergens-product">
-                                    <button class="accordion-button" type="button">
-                                        <h3><strong>Alergénios*</strong></h3>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
-                                            <g id="arrow" transform="translate(282 -315) rotate(90)">
-                                            <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
-                                                <path id="MAPA" d="M-3.816-.278,2.652-4.553l-6.469-4.3,1.411-2.215,9.569,6.5-9.569,6.5Z" transform="translate(335.385 249.847)" fill="#687780"></path>
-                                                <rect id="Rectangle_8291" data-name="Rectangle 8291" width="14" height="14" transform="translate(330 238.117)" fill="none"></rect>
-                                            </g>
-                                            <rect id="Rectangle_8292" data-name="Rectangle 8292" width="44" height="44" transform="translate(315 238)" fill="none"></rect>
-                                            </g>
-                                        </svg>
-                                    </button>
-                                    <div class="accordion-content">
-                                            @forelse ($allergens as $allergen)
-                                            {{-- Set 'checked' for checkboxes --}}
-                                            @php
-                                                $checked = false;
-                                                if (isset($product)) {
-                                                    $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
-                                                }
-                                            @endphp
+                                    {{--  Allergens item --}}
+                                    <div class="accordion-item allergens-product">
+                                        <button class="accordion-button" type="button">
+                                            <h3><strong>Alergénios*</strong></h3>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+                                                <g id="arrow" transform="translate(282 -315) rotate(90)">
+                                                <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
+                                                    <path id="MAPA" d="M-3.816-.278,2.652-4.553l-6.469-4.3,1.411-2.215,9.569,6.5-9.569,6.5Z" transform="translate(335.385 249.847)" fill="#687780"></path>
+                                                    <rect id="Rectangle_8291" data-name="Rectangle 8291" width="14" height="14" transform="translate(330 238.117)" fill="none"></rect>
+                                                </g>
+                                                <rect id="Rectangle_8292" data-name="Rectangle 8292" width="44" height="44" transform="translate(315 238)" fill="none"></rect>
+                                                </g>
+                                            </svg>
+                                        </button>
+                                        <div class="accordion-content">
+                                                @forelse ($allergens as $allergen)
+                                                {{-- Set 'checked' for checkboxes --}}
+                                                @php
+                                                    $checked = false;
+                                                    if (isset($product)) {
+                                                        $checked = in_array($allergen->id, $product->allergens->pluck('id')->toArray()) ? true : false;
+                                                    }
+                                                @endphp
+                                                <div class="custom-control custom-control-inline">
+                                                    {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
+                                                    {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                                </div>
+                                            @empty
+                                                Sem allergen
+                                            @endforelse
                                             <div class="custom-control custom-control-inline">
-                                                {!! Form::checkbox($allergen->slug, null, $checked, ['class' => 'form-check-input inputAllergen', 'id' => 'allergen' . $allergen->slug]) !!}
-                                                {!! Form::label($allergen->slug, $allergen->name,   ['class' => 'form-check-label']) !!}
+                                                {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
+                                                                                        ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
+                                                {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                                             </div>
-                                        @empty
-                                            Sem allergen
-                                        @endforelse
-                                        <div class="custom-control custom-control-inline">
-                                            {!! Form::checkbox('no-allergen', null, ( isset($product) && $product->allergens->count() > 0 ) ? false : true, 
-                                                                                    ['class' => 'form-check-input', 'id' => 'removeAllergens']) !!}
-                                            {!! Form::label('no-allergen', 'Não tem', ['class' => 'form-check-label']) !!}
                                         </div>
-                                    </div>
-                                </div> 
+                                    </div> 
                                 @endif
                                 
 

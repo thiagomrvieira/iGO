@@ -184,5 +184,12 @@ class Order extends Model
         return true;
     }
 
+    /**
+     * Set the Price as Cents.
+     */
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = $price * 100;
+    }
 
 }

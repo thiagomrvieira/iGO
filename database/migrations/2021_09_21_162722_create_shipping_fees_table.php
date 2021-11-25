@@ -19,7 +19,7 @@ class CreateShippingFeesTable extends Migration
             $table->foreign('delivery_from')->references('id')->on('counties');
             $table->unsignedBigInteger('delivery_to');
             $table->foreign('delivery_to')->references('id')->on('counties');
-            $table->float('price');
+            $table->integer('price');
             $table->timestamps();
         });
     }

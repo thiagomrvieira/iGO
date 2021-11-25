@@ -152,4 +152,13 @@ class Product extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+    /**
+     * Set the Price as Cents.
+     */
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = $price * 100;
+    }
+    
 }

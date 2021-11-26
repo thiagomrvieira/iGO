@@ -24,10 +24,10 @@ class PartnerImagesSeeder extends Seeder
         foreach (Partner::all() as $key => $partner) {
             Image::create([
                 'partner_id'  => $partner->id, 
-                'image_cover' => 'storage/images/sample-partners/image_0' . ($key + 1) . '.png', 
-                'image_01'    => 'storage/images/sample-partners/image_0' . ($key + 2) . '.png',
-                'image_02'    => 'storage/images/sample-partners/image_0' . ($key + 3) . '.png',
-                'image_03'    => 'storage/images/sample-partners/image_0' . ($key + 4) . '.png',
+                'image_cover' => '202111121156070.jpg', 
+                'image_01'    => '202111121156071.jpg',
+                'image_02'    => '202111121156072.jpg',
+                'image_03'    => '202111121156073.jpg',
             ]);
         }
 

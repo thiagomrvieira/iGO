@@ -15,10 +15,10 @@ class PartnerImageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "image_cover" => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_cover) ?? null,  
-            "image_01"    => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_01)    ?? null,
-            "image_02"    => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_02)    ?? null,
-            "image_03"    => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_03)    ?? null,
+            "image_cover" => config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'partner' . DIRECTORY_SEPARATOR . $this->id . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_cover) ?? null,  
+            "image_01"    => config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'partner' . DIRECTORY_SEPARATOR . $this->id . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_01)    ?? null,
+            "image_02"    => config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'partner' . DIRECTORY_SEPARATOR . $this->id . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_02)    ?? null,
+            "image_03"    => config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'partner' . DIRECTORY_SEPARATOR . $this->id . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image_03)    ?? null,
         ];
     }
 }

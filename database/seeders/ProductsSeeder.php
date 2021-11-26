@@ -24,7 +24,7 @@ class ProductsSeeder extends Seeder
             $products[] = array(
                 'partner_id'  => Partner::inRandomOrder()->first()->id,  
                 'category_id' => ProductCategory::inRandomOrder()->first()->id, 
-                'image'       => 'storage/images/sample-partners/image_0' . random_int(1, 13) . '.png',   
+                'image'       => 'image' . random_int(1, 4) . '.jpg',   
                 'name'        => $faker->company(), 
                 'description' => $faker->text(),
                 'price'       => $faker->randomNumber(5) * 100 , 

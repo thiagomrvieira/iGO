@@ -23,11 +23,9 @@ class ProductResource extends JsonResource
                 'id'   => $this->category->id,
                 'name' => $this->category->name,
             ],
-            // 'product_sides'     => ProductSideResource::collection($this->sides),
-            // 'product_sauces'    => ProductSauceResource::collection($this->sauces),
-            // 'product_allergens' => ProductAllergenResource::collection($this->allergens),
-            // 'product_extras'    => ProductExtraResource::collection($this->extras),
-            'image'             => config('app.url') . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image)  ?? null,  
+            'image'             => config('app.url') . 'storage'  . DIRECTORY_SEPARATOR . 'images'           . DIRECTORY_SEPARATOR . 
+                                                       'partner'  . DIRECTORY_SEPARATOR . $this->partner->id . DIRECTORY_SEPARATOR . 
+                                                       'products' . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->image) ?? null,
             'price'             => $this->price,
             'final_price'       => $this->finalPrice() ?? null,
             'note'              => $this->note,

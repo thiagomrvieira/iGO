@@ -90,7 +90,8 @@ trait ImagesTrait {
             $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imgName);
             
-            $client->update(['profile_image' => $destinationPath . $imgName]);
+            // $client->update(['profile_image' => $destinationPath . $imgName]);
+            $client->update(['profile_image' => $imgName]);
 
             return $imgName;
         }

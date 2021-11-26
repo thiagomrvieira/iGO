@@ -21,8 +21,9 @@ class ClientPersonalDataResource extends JsonResource
             'email'               => $this->email,
             'mobile_phone_number' => $this->mobile_phone_number,
             'profile_image'       => $this->profile_image == null ? 
-                                        config('app.url') . 'storage/assets-mobile/default_32' :
-                                        config('app.url') .  preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->profile_image),
+                                        config('app.url') . 'storage' . DIRECTORY_SEPARATOR .'assets-mobile'. DIRECTORY_SEPARATOR .'default_32' :
+                                        config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'images'. DIRECTORY_SEPARATOR . 'client' . DIRECTORY_SEPARATOR .
+                                                            $this->id . DIRECTORY_SEPARATOR . preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->profile_image),
 
         ];    
 

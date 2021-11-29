@@ -114,6 +114,11 @@ class PartnerController extends Controller
      *                          "total_products": "integer",
      *                          "total_reviews": "integer",
      *                          "rating": "integer",
+     *                          "campaign": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "description": "string",
+     *                          },
      *                      }
      *                  }
      *              }
@@ -147,11 +152,11 @@ class PartnerController extends Controller
      */
     public function index(Request $request)
     {
+        // return Partner::first()->bestCampaign();
         
         $partners = Partner::with('address')->with('images')->with('subCategories')
                            ->where('active', true)
                            ->filter( $request->all() )->get();
-
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Lista de aderentes',

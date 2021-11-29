@@ -92,6 +92,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('order/inprogress',      [ClientOrderController::class, 'inProgress']);
             Route::get('order/{id}',            [ClientOrderController::class, 'show'      ]);
             Route::post('order/{id}/replicate', [ClientOrderController::class, 'replicate' ]);
+            Route::patch('order/{id}/cancel',   [ClientOrderController::class, 'cancel'    ]);
 
             #   Show Main and Sub categories
             Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);

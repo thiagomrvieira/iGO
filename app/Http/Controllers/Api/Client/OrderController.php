@@ -10,6 +10,7 @@ use App\Http\Traits\OrderTrait;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -748,5 +749,78 @@ class OrderController extends Controller
                                  'data'    => $data    ?? null], $statusCode ?? 403); 
     }
 
+
+    /**
+     * CANCEL A SPECIFIED ORDER
+     * *
+     * @OA\Patch(path="/api/v1/client/order/{id}/cancel",
+     *   tags={"Client: Orders"},
+     *   summary="Cancel an specified order",
+     *   description="Cancel the order if it has not been submitted more than two minutes",
+     *   operationId="cancelOrder",
+      *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Pedido cancelado!", 
+     *          },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel($id)
+    {
+        
+        if (Order::where('id',  $id)
+                ->where('client_id', Auth::user()->client->id)
+                ->where('order_status_type_id', 2)
+                ->where('updated_at', '>' , Carbon::now()->subMinutes(2))
+                ->update(['order_status_type_id' => 9])
+            )
+        {
+            $status      = "success";
+            $message     = "Pedido cancelado!";
+            $statusCode  = 200;
+        }
+        
+        return response()->json(['status'  => $status  ?? 'forbiden',
+                                 'message' => $message ?? 'Não foi possivel cancelar o pedido especificado'], $statusCode ?? 403); 
+    }
     
 }

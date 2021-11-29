@@ -178,5 +178,26 @@ class Partner extends Model
         }
        
     }
+
+    
+    /**
+     * Get the partner's campaigns
+     */
+    public function campaigns()
+    {
+        return Campaign::where('code', null)->where('active', 1)
+            ->where('start_date' , '<=' , Carbon::now())
+            ->where('finish_date', '>=' , Carbon::now())
+            ->whereIn('id',  $this->products->where('campaign_id', '!=', null)->pluck(['campaign_id']))
+            ->orderBy('percentage', 'DESC')->get();
+    }
+
+    /**
+     * Get the best partner's campaign
+     */
+    public function bestCampaign()
+    {
+        return $this->campaigns()->first();
+    }
     
 }

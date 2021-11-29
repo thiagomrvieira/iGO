@@ -28,7 +28,7 @@ class CampaignSeeder extends Seeder
             )),
             array(
                 'name'        => '25%',  
-                'description' => '25% de desconto no valor do produto', 
+                'description' => '25% de desconto no valor da compra', 
                 'type'        => 'percentage-purchase',   
                 'percentage'  => 25, 
                 'active'      => true,   

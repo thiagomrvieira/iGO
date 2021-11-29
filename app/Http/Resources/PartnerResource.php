@@ -15,6 +15,8 @@ class PartnerResource extends JsonResource
      */
     public function toArray($request)
     {
+        $bestCampaign = $this->bestCampaign();
+
         return [
             'id'                  => $this->id,
             'company_name'        => $this->company_name,
@@ -34,6 +36,11 @@ class PartnerResource extends JsonResource
             'total_products'      => $this->products->count(),
             'total_reviews'       => $this->reviewsAndRatings->count('review'),
             'rating'              => $this->reviewsAndRatings->avg('rate'),
+            'campaign'            => [
+                'id'          => $bestCampaign->id           ?? null,
+                'name'        => $bestCampaign->name         ?? null,
+                'description' => $bestCampaign->description  ?? null,
+            ]
         ]; 
     }
 }

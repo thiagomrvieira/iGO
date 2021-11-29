@@ -137,6 +137,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "security": [
@@ -2697,7 +2700,12 @@
                                                 },
                                                 "total_products": "integer",
                                                 "total_reviews": "integer",
-                                                "rating": "integer"
+                                                "rating": "integer",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "description": "string"
+                                                }
                                             }
                                         ]
                                     }

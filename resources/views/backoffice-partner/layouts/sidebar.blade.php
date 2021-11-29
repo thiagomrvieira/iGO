@@ -2,9 +2,9 @@
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('home') }}"> 
-                <img src="{{  asset('/assets-backoffice-partner/images/home.png') }}" alt="">
+                <img src="{{    Route::currentRouteName() === 'home' ? asset('/assets-backoffice-partner/images/home_selected.png')  : asset('/assets-backoffice-partner/images/home.png') }}" halt="">
                 <span>Home</span> 
-                {{ Route::currentRouteName() }}
+                {{-- {{ Route::currentRouteName() }} --}}
             </a>
         </li>
         <li class="nav-item">
@@ -14,7 +14,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('products.create') }}"> 
+            <a class="nav-link" href="{{ route('products.index') }}"> 
                 <img src="{{  Route::currentRouteName() === 'products.create' || Route::currentRouteName() === 'products.index' ? asset('/assets-backoffice-partner/images/dados_prod_rest_sel.png')  : asset('/assets-backoffice-partner/images/dados_prod_rest.png')  }}" alt="">
                 <span>Dados produtos</span> 
             </a>

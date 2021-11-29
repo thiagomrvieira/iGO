@@ -21,38 +21,84 @@
                 <div class="main-fluid">
                     <div class="limit-wrapper">
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    
-                    <h4>Dashboard</h4>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <h6>
-                                    <b>{{ $products->count() }}</b> Produtos inseridos
-                                </h6>
-                                <p>
-                                    Última entrada <br>
-                                    {{ $products->first()->created_at ?? null }}
-                                </p>
-                                <hr>
-
+                        <div class="dashboard-product">
+                            {{-- Inserted dishes --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Pratos inseridos</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->first()->created_at ?? null }}</p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <h6>Produtos em destaque</h6>
-                                <hr>
+                            {{-- Featured dishes --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Pratos em destaque</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->first()->created_at ?? null }}</p>
+                                </div>
                             </div>
+                            {{-- Starters --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->where('category.slug', 'entradas')->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Entradas</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->where('category.slug', 'entradas')->first()->created_at ?? null }}</p>
+                                </div>
+                            </div>
+                            {{-- Mains --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->where('category.slug', 'pratos-principais')->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Pratos principais</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->where('category.slug', 'pratos-principais')->first()->created_at ?? null }} </p>
+                                </div>
+                            </div>
+                            {{-- Desserts --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->where('category.slug', 'sobremesas')->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Sobremesas</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->where('category.slug', 'sobremesas')->first()->created_at ?? null }}</p>
+                                </div>
+                            </div>
+                            {{-- Drinks --}}
+                            <div class="dashboard-product-content">
+                                <div class="dashboard-product-count">
+                                    <p>{{ $products->where('category.slug', 'bebidas')->count() }}</p>
+                                </div>
+                                    
+                                <div class="dashboard-inserted-product-values">
+                                    <p>Bebidas</p>
+                                    <p>Última entrada</p>
+                                    <p>{{ $products->where('category.slug', 'bebidas')->first()->created_at ?? null }}</p>
+                                </div>
+                            </div>
+                        
                         </div>
 
-                        <div class="row">
-                            <div class="col-6">
+                        {{-- <div>
+                            <div>
                                 <h6>
                                     <b>{{ $products->where('category.slug', 'entradas')->count() }}</b> Entradas
                                 </h6>
@@ -62,7 +108,7 @@
                                 </p>
                                 <hr>
                             </div>
-                            <div class="col-6">
+                            <div>
                                 <h6><b>{{ $products->where('category.slug', 'pratos-principais')->count() }}</b> Pratos principais</h6> 
                                 <p>
                                     Última entrada <br>
@@ -71,10 +117,8 @@
                                 <hr>
                             </div>
                         </div>
-                    
-                        
-                        <div class="row">
-                            <div class="col-6">
+                        <div>
+                            <div>
                                 <h6><b>{{ $products->where('category.slug', 'sobremesas')->count() }}</b> Sobremesas</h6>
                                 <p>
                                     Última entrada <br>
@@ -82,7 +126,7 @@
                                 </p>
                                 <hr>
                             </div>
-                            <div class="col-6">
+                            <div>
                                 <h6><b>{{ $products->where('category.slug', 'bebidas')->count() }}</b> Bebidas</h6>
                                 <p>
                                     Última entrada <br>
@@ -91,7 +135,7 @@
                                 <hr>
 
                             </div> 
-                        </div>
+                        </div> --}}
                         <div class="nav-menu-fixed">
                             @include('backoffice-partner.layouts.sidebar') 
                         </div>

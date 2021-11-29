@@ -335,7 +335,41 @@ header.fixed {
 header.fixed .row-fluid {
 	padding: 10px 0;
 }
-
+/* dashboard */
+.dashboard-product {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+.dashboard-product .dashboard-product-content {
+	width: calc(95%/2);
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+	padding: 15px;
+	margin: 0 10px 34px 0; 
+	background-color: #FFFAD3;
+	border-radius: 80px 60px 0 80px;
+}
+.dashboard-product .dashboard-product-content .dashboard-product-count {
+	width: 100px;
+	height: 100px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	border-radius: 50%;
+	background-color: #FFE414;
+}
+.dashboard-product .dashboard-product-content .dashboard-product-count p {
+	font-family: 'Krona One', sans-serif;
+	font-size: 35px;
+	line-height: 12px;
+	font-weight: 500;
+	font-style: normal;
+	color: #112029;
+}
 /* page content */
 #page-backoffice .block-home-find {
 	position: relative;
@@ -552,6 +586,10 @@ header.fixed .row-fluid {
 	overflow: hidden;
 	transition: max-height 0.2s ease-in-out;
 }
+
+/* Dashboard area  */
+
+
 /* Partner times */
 .block-accordion .accordion-content .accordion-body {
 	width: 100%;
@@ -682,6 +720,7 @@ header.fixed .row-fluid {
 .accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:checked:before {
 	visibility: visible;
 }
+
 /* images styling */
 .accordion-item.image-items .accordion-content .form-group {
 	width: 100%;
@@ -1035,28 +1074,28 @@ a#addExtra {
     color: #F77415;
 	margin: 35px 0;
 }
-/* Products Verifications */
+/* Products List */
 .accordion-item.products-cerification .accordion-button.is-open + .accordion-content {
 	padding-bottom: 35px;
 }
 .accordion-item.products-cerification .accordion-content,
 .accordion-item.products-cerification .accordion-content .accordion-collapse,
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body  {
+.accordion-item.products-cerification .accordion-content .accordion-body  {
 	width: 100%;
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body,
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left  {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body,
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left  {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body {
 	background-color: #FFFDEA;
 	border-bottom: 1px solid #FFE414;
 	padding: 15px;
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left .card-body-image {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left .card-body-image {
 	background-image: linear-gradient(315deg, #fbb034 0%, #ffdd00 74%);
 	width: 80px;
 	height: 80px;
@@ -1066,10 +1105,10 @@ a#addExtra {
 	justify-content: center;
 	align-items: center;
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left .card-body-values {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left .card-body-values {
 	margin-left: 15px;
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left .card-body-values h3 {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left .card-body-values h3 {
 	margin-bottom: 10px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
@@ -1078,7 +1117,7 @@ a#addExtra {
 	font-style: normal;
 	color: rgba(7, 42, 64);
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left .card-body-values p:nth-child(2) {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left .card-body-values p:nth-child(2) {
 	margin-bottom: 15px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
@@ -1087,7 +1126,7 @@ a#addExtra {
 	font-style: normal;
 	color: rgba(7, 42, 64);
 }
-.accordion-item.products-cerification .accordion-content .accordion-collapse .accordion-body .card-body .card-body-left .card-body-values p:nth-child(3) {
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-left .card-body-values p:nth-child(3) {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	line-height: 12px;
@@ -1095,7 +1134,22 @@ a#addExtra {
 	font-style: normal;
 	color: #687780;
 }
-
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-right {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+}
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-right .product-edit-remove-section {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-right .product-edit-remove-section #pen {
+margin-right: 5px;
+}
 /* Modal Content */
 .modal-content {
 	position: relative;

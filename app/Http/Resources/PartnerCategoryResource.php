@@ -17,7 +17,8 @@ class PartnerCategoryResource extends JsonResource
         return [
             'id'              => $this->id,
             'name'            => $this->name,
-            'image'           => config('app.url') . $this->image ?? 'storage/assets-mobile/default_32',
+            'image'           => config('app.url') . 'storage' . DIRECTORY_SEPARATOR . 'assets-mobile' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $this->image) 
+                                                  ?? 'storage' . DIRECTORY_SEPARATOR . 'assets-mobile' . DIRECTORY_SEPARATOR . 'default_32',
             'parent_category' => $this->parent->name ?? null,
         ]; 
     }

@@ -8,6 +8,7 @@ use App\Http\Traits\AddressTrait;
 use App\Http\Traits\ClientTrait;
 use App\Http\Traits\UserTrait;
 use App\Models\Address;
+use App\Models\AddressType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -164,6 +165,10 @@ class AddressController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
+     *   @OA\Response(
+     *      response=422,
+     *      description="Unprocessable Entity"
+     *   ),
      *   security={
      *     {"api_key": {}}
      *   }
@@ -172,6 +177,23 @@ class AddressController extends Controller
      */
     public function update(Request $request)
     {
+        
+        #   Validate if the Address type id is a valid one
+        foreach ($request->all() as $addressData) {
+            if (!in_array($addressData['address_type_id'], AddressType::pluck('id')->all() )) {
+                
+                return response()->json([
+                    "message" => "The given data was invalid.",
+                    "errors"  => [
+                        "body" => [
+                            "É obrigatória a indicação de um id válido para o campo address_type_id."
+                        ]
+                    ]
+                ], 422); 
+                
+            }
+        }
+
         # Create Address
         $address = $this->createorUpdateAddressFromApi($request); 
 

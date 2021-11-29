@@ -166,7 +166,7 @@ class Partner extends Model
         );
         #   Search in Sub category
         if ($filters['subcat'] ?? false) {
-            $query->whereHas('subCat', function ($query) use ($filters) {
+            $query->orWhereHas('subCat', function ($query) use ($filters) {
                 $query->whereIn('category_id', $filters['subcat']);
             });
         }

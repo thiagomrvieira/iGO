@@ -318,7 +318,17 @@ header .row-fluid .column-right > div {
 	align-items: flex-end;
 }
 header .row-fluid .column-right > div small{
-	margin-bottom: 5px;
+	font-family: 'Robot', sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: 600;
+	font-style: normal;
+	color: #072a40;
+	text-transform: uppercase;
+}
+header .row-fluid .column-right > div small:nth-child(2) {
+	text-transform: capitalize;
+	margin-top: 5px;
 }
 header .row-fluid .column-right img {
 	width: 48px;
@@ -331,7 +341,8 @@ header.fixed {
 header.fixed .row-fluid {
 	padding: 10px 0;
 }
-/* dashboard */
+
+/* Dashboard area  */
 .block-accordion .main-fluid .limit-wrapper.dashboard-first-page {
 	max-width: 780px;
     margin: 45px 0px 0 400px;
@@ -652,9 +663,6 @@ header.fixed .row-fluid {
 	transition: max-height 0.2s ease-in-out;
 }
 
-/* Dashboard area  */
-
-
 /* Partner times */
 .block-accordion .accordion-content .accordion-body {
 	width: 100%;
@@ -694,10 +702,6 @@ header.fixed {
 header.fixed .row-fluid {
 	padding: 10px 0;
 }
-/* header.fixed .row-fluid .column-left .block-logo a svg {
-	width: 45px;
-	height: 50px;
-} */
 .block-accordion .accordion-content .accordion-body .partner-business-times > div .col-8 {
 	display: flex;
 	flex-flow: column nowrap;
@@ -758,6 +762,7 @@ header.fixed .row-fluid {
 	font-weight: 500;
 	font-style: normal;
 	color: #072A40;
+	margin-bottom: 35px;
 }
 .accordion-item.avegare-time .accordion-content input {
 	width: 18px;

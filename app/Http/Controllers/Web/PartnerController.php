@@ -9,6 +9,7 @@ use App\Http\Traits\AddressTrait;
 use App\Http\Requests\PartnerStoreRequest;
 use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\PartnerTrait;
 use App\Http\Traits\UserTrait;
 use App\Mail\PartnerCreateAccount;
 use App\Models\County;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 class PartnerController extends Controller
 {
-    use AddressTrait, UserTrait;
+    use AddressTrait, UserTrait, PartnerTrait;
     
     /**
      * Display the login view for admin
@@ -129,20 +130,32 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
+        
+        # Set user as Active/Inactive
+        if ($request->activate) 
+        {
+            if ($this->canActivate($partner)) 
+            {
+                $partner->update(array('active' => $request->activate));
+                $partner->user()->update(array('active' => $request->activate));
+            }
+            else 
+            {
+                $message = 'O aderente não possui os critérios para ser ativo'; 
+                $alert   = 'alert-warning';
+            }
+        }
 
         # Update partner values
         $partner->update($request->all());
 
-        # Set user as Active/Inactive
-        if ($request->active) {
-            $partner->user()->update(array('active' => $request->active));
-        }
-
         # Update Address
-        if (!is_null($request->addressData)) { 
+        if (!is_null($request->addressData)) 
+        { 
             $address = $this->getAddressRequest($request, $partner->user->id); 
         }
-        return back()->with(['message' => 'Aderente editado com sucesso!', 'alert' => 'alert-success']);
+
+        return back()->with(['message' => $message ?? 'Aderente editado com sucesso!', 'alert' => $alert ?? 'alert-success']);
     }
 
     /**

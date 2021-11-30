@@ -81,8 +81,11 @@
                                 @if (is_null($partner->approved_at))
                                     {!! Form::hidden('approved_at', Carbon::now() ) !!} 
                                 @endif
-                                {!! Form::hidden('active', 1 ) !!}
-                                {!! Form::submit(__('backoffice/partners.activeAccount'),  ['type' => 'submit', 'class' => 'btn btn-primary btn-block' ]) !!}
+                                {!! Form::hidden('activate', 1 ) !!}
+                                {!! Form::submit(__('backoffice/partners.activeAccount'),  
+                                        ['type' => 'submit', 'class' => 'btn btn-primary btn-block', 
+                                                $partner->approved_at == null ? 'disabled' : null ]) !!}
+                                                
                             {!! Form::close() !!}
                         @else
                             {!! Form::open(['class' => 'form-horizontal', 'route' => array('partner.update', ['partner' => $partner]), 'method' => 'post' ]) !!}

@@ -215,7 +215,7 @@
                                     @endif --}}
 
                                     <div class="form-group">
-                                        {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label form-image-input']) !!}
+                                        {!! Form::label('image-cover', 'Fotografia capa (jpeg/png)', ['class' => 'form-check-label form-image-input']) !!}
                                         <div class="form-file-button">
                                             {!! Form::file ('image-cover', null, false, ['class' => 'form-check-input form-input-image']) !!}
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    
@@ -227,7 +227,7 @@
                                     @endif --}}
 
                                     <div class="form-group">
-                                        {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
+                                        {!! Form::label('image-01', 'Fotografia #1 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
                                             {!! Form::file ('image-01', null, false, ['class' => 'form-check-input form-input-image']) !!}
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    
@@ -239,7 +239,7 @@
                                     @endif --}}
 
                                     <div class="form-group">
-                                        {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
+                                        {!! Form::label('image-02', 'Fotografia #2 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
                                             {!! Form::file ('image-02', null, false, ['class' => 'form-check-input form-input-image']) !!}
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    
@@ -251,7 +251,7 @@
                                     @endif --}}
 
                                     <div class="form-group">
-                                        {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
+                                        {!! Form::label('image-03', 'Fotografia #3 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
                                             {!! Form::file ('image-03', null, false, ['class' => 'form-check-input form-input-image']) !!}
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    

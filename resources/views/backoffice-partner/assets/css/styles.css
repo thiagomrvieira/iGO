@@ -780,8 +780,8 @@ header.fixed .row-fluid {
 	margin: 0 15px 0 0;
 	cursor: pointer;
 }
-.accordion-item.avegare-time .accordion-content input:before
-.accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:checked {
+.accordion-item.avegare-time .accordion-content .average-time-check input[type="radio"]:before,
+.accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:before {
 	display: block;
 	content: '';
 	width: 8px;
@@ -790,7 +790,7 @@ header.fixed .row-fluid {
 	border-radius: 50px;
 	visibility: hidden;
 }
-.accordion-item.avegare-time .accordion-content input:checked:before,
+.accordion-item.avegare-time .accordion-content .average-time-check input[type="radio"]:checked:before,
 .accordion-content .col-checkbox .form-check .custom-control.custom-radio input[type="radio"]:checked:before {
 	visibility: visible;
 }

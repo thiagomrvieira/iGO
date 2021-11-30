@@ -22,21 +22,6 @@
     ];
 @endphp
 
-
-{{-- @section('navbar')
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand float-left pl-3" href="#">
-            <h3>iGO</h3>
-        </a>
-        <a class="navbar-brand float-right" href="#">
-            <small>{{ $partner->company_name ?? null}} </small>
-            <img class="profile-user-img img-fluid img-circle" src="{{ asset('assets-backoffice/dist/img/store.png')}}"
-                alt="User profile picture" width="45px">
-        </a>
-    </nav>
-@endsection --}}
-
 @section('content')
     <div class="container">
         <div id="page-backoffice">
@@ -326,9 +311,11 @@
                                         </div>
                                     </div> 
                                 @endforeach
-                                <a class="btn btn-primary" href="{{ route('products.create') }}">
-                                    Adicionar produto
-                                </a>
+                                <div class="add-product-btn">
+                                    <a class="btn btn-primary" href="{{ route('products.create') }}">
+                                        Adicionar produto
+                                    </a>
+                                </div>
                             </div>   
                             <div class="nav-menu-fixed">
                                 @include('backoffice-partner.layouts.sidebar') 

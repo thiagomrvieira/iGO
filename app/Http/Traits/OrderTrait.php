@@ -42,7 +42,7 @@ trait OrderTrait {
                 'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
             ],
             [
-                'address_id'           => $request->address_id  ?? Auth::user()->addresses->where('address_type_id', 1)->first()->id,
+                'address_id'           => $request->address_id  ?? (Auth::user()->addresses->where('address_type_id', 1)->first()->id ?? Auth::user()->addresses->first()->id),
                 'tax_name'             => $request->tax_name    ?? Auth::user()->name,
                 'tax_number'           => $request->tax_number  ?? Auth::user()->client->tax_number,
                 'deliver_at'           => $request->deliver_at  ?? null,
@@ -62,11 +62,11 @@ trait OrderTrait {
             #   Check if the campaign date is valid
             if (Carbon::now() >= $campaign->start_date && Carbon::now() <= $campaign->finish_date) {
                 #   Return the campign id
-                return $campaign->id;       
+                return $campaign->id;   
             }
         }
 
-        return null; 
+        return false; 
     }
 
     # Checkout order

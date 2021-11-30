@@ -88,7 +88,9 @@
                                     "county_id": 1,
                                     "locality": "Bairro",
                                     "post_code": "46703",
-                                    "country": "Angola"
+                                    "country": "Angola",
+                                    "tax_name": "Mussum",
+                                    "tax_number": 987654321
                                 }
                             ]
                         }
@@ -1632,6 +1634,62 @@
                                 "example": {
                                     "status": "success",
                                     "message": "Pedido cancelado!"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/order/promocode": {
+            "post": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Apply promotional code",
+                "description": "Check if the code is valid and add the discount in the order",
+                "operationId": "promocode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "campaign_code": {
+                                        "type": "string",
+                                        "example": "FERIAS2021"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Discount added"
                                 }
                             }
                         }

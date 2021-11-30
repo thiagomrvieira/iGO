@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
+use App\Http\Controllers\Web\CampaignController;
+use App\Models\Campaign;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +90,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('orders',                [ClientOrderController::class, 'index'     ]);
             Route::get('order/checkout',        [ClientOrderController::class, 'checkout'  ]);
             Route::post('order/checkout',       [ClientOrderController::class, 'update'    ]);
+            Route::post('order/promocode',      [ClientOrderController::class, 'promocode' ]);
             Route::post('order/submit',         [ClientOrderController::class, 'submit'    ]);
             Route::get('order/inprogress',      [ClientOrderController::class, 'inProgress']);
             Route::get('order/{id}',            [ClientOrderController::class, 'show'      ]);
@@ -105,6 +108,7 @@ Route::group(['prefix' => 'v1'], function()
             
             #   Remove all Products from Cart
             Route::delete('cleancart', [ClientCartController::class, 'removeAll']);
+
 
         });
 

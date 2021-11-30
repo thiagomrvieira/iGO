@@ -111,6 +111,8 @@ class AddressController extends Controller
      *                  "locality": "Bairro", 
      *                  "post_code": "46703", 
      *                  "country": "Angola", 
+     *                  "tax_name": "Mussum",
+     *                  "tax_number": 987654321
      *              }
      *          }
      *          

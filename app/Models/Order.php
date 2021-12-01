@@ -24,15 +24,6 @@ class Order extends Model
         'deliver_at', 
     ];
 
-    // /**
-    //  * Get the order's items/products.
-    //  */
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
-    // }
-
-    
     /**
      * Get the items/products in the cart
      */

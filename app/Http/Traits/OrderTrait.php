@@ -3,9 +3,12 @@
 namespace App\Http\Traits;
 
 use App\Models\Campaign;
+use App\Models\Extra;
 use App\Models\Order;
 use App\Models\OrderStatusType;
 use App\Models\Product;
+use App\Models\Sauce;
+use App\Models\Side;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -72,6 +75,9 @@ trait OrderTrait {
     # Checkout order
     public function finishOrder()
     {   
+        #  Save Product values (Name and Price) in case of change
+        $this->saveActualValues(); 
+
         return Order::updateOrCreate(
             [
                 'client_id'            => Auth::user()->client->id,
@@ -83,6 +89,42 @@ trait OrderTrait {
         );
     }
 
+    #  Save Product values (Name and Price) in case of change
+    public function saveActualValues()
+    {   
+        $order = Order::where('client_id', Auth::user()->client->id)
+                      ->where('order_status_type_id',  OrderStatusType::where('name', 'Aberto')->first()->id)->first();
+        
+        foreach ($order->cart as $cartItem) {
+            if ( $product = Product::where('id', $cartItem->product_id)->first() )
+            {
+                $cartItem->product_name  = $product->name;
+                $cartItem->product_price = $product->price;
+                $cartItem->save();
+            }
+            #   Save extras
+            foreach ($cartItem->cartExtras as $cartExtra) {
+                if ( $extra = Extra::where('id', $cartExtra->extra_id)->first() )
+                {
+                    $cartExtra->extra_name  = $extra->name;
+                    $cartExtra->extra_price = $extra->price;
+                    $cartExtra->save();
+                }
+            }
+            #   Save Side
+            if ( $side = Side::where('id', $cartItem->cartSide?->side_id)->first() )
+            {
+                $cartItem->cartSide->side_name = $side->name;
+                $cartItem->cartSide->save();
+            }
+            #   Save Sauce
+            if ( $sauce = Sauce::where('id', $cartItem->cartSauce?->sauce_id)->first() )
+            {
+                $cartItem->cartSauce->sauce_name = $sauce->name;
+                $cartItem->cartSauce->save();
+            }
+        }
+    }
 
     /**
      * DELIVERYMAN FUNCTIONS 

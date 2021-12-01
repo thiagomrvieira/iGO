@@ -17,6 +17,8 @@ class CreateCartExtraTable extends Migration
             $table->id();
             $table->foreignId('cart_id')->constrained();
             $table->foreignId('extra_id')->constrained();
+            $table->string('extra_name')->nullable(); 
+            $table->integer('extra_price')->nullable();
             $table->timestamps();
         });
     }

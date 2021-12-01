@@ -17,6 +17,7 @@ class CreateCartSauceTable extends Migration
             $table->id();
             $table->foreignId('cart_id')->constrained();
             $table->foreignId('sauce_id')->constrained();
+            $table->string('sauce_name')->nullable(); 
             $table->timestamps();
         });
     }

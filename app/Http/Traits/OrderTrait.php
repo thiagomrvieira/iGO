@@ -73,29 +73,21 @@ trait OrderTrait {
     }
 
     # Checkout order
-    public function finishOrder()
+    public function finishOrder(Order $order)
     {   
         #  Save Product values (Name and Price) in case of change
-        $this->saveActualValues(); 
-
-        return Order::updateOrCreate(
-            [
-                'client_id'            => Auth::user()->client->id,
-                'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
-            ],
-            [
-                'order_status_type_id' => 2,
-            ]
-        );
+        $this->saveActualValues($order); 
+        
+        #  Update Order Status
+        return $order->update(['order_status_type_id' => 2]);
     }
 
     #  Save Product values (Name and Price) in case of change
-    public function saveActualValues()
+    public function saveActualValues(Order $order)
     {   
-        $order = Order::where('client_id', Auth::user()->client->id)
-                      ->where('order_status_type_id',  OrderStatusType::where('name', 'Aberto')->first()->id)->first();
-        
+        #   Get all products in the order
         foreach ($order->cart as $cartItem) {
+            #   Save the actual product name and price
             if ( $product = Product::where('id', $cartItem->product_id)->first() )
             {
                 $cartItem->product_name  = $product->name;

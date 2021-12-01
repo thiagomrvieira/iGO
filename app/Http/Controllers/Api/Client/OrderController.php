@@ -478,7 +478,7 @@ class OrderController extends Controller
             #   Chek if the Order has any Cart Item/Product associated 
             if (Cart::where('order_id', $order->id)->count() > 0) {
             
-                $this->finishOrder(); 
+                $this->finishOrder($order); 
             
                 $message    = "O seu pedido foi submetido!";
                 $status     = "success";

@@ -11,6 +11,8 @@ use App\Http\Requests\PartnerStoreFromHomeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\PartnerTrait;
 use App\Http\Traits\UserTrait;
+use App\Mail\AdminActivateAccount;
+use App\Mail\ApprovePartnerAccount;
 use App\Mail\PartnerCreateAccount;
 use App\Models\County;
 use Carbon\Carbon;
@@ -131,13 +133,17 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         
-        # Set user as Active/Inactive
+        # Set Partner as Active/Inactive
         if ($request->activate) 
         {
             if ($this->canActivate($partner)) 
             {
                 $partner->update(array('active' => $request->activate));
                 $partner->user()->update(array('active' => $request->activate));
+                
+                # Send Email
+                Mail::to($partner->user)->send(new AdminActivateAccount($partner, $partner->user));
+
             }
             else 
             {
@@ -148,6 +154,12 @@ class PartnerController extends Controller
 
         # Update partner values
         $partner->update($request->all());
+
+        # Send Email when account is approved
+        if ($request->approved_at) {
+            $partner->user()->update(array('active' => 1));
+            Mail::to($partner->user)->send(new ApprovePartnerAccount($partner, $partner->user));
+        }
 
         # Update Address
         if (!is_null($request->addressData)) 

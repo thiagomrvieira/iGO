@@ -241,7 +241,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
         # Create a new order or get an opened one - OrderTrait
         $order = $this->firstOrCreateOrder($request);     
 
@@ -252,10 +251,6 @@ class CartController extends Controller
         $this->AddProductOptionToCart($request, $cartProduct);
 
         return $this->index('Produto adicionado ao carrinho!');
-    
-        // return response()->json(['status'  => $status  ?? 'success',
-        //                          'message' => $message ?? 'Produto adicionado ao carrinho!',
-        //                          'data'    => new CartProductResource($cartProduct)], 200); 
     }
 
     /**

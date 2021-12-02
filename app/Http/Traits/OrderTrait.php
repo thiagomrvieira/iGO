@@ -79,7 +79,12 @@ trait OrderTrait {
         $this->saveActualValues($order); 
         
         #  Update Order Status
-        return $order->update(['order_status_type_id' => 2]);
+        return $order->update(
+            [
+                'order_status_type_id' => 2,
+                'submitted_at' => Carbon::now(),
+            ]
+        );
     }
 
     #  Save Product values (Name and Price) in case of change

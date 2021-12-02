@@ -481,7 +481,7 @@ class OrderController extends Controller
                 $this->finishOrder($order); 
 
                 #   Generate a Receipt with the Products in the Order
-                $this->generateReceipt($order);
+                // $this->generateReceipt($order);
             
                 $message    = "O seu pedido foi submetido!";
                 $status     = "success";

@@ -22,6 +22,7 @@ class Order extends Model
         'tax_number',
         'amount',
         'deliver_at', 
+        'submitted_at', 
     ];
 
     /**
@@ -152,6 +153,13 @@ class Order extends Model
     }
     
     public function getUpdatedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
+    }
+
+    public function getSubmittedAtAttribute($value){
         $date = Carbon::parse($value);
         return $value == null ? 
             null : 

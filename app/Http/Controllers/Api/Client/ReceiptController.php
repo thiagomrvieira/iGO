@@ -26,69 +26,20 @@ class ReceiptController extends Controller
      *      @OA\MediaType(
      *           mediaType="application/json",
      *           example= {
-     *              "status": "success",
-     *              "message": "checkout",
-     *              "data": { 
-     *                  "products": {
-     *                      { 
-     *                          "partner": {
-     *                              "id": "integer",
-     *                              "name": "string"
-     *                           },
-     *                          "product": {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "price": "float",
-     *                              "quantity": "integer"
-     *                          },
-     *                          "options":
-     *                          {
-     *                              {
-     *                                  "id": "integer",
-     *                                  "name": "string",
-     *                                  "values": {
-     *                                      {
-     *                                          "id": "integer",
-     *                                          "name": "string",
-     *                                          "price": "float",
-     *                                      }
-     *                                  },
-     *                               },
-     *                          },
-     *                          "amount": "float",
-     *                          "created_at": "datetime"
-     *                      }, 
-     *                  },
-     *                  
-     *                  "delivery_address": {
-     *                      "id": "integer",
-     *                      "address_name": "string",
-     *                      "address_type": "string",
-     *                      "address_line_1": "string",
-     *                      "address_line_2": "string",
-     *                      "county": {
-     *                          "id": "integer",
-     *                          "name": "string"
-     *                      },
-     *                      "locality": "string",
-     *                      "post_code": "string",
-     *                      "country": "string",
-     *                      "tax_name": "string",
-     *                      "tax_number": "string"
-     *                  },
-     *                  "delivery_time": "datetime",
-     *                  "tax_data": {
-     *                      "tax_name": "string",
-     *                      "tax_number": "string"
-     *                  },
-     *                  "subtotal": "float",
-     *                  "shipping_fee": "float",
-     *                  "total": "float",
-     *                  "discount": "float",
-     *                  "total_final": "float",
-     *                  "can_reorder" : "boolean",                    
-     *              },
-     *          },
+     *               "status": "success",
+     *               "message": "Recibo",
+     *               "data": {
+     *                   "order_id": "integer",
+     *                   "partner": {
+     *                      "name": "string",
+     *                      "address": "string",
+     *                   },
+     *                   "submitted_at": "datetime",
+     *                   "sub_total": "integer",
+     *                   "total": "integer",
+     *                   "shipping_fee": "integer",
+     *              }
+     *           }
      *      ),
      *      
      *   ),

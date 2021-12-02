@@ -15,12 +15,12 @@ class ReceiptResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'order_id'     => $this->id,
+            'order_id'     => $this->order->id,
             'partner'      => [
                 'name'    => $this->partner->name,
                 'address' => $this->partner->address->line_1,
             ],
-            'submitted_at' => $this->submitted_at ,
+            'submitted_at' => $this->order->submitted_at ,
             'sub_total'    => $this->subtotal ,
             'total'        => $this->total ,
             'shipping_fee' => $this->shipping_fee ,

@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
 
             $table->timestamp('deliver_at')->nullable();	
             $table->timestamp('delivered_at')->nullable();	
+            $table->timestamp('submitted_at')->nullable();	
             
             $table->timestamps();
             $table->softDeletes();

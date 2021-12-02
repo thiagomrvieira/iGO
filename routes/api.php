@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\Client\DeliverymanRatingController;
 use App\Http\Controllers\Api\Client\OrderRatingController;
 use App\Http\Controllers\Api\Client\PartnerRatingController;
 use App\Http\Controllers\Api\Client\ProductRatingController;
-
+use App\Http\Controllers\Api\Client\ReceiptController;
 use App\Http\Controllers\Api\CountyController;
 use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\PartnerCategoryController;
@@ -84,6 +84,7 @@ Route::group(['prefix' => 'v1'], function()
                 'partners'     => PartnerController::class,
                 'categories'   => PartnerCategoryController::class,
                 'products'     => ProductController::class,
+                'receipt'      => ReceiptController::class,
             ]);
 
             #   ORDERS

@@ -18,6 +18,8 @@ class CreateCartsTable extends Migration
             $table->foreignId('order_id')->nullable()->constrained();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->string('product_name')->nullable(); 
+            $table->integer('product_price')->nullable();
             $table->tinyInteger('quantity');
             $table->string('note')->nullable();
             $table->timestamps();

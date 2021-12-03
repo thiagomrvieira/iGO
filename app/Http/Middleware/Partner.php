@@ -30,7 +30,7 @@ class Partner
         }
 
         #   Return for web
-        return redirect()->route('partner.login')->withErrors(['Only Partner can access this area!']);
+        return redirect()->route('login')->withErrors(['Only Partner can access this area!']);
 
     }
 }

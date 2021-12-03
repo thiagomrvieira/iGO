@@ -16,6 +16,7 @@ class CreateCartSideTable extends Migration
         Schema::create('cart_side', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cart_id')->constrained();
+            $table->string('side_name')->nullable(); 
             $table->foreignId('side_id')->constrained();
             $table->timestamps();
         });

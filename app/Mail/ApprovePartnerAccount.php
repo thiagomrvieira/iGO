@@ -11,14 +11,18 @@ class ApprovePartnerAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $partner;
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($partner, $user)
     {
-        //
+        $this->partner = $partner;
+        $this->user    = $user;
     }
 
     /**

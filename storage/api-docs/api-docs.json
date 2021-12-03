@@ -88,7 +88,9 @@
                                     "county_id": 1,
                                     "locality": "Bairro",
                                     "post_code": "46703",
-                                    "country": "Angola"
+                                    "country": "Angola",
+                                    "tax_name": "Mussum",
+                                    "tax_number": 987654321
                                 }
                             ]
                         }
@@ -1656,6 +1658,62 @@
                 ]
             }
         },
+        "/api/v1/client/order/promocode": {
+            "post": {
+                "tags": [
+                    "Client: Orders"
+                ],
+                "summary": "Apply promotional code",
+                "description": "Check if the code is valid and add the discount in the order",
+                "operationId": "promocode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "campaign_code": {
+                                        "type": "string",
+                                        "example": "FERIAS2021"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Discount added"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/client/order/{id}/orderrating": {
             "post": {
                 "tags": [
@@ -1871,6 +1929,68 @@
                                         "updated_at": "datetime",
                                         "created_at": "datetime",
                                         "id": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/receipt/{id}": {
+            "get": {
+                "tags": [
+                    "Client: Order Receipt"
+                ],
+                "summary": "Get the specified receipt",
+                "description": "Return data of the specified order",
+                "operationId": "getOrderReceipt",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Recibo",
+                                    "data": {
+                                        "order_id": "integer",
+                                        "partner": {
+                                            "name": "string",
+                                            "address": "string"
+                                        },
+                                        "submitted_at": "datetime",
+                                        "sub_total": "integer",
+                                        "total": 7518100,
+                                        "shipping_fee": 2000000
                                     }
                                 }
                             }

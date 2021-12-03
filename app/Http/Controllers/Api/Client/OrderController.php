@@ -476,9 +476,12 @@ class OrderController extends Controller
         if ($order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()) {
             
             #   Chek if the Order has any Cart Item/Product associated 
-            if (Cart::where('order_id', $order->id)->count() > 0) {
-            
-                $this->finishOrder(); 
+            if ($order->cart?->count() > 0) {
+                
+                $this->finishOrder($order); 
+
+                #   Generate a Receipt with the Products in the Order
+                // $this->generateReceipt($order);
             
                 $message    = "O seu pedido foi submetido!";
                 $status     = "success";
@@ -821,6 +824,81 @@ class OrderController extends Controller
         
         return response()->json(['status'  => $status  ?? 'forbiden',
                                  'message' => $message ?? 'Não foi possivel cancelar o pedido especificado'], $statusCode ?? 403); 
+    }
+
+
+    /**
+     * APPLY PROMOTIONAL CODE
+     * *
+     * 
+     * @OA\post(path="/api/v1/client/order/promocode",
+     *   tags={"Client: Orders"},
+     *   summary="Apply promotional code",
+     *   description="Check if the code is valid and add the discount in the order",
+     *   operationId="promocode",
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="campaign_code", type="string", example="FERIAS2021"),
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Discount added",
+     *           },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function promocode(Request $request)
+    {
+       
+        $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
+        $cartItems = Cart::where('order_id', $order->id)->get();
+        
+        if ($order && $cartItems->count() > 0) 
+        {
+            if  ($this->checkCampaignCode($request->campaign_code))
+            {
+                $this->checkoutOrderData($request, $cartItems); 
+                
+                $status      = 'Success';
+                $message     = 'Desconto adicionado';
+                $statusCode  = 200;
+            }
+        }
+        
+        return response()->json(['status'  => $status  ?? 'error',
+                                 'message' => $message ?? 'Código inválido'], $statusCode  ?? 404); 
+       
     }
     
 }

@@ -152,10 +152,10 @@ class PartnerController extends Controller
      */
     public function index(Request $request)
     {
-        // return Partner::first()->bestCampaign();
         
         $partners = Partner::with('address')->with('images')->with('subCategories')
                            ->where('active', true)
+                           ->where('first_login', false) 
                            ->filter( $request->all() )->get();
 
         return response()->json(['status'  => $status  ?? 'success',

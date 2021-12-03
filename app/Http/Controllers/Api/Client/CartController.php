@@ -101,7 +101,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($message = null)
     {
         if (Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->count() > 0) {
             $data = new CartProductCollection(Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()->cart);
@@ -241,7 +241,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
         # Create a new order or get an opened one - OrderTrait
         $order = $this->firstOrCreateOrder($request);     
 
@@ -251,9 +250,7 @@ class CartController extends Controller
         # Add Product Option to a cart or update if exist
         $this->AddProductOptionToCart($request, $cartProduct);
 
-        return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Produto adicionado ao carrinho!',
-                                 'data'    => new CartProductResource($cartProduct)], 200); 
+        return $this->index('Produto adicionado ao carrinho!');
     }
 
     /**

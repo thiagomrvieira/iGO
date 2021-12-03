@@ -22,17 +22,9 @@ class Order extends Model
         'tax_number',
         'amount',
         'deliver_at', 
+        'submitted_at', 
     ];
 
-    // /**
-    //  * Get the order's items/products.
-    //  */
-    // public function products()
-    // {
-    //     return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
-    // }
-
-    
     /**
      * Get the items/products in the cart
      */
@@ -161,6 +153,13 @@ class Order extends Model
     }
     
     public function getUpdatedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $value == null ? 
+            null : 
+            $date->format('Y-m-d H:i:s');
+    }
+
+    public function getSubmittedAtAttribute($value){
         $date = Carbon::parse($value);
         return $value == null ? 
             null : 

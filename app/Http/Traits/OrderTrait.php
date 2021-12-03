@@ -3,9 +3,12 @@
 namespace App\Http\Traits;
 
 use App\Models\Campaign;
+use App\Models\Extra;
 use App\Models\Order;
 use App\Models\OrderStatusType;
 use App\Models\Product;
+use App\Models\Sauce;
+use App\Models\Side;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -42,7 +45,7 @@ trait OrderTrait {
                 'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
             ],
             [
-                'address_id'           => $request->address_id  ?? Auth::user()->addresses->where('address_type_id', 1)->first()->id,
+                'address_id'           => $request->address_id  ?? (Auth::user()->addresses->where('address_type_id', 1)->first()->id ?? Auth::user()->addresses->first()->id),
                 'tax_name'             => $request->tax_name    ?? Auth::user()->name,
                 'tax_number'           => $request->tax_number  ?? Auth::user()->client->tax_number,
                 'deliver_at'           => $request->deliver_at  ?? null,
@@ -62,27 +65,63 @@ trait OrderTrait {
             #   Check if the campaign date is valid
             if (Carbon::now() >= $campaign->start_date && Carbon::now() <= $campaign->finish_date) {
                 #   Return the campign id
-                return $campaign->id;       
+                return $campaign->id;   
             }
         }
 
-        return null; 
+        return false; 
     }
 
     # Checkout order
-    public function finishOrder()
+    public function finishOrder(Order $order)
     {   
-        return Order::updateOrCreate(
-            [
-                'client_id'            => Auth::user()->client->id,
-                'order_status_type_id' => OrderStatusType::where('name', 'Aberto')->first()->id,
-            ],
+        #  Save Product values (Name and Price) in case of change
+        $this->saveActualValues($order); 
+        
+        #  Update Order Status
+        return $order->update(
             [
                 'order_status_type_id' => 2,
+                'submitted_at' => Carbon::now(),
             ]
         );
     }
 
+    #  Save Product values (Name and Price) in case of change
+    public function saveActualValues(Order $order)
+    {   
+        #   Get all products in the order
+        foreach ($order->cart as $cartItem) {
+            #   Save the actual product name and price
+            if ( $product = Product::where('id', $cartItem->product_id)->first() )
+            {
+                $cartItem->product_name  = $product->name;
+                $cartItem->product_price = $product->price;
+                $cartItem->save();
+            }
+            #   Save extras
+            foreach ($cartItem->cartExtras as $cartExtra) {
+                if ( $extra = Extra::where('id', $cartExtra->extra_id)->first() )
+                {
+                    $cartExtra->extra_name  = $extra->name;
+                    $cartExtra->extra_price = $extra->price;
+                    $cartExtra->save();
+                }
+            }
+            #   Save Side
+            if ( $side = Side::where('id', $cartItem->cartSide?->side_id)->first() )
+            {
+                $cartItem->cartSide->side_name = $side->name;
+                $cartItem->cartSide->save();
+            }
+            #   Save Sauce
+            if ( $sauce = Sauce::where('id', $cartItem->cartSauce?->sauce_id)->first() )
+            {
+                $cartItem->cartSauce->sauce_name = $sauce->name;
+                $cartItem->cartSauce->save();
+            }
+        }
+    }
 
     /**
      * DELIVERYMAN FUNCTIONS 

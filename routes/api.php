@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\Client\DeliverymanRatingController;
 use App\Http\Controllers\Api\Client\OrderRatingController;
 use App\Http\Controllers\Api\Client\PartnerRatingController;
 use App\Http\Controllers\Api\Client\ProductRatingController;
-
+use App\Http\Controllers\Api\Client\ReceiptController;
 use App\Http\Controllers\Api\CountyController;
 use App\Http\Controllers\Api\FrontOfficeController;
 use App\Http\Controllers\Api\PartnerCategoryController;
@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
+use App\Http\Controllers\Web\CampaignController;
+use App\Models\Campaign;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,12 +84,14 @@ Route::group(['prefix' => 'v1'], function()
                 'partners'     => PartnerController::class,
                 'categories'   => PartnerCategoryController::class,
                 'products'     => ProductController::class,
+                'receipt'      => ReceiptController::class,
             ]);
 
             #   ORDERS
             Route::get('orders',                [ClientOrderController::class, 'index'     ]);
             Route::get('order/checkout',        [ClientOrderController::class, 'checkout'  ]);
             Route::post('order/checkout',       [ClientOrderController::class, 'update'    ]);
+            Route::post('order/promocode',      [ClientOrderController::class, 'promocode' ]);
             Route::post('order/submit',         [ClientOrderController::class, 'submit'    ]);
             Route::get('order/inprogress',      [ClientOrderController::class, 'inProgress']);
             Route::get('order/{id}',            [ClientOrderController::class, 'show'      ]);
@@ -105,6 +109,7 @@ Route::group(['prefix' => 'v1'], function()
             
             #   Remove all Products from Cart
             Route::delete('cleancart', [ClientCartController::class, 'removeAll']);
+
 
         });
 

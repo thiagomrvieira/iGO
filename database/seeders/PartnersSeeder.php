@@ -46,6 +46,7 @@ class PartnersSeeder extends Seeder
                 'company_name' => $faker->company(), 
                 'active'       => true, 
                 'category_id'  => $partnerCategory->id,
+                'first_login'  => false,
             ]);
 
             $subCats = PartnerCategory::where(['parent_id' => $partnerCategory->id, 'active' => 1])->get()->random(random_int(1, 2));

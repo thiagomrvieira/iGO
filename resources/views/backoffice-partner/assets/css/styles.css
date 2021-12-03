@@ -214,12 +214,14 @@ a:hover {
 	border-color: #072a40;
 	background-color: #072a40;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+	font-size: 12px;
+	padding: 0 30px;
 }
 .button.button-primary:hover,
 .button.button-primary:focus {
-	color: #ffe414;
-	border-color: #072a40;
-	background-color: #072a40;
+	color: #072a40;
+	border-color: #ffe414 ;
+	background-color: #ffe414 ;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 /* Labels */
@@ -450,6 +452,25 @@ header.fixed .row-fluid {
 .dashboard-first-page .dashboard-footer .dashboard-footer-contacts p svg {
 	margin-right: 5px;
 }
+.button.button-primary#resetFormProductData  {
+	color: #072a40;
+	border-color: #ffe414 ;
+	background-color: #ffe414 ;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+	font-size: 12px;
+	padding: 0 30px;
+	margin-right: 15px;
+}
+.button.button-primary#submitFormProductData  {
+	margin-left: 15px;
+}
+.button.button-primary#resetFormProductData:hover,
+.button.button-primary#resetFormProductData:focus {
+	color: #ffe414;
+	border-color: #072a40;
+	background-color: #072a40;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
 /* page content */
 #page-backoffice .block-home-find {
 	position: relative;
@@ -567,6 +588,10 @@ header.fixed .row-fluid {
 	font-weight: 400;
 	font-style: normal;
 	color: rgba(7, 42, 64, 0.6);
+}
+.block-accordion .main-fluid .nav-menu-fixed .navbar .nav-link span.nav-link-focus {
+	font-weight: 500;
+	color: #072a40;
 }
 .block-accordion .main-fluid .nav-menu-fixed .navbar .nav-link img {
 	width: 56px;
@@ -892,7 +917,7 @@ header.fixed .row-fluid {
 	width: 90px;
 	height: 90px;
 	border-radius: 50%;
-	background-image: url('/assets-backoffice-partner/images/photo_loja.png'); 
+	/* background-image: url('/assets-backoffice-partner/images/photo_loja.png');  */
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -994,9 +1019,7 @@ header.fixed .row-fluid {
     flex-wrap: wrap;
     align-items: center;
 }
-.accordion-content .col-checkbox .form-check .custom-control.custom-radio input,
-.accordion-item .accordion-content .menu-label-radiu .custom-radio input,
-.accordion-item .menu-label-radio .product-checks input {
+input[type="radio"] { 
 	min-width: 18px;
 	min-height: 18px;
 	border: 2px solid black;
@@ -1008,10 +1031,7 @@ header.fixed .row-fluid {
 	margin: 0 15px 0 0;
 	cursor: pointer;
 }
-.accordion-content .col-checkbox .form-check .custom-control.custom-radio .form-check-input:before,
-.accordion-item .accordion-content .menu-label-radio .product-checks .custom-control input[type="radio"]:before,
-.accordion-item.campaign-product .accordion-content .custom-control input[type="radio"]:before,
-.accordion-item .accordion-content .menu-label-radiu .custom-radio input:before {
+input[type="radio"]:before {
 	display: block;
 	content: '';
 	width: 8px;
@@ -1020,9 +1040,7 @@ header.fixed .row-fluid {
 	border-radius: 50px;
 	visibility: hidden;
 }
-.accordion-content .col-checkbox .form-check .custom-control.custom-radio .form-check-input:checked:before,
-.accordion-item .accordion-content .menu-label-radio .product-checks .custom-control input[type="radio"]:checked:before,
-.accordion-item.campaign-product .accordion-content .custom-control input[type="radio"]:checked:before {
+input[type="radio"]:checked:before {
 	visibility: visible;
 }
 .accordion-item.campaign-product .accordion-content .custom-control label {
@@ -1219,7 +1237,6 @@ a#addExtra {
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 15px;
 }
 .accordion-item.products-cerification .accordion-content .accordion-body .card-body .card-body-right .product-edit-remove-section #pen {
 margin-right: 5px;

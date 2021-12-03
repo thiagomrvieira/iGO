@@ -64,7 +64,7 @@
                                     <div class="accordion-content top-image">
 
                                         <div class="profile-image-cover product-cover">
-                                            {!! Form::file ('image', null, false, ['class' => 'form-check-input']) !!}
+                                            {!! Form::file ('image', null, false, ['class' => 'form-check-input product-image-cover']) !!}
                                             <div class="form-fild-text">
                                                 <span>
                                                     <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -423,10 +423,11 @@
                             </div>
                             {!! Form::close() !!}
                             <div class="button-next-container">
+                                {!! Form::reset('Apagar', ['type' => 'reset', 'class' => 'button button-primary' , 'form' => 'formProductData', 'id' => 'resetFormProductData'   ]) !!}
                                 @if (isset($product))
-                                    {!! Form::submit('Salvar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
+                                    {!! Form::submit('Guardar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
                                 @else
-                                    {!! Form::submit('Próximo', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
+                                    {!! Form::submit('Guardar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formProductData', 'id' => 'submitFormProductData'   ]) !!}
                                 @endif
                             </div>
                             <div class="nav-menu-fixed">
@@ -555,8 +556,21 @@
             jQuery('#removeAllergens').val('');
         });
 
+        // Image field load 
+        jQuery( document ).ready(function() {
+            // alert('test');
+            const image_input = document.querySelector("product-image-cover");
+            let uploaded_image;
 
-
+            image_input.addEventListener('change', function() {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                uploaded_image = reader.result;
+                document.querySelector(".profile-image-cover.product-cover").style.backgroundColor = `url(${uploaded_image})`;
+            });
+            reader.readAsDataURL(this.files[0]);
+            });
+        });
 
     </script>
 @endsection

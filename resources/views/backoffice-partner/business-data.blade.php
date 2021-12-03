@@ -305,7 +305,7 @@
                             
                         </div>
                         <div class="button-next-container">
-                            {!! Form::submit($partner->first_login ? 'Seguinte' : 'Salvar', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formBusinessData'   ]) !!}
+                            {!! Form::submit($partner->first_login ? 'Seguinte' : 'Seguinte', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formBusinessData'   ]) !!}
                             {!! Form::close() !!}
                         </div>
                         <div class="nav-menu-fixed">

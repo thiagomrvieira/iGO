@@ -118,7 +118,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </div> 
-                                                                <div class="product-add-section">
+                                                                {{-- <div class="product-add-section">
                                                                     <div id="plus">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="68" viewBox="0 0 68 68">
                                                                             <defs>
@@ -141,7 +141,7 @@
                                                                             </g>
                                                                         </svg>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>    
 
                                                         </div>
@@ -278,7 +278,7 @@
                                                                             </a>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="product-add-section">
+                                                                    {{-- <div class="product-add-section">
                                                                         <div id="plus">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="68" viewBox="0 0 68 68">
                                                                                 <defs>
@@ -301,7 +301,7 @@
                                                                                 </g>
                                                                             </svg>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -312,9 +312,11 @@
                                     </div> 
                                 @endforeach
                                 <div class="add-product-btn">
-                                    <a class="btn btn-primary" href="{{ route('products.create') }}">
-                                        Adicionar produto
-                                    </a>
+                                    <div class="button-next-container">
+                                        <a class="button button-primary" href="{{ route('products.create') }}">
+                                            Adicionar
+                                        </a>
+                                    </div>
                                 </div>
                             </div>   
                             <div class="nav-menu-fixed">
@@ -327,7 +329,7 @@
         </div>
     
     {{-- Modal de confirmação de remoção --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -345,7 +347,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection
 

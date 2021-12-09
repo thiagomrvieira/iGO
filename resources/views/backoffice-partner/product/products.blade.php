@@ -40,12 +40,6 @@
                                 </div>
                             @endif
 
-                            {{-- {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => 'products.store', 
-                                            'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
-                                @csrf
-                                
-                                {!! Form::hidden('partner_id', $partner->id ) !!}  --}}
-
                             <div class="accordion" id="accordionProducts">
 
                                 {{-- Product Categories --}}
@@ -118,30 +112,6 @@
                                                                         </a>
                                                                     </div>
                                                                 </div> 
-                                                                {{-- <div class="product-add-section">
-                                                                    <div id="plus">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="68" viewBox="0 0 68 68">
-                                                                            <defs>
-                                                                              <filter id="Ellipse_186" x="0" y="0" width="68" height="68" filterUnits="userSpaceOnUse">
-                                                                                <feOffset dx="2" dy="2" input="SourceAlpha"/>
-                                                                                <feGaussianBlur stdDeviation="4" result="blur"/>
-                                                                                <feFlood flood-opacity="0.161"/>
-                                                                                <feComposite operator="in" in2="blur"/>
-                                                                                <feComposite in="SourceGraphic"/>
-                                                                              </filter>
-                                                                            </defs>
-                                                                            <g id="ver_mais" transform="translate(-192 -769)">
-                                                                              <g transform="matrix(1, 0, 0, 1, 192, 769)" filter="url(#Ellipse_186)">
-                                                                                <circle id="Ellipse_186-2" data-name="Ellipse 186" cx="22" cy="22" r="22" transform="translate(10 10)" fill="#ffe414"/>
-                                                                              </g>
-                                                                              <g id="Group_10978" data-name="Group 10978" transform="translate(-39 15)">
-                                                                                <path id="MAPA" d="M.067-5.426H-5.149V-8.812H.067v-5.17H3.6v5.17H8.836v3.386H3.6V.018H.067Z" transform="translate(261.149 792.982)" fill="#072a40"/>
-                                                                                <rect id="Rectangle_8299" data-name="Rectangle 8299" width="14" height="14" transform="translate(256 779)" fill="none"/>
-                                                                              </g>
-                                                                            </g>
-                                                                        </svg>
-                                                                    </div>
-                                                                </div> --}}
                                                             </div>    
 
                                                         </div>
@@ -154,59 +124,6 @@
                                         </div>
                                     </div> 
                                 </div> 
-                                {{-- Featured item--}}
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFeatured">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeatured" aria-expanded="false" aria-controls="collapseFeatured">
-                                            Destaques
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFeatured" class="accordion-collapse collapse" aria-labelledby="headingFeatured" data-bs-parent="#accordionProducts">
-                                        <div class="accordion-body"> --}}
-                                            {{-- List of Featured Products --}}
-                                            {{-- @forelse ($products as $featuredProduct)
-                                                @if (isset($featuredProduct->featured->created_at))
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div style="float: left;">
-                                                                @if ($featuredProduct->image)
-                                                                    <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
-                                                                        alt="Product Image" height="90px">
-                                                                    <br>
-                                                                @endif
-                                                                <strong>{{$featuredProduct->name}}</strong>
-                                                                <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
-                                                                <p>{{$featuredProduct->price}}€</p>
-                                                            </div>
-                                                            <div style="float: right;">
-                                                                
-                                                                <div id="pen">
-                                                                    <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}">
-                                                                        pen
-                                                                    </a>
-                                                                </div>
-
-                                                                <div id="trash">
-                                                                    <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $featuredProduct->id }}"  
-                                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                        trash
-                                                                    </a>
-                                                                </div>
-                                                                <div id="plus">
-                                                                    plus
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @empty
-                                                Sem produtos destacados
-                                            @endforelse
-                                        
-                                        </div>
-                                    </div>
-                                </div> --}}
-
                                 {{-- List Product Categories --}}
                                 @foreach ($products->unique('category')->pluck('category') as $productCategory)
                                     {{-- Product Categories --}}

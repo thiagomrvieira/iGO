@@ -17317,8 +17317,23 @@ $j(document).ready(function ($) {
     if (path.length >= 1 && path[0] !== '') {
       $(this).parent().prev().text(last);
     }
+  }); // Add color border
+
+  $j("form#formProfileData :input").each(function () {
+    inputBorders(this);
+    $j(this).on('keyup', function () {
+      inputBorders(this);
+    });
   });
-});
+}); // Add color border function
+
+function inputBorders(val) {
+  if ($j(val).val() != "") {
+    $j(val).closest('.block-form-group').addClass("block-field-active");
+  } else {
+    $j(val).closest('.block-form-group').removeClass("block-field-active");
+  }
+}
 
 function showImageName(val) {
   alert(val);

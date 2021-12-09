@@ -210,10 +210,6 @@
                                     </svg>
                                 </button>
                                 <div class="accordion-content business-image-content">
-                                    {{-- @if (isset($partner->images->image_cover))
-                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
-                                    @endif --}}
-
                                     <div class="form-group">
                                         {!! Form::label('image-cover', 'Fotografia capa (jpeg/png)', ['class' => 'form-check-label form-image-input']) !!}
                                         <div class="form-file-button">
@@ -221,11 +217,6 @@
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    
                                         </div>
                                     </div>
-
-                                    {{-- @if (isset($partner->images->image_01))
-                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_01)}}" alt="" height="90px">
-                                    @endif --}}
-
                                     <div class="form-group">
                                         {!! Form::label('image-01', 'Fotografia #1 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
@@ -233,11 +224,6 @@
                                             <div class="form-fild-text"><span>{{ _('Adicionar') }}</span></div>    
                                         </div>
                                     </div>
-
-                                    {{-- @if (isset($partner->images->image_02))
-                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_02)}}" alt="" height="90px">
-                                    @endif --}}
-
                                     <div class="form-group">
                                         {!! Form::label('image-02', 'Fotografia #2 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
@@ -246,10 +232,6 @@
                                         </div>
                                     </div>
                                     
-                                    {{-- @if (isset($partner->images->image_03))
-                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_03)}}" alt="" height="90px">
-                                    @endif --}}
-
                                     <div class="form-group">
                                         {!! Form::label('image-03', 'Fotografia #3 (jpeg/png)', ['class' => 'form-check-label']) !!}
                                         <div class="form-file-button">
@@ -259,50 +241,7 @@
                                     </div>
                                 </div>
                             </div> 
-                            <h3>*Dados de preenchimento obrigatório.</h3>
-                            {{-- <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Imagens*
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionBusinessData">
-                                    <div class="accordion-body">
-                                        @if (isset($partner->images->image_cover))
-                                            <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_cover)}}" alt="" height="90px">
-                                        @endif
-                                        <div class="form-group">
-                                            {!! Form::label('image-cover', 'Fotografia capa', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-cover', null, false,       ['class' => 'form-check-input']) !!}
-                                        </div>
-
-                                        @if (isset($partner->images->image_01))
-                                            <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_01)}}" alt="" height="90px">
-                                        @endif
-                                        <div class="form-group">
-                                            {!! Form::label('image-01', 'Fotografia #1', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-01', null, false,     ['class' => 'form-check-input']) !!}
-                                        </div>
-
-                                        @if (isset($partner->images->image_02))
-                                            <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_02)}}" alt="" height="90px">
-                                        @endif
-                                        <div class="form-group">
-                                            {!! Form::label('image-02', 'Fotografia #2', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-02', null, false,     ['class' => 'form-check-input']) !!}
-                                        </div>
-
-                                        @if (isset($partner->images->image_03))
-                                            <img src="{{url('/storage/images/partner/'.$partner->id. '/' .$partner->images->image_03)}}" alt="" height="90px">
-                                        @endif
-                                        <div class="form-group">
-                                            {!! Form::label('image-03', 'Fotografia #3', ['class' => 'form-check-label']) !!}
-                                            {!! Form::file ('image-03', null, false,     ['class' => 'form-check-input']) !!}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            
+                            <h3>*Dados de preenchimento obrigatório.</h3>   
                         </div>
                         <div class="button-next-container">
                             {!! Form::submit($partner->first_login ? 'Seguinte' : 'Seguinte', ['type' => 'submit', 'class' => 'button button-primary' , 'form' => 'formBusinessData'   ]) !!}

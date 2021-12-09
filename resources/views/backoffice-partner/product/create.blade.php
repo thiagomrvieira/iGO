@@ -63,8 +63,9 @@
                                     </button>
                                     <div class="accordion-content top-image">
 
-                                        <div class="profile-image-cover product-cover">
-                                            {!! Form::file ('image', null, false, ['class' => 'form-check-input product-image-cover']) !!}
+                                        <div class="profile-image-cover product-cover" id="profile-image-cover-container">
+                                     
+                                            {!! Form::file ('image', ['class' => 'form-check-input', 'id' => 'product-image-cover']) !!}
                                             <div class="form-fild-text">
                                                 <span>
                                                     <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -556,21 +557,42 @@
             jQuery('#removeAllergens').val('');
         });
 
+        // TODO : Finished the upload image 
         // Image field load 
-        jQuery( document ).ready(function() {
-            // alert('test');
-            const image_input = document.querySelector("product-image-cover");
-            let uploaded_image;
+        jQuery(document).ready(function() {
 
-            image_input.addEventListener('change', function() {
-            const reader = new FileReader();
-            reader.addEventListener('load', () => {
-                uploaded_image = reader.result;
-                document.querySelector(".profile-image-cover.product-cover").style.backgroundColor = `url(${uploaded_image})`;
-            });
-            reader.readAsDataURL(this.files[0]);
-            });
+           
+
+            if (jQuery('#product-image-cover').length > 0) {
+                document.getElementById('product-image-cover').addEventListener("change", function() {
+                    let currentFile  = this.files[0];
+                    console.log(currentFile);
+                    const reader = new FileReader();
+               
+                    reader.addEventListener('load', () => {
+                        alert('teste')
+                        currentFile = reader.result;
+                        console.log(currentFile);
+                        document.getElementById('profile-image-cover-container').style.backgroundImage = `url(${currentFile})`;
+                    });
+                });
+            }
+
+            // const image_input = document.getElementById("product-image-cover");
+            // let uploaded_image;
+            // if (image_input) {
+            //     image_input.addEventListener('change', function() {
+            //         console.log(image_input);
+            //         const reader = new FileReader();
+            //         reader.addEventListener('load', () => {
+            //             uploaded_image = reader.result;
+            //             document.querySelector(".profile-image-cover.product-cover").style.backgroundColor = `url(${uploaded_image})`;
+            //         });
+            //         reader.readAsDataURL(this.files[0]);
+            //     });
+            // }
         });
 
+      
     </script>
 @endsection

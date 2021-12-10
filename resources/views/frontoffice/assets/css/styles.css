@@ -1210,7 +1210,6 @@ footer .block-footer-bottom .row-fluid .column-right .block-footer-apps a:not(:l
 .modal.show-delivery-error .modal-body.delivery-error {
 	display: block; 
 }
-  /* The Close Button */
 .close {
 	color: #aaaaaa;
 	float: right;

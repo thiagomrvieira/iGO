@@ -13,7 +13,7 @@ use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\AddressTrait;
 use App\Http\Traits\BusinessDataTrait;
 use App\Http\Requests\BusinessDataRequest;
-
+use App\Models\County;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -133,8 +133,10 @@ class PartnerController extends Controller
     public function edit()
     {
         $partner = Auth::user()->partner;
+        $counties = County::pluck('name', 'id');
         return view('backoffice-partner.partner.profile', [
             'partner' => $partner,
+            'counties' => $counties
         ]);
     }
 

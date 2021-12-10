@@ -17280,6 +17280,12 @@ $j(document).ready(function ($) {
   scrollMenuFixed();
   $j('.block-accordion').on('click', '.accordion-button', function () {
     this.classList.toggle('is-open');
+  }); // select2
+
+  var county = $j('.counties_select').select2(); // $("#myBox").select2({ containerCssClass : "error" });
+
+  county.on("change", function (e) {
+    removeClassErrorSelect2('partnerCreation', 'counties_select');
   }); // input partner images cover
 
   $j('.form-group #image-cover').on('change', function () {
@@ -17324,6 +17330,11 @@ $j(document).ready(function ($) {
     $j(this).on('keyup', function () {
       inputBorders(this);
     });
+  }); // Close modal
+
+  var modal = $j('.modal');
+  modal.on('click', function () {
+    $j(this).removeClass('show-product-delete');
   });
 }); // Add color border function
 

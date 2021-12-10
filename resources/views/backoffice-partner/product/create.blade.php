@@ -103,11 +103,14 @@
                                                         ['class' => 'form-control', 'placeholder' => 'Nome do produto*']) !!}
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::textarea('description', (isset($product) && $product->description) ? $product->description : null, 
+                                            {!! Form::textarea('description', (isset($product) && $product->description) ? ($product->description) : null, 
                                                             ['class' => 'form-control', 'placeholder' => 'Descrição do produto*']) !!}
                                         </div>
                                         <div class="form-group product-price">
-                                            {!! Form::number('price', (isset($product) && $product->price) ? number_format($product->price,2) : null, 
+                                            @if ((isset($product) && $product->price))
+                                                <?php $product_price =  number_format(($product->price / 100), 2) ?>
+                                            @endif
+                                            {!! Form::number('price', (isset($product) && $product->price) ? $product_price : 0.00, 
                                                             ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                         </div>
                                         <div class="menu-label-radio">
@@ -561,7 +564,6 @@
             jQuery('#removeAllergens').val('');
         });
 
-        // TODO : Finished the upload image 
         // Image field load 
         jQuery(document).ready(function() {
             if (jQuery('#product-image-cover').length > 0) {

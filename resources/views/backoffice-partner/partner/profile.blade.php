@@ -21,7 +21,10 @@
                         <div class="accordion" id="accordionProfileData">
                             
                             {{-- Product name item--}}
-
+                            {{-- 
+                                TODO: Validate Address ID to update the profile
+                                      Check is the user profile has photo                                
+                            --}}
                             {{-- Product name item--}}
                             <div class="accordion-item sub-categories">
                                 <button class="accordion-button is-open" type="button">
@@ -37,8 +40,8 @@
                                     </svg>
                                 </button>
                                 <div class="accordion-content top-image">
-                                    <div class="profile-image-cover">
-                                        {!! Form::file ('image_cover', null, false,     ['class' => 'form-check-input']) !!}
+                                    <div class="profile-image-cover" id="profile-image-cover">
+                                        {!! Form::file ('image_cover', ['class' => 'form-check-input', 'id' => 'id-profile-image-cover']) !!}
                                         <div class="form-fild-text">
                                             <span>
                                                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,14 +164,9 @@
                                                     </svg>
                                                 </div>
                                                 <div class="block-input">
-                                                    {!! Form::text('county_id', $partner->address->county->name ?? null, ['class' => 'form-control', 'placeholder' => 'Provincia*']) !!}
-                                                    {{-- <select id="county_id" class="county_id" name="county_id" @change="removeClassError('partnerCreation', 'county_id')" v-select="partner.county_id">
-                                                        <option value="" disabled selected>{{ __('Província') }}</option>
-                                                        @foreach ($counties as $countie)
-                                                            <option value="{{$countie->id}}">{{$countie->name}}</option>
-                                                        @endforeach
-                                                    </select> --}}
-                                                    {{-- <input  type="text" id="county_id" name="county_id" placeholder="{{ __('homepage.home-partner-form-county') }}" @change="removeClassError('partnerCreation', 'county_id')" v-model="partner.county_id"> --}}
+                                    
+                                                  {!! Form::select('counties', $counties , $partner->address->county->name,[ 'class' => 'counties_select select2 input-sm form-control']) !!}
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -268,4 +266,24 @@
             </div>
         </div>
     </div>
+@endsection
+@section('jquery')
+    <script type="text/javascript">
+         // Image field load 
+         jQuery(document).ready(function() {
+            if (jQuery('#id-profile-image-cover').length > 0) {
+                document.getElementById('id-profile-image-cover').addEventListener("change", function() {
+                    let currentFile  = this.files[0];
+                    console.log(currentFile);
+                    const reader = new FileReader();
+                    reader.readAsDataURL(currentFile);
+                    reader.addEventListener('load', () => {
+                        currentFile = reader.result;
+                        document.getElementById('profile-image-cover').style.backgroundImage = `url(${currentFile})`;
+                    });
+                });
+            } 
+        });
+        
+    </script>
 @endsection

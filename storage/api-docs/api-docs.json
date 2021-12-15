@@ -1989,8 +1989,8 @@
                                         },
                                         "submitted_at": "datetime",
                                         "sub_total": "integer",
-                                        "total": 7518100,
-                                        "shipping_fee": 2000000
+                                        "total": "integer",
+                                        "shipping_fee": "integer"
                                     }
                                 }
                             }

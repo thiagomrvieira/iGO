@@ -67,9 +67,7 @@
                                                             <div class="card-body-left">
                                                                 <div class="card-body-image" >
                                                                     @if ($featuredProduct->image)
-                                                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" 
-                                                                            alt="Product Image" height="90px">
-                                                                        <br>
+                                                                        <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" alt="Product Image" height="90px">
                                                                     @endif
                                                                 </div>
                                                                 <div class="card-body-values"> 
@@ -179,7 +177,7 @@
                                                                         </div>
         
                                                                         <div id="trash">
-                                                                            <a class="ml-1 openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
+                                                                            <a class="openDeleteDialog" href="#" data-product-id="{{ $product->id }}"  
                                                                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                                                     <g id="apagar" transform="translate(-14154 334)">
@@ -246,11 +244,11 @@
         </div>
     
     {{-- Modal de confirmação de remoção --}}
-    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="exampleModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Deseja remover este produto?</p>
+                    <h4>Deseja remover este produto?</h4>
                     
                     {!! Form::open(['class' => 'form-horizontal',  'id' => 'formDelete', 'method' => 'post' ]) !!}
                         @csrf
@@ -259,8 +257,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'), ['type' => 'button', 'class' => 'btn btn-secondary', 'data-bs-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'btn btn-danger'   , 'form' => 'formDelete']) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'), ['type' => 'button', 'class' => 'button button-primary close openDeleteDialog', 'data-bs-dismiss' => 'modal']) !!}
+                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'button button-primary delete', 'form' => 'formDelete']) !!}
                 </div>
             </div>
         </div>
@@ -270,15 +268,22 @@
 
 @section('jquery')
     <script type="text/javascript">
-        // Seta action do modal de confirmação de remoção de produto
-        jQuery(document).on("click", ".openDeleteDialog", function (event) {
+
+        jQuery(document).on("click", ".openDeleteDialog", function () {
             event.preventDefault();
-
+           
+            var m = document.querySelector(".modal");
+            m.classList.toggle("product-delet");
+           
             var productId = jQuery(this).data('product-id');
-            var action   = `/partner/products/jQuery{productId}`;
+            
+            var action   = "/partner/products/" + productId;
+            console.log(action);
 
-            jQuery('#formDelete').attr('action', action );
+            jQuery('.delete').attr('action', action );
         });
+        // Seta action do modal de confirmação de remoção de produto
+        
         
     </script>
 @endsection

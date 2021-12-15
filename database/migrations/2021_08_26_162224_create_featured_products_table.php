@@ -15,7 +15,7 @@ class CreateFeaturedProductsTable extends Migration
     {
         Schema::create('featured_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('partner_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(false);
             $table->timestamp('start_date')->nullable();	

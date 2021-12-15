@@ -40,7 +40,12 @@
                                     </svg>
                                 </button>
                                 <div class="accordion-content top-image">
-                                    <div class="profile-image-cover" id="profile-image-cover">
+
+                                        @if (isset($partner->images->image_cover))
+                                            <div class="profile-image-cover" id="profile-image-cover" style="background-image:url('/storage/images/partner/{{$partner->id}}/{{$partner->images->image_cover}}')">
+                                        @else
+                                            <div class="profile-image-cover" id="profile-image-cover">
+                                        @endif
                                         {!! Form::file ('image_cover', ['class' => 'form-check-input', 'id' => 'id-profile-image-cover']) !!}
                                         <div class="form-fild-text">
                                             <span>
@@ -163,9 +168,10 @@
                                                         </g>
                                                     </svg>
                                                 </div>
-                                                <div class="block-input">
-                                    
-                                                  {!! Form::select('counties', $counties , $partner->address->county->name,[ 'class' => 'counties_select select2 input-sm form-control']) !!}
+                                                <div class="block-input ">
+                                                    <div class="block-field block-field-entity-partner-county">
+                                                        {!! Form::select('county_id', $counties , $partner->address->county->id, [ 'class' => 'counties_select form-control']) !!}
+                                                    </div>
                                                    
                                                 </div>
                                             </div>

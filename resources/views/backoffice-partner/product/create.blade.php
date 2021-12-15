@@ -39,7 +39,7 @@
                                 </div>
                             @endif
 
-                            {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => (isset($product) ? array('products.update', ['product' => $product]) : 'products.store'), 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::open(['class'  => '', 'id' => 'formProductData', 'route' => (isset($product) ? array('products.update', $product) : 'products.store'), 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                             @csrf
 
                             {{ isset($product) ? method_field('PATCH') : null}}
@@ -110,8 +110,7 @@
                                             @if ((isset($product) && $product->price))
                                                 <?php $product_price =  number_format(($product->price / 100), 2) ?>
                                             @endif
-                                            {!! Form::number('price', (isset($product) && $product->price) ? $product_price : 0.00, 
-                                                            ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
+                                            {!! Form::number('price', $product_price ?? 0.00, ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                         </div>
                                         <div class="menu-label-radio">
                                             {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}
@@ -152,7 +151,7 @@
                                                 <div class="form-check">
                                                     @foreach ($productCategories as $prodCategory)
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            {!! Form::radio('category_id', $prodCategory->id, ( isset($product) && $product->category_id == $prodCategory->id ? true : false) ?? false, ['class' => 'form-check-input', 'id' => $prodCategory->slug]) !!}
+                                                            {!! Form::checkbox('category_id', $prodCategory->id, ( isset($product) && $product->category_id == $prodCategory->id ? true : false) ?? false, ['class' => 'form-check-input', 'id' => $prodCategory->slug]) !!}
                                                             {!! Form::label('category_id', $prodCategory->name,      ['class' => 'form-check-label']) !!}
                                                         </div>
                                                     @endforeach
@@ -331,7 +330,10 @@
                                                             {!! Form::text('extraName1', $extra->name, ['class' => 'form-control inputExtraName', 'placeholder' => 'Extra #1', 'disabled']) !!}
                                                         </div>
                                                         <div class="col-4">
-                                                            {!! Form::number('extraPrice1', number_format($extra->price,2), ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any', 'disabled']) !!}
+                                                            @if ((isset($extra) && $extra->price))
+                                                            <?php $extra_price = number_format(($extra->price / 100), 2) ?>
+                                                        @endif
+                                                            {!! Form::number('extraPrice1', $extra_price, ['class' => 'form-control inputExtraPrice', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any', 'disabled']) !!}
                                                         </div>
                                                         <div class="col-2">
                                                             <a href="#" class="removeExtra" data-product-id="{{ $product->id }}" data-extra-id="{{ $extra->id }}">

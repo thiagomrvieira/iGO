@@ -5,7 +5,8 @@
         <title>iGO - Aderente</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+        <!-- Select2 CSS -->
+        <link rel="stylesheet" href="{{ asset('assets-frontoffice/libs/select2/select2.min.css') }}">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('assets-backoffice-partner/css/styles.css') }}">
         

@@ -278,7 +278,7 @@ class OrderController extends Controller
     public function checkout()
     {
         $order     = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first();
-        $cartItems = Cart::where('order_id', $order->id)->get();
+        $cartItems = Cart::where('order_id', $order->id ?? null)->get();
         
         if ($order && $cartItems->count() > 0) {
             $data    = new CheckoutOrderResource($order);

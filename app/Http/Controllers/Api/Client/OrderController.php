@@ -476,7 +476,7 @@ class OrderController extends Controller
         if ($order = Order::where('client_id', Auth::user()->client->id)->where('order_status_type_id', 1 )->first()) {
             
             #   Chek if the Order has any Cart Item/Product associated 
-            if ($order->cart?->count() > 0) {
+            if ($order->cart->count() > 0) {
                 
                 $this->finishOrder($order); 
 

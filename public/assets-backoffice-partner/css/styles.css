@@ -1461,7 +1461,7 @@ margin-right: 5px;
 	color: #687780;
 	margin: 25px 0;
 }
-.modal.show-product-delet{
+.modal.show-product-delete{
 	display: block; 
 }
 
@@ -1479,7 +1479,7 @@ margin-right: 5px;
 	background-color:#072A40; 
 	background-color:rgb(7, 42, 64, 0.85); 
 }
-.modal.product-delet {
+.modal.product-delete {
 	display: block;
 }
   /* Modal Content */

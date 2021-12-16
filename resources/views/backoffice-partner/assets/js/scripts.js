@@ -62,7 +62,7 @@ $j(document).ready(function ($) {
   	// Close modal
 	const modal = $j('.modal');
 	modal.on('click', function(){
-		$j(this).removeClass('show-product-delete');
+		$j(this).removeClass('show-product-deletee');
 	});
 })
 

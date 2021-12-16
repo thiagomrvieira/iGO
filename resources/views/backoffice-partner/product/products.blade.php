@@ -244,46 +244,37 @@
         </div>
     
     {{-- Modal de confirmação de remoção --}}
-    <div class="modal" id="exampleModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4>Deseja remover este produto?</h4>
-                    
-                    {!! Form::open(['class' => 'form-horizontal',  'id' => 'formDelete', 'method' => 'post' ]) !!}
-                        @csrf
-                        {{ method_field('DELETE') }}
+        <div class="modal" id="exampleModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'formDelete', 'method' => 'post' ]) !!}
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    <div class="modal-body">
+                        <h4>Deseja remover este produto?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'), ['type' => 'button', 'class' => 'button button-primary close openDeleteDialog', 'data-bs-dismiss' => 'modal']) !!}
+                        {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'button button-primary delete', 'form' => 'formDelete']) !!}
+                    </div>
                     {!! Form::close() !!}
-
-                </div>
-                <div class="modal-footer">
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.close'), ['type' => 'button', 'class' => 'button button-primary close openDeleteDialog', 'data-bs-dismiss' => 'modal']) !!}
-                    {!! Form::submit(__('backoffice/deliverymen.modalRemove.remove'), ['type' => 'submit', 'class' => 'button button-primary delete', 'form' => 'formDelete']) !!}
                 </div>
             </div>
         </div>
-    </div>
 
 @endsection
 
 @section('jquery')
     <script type="text/javascript">
-
+        // Seta action do modal de confirmação de remoção de produto
         jQuery(document).on("click", ".openDeleteDialog", function () {
             event.preventDefault();
-           
             var m = document.querySelector(".modal");
-            m.classList.toggle("product-delet");
-           
+            m.classList.toggle("product-delete");
             var productId = jQuery(this).data('product-id');
-            
-            var action   = "/partner/products/" + productId;
-            console.log(action);
-
-            jQuery('.delete').attr('action', action );
+            var action = "/partner/products/" + productId;
+            jQuery('#formDelete').attr('action', action );
         });
-        // Seta action do modal de confirmação de remoção de produto
-        
         
     </script>
 @endsection

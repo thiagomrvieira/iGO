@@ -109,13 +109,13 @@ trait OrderTrait {
                 }
             }
             #   Save Side
-            if ( $side = Side::where('id', $cartItem->cartSide?->side_id)->first() )
+            if ( $side = Side::where('id', $cartItem->cartSide->side_id)->first() )
             {
                 $cartItem->cartSide->side_name = $side->name;
                 $cartItem->cartSide->save();
             }
             #   Save Sauce
-            if ( $sauce = Sauce::where('id', $cartItem->cartSauce?->sauce_id)->first() )
+            if ( $sauce = Sauce::where('id', $cartItem->cartSauce->sauce_id)->first() )
             {
                 $cartItem->cartSauce->sauce_name = $sauce->name;
                 $cartItem->cartSauce->save();

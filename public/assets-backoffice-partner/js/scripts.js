@@ -17331,7 +17331,7 @@ $j(document).ready(function ($) {
 
   var modal = $j('.modal');
   modal.on('click', function () {
-    $j(this).removeClass('show-product-delete');
+    $j(this).removeClass('show-product-deletee');
   });
 }); // Add color border function
 

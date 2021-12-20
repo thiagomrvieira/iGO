@@ -14,10 +14,13 @@ class CheckoutOrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        $partner = $this->cart->first()->product->partner ?? null;
+
         return [
             'partner' => [
-                'id'   => $this->cart->first()->product->partner->id   ?? null,
-                'name' => $this->cart->first()->product->partner->name ?? null,
+                'id'        => $partner->id   ?? null,
+                'name'      => $partner->name ?? null,
+                'category'  => new PartnerCategoryResource($partner->mainCategory),
             ],
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),

@@ -197,7 +197,7 @@ class OrderController extends Controller
      *                              "id": "integer - Used to identify the product itself",
      *                              "name": "string",
      *                              "description": "string",
-     *                              "price": "float",
+     *                              "price": "integer",
      *                              "quantity": "integer"
      *                          },
      *                          
@@ -210,12 +210,12 @@ class OrderController extends Controller
      *                                      {
      *                                          "id": "integer",
      *                                          "name": "string",
-     *                                          "price": "float",
+     *                                          "price": "integer",
      *                                      }
      *                                  },
      *                               },
      *                          },   
-     *                          "amount": "float",
+     *                          "amount": "integer",
      *                          "created_at": "datetime"
      *                      }, 
      *                  },
@@ -241,11 +241,11 @@ class OrderController extends Controller
      *                      "tax_name": "string",
      *                      "tax_number": "string"
      *                  },
-     *                  "subtotal": "float",
-     *                  "shipping_fee": "float",
-     *                  "total": "float",
-     *                  "discount": "float",
-     *                  "total_final": "float"
+     *                  "subtotal": "integer - Total of the sum of all products prices",
+     *                  "shipping_fee": "integer - Shipping fee",
+     *                  "total": "integer - Sum of subtotal and shipping fee",
+     *                  "discount": "integer - Discount from promotional code, coupon or gift card",
+     *                  "total_final": "integer - Sum of total and discount",
      *                  
      *              },
      *          },

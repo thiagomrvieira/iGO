@@ -39,12 +39,13 @@ class CheckoutOrderResource extends JsonResource
                 'tax_name'   => $this->tax_name,  
                 'tax_number' => $this->tax_number,
             ],
-            'subtotal'       => $this->subtotal(),
-            'shipping_fee'   => $this->shippingFee(),
-            'total'          => $this->total(),
-            'discount'       => $this->discount(),
-            'total_final'    => $this->total() - $this->discount() ?? null,
-            'can_reorder'    => $this->canReorder(),
+            'subtotal'          => $this->subtotal(),
+            'shipping_fee'      => $this->shippingFee(),
+            'total'             => $this->total(),
+            'promotional_code'  => $this->campaign->code ?? null,
+            'discount'          => $this->discount(),
+            'total_final'       => $this->total() - $this->discount() ?? null,
+            'can_reorder'       => $this->canReorder(),
 
         ];
         

@@ -15,6 +15,7 @@ class CheckoutOrderResource extends JsonResource
     public function toArray($request)
     {
         $partner = $this->cart->first()->product->partner ?? null;
+        $partnerAddress = $partner->address ?? null;
 
         return [
             'partner' => [
@@ -22,6 +23,14 @@ class CheckoutOrderResource extends JsonResource
                 'name'      => $partner->name ?? null,
                 'images'    => new PartnerImageResource($partner->images),
                 'category'  => new PartnerCategoryResource($partner->mainCategory),
+                'address' => [
+                    'line_1'    => $partnerAddress->line_1       ?? null,
+                    'line_2'    => $partnerAddress->line_2       ?? null,
+                    'county'    => $partnerAddress->county->name ?? null,
+                    'locality'  => $partnerAddress->locality     ?? null,
+                    'post_code' => $partnerAddress->post_code    ?? null,
+                    'country'   => $partnerAddress->country      ?? null,
+                ]
             ],
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),

@@ -20,6 +20,7 @@ class CheckoutOrderResource extends JsonResource
             'partner' => [
                 'id'        => $partner->id   ?? null,
                 'name'      => $partner->name ?? null,
+                'images'    => new PartnerImageResource($partner->images),
                 'category'  => new PartnerCategoryResource($partner->mainCategory),
             ],
             'products'         => CartProductResource::collection($this->cart) ?? null,

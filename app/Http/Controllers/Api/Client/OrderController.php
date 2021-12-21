@@ -265,6 +265,7 @@ class OrderController extends Controller
      *                  "subtotal": "integer - Total of the sum of all products prices",
      *                  "shipping_fee": "integer - Shipping fee",
      *                  "total": "integer - Sum of subtotal and shipping fee",
+     *                  "promotional_code": "string - Promotional code from campaign, coupon or gift card",
      *                  "discount": "integer - Discount from promotional code, coupon or gift card",
      *                  "total_final": "integer - Sum of total and discount",
      *                  

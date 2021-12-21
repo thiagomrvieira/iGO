@@ -50,11 +50,11 @@ class CartProductResource extends JsonResource
                 [
                     "id"    => ProductOption::where('name', 'side')->first()->id,
                     "name"  => "side",
-                    "values"=> [
+                    "values"=> array([
                         'id'    => $this->cartSide->side->id   ?? null,
                         'name'  => $this->cartSide->side->name ?? null,
                         'price' => null,
-                    ],
+                    ]),
                 ];
         }
 
@@ -65,11 +65,11 @@ class CartProductResource extends JsonResource
                 [
                     "id"    => ProductOption::where('name', 'sauce')->first()->id,
                     "name"  => "sauce",
-                    "values"=> [
+                    "values"=> array([
                         'id'    => $this->cartSauce->sauce->id   ?? null,
                         'name'  => $this->cartSauce->sauce->name ?? null,
                         'price' => null,
-                    ],
+                    ]),
                 ];
         }
 

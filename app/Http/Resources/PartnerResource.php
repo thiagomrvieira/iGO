@@ -16,6 +16,7 @@ class PartnerResource extends JsonResource
     public function toArray($request)
     {
         $bestCampaign = $this->bestCampaign();
+        $address      = $this->address;
 
         return [
             'id'                  => $this->id,
@@ -40,6 +41,14 @@ class PartnerResource extends JsonResource
                 'id'          => $bestCampaign->id           ?? null,
                 'name'        => $bestCampaign->name         ?? null,
                 'description' => $bestCampaign->description  ?? null,
+            ],
+            'address' => [
+                'line_1'    => $address->line_1       ?? null,
+                'line_2'    => $address->line_2       ?? null,
+                'county'    => $address->county->name ?? null,
+                'locality'  => $address->locality     ?? null,
+                'post_code' => $address->post_code    ?? null,
+                'country'   => $address->country      ?? null,
             ]
         ]; 
     }

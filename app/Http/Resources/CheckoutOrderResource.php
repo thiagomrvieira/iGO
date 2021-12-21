@@ -14,10 +14,23 @@ class CheckoutOrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        $partner = $this->cart->first()->product->partner ?? null;
+        $partnerAddress = $partner->address ?? null;
+
         return [
             'partner' => [
-                'id'   => $this->cart->first()->product->partner->id   ?? null,
-                'name' => $this->cart->first()->product->partner->name ?? null,
+                'id'        => $partner->id   ?? null,
+                'name'      => $partner->name ?? null,
+                'images'    => new PartnerImageResource($partner->images),
+                'category'  => new PartnerCategoryResource($partner->mainCategory),
+                'address' => [
+                    'line_1'    => $partnerAddress->line_1       ?? null,
+                    'line_2'    => $partnerAddress->line_2       ?? null,
+                    'county'    => $partnerAddress->county->name ?? null,
+                    'locality'  => $partnerAddress->locality     ?? null,
+                    'post_code' => $partnerAddress->post_code    ?? null,
+                    'country'   => $partnerAddress->country      ?? null,
+                ]
             ],
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),
@@ -26,12 +39,13 @@ class CheckoutOrderResource extends JsonResource
                 'tax_name'   => $this->tax_name,  
                 'tax_number' => $this->tax_number,
             ],
-            'subtotal'       => $this->subtotal(),
-            'shipping_fee'   => $this->shippingFee(),
-            'total'          => $this->total(),
-            'discount'       => $this->discount(),
-            'total_final'    => $this->total() - $this->discount() ?? null,
-            'can_reorder'    => $this->canReorder(),
+            'subtotal'          => $this->subtotal(),
+            'shipping_fee'      => $this->shippingFee(),
+            'total'             => $this->total(),
+            'promotional_code'  => $this->campaign->code ?? null,
+            'discount'          => $this->discount(),
+            'total_final'       => $this->total() - $this->discount() ?? null,
+            'can_reorder'       => $this->canReorder(),
 
         ];
         

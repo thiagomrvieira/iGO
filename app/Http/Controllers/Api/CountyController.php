@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartProductCollection;
 use App\Http\Resources\CartProductResource;
+use App\Http\Resources\CountyResource;
 use App\Http\Traits\CartTrait;
 use App\Http\Traits\OrderTrait;
 use App\Models\Cart;
@@ -43,9 +44,10 @@ class CountyController extends Controller
      *                  {
      *                      "id": "integer",
      *                      "name": "string",
-     *                      "country": "string",
-     *                      "created_at": "datetime",
-     *                      "updated_at": "datetime",
+     *                      "province": {
+     *                          "id": "integer",
+     *                          "name": "string",
+     *                      },
      *                  }
      *              }
      *           },
@@ -76,7 +78,7 @@ class CountyController extends Controller
     {
         return response()->json(['status'  => $status       ?? 'success',
                                  'message' => $message      ?? 'County list',
-                                 'data'    => County::all() ?? []
+                                 'data'    => CountyResource::collection( County::all() ?? [] )
                                 ], 200); 
     }
 
@@ -109,9 +111,10 @@ class CountyController extends Controller
      *              "data": {
      *                  "id": "integer",
      *                  "name": "string",
-     *                  "country": "string",
-     *                  "created_at": "datetime",
-     *                  "updated_at": "datetime",
+     *                  "province": {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                  },
      *              }
      *           },
      *      ),
@@ -143,6 +146,7 @@ class CountyController extends Controller
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'County data',
-                                 'data'    => County::where('id', $id)->first() ], 200); 
+                                 'data'    => new CountyResource( County::where('id', $id)->first() ) 
+                                ], 200); 
     }
 }

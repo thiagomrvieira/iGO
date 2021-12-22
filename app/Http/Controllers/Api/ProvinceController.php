@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProvinceResource;
 use App\Http\Traits\CartTrait;
 use App\Http\Traits\OrderTrait;
 
@@ -37,8 +38,6 @@ class ProvinceController extends Controller
      *                      "id": "integer",
      *                      "name": "string",
      *                      "country": "string",
-     *                      "created_at": "datetime",
-     *                      "updated_at": "datetime",
      *                  }
      *              }
      *           },
@@ -69,7 +68,7 @@ class ProvinceController extends Controller
     {
         return response()->json(['status'  => $status       ?? 'success',
                                  'message' => $message      ?? 'province list',
-                                 'data'    => Province::all() ?? []
+                                 'data'    => ProvinceResource::collection( Province::all() )
                                 ], 200); 
     }
 
@@ -103,8 +102,6 @@ class ProvinceController extends Controller
      *                  "id": "integer",
      *                  "name": "string",
      *                  "country": "string",
-     *                  "created_at": "datetime",
-     *                  "updated_at": "datetime",
      *              }
      *           },
      *      ),
@@ -136,6 +133,7 @@ class ProvinceController extends Controller
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'province data',
-                                 'data'    => Province::where('id', $id)->first() ], 200); 
+                                 'data'    => new ProvinceResource( Province::find($id) ) 
+                                ], 200); 
     }
 }

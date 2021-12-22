@@ -2079,9 +2079,10 @@
                                         {
                                             "id": "integer",
                                             "name": "string",
-                                            "country": "string",
-                                            "created_at": "datetime",
-                                            "updated_at": "datetime"
+                                            "province": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            }
                                         }
                                     ]
                                 }
@@ -2129,13 +2130,14 @@
                             "application/json": {
                                 "example": {
                                     "status": "success",
-                                    "message": "County list",
+                                    "message": "County data",
                                     "data": {
                                         "id": "integer",
                                         "name": "string",
-                                        "country": "string",
-                                        "created_at": "datetime",
-                                        "updated_at": "datetime"
+                                        "province": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        }
                                     }
                                 }
                             }
@@ -3656,7 +3658,7 @@
                             "application/json": {
                                 "example": {
                                     "status": "success",
-                                    "message": "province list",
+                                    "message": "province data",
                                     "data": {
                                         "id": "integer",
                                         "name": "string",

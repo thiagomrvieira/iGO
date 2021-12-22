@@ -27,4 +27,8 @@ class County extends Model
     public function getActiveAttribute($value){
         return (boolean) $value;
     }
+
+    public function province(){
+        return $this->belongsTo(Province::class);
+    }
 }

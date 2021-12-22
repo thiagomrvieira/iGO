@@ -533,6 +533,8 @@ class OrderController extends Controller
      *              "status": "success",
      *              "message": "checkout",
      *              "data": { 
+     *                  "id": "integer",
+     *                  "order_number": "string",
      *                  "products": {
      *                      { 
      *                          "partner": {

@@ -18,12 +18,14 @@ class CheckoutOrderResource extends JsonResource
         $partnerAddress = $partner->address ?? null;
 
         return [
-            'partner' => [
-                'id'        => $partner->id   ?? null,
-                'name'      => $partner->name ?? null,
-                'images'    => new PartnerImageResource($partner->images),
-                'category'  => new PartnerCategoryResource($partner->mainCategory),
-                'address' => [
+            'id'           => $this->id,
+            'order_number' => '#' . str_pad($this->id, 8, 0, STR_PAD_LEFT),
+            'partner'      => [
+                'id'       => $partner->id   ?? null,
+                'name'     => $partner->name ?? null,
+                'images'   => new PartnerImageResource($partner->images),
+                'category' => new PartnerCategoryResource($partner->mainCategory),
+                'address'  => [
                     'line_1'    => $partnerAddress->line_1       ?? null,
                     'line_2'    => $partnerAddress->line_2       ?? null,
                     'county'    => $partnerAddress->county->name ?? null,
@@ -35,7 +37,7 @@ class CheckoutOrderResource extends JsonResource
             'products'         => CartProductResource::collection($this->cart) ?? null,
             'delivery_address' => new AddressResource($this->address),
             'delivery_time'    => $this->deliver_at ?? '30 a 60 min' ,
-            'tax_data' => [
+            'tax_data'         => [
                 'tax_name'   => $this->tax_name,  
                 'tax_number' => $this->tax_number,
             ],

@@ -67,9 +67,7 @@ class CountyController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
-     *   security={
-     *     {"api_key": {}}
-     *   }
+     *
      * )
      *
      * @return \Illuminate\Http\Response
@@ -134,9 +132,7 @@ class CountyController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
-     *   security={
-     *     {"api_key": {}}
-     *   }
+     *
      * )
      *
      *

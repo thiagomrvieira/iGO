@@ -47,6 +47,10 @@ Route::group(['prefix' => 'v1'], function()
     Route::get('/contents/{content}', [FrontOfficeController::class, 'showContent' ]);
     Route::get('/contents',           [FrontOfficeController::class, 'showContents']);
 
+    #   COUNTIES
+    Route::get('counties',      [CountyController::class, 'index']);
+    Route::get('counties/{id}', [CountyController::class, 'show' ]);
+
     Route::middleware('auth:api')->group(function () {
 
         Route::apiResources([
@@ -128,9 +132,5 @@ Route::group(['prefix' => 'v1'], function()
         
         Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
         
-        #   COUNTIES
-        Route::get('counties',      [CountyController::class, 'index']);
-        Route::get('counties/{id}', [CountyController::class, 'show' ]);
-
     });
 });

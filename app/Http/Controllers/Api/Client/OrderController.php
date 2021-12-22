@@ -539,7 +539,27 @@ class OrderController extends Controller
      *                      { 
      *                          "partner": {
      *                              "id": "integer",
-     *                              "name": "string"
+     *                              "name": "string",
+     *                              "images": {
+     *                                "image_cover": "string",
+     *                                "image_01": "string",
+     *                                "image_02": "string",
+     *                                "image_03": "string",
+     *                              },
+     *                              "category": {
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "image": "string",
+     *                                  "parent_category": null
+     *                              },    
+     *                              "address": {
+     *                                  "line_1": "string",
+     *                                  "line_2": "string",
+     *                                  "county": "string",
+     *                                  "locality": "string",
+     *                                  "post_code": "string",
+     *                                  "country": "string"
+     *                              },
      *                           },
      *                          "product": {
      *                              "id": "integer",

@@ -119,6 +119,14 @@ class PartnerController extends Controller
      *                              "name": "string",
      *                              "description": "string",
      *                          },
+     *                          "address": {
+     *                              "line_1": "string",
+     *                              "line_2": "string",
+     *                              "county": "string",
+     *                              "locality": "string",
+     *                              "post_code": "string",
+     *                              "country": "string",
+     *                          },
      *                      }
      *                  }
      *              }
@@ -229,6 +237,19 @@ class PartnerController extends Controller
      *                          "total_products": "integer",
      *                          "total_reviews": "integer",
      *                          "rating": "integer",
+     *                          "campaign": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "description": "string",
+     *                          },
+     *                          "address": {
+     *                              "line_1": "string",
+     *                              "line_2": "string",
+     *                              "county": "string",
+     *                              "locality": "string",
+     *                              "post_code": "string",
+     *                              "country": "string",
+     *                          },
      *                      }
      *                  }
      *              }

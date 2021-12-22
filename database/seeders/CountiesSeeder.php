@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\County;
+use App\Models\Province;
 use Illuminate\Database\Seeder;
 
 class CountiesSeeder extends Seeder
@@ -14,42 +15,44 @@ class CountiesSeeder extends Seeder
      */
     public function run()
     {
+        $province = Province::where('name', 'Luanda')->first();
+
         $data = array(
             array(
-                'name'    => 'Belas',  
-                'country' => 'Angola',   
+                'name'        => 'Belas',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Cacuaco',  
-                'country' => 'Angola',   
+                'name'        => 'Cacuaco',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Cazenga',  
-                'country' => 'Angola',   
+                'name'        => 'Cazenga',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Icolo e Bengo',  
-                'country' => 'Angola',   
+                'name'        => 'Icolo e Bengo',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Luanda',  
-                'country' => 'Angola',   
+                'name'        => 'Luanda',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Quiçama',  
-                'country' => 'Angola',   
+                'name'        => 'Quiçama',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Kilamba Kiaxi',  
-                'country' => 'Angola',   
+                'name'        => 'Kilamba Kiaxi',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Talatona',  
-                'country' => 'Angola',   
+                'name'        => 'Talatona',  
+                'province_id' => $province->id,   
             ),
             array(
-                'name'    => 'Viana',  
-                'country' => 'Angola',   
+                'name'        => 'Viana',  
+                'province_id' => $province->id,   
             ),
         );
         

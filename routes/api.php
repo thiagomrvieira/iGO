@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ShippingFeeController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
+use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Web\CampaignController;
 use App\Models\Campaign;
 
@@ -50,6 +51,10 @@ Route::group(['prefix' => 'v1'], function()
     #   COUNTIES
     Route::get('counties',      [CountyController::class, 'index']);
     Route::get('counties/{id}', [CountyController::class, 'show' ]);
+
+    #   PROVINCES
+    Route::get('provinces',      [ProvinceController::class, 'index']);
+    Route::get('provinces/{id}', [ProvinceController::class, 'show' ]);
 
     Route::middleware('auth:api')->group(function () {
 

@@ -2909,6 +2909,14 @@
                                                     "id": "integer",
                                                     "name": "string",
                                                     "description": "string"
+                                                },
+                                                "address": {
+                                                    "line_1": "string",
+                                                    "line_2": "string",
+                                                    "county": "string",
+                                                    "locality": "string",
+                                                    "post_code": "string",
+                                                    "country": "string"
                                                 }
                                             }
                                         ]
@@ -3576,6 +3584,103 @@
                         "api_key": []
                     }
                 ]
+            }
+        },
+        "/api/v1/provinces": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Show provinces",
+                "description": "Display a list of all provinces",
+                "operationId": "showProvinces",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Province list",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "country": "string",
+                                            "created_at": "datetime",
+                                            "updated_at": "datetime"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/provinces/{id}": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Get a specified province",
+                "description": "Get the details of a specified province",
+                "operationId": "getProvince",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "province id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "province list",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "country": "string",
+                                        "created_at": "datetime",
+                                        "updated_at": "datetime"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
             }
         },
         "/api/v1/shippingfees": {

@@ -105,7 +105,7 @@ class CountyController extends Controller
      *           mediaType="application/json",
      *           example= {
      *              "status": "success",
-     *              "message": "County list",
+     *              "message": "County data",
      *              "data": {
      *                  "id": "integer",
      *                  "name": "string",
@@ -142,7 +142,7 @@ class CountyController extends Controller
     public function show($id)
     {
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Dados do produto',
+                                 'message' => $message ?? 'County data',
                                  'data'    => County::where('id', $id)->first() ], 200); 
     }
 }

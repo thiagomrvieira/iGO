@@ -98,7 +98,7 @@ class ProvinceController extends Controller
      *           mediaType="application/json",
      *           example= {
      *              "status": "success",
-     *              "message": "province list",
+     *              "message": "province data",
      *              "data": {
      *                  "id": "integer",
      *                  "name": "string",
@@ -135,7 +135,7 @@ class ProvinceController extends Controller
     public function show($id)
     {
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Dados do produto',
+                                 'message' => $message ?? 'province data',
                                  'data'    => Province::where('id', $id)->first() ], 200); 
     }
 }

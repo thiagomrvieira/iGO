@@ -3344,14 +3344,13 @@
                                             "id": "integer",
                                             "name": "string",
                                             "email": "string",
-                                            "email_verified_at": "datetime",
                                             "active": "boolean",
                                             "is_admin": "boolean",
                                             "is_partner": "boolean",
                                             "is_deliveryman": "boolean",
                                             "is_client": "boolean",
                                             "created_at": "datetime",
-                                            "updated_at": "boolean"
+                                            "last_address_id": "integer"
                                         },
                                         "token": "string"
                                     }
@@ -3608,9 +3607,7 @@
                                         {
                                             "id": "integer",
                                             "name": "string",
-                                            "country": "string",
-                                            "created_at": "datetime",
-                                            "updated_at": "datetime"
+                                            "country": "string"
                                         }
                                     ]
                                 }
@@ -3662,9 +3659,7 @@
                                     "data": {
                                         "id": "integer",
                                         "name": "string",
-                                        "country": "string",
-                                        "created_at": "datetime",
-                                        "updated_at": "datetime"
+                                        "country": "string"
                                     }
                                 }
                             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientStoreRequest;
+use App\Http\Resources\ClientResource;
 use App\Http\Resources\DeliverymanResource;
 use App\Http\Traits\AddressTrait;
 use App\Http\Traits\ClientTrait;
@@ -162,15 +163,13 @@ class PassportAuthController extends Controller
      *                          "id": "integer",
      *                          "name": "string",
      *                          "email": "string",
-     *                          "email_verified_at": "datetime",
      *                          "active": "boolean",
      *                          "is_admin": "boolean",
      *                          "is_partner": "boolean",
      *                          "is_deliveryman": "boolean",
      *                          "is_client": "boolean",
      *                          "created_at": "datetime",
-     *                          "created_at": "datetime",
-     *                          "updated_at": "boolean",
+     *                          "last_address_id": "integer",
      *                      },
      *                      "token": "string", 
      *                  }
@@ -219,6 +218,17 @@ class PassportAuthController extends Controller
                 
                 #   Check if the account was approved by the admin
                 if (Auth::user()->deliveryman->active == false) {
+                    return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
+                }
+            }
+
+            #   Check if the request is for client login
+            if (Auth::user()->is_client == 1) {
+                $message = 'Cliente logado!';
+                $user    = new ClientResource( Auth::user()->client );
+                
+                #   Check if the account was approved by the admin
+                if (Auth::user()->client->active == false) {
                     return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
                 }
             }

@@ -61,5 +61,13 @@ class Client extends Model
         return (boolean) $value;
     }
             
+    public function lastUsedAddress()
+    {
+        // return $this->user->addresses->pluck('id') ;
+
+        return  AddressTax::whereIn( 
+                    'address_id', $this->user->addresses->pluck('id') 
+                )->orderBy('created_at', 'desc')->first();
+    }
 
 }

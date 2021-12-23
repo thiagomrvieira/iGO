@@ -23,6 +23,9 @@ use App\Http\Controllers\Api\ShippingFeeController;
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
 use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Web\CampaignController;
+
+use App\Http\Controllers\Api\Partner\OrderController as PartnerOrderController;
+
 use App\Models\Campaign;
 
 /*
@@ -58,12 +61,18 @@ Route::group(['prefix' => 'v1'], function()
 
     Route::middleware('auth:api')->group(function () {
 
+        #   SHIPPING FEE
         Route::apiResources([
             'shippingfees' => ShippingFeeController::class,
-            
         ]);
+        Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
+
         
-        #   CLIENT ENDPOINTS
+        /*
+        |--------------------------------------------------------------------------
+        | CLIENT ENDPOINTS
+        |--------------------------------------------------------------------------
+        */
         Route::group(['prefix' => 'client', 'middleware' => ['client']], function() 
         {
             
@@ -121,8 +130,12 @@ Route::group(['prefix' => 'v1'], function()
 
 
         });
-
-        #   DELIVERYMAN ENDPOINTS
+        
+        /*
+        |--------------------------------------------------------------------------
+        | DELIVERYMAN ENDPOINTS
+        |--------------------------------------------------------------------------
+        */ 
         Route::group(['prefix' => 'deliveryman', 'middleware' => ['deliveryman']], function() 
         {
             #   ORDERS
@@ -135,7 +148,24 @@ Route::group(['prefix' => 'v1'], function()
 
         });
         
-        Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
         
+
+        /*
+        |--------------------------------------------------------------------------
+        | DELIVERYMAN ENDPOINTS
+        |--------------------------------------------------------------------------
+        */
+        Route::group(['prefix' => 'partner', 'middleware' => ['deliveryman']], function() 
+        {
+            #   ORDERS
+            Route::get('orders',             [PartnerOrderController::class, 'index'                 ]);
+            Route::get('orders/new',         [PartnerOrderController::class, 'getNewOrderList'       ]);
+            Route::get('orders/inprogress',  [PartnerOrderController::class, 'getInProgressOrderList']);
+            Route::get('orders/completed',   [PartnerOrderController::class, 'getCompletedOrderList' ]);
+            Route::get('orders/refused',     [PartnerOrderController::class, 'getRefusedOrderList'   ]);
+            Route::get('orders/{id}/accept', [PartnerOrderController::class, 'acceptOrder'           ]);
+
+        });
+
     });
 });

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\DeliverymanResource;
+use App\Http\Resources\PartnerLoginResource;
+use App\Http\Resources\PartnerResource;
 use App\Http\Traits\AddressTrait;
+use App\Http\Traits\AuthTrait;
 use App\Http\Traits\ClientTrait;
 use App\Http\Traits\UserTrait;
 use App\Models\Client;
@@ -18,7 +21,7 @@ use Laravel\Passport\Token;
 
 class PassportAuthController extends Controller
 {
-    use AddressTrait, UserTrait, ClientTrait;
+    use AddressTrait, UserTrait, ClientTrait, AuthTrait;
 
     /** 
      * CREATE NEW USER 
@@ -211,45 +214,28 @@ class PassportAuthController extends Controller
  
         if (auth()->attempt($data)) {
 
-            #   Check if the request is for deliveryman login
-            if (Auth::user()->is_deliveryman == 1) {
-                $message = 'Estafeta logado!';
-                $user    = new DeliverymanResource( Auth::user()->deliveryman );
-                
-                #   Check if the account was approved by the admin
-                if (Auth::user()->deliveryman->active == false) {
-                    return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
-                }
-            }
-
-            #   Check if the request is for client login
-            if (Auth::user()->is_client == 1) {
-                $message = 'Cliente logado!';
-                $user    = new ClientResource( Auth::user()->client );
-                
-                #   Check if the account was approved by the admin
-                if (Auth::user()->client->active == false) {
-                    return response()->json(['error' => $error ?? 'Your account has not been authorized yet'], 401);
-                }
-            }
+            # Get data from logged user and set the message
+            $userAndMessage = $this->getLoggedUser();
 
             #   Create token 
             $token = auth()->user()->createToken('igoApiToken')->accessToken;
 
             return response()->json([
                 'status'  => 'success',
-                'message' => $message ?? 'Utilizador logado!',
+                'message' => $userAndMessage['message'] ?? 'Utilizador logado!',
                 'data' => [  
-                    'user'  => $user ?? auth()->user(),
+                    'user'  => $userAndMessage['user'] ?? auth()->user(),
                     'token' => $token,
                 ],
             ], 200);
 
-        } else {
-            return response()->json(['error' => $error ?? 'Unauthorised'], 401);
-        }
+        } 
+        
+        return response()->json(['error' => $error ?? 'Unauthorised'], 401);
+        
     } 
     
+
     /** 
      * LOGOUT USER 
      **

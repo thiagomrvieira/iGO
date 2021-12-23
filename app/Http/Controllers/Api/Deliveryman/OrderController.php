@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardOrdersResource;
 use App\Http\Resources\DeliverymanOrderCollection;
 use App\Http\Resources\OrderCollection;
-use App\Http\Traits\OrderTrait;
+use App\Http\Traits\OrderDeliverymanTrait;
 use App\Models\DeliverymanOrder;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    use OrderTrait;
-
+    use OrderDeliverymanTrait;  
+    
     protected $newOrders;
 
     public function __construct()

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-trait OrderTrait {
+trait OrderDeliverymanTrait {
     
     # Get an Order with status 'opened' or create one
     public function firstOrCreateOrder($request)

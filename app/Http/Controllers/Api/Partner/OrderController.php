@@ -4,11 +4,22 @@ namespace App\Http\Controllers\api\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardOrdersResource;
+use App\Http\Traits\OrderDeliverymanTrait;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    
+    use OrderDeliverymanTrait;
+
+    protected $newOrders;
+
+    public function __construct()
+    {
+        #   Get new orders
+        $this->newOrders = Order::whereIn('order_status_type_id', array(4, 5, 6) )->doesntHave('deliverymen')->get() ?? [];   
+    }
+
     /**
      * SHOW ORDERS DATA - Dashboard 
      * *

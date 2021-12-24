@@ -122,12 +122,12 @@ class OrderController extends Controller
      *                          "status": "string",
      *                          "description": "string",
      *                          "date": "datetime",
-     *                          "partner": {
-     *                              "id": "integer",
-     *                              "name": "string",
-     *                              "image": "string"
-     *                          }
      *                      }
+     *                  },
+     *                  "partner": {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string"
      *                  }
      *              }
      *           }

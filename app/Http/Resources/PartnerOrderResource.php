@@ -19,8 +19,8 @@ class PartnerOrderResource extends JsonResource
 
         return [
             'id'          => $this->id,
-            'status'      => $this->orderDeliveryStatusType->name        ?? 'Novo',
-            'description' => $this->orderDeliveryStatusType->description ?? 'Novos pedidos',
+            'status'      => $this->orderStatusType->name        ?? null,
+            'description' => $this->orderStatusType->description ?? null,
             'date'        => $this->created_at,
         ];
     }

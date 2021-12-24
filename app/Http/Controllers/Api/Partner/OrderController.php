@@ -174,9 +174,9 @@ class OrderController extends Controller
 
 
 
-        /**
+    /**
      * SHOW IN PROGRESS ORDERS 
-     * *
+     **
      * 
      * @OA\Get(path="/api/v1/partner/orders/inprogress",
      *   tags={"Partner: Orders"},
@@ -247,6 +247,83 @@ class OrderController extends Controller
 
         return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não há pedidos andamento',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+    }
+
+    /**
+     * SHOW COMPLETED ORDERS 
+     **
+     * 
+     * @OA\Get(path="/api/v1/partner/orders/completed",
+     *   tags={"Partner: Orders"},
+     *   summary="Show completed orders",
+     *   description="Display a list of all completed orders to Partner",
+     *   operationId="completedOrdersForPartner",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedidos concluídos",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          
+     *                      }
+     *                  },
+     *                  "partner": {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string"
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCompletedOrderList()
+    {
+        $completedOrders = $this->completedOrdersForPartner();
+
+        if ($completedOrders->count() > 0) {
+            $data       = new PartnerOrderCollection( $completedOrders );
+            $status     = "success";
+            $message    = "Pedidos concluídos"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos concluídos',
                                  'data'    => $data    ?? null 
                                 ], $statusCode ?? 404); 
     }

@@ -155,7 +155,7 @@ Route::group(['prefix' => 'v1'], function()
         | DELIVERYMAN ENDPOINTS
         |--------------------------------------------------------------------------
         */
-        Route::group(['prefix' => 'partner', 'middleware' => ['deliveryman']], function() 
+        Route::group(['prefix' => 'partner', 'middleware' => ['partner']], function() 
         {
             #   ORDERS
             Route::get('orders',             [PartnerOrderController::class, 'index'                 ]);

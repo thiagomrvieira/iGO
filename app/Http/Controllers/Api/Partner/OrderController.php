@@ -4,21 +4,14 @@ namespace App\Http\Controllers\api\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardOrdersResource;
-use App\Http\Traits\OrderDeliverymanTrait;
+use App\Http\Traits\OrderTrait;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    use OrderDeliverymanTrait;
-
-    protected $newOrders;
-
-    public function __construct()
-    {
-        #   Get new orders
-        $this->newOrders = Order::whereIn('order_status_type_id', array(4, 5, 6) )->doesntHave('deliverymen')->get() ?? [];   
-    }
+    use OrderTrait;
 
     /**
      * SHOW ORDERS DATA - Dashboard 
@@ -88,12 +81,17 @@ class OrderController extends Controller
      */
     public function index()
     {
+        // return $this->newOrders;
+
+        // return Auth::user()->partner->id;
+        // ->whereIn('order_status_type_id', array(4, 5) )
+        // ->get() ?? [];
 
         $data = (object) [
-            'newOrders'        => $this->newOrders,
-            'inProgressOrders' => $this->inProgressOrders(),
-            'completedOrders'  => $this->completedOrders(),
-            'refusedOrders'    => $this->refusedOrders(),
+            'newOrders'        => $this->newOrdersForPartner(),
+            'inProgressOrders' => $this->inProgressOrdersForPartner(),
+            'completedOrders'  => $this->completedOrdersForPartner(),
+            'refusedOrders'    => $this->refusedOrdersForPartner(),
         ];
 
         return response()->json(['status'  => $status  ?? 'success',

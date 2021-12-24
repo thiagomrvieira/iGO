@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-trait OrderDeliverymanTrait {
+trait OrderTrait {
     
     # Get an Order with status 'opened' or create one
     public function firstOrCreateOrder($request)
@@ -55,7 +55,6 @@ trait OrderDeliverymanTrait {
             ]
         );
     }
-
 
     # Check Campaign Code and return its id
     public function checkCampaignCode($campaign_code)
@@ -123,9 +122,12 @@ trait OrderDeliverymanTrait {
         }
     }
 
-    /**
-     * DELIVERYMAN FUNCTIONS 
-     */
+
+    /*
+    |--------------------------------------------------------------------------
+    | DELIVERYMAN FUNCTIONS 
+    |--------------------------------------------------------------------------
+    */ 
     
     #   GET ORDERS IN PROGRESS (order status type id between 4, 5, 6, 7 and related to the logged deliveryman)
     public function inProgressOrders()
@@ -198,5 +200,46 @@ trait OrderDeliverymanTrait {
             
         }
         return true;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | PARTNER FUNCTIONS 
+    |--------------------------------------------------------------------------
+    */ 
+
+    #   GET NEW ORDERS (order status type id between 2, 3 and related to the logged partner)
+    public function newOrdersForPartner()
+    {
+        return Order::where('partner_id', Auth::user()->partner->id)
+                    ->whereIn('order_status_type_id', array(2 ,3) )
+                    ->get() ?? [];   
+    }
+
+    #   GET ORDERS IN PROGRESS (order status type id between 4, 5 and related to the logged partner)
+    public function inProgressOrdersForPartner()
+    {
+        return Order::where('partner_id', Auth::user()->partner->id)
+                    ->whereIn('order_status_type_id', array(4, 5) )
+                    ->get() ?? [];
+                    
+    }
+
+    #   GET ORDERS COMPLETED (order status type id 8 and related to the logged partner)
+    public function completedOrdersForPartner()
+    {
+        return Order::where('partner_id', Auth::user()->partner->id)
+                    ->where('order_status_type_id', 8)
+                    ->get() ?? [];
+    }
+
+    /**
+     * GET ORDERS REFUSED (order related to the logged partner and with order_delivery_status_type_id 4)
+     */
+    public function refusedOrdersForPartner()
+    {
+        return Order::where('partner_id', Auth::user()->partner->id)
+                    ->where('order_status_type_id', 9)
+                    ->get() ?? [];
     }
 }

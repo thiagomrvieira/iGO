@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DashboardOrdersResource;
+use App\Http\Resources\DeliverymanOrderCollection;
+use App\Http\Resources\PartnerOrderCollection;
 use App\Http\Traits\OrderTrait;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -94,7 +96,81 @@ class OrderController extends Controller
                                  'data'    => new DashboardOrdersResource($data) ?? null
                                 ], $statusCode ?? 200); 
     }
+    
+    /**
+     * SHOW NEW ORDERS FOR PARTNER
+     * *
+     * 
+     * @OA\Get(path="/api/v1/partner/orders/new",
+     *   tags={"Partner: Orders"},
+     *   summary="Show new orders",
+     *   description="Display a list of new orders to partner",
+     *   operationId="newOrdersForPartner",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Novos pedidos",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "image": "string"
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getNewOrderList()
+    {
+        $newOrders = $this->newOrdersForPartner();
+        if ($newOrders->count() > 0) {
+            $data       = new PartnerOrderCollection( $newOrders );
+            $status     = "success";
+            $message    = "Novos pedidos"; 
+            $statusCode = 200;
+        }
 
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há novos pedidos',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -81,11 +81,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // return $this->newOrders;
-
-        // return Auth::user()->partner->id;
-        // ->whereIn('order_status_type_id', array(4, 5) )
-        // ->get() ?? [];
 
         $data = (object) [
             'newOrders'        => $this->newOrdersForPartner(),
@@ -96,7 +91,8 @@ class OrderController extends Controller
 
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Dados dos pedidos',
-                                 'data'    => new DashboardOrdersResource($data) ?? null], $statusCode ?? 200); 
+                                 'data'    => new DashboardOrdersResource($data) ?? null
+                                ], $statusCode ?? 200); 
     }
 
     /**

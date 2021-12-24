@@ -171,6 +171,86 @@ class OrderController extends Controller
                                  'data'    => $data    ?? null 
                                 ], $statusCode ?? 404); 
     }
+
+
+
+    /* *
+     * SHOW IN PROGRESS ORDERS 
+     * *
+     * 
+     * @OA\Get(path="/api/v1/partner/orders/inprogress",
+     *   tags={"Partner: Orders"},
+     *   summary="Show in progress orders",
+     *   description="Display a list of all in progress orders to Partner",
+     *   operationId="inProgressOrdersForPartner",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Novos pedidos",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                      }
+     *                  },
+     *                  "partner": {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string"
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getInProgressOrderList()
+    {
+        $inProgressOrders = $this->inProgressOrdersForPartner();
+        
+        if ($inProgressOrders->count() > 0) {
+            $data       = new PartnerOrderCollection( $inProgressOrders );
+            $status     = "success";
+            $message    = "Pedidos andamento"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos andamento',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

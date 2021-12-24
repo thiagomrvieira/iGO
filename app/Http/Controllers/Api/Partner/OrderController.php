@@ -330,6 +330,83 @@ class OrderController extends Controller
 
 
     /**
+     * SHOW REFUSED ORDERS 
+     **
+     * 
+     * @OA\Get(path="/api/v1/partner/orders/refused",
+     *   tags={"Partner: Orders"},
+     *   summary="Show refused orders",
+     *   description="Display a list of all refused orders to Partner",
+     *   operationId="refusedOrdersForPartner",
+     *   
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedidos recusados",
+     *               "data": {
+     *                  "orders": {
+     *                      {
+     *                          "id": "integer",
+     *                          "status": "string",
+     *                          "description": "string",
+     *                          "date": "datetime",
+     *                          
+     *                      }
+     *                  },
+     *                  "partner": {
+     *                      "id": "integer",
+     *                      "name": "string",
+     *                      "image": "string"
+     *                  }
+     *              }
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRefusedOrderList()
+    {
+        $refusedOrders = $this->refusedOrdersForPartner();
+
+        if ($refusedOrders->count() > 0) {
+            $data       = new PartnerOrderCollection( $refusedOrders );
+            $status     = "success";
+            $message    = "Pedidos recusados"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não há pedidos recusados',
+                                 'data'    => $data    ?? null 
+                                ], $statusCode ?? 404); 
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

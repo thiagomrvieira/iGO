@@ -407,14 +407,77 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * GET THE SPECIFIED ORDER 
+     **
+     * 
+     * @OA\Get(path="/api/v1/partner/orders/{id}/accept",
+     *   tags={"Partner: Orders"},
+     *   summary="Get/Accept the specified order",
+     *   description="Partner accept the specified Order",
+     *   operationId="partnermanGetOrder",
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedido aceito",
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function acceptOrder($id)
     {
-        //
+        #   Check if the Order has been submitted 
+        $order = Order::where('id', $id )
+                      ->where('partner_id', Auth::user()->partner->id)
+                      ->whereIn('order_status_type_id', array(2, 3));
+
+        if ($order->count() > 0) {
+
+            #   Change status to accepted
+            $order->update(['order_status_type_id' => 4]);
+
+            $status     = "success";
+            $message    = "Pedido aceito"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possível aceitar o pedido especificado!',
+                                ], $statusCode ?? 404); 
     }
 
     /**

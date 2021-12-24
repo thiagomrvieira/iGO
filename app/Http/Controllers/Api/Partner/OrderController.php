@@ -174,7 +174,7 @@ class OrderController extends Controller
 
 
 
-    /* *
+        /**
      * SHOW IN PROGRESS ORDERS 
      * *
      * 
@@ -191,7 +191,7 @@ class OrderController extends Controller
      *           mediaType="application/json",
      *           example= {
      *               "status": "success",
-     *               "message": "Novos pedidos",
+     *               "message": "Pedidos em andamento",
      *               "data": {
      *                  "orders": {
      *                      {
@@ -199,6 +199,7 @@ class OrderController extends Controller
      *                          "status": "string",
      *                          "description": "string",
      *                          "date": "datetime",
+     *                          
      *                      }
      *                  },
      *                  "partner": {
@@ -236,7 +237,7 @@ class OrderController extends Controller
     public function getInProgressOrderList()
     {
         $inProgressOrders = $this->inProgressOrdersForPartner();
-        
+
         if ($inProgressOrders->count() > 0) {
             $data       = new PartnerOrderCollection( $inProgressOrders );
             $status     = "success";

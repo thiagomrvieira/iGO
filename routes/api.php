@@ -145,11 +145,11 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('orders/completed',   [DeliverymanOrderController::class, 'getCompletedOrderList' ]);
             Route::get('orders/refused',     [DeliverymanOrderController::class, 'getRefusedOrderList'   ]);
             Route::get('orders/{id}/accept', [DeliverymanOrderController::class, 'acceptOrder'           ]);
-
+            
         });
         
         
-
+        
         /*
         |--------------------------------------------------------------------------
         | DELIVERYMAN ENDPOINTS
@@ -159,6 +159,7 @@ Route::group(['prefix' => 'v1'], function()
         {
             #   ORDERS
             Route::get('orders',               [PartnerOrderController::class, 'index'                 ]);
+            Route::get('orders/{id}',          [PartnerOrderController::class, 'show'                  ]);
             Route::get('orders/new',           [PartnerOrderController::class, 'getNewOrderList'       ]);
             Route::get('orders/inprogress',    [PartnerOrderController::class, 'getInProgressOrderList']);
             Route::get('orders/completed',     [PartnerOrderController::class, 'getCompletedOrderList' ]);

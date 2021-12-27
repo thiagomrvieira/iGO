@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\api\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CheckoutOrderResource;
 use App\Http\Resources\DashboardOrdersResource;
 use App\Http\Resources\DeliverymanOrderCollection;
+use App\Http\Resources\OrderForPartnerResource;
 use App\Http\Resources\PartnerOrderCollection;
 use App\Http\Traits\OrderTrait;
 use App\Models\Order;
@@ -540,7 +542,7 @@ class OrderController extends Controller
     public function refuseOrder(Request $request, $id)
     {
         #   Check if the Order has been submitted 
-        $order = $this->getPartnerOderById($id);
+        $order = $this->getPartnerOrderById($id);
 
         if ($order->whereIn('order_status_type_id', array(2, 3))->count() > 0 ?? null) 
         {
@@ -558,6 +560,156 @@ class OrderController extends Controller
         return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não foi possível recusar o pedido especificado!',
                                 ], $statusCode ?? 404); 
+    }
+
+    /**
+     * GET THE SPECIFIED ORDER
+     * *
+     * @OA\Get(path="/api/v1/partner/orders/{id}",
+     *   tags={"Partner: Orders"},
+     *   summary="Get the specified order",
+     *   description="Return data of the specified order",
+     *   operationId="getOrderforPartner",
+      *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "checkout",
+     *              "data": { 
+     *                  "id": "integer",
+     *                  "order_number": "string",
+     *                  "products": {
+     *                      { 
+     *                          "partner": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "images": {
+     *                                "image_cover": "string",
+     *                                "image_01": "string",
+     *                                "image_02": "string",
+     *                                "image_03": "string",
+     *                              },
+     *                              "category": {
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "image": "string",
+     *                                  "parent_category": null
+     *                              },    
+     *                              "address": {
+     *                                  "line_1": "string",
+     *                                  "line_2": "string",
+     *                                  "county": "string",
+     *                                  "locality": "string",
+     *                                  "post_code": "string",
+     *                                  "country": "string"
+     *                              },
+     *                           },
+     *                          "product": {
+     *                              "id": "integer",
+     *                              "name": "string",
+     *                              "price": "float",
+     *                              "quantity": "integer"
+     *                          },
+     *                          "options":
+     *                          {
+     *                              {
+     *                                  "id": "integer",
+     *                                  "name": "string",
+     *                                  "values": {
+     *                                      {
+     *                                          "id": "integer",
+     *                                          "name": "string",
+     *                                          "price": "float",
+     *                                      }
+     *                                  },
+     *                               },
+     *                          },
+     *                          "amount": "float",
+     *                          "created_at": "datetime"
+     *                      }, 
+     *                  },
+     *                  
+     *                  "delivery_address": {
+     *                      "id": "integer",
+     *                      "address_name": "string",
+     *                      "address_type": "string",
+     *                      "address_line_1": "string",
+     *                      "address_line_2": "string",
+     *                      "county": {
+     *                          "id": "integer",
+     *                          "name": "string"
+     *                      },
+     *                      "locality": "string",
+     *                      "post_code": "string",
+     *                      "country": "string",
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "delivery_time": "datetime",
+     *                  "tax_data": {
+     *                      "tax_name": "string",
+     *                      "tax_number": "string"
+     *                  },
+     *                  "subtotal": "float",
+     *                  "shipping_fee": "float",
+     *                  "total": "float",
+     *                  "discount": "float",
+     *                  "total_final": "float",
+     *              },
+     *          },
+     *      ),
+     *      
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $order = $this->getPartnerOrderById($id);
+
+        if ($order->count() > 0) {
+            $data        = new OrderForPartnerResource( $order->first() );
+            $status      = "success";
+            $message     = "Dados do pedido";
+            $statusCode  = 200;
+        }
+        
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possivel encontrar o pedido especificado',
+                                 'data'    => $data    ?? null], $statusCode ?? 404); 
     }
     
 }

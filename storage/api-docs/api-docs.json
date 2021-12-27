@@ -3594,6 +3594,137 @@
                 ]
             }
         },
+        "/api/v1/partner/orders/{id}": {
+            "get": {
+                "tags": [
+                    "Partner: Orders"
+                ],
+                "summary": "Get the specified order",
+                "description": "Return data of the specified order",
+                "operationId": "getOrderforPartner",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "checkout",
+                                    "data": {
+                                        "id": "integer",
+                                        "order_number": "string",
+                                        "products": [
+                                            {
+                                                "partner": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "images": {
+                                                        "image_cover": "string",
+                                                        "image_01": "string",
+                                                        "image_02": "string",
+                                                        "image_03": "string"
+                                                    },
+                                                    "category": {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "image": "string",
+                                                        "parent_category": null
+                                                    },
+                                                    "address": {
+                                                        "line_1": "string",
+                                                        "line_2": "string",
+                                                        "county": "string",
+                                                        "locality": "string",
+                                                        "post_code": "string",
+                                                        "country": "string"
+                                                    }
+                                                },
+                                                "product": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "price": "float",
+                                                    "quantity": "integer"
+                                                },
+                                                "options": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "values": [
+                                                            {
+                                                                "id": "integer",
+                                                                "name": "string",
+                                                                "price": "float"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "amount": "float",
+                                                "created_at": "datetime"
+                                            }
+                                        ],
+                                        "delivery_address": {
+                                            "id": "integer",
+                                            "address_name": "string",
+                                            "address_type": "string",
+                                            "address_line_1": "string",
+                                            "address_line_2": "string",
+                                            "county": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            },
+                                            "locality": "string",
+                                            "post_code": "string",
+                                            "country": "string",
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "delivery_time": "datetime",
+                                        "tax_data": {
+                                            "tax_name": "string",
+                                            "tax_number": "string"
+                                        },
+                                        "subtotal": "float",
+                                        "shipping_fee": "float",
+                                        "total": "float",
+                                        "discount": "float",
+                                        "total_final": "float",
+                                        "can_reorder": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/register": {
             "post": {
                 "tags": [

@@ -209,7 +209,7 @@ trait OrderTrait {
     */ 
 
     #   GET ORDER BY ID (order id and related to the logged partner)
-    public function getPartnerOderById($id)
+    public function getPartnerOrderById($id)
     {
         return  Order::where('id', $id)
                      ->where('partner_id', Auth::user()->partner->id) 

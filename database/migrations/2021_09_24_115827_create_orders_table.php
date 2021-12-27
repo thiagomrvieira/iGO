@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('tax_number')->nullable();
             
             $table->integer('amount')->nullable();
+            $table->string('refused_for')->nullable();	
 
             $table->timestamp('deliver_at')->nullable();	
             $table->timestamp('delivered_at')->nullable();	

@@ -461,12 +461,10 @@ class OrderController extends Controller
     public function acceptOrder($id)
     {
         #   Check if the Order has been submitted 
-        $order = Order::where('id', $id )
-                      ->where('partner_id', Auth::user()->partner->id)
-                      ->whereIn('order_status_type_id', array(2, 3));
+        $order = $this->getPartnerOderById($id);
 
-        if ($order->count() > 0) {
-
+        if ($order->whereIn('order_status_type_id', array(2, 3))->count() > 0 ?? null) 
+        {
             #   Change status to accepted
             $order->update(['order_status_type_id' => 4]);
 
@@ -481,36 +479,85 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * REFUSE THE SPECIFIED ORDER 
+     **
+     * 
+     * @OA\Patch(path="/api/v1/partner/orders/{id}/refuse",
+     *   tags={"Partner: Orders"},
+     *   summary="Refuse the specified order",
+     *   description="Partner refuse the specified Order",
+     *   operationId="partnermanRefuseOrder",
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\RequestBody(
+     *      required=true,
+     *      @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="refused_for", type="string", example="ruptura de estoque/No product in stock"),
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedido aceito",
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function refuseOrder(Request $request, $id)
     {
-        //
-    }
+        #   Check if the Order has been submitted 
+        $order = $this->getPartnerOderById($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if ($order->whereIn('order_status_type_id', array(2, 3))->count() > 0 ?? null) 
+        {
+            #   Change status to refused/canceled and save the reason
+            $order->update([
+                'order_status_type_id' => 9,
+                'refused_for'          => $request->refused_for
+            ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $status     = "success";
+            $message    = "Pedido recusado"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possível recusar o pedido especificado!',
+                                ], $statusCode ?? 404); 
     }
+    
 }

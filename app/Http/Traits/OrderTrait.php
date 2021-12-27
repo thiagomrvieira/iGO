@@ -208,6 +208,14 @@ trait OrderTrait {
     |--------------------------------------------------------------------------
     */ 
 
+    #   GET ORDER BY ID (order id and related to the logged partner)
+    public function getPartnerOderById($id)
+    {
+        return  Order::where('id', $id)
+                     ->where('partner_id', Auth::user()->partner->id) 
+                     ?? null;
+    }
+    
     #   GET NEW ORDERS (order status type id between 2, 3 and related to the logged partner)
     public function newOrdersForPartner()
     {

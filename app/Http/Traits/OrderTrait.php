@@ -100,7 +100,7 @@ trait OrderTrait {
             }
             #   Save extras
             foreach ($cartItem->cartExtras as $cartExtra) {
-                if ( $extra = Extra::where('id', $cartExtra->extra_id)->first() )
+                if ( $extra = Extra::where('id', $cartExtra->extra_id ?? null)->first() ?? null)
                 {
                     $cartExtra->extra_name  = $extra->name;
                     $cartExtra->extra_price = $extra->price;
@@ -108,13 +108,13 @@ trait OrderTrait {
                 }
             }
             #   Save Side
-            if ( $side = Side::where('id', $cartItem->cartSide->side_id)->first() )
+            if ( $side = Side::where('id', $cartItem->cartSide->side_id ?? null)->first() ?? null)
             {
                 $cartItem->cartSide->side_name = $side->name;
                 $cartItem->cartSide->save();
             }
             #   Save Sauce
-            if ( $sauce = Sauce::where('id', $cartItem->cartSauce->sauce_id)->first() )
+            if ( $sauce = Sauce::where('id', $cartItem->cartSauce->sauce_id ?? null)->first() ?? null)
             {
                 $cartItem->cartSauce->sauce_name = $sauce->name;
                 $cartItem->cartSauce->save();

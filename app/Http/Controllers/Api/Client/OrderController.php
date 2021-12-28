@@ -853,18 +853,24 @@ class OrderController extends Controller
      */
     public function cancel($id)
     {
-        
-        if (Order::where('id',  $id)
-                ->where('client_id', Auth::user()->client->id)
-                ->where('order_status_type_id', 2)
-                ->where('updated_at', '>' , Carbon::now()->subMinutes(2))
-                ->update(['order_status_type_id' => 9])
-            )
+        $order = Order::where('id',  $id)
+                      ->where('client_id', Auth::user()->client->id)
+                      ->whereIn('order_status_type_id', array(2, 3, 4));
+
+        #   Set message if the order has been submitted more than two minutes
+        if ($order->exists() && $order->first()->submitted_at < Carbon::now()->subMinutes(2) ){
+            $message = "O Pedido não pode ser cancelado após 2 minutos de submetido!";
+        }
+
+        #   Update the order status to canceled if the order has not been submitted more than two minutes             
+        if ($order->where('submitted_at', '>' , Carbon::now()->subMinutes(2))->update(['order_status_type_id' => 9]) ?? null)
         {
             $status      = "success";
             $message     = "Pedido cancelado!";
             $statusCode  = 200;
         }
+
+        
         
         return response()->json(['status'  => $status  ?? 'forbiden',
                                  'message' => $message ?? 'Não foi possivel cancelar o pedido especificado'], $statusCode ?? 403); 

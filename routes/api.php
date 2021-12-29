@@ -152,7 +152,7 @@ Route::group(['prefix' => 'v1'], function()
         
         /*
         |--------------------------------------------------------------------------
-        | DELIVERYMAN ENDPOINTS
+        | PARTNER ENDPOINTS
         |--------------------------------------------------------------------------
         */
         Route::group(['prefix' => 'partner', 'middleware' => ['partner']], function() 
@@ -166,6 +166,7 @@ Route::group(['prefix' => 'v1'], function()
             Route::get('orders/refused',       [PartnerOrderController::class, 'getRefusedOrderList'   ]);
             Route::get('orders/{id}/accept',   [PartnerOrderController::class, 'acceptOrder'           ]);
             Route::patch('orders/{id}/refuse', [PartnerOrderController::class, 'refuseOrder'           ]);
+            Route::patch('orders/{id}/finish', [PartnerOrderController::class, 'finishOrder'           ]);
 
         });
 

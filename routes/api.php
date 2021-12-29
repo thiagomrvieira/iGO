@@ -157,16 +157,21 @@ Route::group(['prefix' => 'v1'], function()
         */
         Route::group(['prefix' => 'partner', 'middleware' => ['partner']], function() 
         {
+            
             #   ORDERS
-            Route::get('orders',               [PartnerOrderController::class, 'index'                 ]);
-            Route::get('orders/new',           [PartnerOrderController::class, 'getNewOrderList'       ]);
-            Route::get('orders/inprogress',    [PartnerOrderController::class, 'getInProgressOrderList']);
-            Route::get('orders/completed',     [PartnerOrderController::class, 'getCompletedOrderList' ]);
-            Route::get('orders/refused',       [PartnerOrderController::class, 'getRefusedOrderList'   ]);
-            Route::get('orders/{id}',          [PartnerOrderController::class, 'show'                  ]);
-            Route::get('orders/{id}/accept',   [PartnerOrderController::class, 'acceptOrder'           ]);
-            Route::patch('orders/{id}/refuse', [PartnerOrderController::class, 'refuseOrder'           ]);
-            Route::patch('orders/{id}/finish', [PartnerOrderController::class, 'finishOrder'           ]);
+            Route::prefix('orders')->group(function () 
+            {
+                Route::get('/',             [PartnerOrderController::class, 'index'                 ]);
+                Route::get('new',           [PartnerOrderController::class, 'getNewOrderList'       ]);
+                Route::get('inprogress',    [PartnerOrderController::class, 'getInProgressOrderList']);
+                Route::get('completed',     [PartnerOrderController::class, 'getCompletedOrderList' ]);
+                Route::get('refused',       [PartnerOrderController::class, 'getRefusedOrderList'   ]);
+                Route::get('{id}',          [PartnerOrderController::class, 'show'                  ]);
+                Route::get('{id}/accept',   [PartnerOrderController::class, 'acceptOrder'           ]);
+                Route::patch('{id}/refuse', [PartnerOrderController::class, 'refuseOrder'           ]);
+                Route::patch('{id}/finish', [PartnerOrderController::class, 'finishOrder'           ]);
+            });
+        
 
         });
 

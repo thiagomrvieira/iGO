@@ -126,17 +126,19 @@ Route::group(['prefix' => 'v1'], function()
                 'receipt'      => ReceiptController::class,
             ]);
 
-            #   ORDERS
-            Route::get('orders',                [ClientOrderController::class, 'index'     ]);
-            Route::get('order/checkout',        [ClientOrderController::class, 'checkout'  ]);
-            Route::post('order/checkout',       [ClientOrderController::class, 'update'    ]);
-            Route::post('order/promocode',      [ClientOrderController::class, 'promocode' ]);
-            Route::post('order/submit',         [ClientOrderController::class, 'submit'    ]);
-            Route::get('order/inprogress',      [ClientOrderController::class, 'inProgress']);
-            Route::get('order/{id}',            [ClientOrderController::class, 'show'      ]);
-            Route::post('order/{id}/replicate', [ClientOrderController::class, 'replicate' ]);
-            Route::patch('order/{id}/cancel',   [ClientOrderController::class, 'cancel'    ]);
-
+            #   CLIENT ORDERS
+            Route::prefix('orders')->group(function () 
+            {
+                Route::get('/',               [ClientOrderController::class, 'index'     ]);
+                Route::get('checkout',        [ClientOrderController::class, 'checkout'  ]);
+                Route::post('checkout',       [ClientOrderController::class, 'update'    ]);
+                Route::post('promocode',      [ClientOrderController::class, 'promocode' ]);
+                Route::post('submit',         [ClientOrderController::class, 'submit'    ]);
+                Route::get('inprogress',      [ClientOrderController::class, 'inProgress']);
+                Route::get('{id}',            [ClientOrderController::class, 'show'      ]);
+                Route::post('{id}/replicate', [ClientOrderController::class, 'replicate' ]);
+                Route::patch('{id}/cancel',   [ClientOrderController::class, 'cancel'    ]);
+            });
             #   Show Main and Sub categories
             Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);
             Route::get('subcategories',  [PartnerCategoryController::class,  'showSub' ]);
@@ -149,7 +151,6 @@ Route::group(['prefix' => 'v1'], function()
             #   Remove all Products from Cart
             Route::delete('cleancart', [ClientCartController::class, 'removeAll']);
 
-
         });
         
         /*
@@ -159,14 +160,16 @@ Route::group(['prefix' => 'v1'], function()
         */ 
         Route::group(['prefix' => 'deliveryman', 'middleware' => ['deliveryman']], function() 
         {
-            #   ORDERS
-            Route::get('orders',             [DeliverymanOrderController::class, 'index'                 ]);
-            Route::get('orders/new',         [DeliverymanOrderController::class, 'getNewOrderList'       ]);
-            Route::get('orders/inprogress',  [DeliverymanOrderController::class, 'getInProgressOrderList']);
-            Route::get('orders/completed',   [DeliverymanOrderController::class, 'getCompletedOrderList' ]);
-            Route::get('orders/refused',     [DeliverymanOrderController::class, 'getRefusedOrderList'   ]);
-            Route::get('orders/{id}/accept', [DeliverymanOrderController::class, 'acceptOrder'           ]);
-            
+            #   DEIVERYMAN ORDERS
+            Route::prefix('orders')->group(function () 
+            {
+                Route::get('/',             [DeliverymanOrderController::class, 'index'                 ]);
+                Route::get('new',         [DeliverymanOrderController::class, 'getNewOrderList'       ]);
+                Route::get('inprogress',  [DeliverymanOrderController::class, 'getInProgressOrderList']);
+                Route::get('completed',   [DeliverymanOrderController::class, 'getCompletedOrderList' ]);
+                Route::get('refused',     [DeliverymanOrderController::class, 'getRefusedOrderList'   ]);
+                Route::get('{id}/accept', [DeliverymanOrderController::class, 'acceptOrder'           ]);
+            });
         });
         
         
@@ -178,8 +181,7 @@ Route::group(['prefix' => 'v1'], function()
         */
         Route::group(['prefix' => 'partner', 'middleware' => ['partner']], function() 
         {
-            
-            #   ORDERS
+            #   PARTNER ORDERS
             Route::prefix('orders')->group(function () 
             {
                 Route::get('/',             [PartnerOrderController::class, 'index'                 ]);

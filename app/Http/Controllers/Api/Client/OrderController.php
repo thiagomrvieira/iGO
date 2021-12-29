@@ -97,7 +97,7 @@ class OrderController extends Controller
      * DISPLAY A LIST OF ALL USER IN PROGRESS ORDERS 
      * *
      * 
-     * @OA\Get(path="/api/v1/client/order/inprogress",
+     * @OA\Get(path="/api/v1/client/orders/inprogress",
      *   tags={"Client: Orders"},
      *   summary="Show all client orders in progress ",
      *   description="Display a list of all client orders in progress (status id between 3 and 5)",
@@ -172,7 +172,7 @@ class OrderController extends Controller
      * Display checkout data
      * *
      * 
-     * @OA\Get(path="/api/v1/client/order/checkout",
+     * @OA\Get(path="/api/v1/client/orders/checkout",
      *   tags={"Client: Orders"},
      *   summary="Display order data",
      *   description="Show order details - Products, delivery, schedule, tax and payment data",
@@ -317,7 +317,7 @@ class OrderController extends Controller
      * UPDATE DATA FROM ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/client/order/checkout",
+     * @OA\post(path="/api/v1/client/orders/checkout",
      *   tags={"Client: Orders"},
      *   summary="Checkout order",
      *   description="Update order data and if sent any paramter",
@@ -453,7 +453,7 @@ class OrderController extends Controller
      * SUBMIT ORDER
      * *
      * 
-     * @OA\post(path="/api/v1/client/order/submit",
+     * @OA\post(path="/api/v1/client/orders/submit",
      *   tags={"Client: Orders"},
      *   summary="Submit order",
      *   description="Change order status from Open to Submitted",
@@ -519,7 +519,7 @@ class OrderController extends Controller
     /**
      * GET THE SPECIFIED ORDER
      * *
-     * @OA\Get(path="/api/v1/client/order/{id}",
+     * @OA\Get(path="/api/v1/client/orders/{id}",
      *   tags={"Client: Orders"},
      *   summary="Get the specified order",
      *   description="Return data of the specified order",
@@ -672,7 +672,7 @@ class OrderController extends Controller
     /**
      * REPLICATE A SPECIFIED ORDER
      * *
-     * @OA\Post(path="/api/v1/client/order/{id}/replicate",
+     * @OA\Post(path="/api/v1/client/orders/{id}/replicate",
      *   tags={"Client: Orders"},
      *   summary="Replicate an specified order",
      *   description="Creates a new Order with the same data as another one <br>● This method uses the field <i>'can_reorder'</i> as a validation before replicating the order; <br>● If there are any items in the cart, it keeps them;",
@@ -800,7 +800,7 @@ class OrderController extends Controller
     /**
      * CANCEL A SPECIFIED ORDER
      * *
-     * @OA\Patch(path="/api/v1/client/order/{id}/cancel",
+     * @OA\Patch(path="/api/v1/client/orders/{id}/cancel",
      *   tags={"Client: Orders"},
      *   summary="Cancel an specified order",
      *   description="Cancel the order if it has not been submitted more than two minutes",
@@ -881,7 +881,7 @@ class OrderController extends Controller
      * APPLY PROMOTIONAL CODE
      * *
      * 
-     * @OA\post(path="/api/v1/client/order/promocode",
+     * @OA\post(path="/api/v1/client/orders/promocode",
      *   tags={"Client: Orders"},
      *   summary="Apply promotional code",
      *   description="Check if the code is valid and add the discount in the order",

@@ -1066,7 +1066,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/inprogress": {
+        "/api/v1/client/orders/inprogress": {
             "get": {
                 "tags": [
                     "Client: Orders"
@@ -1122,7 +1122,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/checkout": {
+        "/api/v1/client/orders/checkout": {
             "get": {
                 "tags": [
                     "Client: Orders"
@@ -1370,7 +1370,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/submit": {
+        "/api/v1/client/orders/submit": {
             "post": {
                 "tags": [
                     "Client: Orders"
@@ -1410,7 +1410,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}": {
+        "/api/v1/client/orders/{id}": {
             "get": {
                 "tags": [
                     "Client: Orders"
@@ -1541,7 +1541,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}/replicate": {
+        "/api/v1/client/orders/{id}/replicate": {
             "post": {
                 "tags": [
                     "Client: Orders"
@@ -1650,7 +1650,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/{id}/cancel": {
+        "/api/v1/client/orders/{id}/cancel": {
             "patch": {
                 "tags": [
                     "Client: Orders"
@@ -1701,7 +1701,7 @@
                 ]
             }
         },
-        "/api/v1/client/order/promocode": {
+        "/api/v1/client/orders/promocode": {
             "post": {
                 "tags": [
                     "Client: Orders"

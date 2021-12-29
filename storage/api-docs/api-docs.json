@@ -1832,6 +1832,600 @@
                 ]
             }
         },
+        "/api/v1/client/categories": {
+            "get": {
+                "tags": [
+                    "Client: Partner Categories"
+                ],
+                "summary": "Get the list of categories",
+                "description": "Return a list of all active partners categories",
+                "operationId": "getListOfCategories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Todas as categorias",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Client: Partner Categories"
+                ],
+                "summary": "Get partner category information",
+                "description": "Return data of the specified partners category",
+                "operationId": "getPartnerCategoryData",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner Category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados da categoria",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/maincategories": {
+            "get": {
+                "tags": [
+                    "Client: Partner Categories"
+                ],
+                "summary": "Get the list of main categories",
+                "description": "Return a list of all active main partner categories",
+                "operationId": "getListOfMainCategories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Categorias Principais",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/subcategories": {
+            "get": {
+                "tags": [
+                    "Client: Partner Categories"
+                ],
+                "summary": "Get the list of sub categories",
+                "description": "Return a list of all active sub partner categories",
+                "operationId": "getListOfSubCategories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Sub Categorias",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "image": "string",
+                                            "parent_category": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/partners": {
+            "get": {
+                "tags": [
+                    "Client: Partners"
+                ],
+                "summary": "Get the list of partners",
+                "description": "If the <b> location </b> parameter is null it will return a list of all active <i> Partners </i> - Eg.: api/v1/client/partners <br> If the <b> location </b> parameter receive a valid <b> county_id </b>, it will return all <i> Partners </i> in that Location Eg.: api/v1/client/partners?location=1 <br> If the <b> search </b> parameter receive any value, it will search for <i> Partners </i> with that Business name - Eg.: api/v1/client/partners?search=espetadas <br> If the <b> cat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that main Category - Eg.: api/v1/client/partners?cat[]=1&cat[]=2 <br> If the <b> subcat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that Sub Category - Eg.: api/v1/client/partners?subcat[]=1&subcat[]=2",
+                "operationId": "getListOfPartners",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "description": "County id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Query - <small><i>'Fake company' will return two partners</i></small>",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cat[]",
+                        "in": "query",
+                        "description": "Category",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "collectionFormat": "csv"
+                        }
+                    },
+                    {
+                        "name": "subcat[]",
+                        "in": "query",
+                        "description": "Sub categories",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "collectionFormat": "csv"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de aderentes",
+                                    "data": {
+                                        "partners": [
+                                            {
+                                                "id": "integer",
+                                                "company_name": "string",
+                                                "responsible_name": "string",
+                                                "phone_number": "string",
+                                                "mobile_phone_number": "string",
+                                                "tax_number": "string",
+                                                "category": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string",
+                                                    "parent_category": "string"
+                                                },
+                                                "sub_categories": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "image": "string",
+                                                        "parent_category": "string"
+                                                    }
+                                                ],
+                                                "average_order_time": "string",
+                                                "premium": "boolean",
+                                                "account_created_at": "datetime",
+                                                "account_approved_at": "datetime",
+                                                "images": {
+                                                    "id": "integer",
+                                                    "partner_id": "integer",
+                                                    "image_cover": "string",
+                                                    "image_01": "string",
+                                                    "image_02": "string",
+                                                    "image_03": "string",
+                                                    "created_at": "datetime",
+                                                    "updated_at": "datetime"
+                                                },
+                                                "total_products": "integer",
+                                                "total_reviews": "integer",
+                                                "rating": "integer",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "description": "string"
+                                                },
+                                                "address": {
+                                                    "line_1": "string",
+                                                    "line_2": "string",
+                                                    "county": "string",
+                                                    "locality": "string",
+                                                    "post_code": "string",
+                                                    "country": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/partners/{id}": {
+            "get": {
+                "tags": [
+                    "Client: Partners"
+                ],
+                "summary": "Get partner information",
+                "description": "Expect to receive a valid ID and return partner and his products data",
+                "operationId": "getPartnerData",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de aderentes",
+                                    "data": {
+                                        "partners": [
+                                            {
+                                                "id": "integer",
+                                                "company_name": "string",
+                                                "responsible_name": "string",
+                                                "phone_number": "string",
+                                                "mobile_phone_number": "string",
+                                                "tax_number": "string",
+                                                "category": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "image": "string",
+                                                    "parent_category": "string"
+                                                },
+                                                "sub_categories": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "image": "string",
+                                                        "parent_category": "string"
+                                                    }
+                                                ],
+                                                "average_order_time": "string",
+                                                "premium": "boolean",
+                                                "account_created_at": "datetime",
+                                                "account_approved_at": "datetime",
+                                                "images": {
+                                                    "id": "integer",
+                                                    "partner_id": "integer",
+                                                    "image_cover": "string",
+                                                    "image_01": "string",
+                                                    "image_02": "string",
+                                                    "image_03": "string",
+                                                    "created_at": "datetime",
+                                                    "updated_at": "datetime"
+                                                },
+                                                "total_products": "integer",
+                                                "total_reviews": "integer",
+                                                "rating": "integer",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string",
+                                                    "description": "string"
+                                                },
+                                                "address": {
+                                                    "line_1": "string",
+                                                    "line_2": "string",
+                                                    "county": "string",
+                                                    "locality": "string",
+                                                    "post_code": "string",
+                                                    "country": "string"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/partners/{id}/products": {
+            "get": {
+                "tags": [
+                    "Client: Partners"
+                ],
+                "summary": "Get partner products",
+                "description": "Expect to receive a valid ID and return partner products data",
+                "operationId": "getPartnerProducts",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de aderentes",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "id": "integer",
+                                                "name": "string",
+                                                "description": "string",
+                                                "category": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "image": "string",
+                                                "price": "float",
+                                                "final_price": "float",
+                                                "note": "string",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "created_at": "datetime",
+                                                "available": "boolean"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/partners/{id}/reviews": {
+            "get": {
+                "tags": [
+                    "Client: Partners"
+                ],
+                "summary": "Get partner reviews",
+                "description": "Expect to receive a valid ID and return partner reviews data",
+                "operationId": "getPartnerReviews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Reviews do aderente",
+                                    "data": {
+                                        "partner": "string",
+                                        "category_icon": "string",
+                                        "total_reviews": "integer",
+                                        "reviews": [
+                                            {
+                                                "id": "integer",
+                                                "client_name": "string",
+                                                "client_image": "string",
+                                                "review": "string",
+                                                "rating": "integer",
+                                                "date": "datetime"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/client/order/{id}/partnerrating": {
             "post": {
                 "tags": [
@@ -1887,6 +2481,166 @@
                                         "updated_at": "datetime",
                                         "created_at": "datetime",
                                         "id": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/products": {
+            "get": {
+                "tags": [
+                    "Client: Products"
+                ],
+                "summary": "Get all products",
+                "description": "Get the list of all products",
+                "operationId": "getAllProducts",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de produtos do aderente",
+                                    "data": {
+                                        "products": [
+                                            {
+                                                "id": "integer",
+                                                "name": "string",
+                                                "description": "string",
+                                                "category": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "image": "string",
+                                                "price": "float",
+                                                "final_price": "float",
+                                                "note": "string",
+                                                "campaign": {
+                                                    "id": "integer",
+                                                    "name": "string"
+                                                },
+                                                "created_at": "datetime",
+                                                "available": "boolean"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/client/products/{id}": {
+            "get": {
+                "tags": [
+                    "Client: Products"
+                ],
+                "summary": "Get a specified product",
+                "description": "Get the details of a specified product",
+                "operationId": "getAProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados do produto",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "description": "string",
+                                        "category": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        },
+                                        "options": [
+                                            {
+                                                "text": "Side dishes",
+                                                "type": "radio",
+                                                "mandatory": "boolean",
+                                                "values": []
+                                            },
+                                            {
+                                                "text": "Sauces",
+                                                "type": "radio",
+                                                "mandatory": "boolean",
+                                                "values": []
+                                            },
+                                            {
+                                                "text": "Extras",
+                                                "type": "checkbox",
+                                                "mandatory": "boolean",
+                                                "values": [
+                                                    {
+                                                        "id": "integer",
+                                                        "name": "string",
+                                                        "price": "float"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "product_allergens": [],
+                                        "image": "string",
+                                        "price": "boolean",
+                                        "final_price": "float",
+                                        "note": "string",
+                                        "campaign": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        },
+                                        "created_at": "datetime",
+                                        "available": "boolean"
                                     }
                                 }
                             }
@@ -2600,6 +3354,239 @@
                 }
             }
         },
+        "/api/v1/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "description": "Create a new user and return token",
+                "operationId": "register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "mussum@igo.pt"
+                                    },
+                                    "mobile_phone_number": {
+                                        "type": "integer",
+                                        "example": "978 645 312"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "iGO@123"
+                                    },
+                                    "line_1": {
+                                        "type": "string",
+                                        "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
+                                    },
+                                    "county_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "locality": {
+                                        "type": "string",
+                                        "example": "Aptent"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Resource created",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de aderentes",
+                                    "data": {
+                                        "user": {
+                                            "name": "string",
+                                            "email": "string",
+                                            "active": "boolean",
+                                            "is_admin": "boolean",
+                                            "is_partner": "boolean",
+                                            "is_deliveryman": "boolean",
+                                            "is_client": "boolean",
+                                            "created_at": "datetime",
+                                            "available": "boolean",
+                                            "id": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "name": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "email": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "mobile_phone_number": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "line_1": [
+                                            [
+                                                "string"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "client01@igo.pt"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "iGOdelivery"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Utilizador logado!",
+                                    "data": {
+                                        "user": {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "email": "string",
+                                            "active": "boolean",
+                                            "is_admin": "boolean",
+                                            "is_partner": "boolean",
+                                            "is_deliveryman": "boolean",
+                                            "is_client": "boolean",
+                                            "created_at": "datetime",
+                                            "last_address_id": "integer"
+                                        },
+                                        "token": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "description": "Remove api token for logged user",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Logout efetuado!"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/provinces": {
             "get": {
                 "tags": [
@@ -2854,600 +3841,6 @@
                         "description": "Forbidden"
                     }
                 }
-            }
-        },
-        "/api/v1/client/categories": {
-            "get": {
-                "tags": [
-                    "Client: Partner Categories"
-                ],
-                "summary": "Get the list of categories",
-                "description": "Return a list of all active partners categories",
-                "operationId": "getListOfCategories",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Todas as categorias",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "image": "string",
-                                            "parent_category": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/categories/{id}": {
-            "get": {
-                "tags": [
-                    "Client: Partner Categories"
-                ],
-                "summary": "Get partner category information",
-                "description": "Return data of the specified partners category",
-                "operationId": "getPartnerCategoryData",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Partner Category id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Dados da categoria",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "image": "string",
-                                            "parent_category": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/maincategories": {
-            "get": {
-                "tags": [
-                    "Client: Partner Categories"
-                ],
-                "summary": "Get the list of main categories",
-                "description": "Return a list of all active main partner categories",
-                "operationId": "getListOfMainCategories",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Categorias Principais",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "image": "string",
-                                            "parent_category": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/subcategories": {
-            "get": {
-                "tags": [
-                    "Client: Partner Categories"
-                ],
-                "summary": "Get the list of sub categories",
-                "description": "Return a list of all active sub partner categories",
-                "operationId": "getListOfSubCategories",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Sub Categorias",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "image": "string",
-                                            "parent_category": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/partners": {
-            "get": {
-                "tags": [
-                    "Client: Partners"
-                ],
-                "summary": "Get the list of partners",
-                "description": "If the <b> location </b> parameter is null it will return a list of all active <i> Partners </i> - Eg.: api/v1/client/partners <br> If the <b> location </b> parameter receive a valid <b> county_id </b>, it will return all <i> Partners </i> in that Location Eg.: api/v1/client/partners?location=1 <br> If the <b> search </b> parameter receive any value, it will search for <i> Partners </i> with that Business name - Eg.: api/v1/client/partners?search=espetadas <br> If the <b> cat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that main Category - Eg.: api/v1/client/partners?cat[]=1&cat[]=2 <br> If the <b> subcat[] </b> parameter receive <b> category_id </b>s, it will search for <i> Partners </i> in that Sub Category - Eg.: api/v1/client/partners?subcat[]=1&subcat[]=2",
-                "operationId": "getListOfPartners",
-                "parameters": [
-                    {
-                        "name": "location",
-                        "in": "query",
-                        "description": "County id",
-                        "required": false,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "Query - <small><i>'Fake company' will return two partners</i></small>",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "cat[]",
-                        "in": "query",
-                        "description": "Category",
-                        "required": false,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "format": "int32"
-                            },
-                            "collectionFormat": "csv"
-                        }
-                    },
-                    {
-                        "name": "subcat[]",
-                        "in": "query",
-                        "description": "Sub categories",
-                        "required": false,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "format": "int32"
-                            },
-                            "collectionFormat": "csv"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de aderentes",
-                                    "data": {
-                                        "partners": [
-                                            {
-                                                "id": "integer",
-                                                "company_name": "string",
-                                                "responsible_name": "string",
-                                                "phone_number": "string",
-                                                "mobile_phone_number": "string",
-                                                "tax_number": "string",
-                                                "category": {
-                                                    "id": "integer",
-                                                    "name": "string",
-                                                    "image": "string",
-                                                    "parent_category": "string"
-                                                },
-                                                "sub_categories": [
-                                                    {
-                                                        "id": "integer",
-                                                        "name": "string",
-                                                        "image": "string",
-                                                        "parent_category": "string"
-                                                    }
-                                                ],
-                                                "average_order_time": "string",
-                                                "premium": "boolean",
-                                                "account_created_at": "datetime",
-                                                "account_approved_at": "datetime",
-                                                "images": {
-                                                    "id": "integer",
-                                                    "partner_id": "integer",
-                                                    "image_cover": "string",
-                                                    "image_01": "string",
-                                                    "image_02": "string",
-                                                    "image_03": "string",
-                                                    "created_at": "datetime",
-                                                    "updated_at": "datetime"
-                                                },
-                                                "total_products": "integer",
-                                                "total_reviews": "integer",
-                                                "rating": "integer",
-                                                "campaign": {
-                                                    "id": "integer",
-                                                    "name": "string",
-                                                    "description": "string"
-                                                },
-                                                "address": {
-                                                    "line_1": "string",
-                                                    "line_2": "string",
-                                                    "county": "string",
-                                                    "locality": "string",
-                                                    "post_code": "string",
-                                                    "country": "string"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/partners/{id}": {
-            "get": {
-                "tags": [
-                    "Client: Partners"
-                ],
-                "summary": "Get partner information",
-                "description": "Expect to receive a valid ID and return partner and his products data",
-                "operationId": "getPartnerData",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Partner id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de aderentes",
-                                    "data": {
-                                        "partners": [
-                                            {
-                                                "id": "integer",
-                                                "company_name": "string",
-                                                "responsible_name": "string",
-                                                "phone_number": "string",
-                                                "mobile_phone_number": "string",
-                                                "tax_number": "string",
-                                                "category": {
-                                                    "id": "integer",
-                                                    "name": "string",
-                                                    "image": "string",
-                                                    "parent_category": "string"
-                                                },
-                                                "sub_categories": [
-                                                    {
-                                                        "id": "integer",
-                                                        "name": "string",
-                                                        "image": "string",
-                                                        "parent_category": "string"
-                                                    }
-                                                ],
-                                                "average_order_time": "string",
-                                                "premium": "boolean",
-                                                "account_created_at": "datetime",
-                                                "account_approved_at": "datetime",
-                                                "images": {
-                                                    "id": "integer",
-                                                    "partner_id": "integer",
-                                                    "image_cover": "string",
-                                                    "image_01": "string",
-                                                    "image_02": "string",
-                                                    "image_03": "string",
-                                                    "created_at": "datetime",
-                                                    "updated_at": "datetime"
-                                                },
-                                                "total_products": "integer",
-                                                "total_reviews": "integer",
-                                                "rating": "integer",
-                                                "campaign": {
-                                                    "id": "integer",
-                                                    "name": "string",
-                                                    "description": "string"
-                                                },
-                                                "address": {
-                                                    "line_1": "string",
-                                                    "line_2": "string",
-                                                    "county": "string",
-                                                    "locality": "string",
-                                                    "post_code": "string",
-                                                    "country": "string"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/partners/{id}/products": {
-            "get": {
-                "tags": [
-                    "Client: Partners"
-                ],
-                "summary": "Get partner products",
-                "description": "Expect to receive a valid ID and return partner products data",
-                "operationId": "getPartnerProducts",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Partner id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de aderentes",
-                                    "data": {
-                                        "products": [
-                                            {
-                                                "id": "integer",
-                                                "name": "string",
-                                                "description": "string",
-                                                "category": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "image": "string",
-                                                "price": "float",
-                                                "final_price": "float",
-                                                "note": "string",
-                                                "campaign": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "created_at": "datetime",
-                                                "available": "boolean"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/partners/{id}/reviews": {
-            "get": {
-                "tags": [
-                    "Client: Partners"
-                ],
-                "summary": "Get partner reviews",
-                "description": "Expect to receive a valid ID and return partner reviews data",
-                "operationId": "getPartnerReviews",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Partner id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Reviews do aderente",
-                                    "data": {
-                                        "partner": "string",
-                                        "category_icon": "string",
-                                        "total_reviews": "integer",
-                                        "reviews": [
-                                            {
-                                                "id": "integer",
-                                                "client_name": "string",
-                                                "client_image": "string",
-                                                "review": "string",
-                                                "rating": "integer",
-                                                "date": "datetime"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
             }
         },
         "/api/v1/partner/orders": {
@@ -4010,399 +4403,6 @@
                                         "total": "float",
                                         "discount": "float",
                                         "total_final": "float"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/register": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Register a new user",
-                "description": "Create a new user and return token",
-                "operationId": "register",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "Mussum Ipsum"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "example": "mussum@igo.pt"
-                                    },
-                                    "mobile_phone_number": {
-                                        "type": "integer",
-                                        "example": "978 645 312"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "example": "iGO@123"
-                                    },
-                                    "line_1": {
-                                        "type": "string",
-                                        "example": "Address line 1. Eg: Av. Mauris nec dolor, nº 50"
-                                    },
-                                    "county_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "locality": {
-                                        "type": "string",
-                                        "example": "Aptent"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Resource created",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de aderentes",
-                                    "data": {
-                                        "user": {
-                                            "name": "string",
-                                            "email": "string",
-                                            "active": "boolean",
-                                            "is_admin": "boolean",
-                                            "is_partner": "boolean",
-                                            "is_deliveryman": "boolean",
-                                            "is_client": "boolean",
-                                            "created_at": "datetime",
-                                            "available": "boolean",
-                                            "id": "integer"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "message": "The given data was invalid.",
-                                    "errors": {
-                                        "name": [
-                                            [
-                                                "string"
-                                            ]
-                                        ],
-                                        "email": [
-                                            [
-                                                "string"
-                                            ]
-                                        ],
-                                        "mobile_phone_number": [
-                                            [
-                                                "string"
-                                            ]
-                                        ],
-                                        "line_1": [
-                                            [
-                                                "string"
-                                            ]
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/login": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Login",
-                "description": "Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
-                "operationId": "login",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "example": "client01@igo.pt"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "example": "iGOdelivery"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Utilizador logado!",
-                                    "data": {
-                                        "user": {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "email": "string",
-                                            "active": "boolean",
-                                            "is_admin": "boolean",
-                                            "is_partner": "boolean",
-                                            "is_deliveryman": "boolean",
-                                            "is_client": "boolean",
-                                            "created_at": "datetime",
-                                            "last_address_id": "integer"
-                                        },
-                                        "token": "string"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "error": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/logout": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Logout",
-                "description": "Remove api token for logged user",
-                "operationId": "logout",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Logout efetuado!"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "error": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/products": {
-            "get": {
-                "tags": [
-                    "Client: Products"
-                ],
-                "summary": "Get all products",
-                "description": "Get the list of all products",
-                "operationId": "getAllProducts",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de produtos do aderente",
-                                    "data": {
-                                        "products": [
-                                            {
-                                                "id": "integer",
-                                                "name": "string",
-                                                "description": "string",
-                                                "category": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "image": "string",
-                                                "price": "float",
-                                                "final_price": "float",
-                                                "note": "string",
-                                                "campaign": {
-                                                    "id": "integer",
-                                                    "name": "string"
-                                                },
-                                                "created_at": "datetime",
-                                                "available": "boolean"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/client/products/{id}": {
-            "get": {
-                "tags": [
-                    "Client: Products"
-                ],
-                "summary": "Get a specified product",
-                "description": "Get the details of a specified product",
-                "operationId": "getAProduct",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Product id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Dados do produto",
-                                    "data": {
-                                        "id": "integer",
-                                        "name": "string",
-                                        "description": "string",
-                                        "category": {
-                                            "id": "integer",
-                                            "name": "string"
-                                        },
-                                        "options": [
-                                            {
-                                                "text": "Side dishes",
-                                                "type": "radio",
-                                                "mandatory": "boolean",
-                                                "values": []
-                                            },
-                                            {
-                                                "text": "Sauces",
-                                                "type": "radio",
-                                                "mandatory": "boolean",
-                                                "values": []
-                                            },
-                                            {
-                                                "text": "Extras",
-                                                "type": "checkbox",
-                                                "mandatory": "boolean",
-                                                "values": [
-                                                    {
-                                                        "id": "integer",
-                                                        "name": "string",
-                                                        "price": "float"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "product_allergens": [],
-                                        "image": "string",
-                                        "price": "boolean",
-                                        "final_price": "float",
-                                        "note": "string",
-                                        "campaign": {
-                                            "id": "integer",
-                                            "name": "string"
-                                        },
-                                        "created_at": "datetime",
-                                        "available": "boolean"
                                     }
                                 }
                             }

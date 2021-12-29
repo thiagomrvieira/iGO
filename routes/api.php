@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\General\CountyController;
 use App\Http\Controllers\Api\General\FrontOfficeController;
 use App\Http\Controllers\Api\General\ShippingFeeController;
 use App\Http\Controllers\Api\General\ProvinceController;
+use App\Http\Controllers\Api\General\PassportAuthController;
 
 use App\Http\Controllers\Api\Client\AddressController as ClientAddressController;
 use App\Http\Controllers\Api\Client\CartController    as ClientCartController;
@@ -17,18 +17,15 @@ use App\Http\Controllers\Api\Client\OrderRatingController;
 use App\Http\Controllers\Api\Client\PartnerRatingController;
 use App\Http\Controllers\Api\Client\ProductRatingController;
 use App\Http\Controllers\Api\Client\ReceiptController;
+use App\Http\Controllers\Api\Client\PartnerCategoryController;
+use App\Http\Controllers\Api\Client\PartnerController;
+use App\Http\Controllers\Api\Client\ProductController;
 
-use App\Http\Controllers\Api\PartnerCategoryController;
-use App\Http\Controllers\Api\PassportAuthController;
-use App\Http\Controllers\Api\PartnerController;
-use App\Http\Controllers\Api\ProductController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
-use App\Http\Controllers\Web\CampaignController;
 
 use App\Http\Controllers\Api\Partner\OrderController as PartnerOrderController;
 
-use App\Models\Campaign;
 
 /*
 |--------------------------------------------------------------------------

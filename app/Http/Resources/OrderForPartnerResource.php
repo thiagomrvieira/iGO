@@ -21,6 +21,10 @@ class OrderForPartnerResource extends JsonResource
         return [
             'id'           => $this->id,
             'order_number' => '#' . str_pad($this->id, 8, 0, STR_PAD_LEFT),
+            'status'       => [
+                'name'        => $this->orderStatusType->name,
+                'description' => $this->orderStatusType->description,
+            ],
             'partner'      => [
                 'id'       => $this->partner_id   ?? null,
                 'name'     => $partner->name      ?? null,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\General;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProvinceResource;
@@ -20,7 +20,7 @@ class ProvinceController extends Controller
      * *
      * 
      * @OA\Get(path="/api/v1/provinces",
-     *   tags={"Provinces"},
+     *   tags={"General: Provinces"},
      *   summary="Show provinces",
      *   description="Display a list of all provinces",
      *   operationId="showProvinces",
@@ -77,7 +77,7 @@ class ProvinceController extends Controller
      * Display a specified province data
      **
      * @OA\Get(path="/api/v1/provinces/{id}",
-     *   tags={"Provinces"},
+     *   tags={"General: Provinces"},
      *   summary="Get a specified province",
      *   description="Get the details of a specified province",
      *   operationId="getProvince",

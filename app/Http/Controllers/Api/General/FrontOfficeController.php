@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\General;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WebContentCollection;
@@ -15,7 +15,7 @@ class FrontOfficeController extends Controller
      **
      *
      * @OA\Get(path="/api/v1/contents",
-     *   tags={"Webcontent"},
+     *   tags={"General: Webcontent"},
      *   summary="Get all active web contents",
      *   description="Display all active web contents",
      *   operationId="getAllWebContent",
@@ -75,7 +75,7 @@ class FrontOfficeController extends Controller
      **
      *
      * @OA\Get(path="/api/v1/contents/{content}",
-     *   tags={"Webcontent"},
+     *   tags={"General: Webcontent"},
      *   summary="Get web content",
      *   description="Expect to receive a valid content area key (Options: 'about', 'faq', 'conditions', 'contacts') and return the respective content",
      *   operationId="getWebContent",

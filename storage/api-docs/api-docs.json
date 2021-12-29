@@ -2059,105 +2059,6 @@
                 ]
             }
         },
-        "/api/v1/counties": {
-            "get": {
-                "tags": [
-                    "Counties"
-                ],
-                "summary": "Show counties",
-                "description": "Display a list of all conties",
-                "operationId": "showConties",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "County list",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "province": {
-                                                "id": "integer",
-                                                "name": "string"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/counties/{id}": {
-            "get": {
-                "tags": [
-                    "Counties"
-                ],
-                "summary": "Get a specified county",
-                "description": "Get the details of a specified county",
-                "operationId": "getACounty",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "County id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "County data",
-                                    "data": {
-                                        "id": "integer",
-                                        "name": "string",
-                                        "province": {
-                                            "id": "integer",
-                                            "name": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
         "/api/v1/deliveryman/orders": {
             "get": {
                 "tags": [
@@ -2491,10 +2392,109 @@
                 ]
             }
         },
+        "/api/v1/counties": {
+            "get": {
+                "tags": [
+                    "General: Counties"
+                ],
+                "summary": "Show counties",
+                "description": "Display a list of all conties",
+                "operationId": "showConties",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "County list",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "province": {
+                                                "id": "integer",
+                                                "name": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/counties/{id}": {
+            "get": {
+                "tags": [
+                    "General: Counties"
+                ],
+                "summary": "Get a specified county",
+                "description": "Get the details of a specified county",
+                "operationId": "getACounty",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "County id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "County data",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "province": {
+                                            "id": "integer",
+                                            "name": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "/api/v1/contents": {
             "get": {
                 "tags": [
-                    "Webcontent"
+                    "General: Webcontent"
                 ],
                 "summary": "Get all active web contents",
                 "description": "Display all active web contents",
@@ -2543,7 +2543,7 @@
         "/api/v1/contents/{content}": {
             "get": {
                 "tags": [
-                    "Webcontent"
+                    "General: Webcontent"
                 ],
                 "summary": "Get web content",
                 "description": "Expect to receive a valid content area key (Options: 'about', 'faq', 'conditions', 'contacts') and return the respective content",
@@ -2581,6 +2581,262 @@
                                                         "content": "string"
                                                     }
                                                 ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/provinces": {
+            "get": {
+                "tags": [
+                    "General: Provinces"
+                ],
+                "summary": "Show provinces",
+                "description": "Display a list of all provinces",
+                "operationId": "showProvinces",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Province list",
+                                    "data": [
+                                        {
+                                            "id": "integer",
+                                            "name": "string",
+                                            "country": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/provinces/{id}": {
+            "get": {
+                "tags": [
+                    "General: Provinces"
+                ],
+                "summary": "Get a specified province",
+                "description": "Get the details of a specified province",
+                "operationId": "getProvince",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "province id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "province data",
+                                    "data": {
+                                        "id": "integer",
+                                        "name": "string",
+                                        "country": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/shippingfees": {
+            "get": {
+                "tags": [
+                    "General: Shipping fees"
+                ],
+                "summary": "Get all shipping fees",
+                "description": "Display a list of all shipping fees",
+                "operationId": "getShippingFees",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Lista de taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/shippingfees/{id}": {
+            "get": {
+                "tags": [
+                    "General: Shipping fees"
+                ],
+                "summary": "Get the especified shipping fee",
+                "description": "Display the resource specified by ID.",
+                "operationId": "getShippingFeeById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shipping fee id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/shippingfees/{from}/{to}": {
+            "get": {
+                "tags": [
+                    "General: Shipping fees"
+                ],
+                "summary": "Get the especified shipping fee",
+                "description": "Display the resource specified by FROM(delivery_from) TO(delivery_to) paramters.",
+                "operationId": "getShippingFeebyFromTo",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "path",
+                        "description": "County id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "path",
+                        "description": "County id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Taxas de entrega",
+                                    "data": {
+                                        "shipping_fees": [
+                                            {
+                                                "id": "integer",
+                                                "delivery_from_id": "integer",
+                                                "delivery_from_name": "string",
+                                                "delivery_to_id": "integer",
+                                                "delivery_to_name": "string",
+                                                "price": "float"
                                             }
                                         ]
                                     }
@@ -4154,277 +4410,6 @@
                     },
                     "401": {
                         "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/provinces": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Show provinces",
-                "description": "Display a list of all provinces",
-                "operationId": "showProvinces",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Province list",
-                                    "data": [
-                                        {
-                                            "id": "integer",
-                                            "name": "string",
-                                            "country": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/provinces/{id}": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Get a specified province",
-                "description": "Get the details of a specified province",
-                "operationId": "getProvince",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "province id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "province data",
-                                    "data": {
-                                        "id": "integer",
-                                        "name": "string",
-                                        "country": "string"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/shippingfees": {
-            "get": {
-                "tags": [
-                    "Shipping fees"
-                ],
-                "summary": "Get all shipping fees",
-                "description": "Display a list of all shipping fees",
-                "operationId": "getShippingFees",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Lista de taxas de entrega",
-                                    "data": {
-                                        "shipping_fees": [
-                                            {
-                                                "id": "integer",
-                                                "delivery_from_id": "integer",
-                                                "delivery_from_name": "string",
-                                                "delivery_to_id": "integer",
-                                                "delivery_to_name": "string",
-                                                "price": "float"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/shippingfees/{id}": {
-            "get": {
-                "tags": [
-                    "Shipping fees"
-                ],
-                "summary": "Get the especified shipping fee",
-                "description": "Display the resource specified by ID.",
-                "operationId": "getShippingFeeById",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Shipping fee id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Taxas de entrega",
-                                    "data": {
-                                        "shipping_fees": [
-                                            {
-                                                "id": "integer",
-                                                "delivery_from_id": "integer",
-                                                "delivery_from_name": "string",
-                                                "delivery_to_id": "integer",
-                                                "delivery_to_name": "string",
-                                                "price": "float"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/shippingfees/{from}/{to}": {
-            "get": {
-                "tags": [
-                    "Shipping fees"
-                ],
-                "summary": "Get the especified shipping fee",
-                "description": "Display the resource specified by FROM(delivery_from) TO(delivery_to) paramters.",
-                "operationId": "getShippingFeebyFromTo",
-                "parameters": [
-                    {
-                        "name": "from",
-                        "in": "path",
-                        "description": "County id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "to",
-                        "in": "path",
-                        "description": "County id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "status": "success",
-                                    "message": "Taxas de entrega",
-                                    "data": {
-                                        "shipping_fees": [
-                                            {
-                                                "id": "integer",
-                                                "delivery_from_id": "integer",
-                                                "delivery_from_name": "string",
-                                                "delivery_to_id": "integer",
-                                                "delivery_to_name": "string",
-                                                "price": "float"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
                     },
                     "400": {
                         "description": "Bad request"

@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\General\CountyController;
+use App\Http\Controllers\Api\General\FrontOfficeController;
+use App\Http\Controllers\Api\General\ShippingFeeController;
+use App\Http\Controllers\Api\General\ProvinceController;
+
 use App\Http\Controllers\Api\Client\AddressController as ClientAddressController;
 use App\Http\Controllers\Api\Client\CartController    as ClientCartController;
 use App\Http\Controllers\Api\Client\OrderController   as ClientOrderController;
@@ -12,16 +17,13 @@ use App\Http\Controllers\Api\Client\OrderRatingController;
 use App\Http\Controllers\Api\Client\PartnerRatingController;
 use App\Http\Controllers\Api\Client\ProductRatingController;
 use App\Http\Controllers\Api\Client\ReceiptController;
-use App\Http\Controllers\Api\CountyController;
-use App\Http\Controllers\Api\FrontOfficeController;
+
 use App\Http\Controllers\Api\PartnerCategoryController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\ShippingFeeController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
-use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Web\CampaignController;
 
 use App\Http\Controllers\Api\Partner\OrderController as PartnerOrderController;
@@ -42,32 +44,51 @@ use App\Models\Campaign;
 # API - Version 01
 Route::group(['prefix' => 'v1'], function() 
 {   
+    /*
+    |--------------------------------------------------------------------------
+    | GENERAL ENDPOINTS
+    |--------------------------------------------------------------------------
+    */ 
+    
+    #   COUNTIES
+    Route::prefix('counties')->group(function () 
+    {
+        Route::get('/',     [CountyController::class, 'index']);
+        Route::get('/{id}', [CountyController::class, 'show' ]);
+    });
+    
+    #   PROVINCES
+    Route::prefix('provinces')->group(function () 
+    {
+        Route::get('/',     [ProvinceController::class, 'index']);
+        Route::get('/{id}', [ProvinceController::class, 'show' ]);
+    });
+
+    #   WEB CONTENT
+    Route::prefix('contents')->group(function () 
+    {
+        Route::get('/',          [FrontOfficeController::class, 'showContents']);
+        Route::get('/{content}', [FrontOfficeController::class, 'showContent' ]);
+    });
+
+    #   SHIPPING FEE
+    Route::apiResources([
+        'shippingfees' => ShippingFeeController::class,
+    ]);
+    Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
+
     #   AUTH CLIENT
     Route::post('register', [PassportAuthController::class, 'register']);
     Route::post('login',    [PassportAuthController::class, 'login'   ]);
     Route::post('logout',   [PassportAuthController::class, 'logout'  ])->middleware(['auth:api']);;
     
-    #   WEB CONTENT
-    Route::get('/contents/{content}', [FrontOfficeController::class, 'showContent' ]);
-    Route::get('/contents',           [FrontOfficeController::class, 'showContents']);
-
-    #   COUNTIES
-    Route::get('counties',      [CountyController::class, 'index']);
-    Route::get('counties/{id}', [CountyController::class, 'show' ]);
-
-    #   PROVINCES
-    Route::get('provinces',      [ProvinceController::class, 'index']);
-    Route::get('provinces/{id}', [ProvinceController::class, 'show' ]);
-
+    /*
+    |--------------------------------------------------------------------------
+    | AUTH PROTECTED ENDPOINTS
+    |--------------------------------------------------------------------------
+    */ 
     Route::middleware('auth:api')->group(function () {
 
-        #   SHIPPING FEE
-        Route::apiResources([
-            'shippingfees' => ShippingFeeController::class,
-        ]);
-        Route::get('shippingfees/{from}/{to}',  [ShippingFeeController::class, 'showByFromTo' ]);
-
-        
         /*
         |--------------------------------------------------------------------------
         | CLIENT ENDPOINTS

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\General;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ShippingFeeCollection;
@@ -15,7 +15,7 @@ class ShippingFeeController extends Controller
      **
      *
      * @OA\Get(path="/api/v1/shippingfees",
-     *   tags={"Shipping fees"},
+     *   tags={"General: Shipping fees"},
      *   summary="Get all shipping fees",
      *   description="Display a list of all shipping fees",
      *   operationId="getShippingFees",
@@ -54,9 +54,6 @@ class ShippingFeeController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
-     *   security={
-     *      {"api_key": {}}
-     *   }
      * )
      *
      * @return \Illuminate\Http\Response
@@ -74,7 +71,7 @@ class ShippingFeeController extends Controller
      **
      *
      * @OA\Get(path="/api/v1/shippingfees/{id}",
-     *   tags={"Shipping fees"},
+     *   tags={"General: Shipping fees"},
      *   summary="Get the especified shipping fee",
      *   description="Display the resource specified by ID.",
      *   operationId="getShippingFeeById",
@@ -122,9 +119,6 @@ class ShippingFeeController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
-     *   security={
-     *      {"api_key": {}}
-     *   }
      * )
      *
      * @param  int  $id
@@ -143,7 +137,7 @@ class ShippingFeeController extends Controller
      **
      *
      * @OA\Get(path="/api/v1/shippingfees/{from}/{to}",
-     *   tags={"Shipping fees"},
+     *   tags={"General: Shipping fees"},
      *   summary="Get the especified shipping fee",
      *   description="Display the resource specified by FROM(delivery_from) TO(delivery_to) paramters.",
      *   operationId="getShippingFeebyFromTo",
@@ -200,9 +194,6 @@ class ShippingFeeController extends Controller
      *      response=403,
      *      description="Forbidden"
      *   ),
-     *   security={
-     *      {"api_key": {}}
-     *   }
      * )
      *
      * @param  int  $id

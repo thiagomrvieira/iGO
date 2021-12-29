@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\General;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartProductCollection;
@@ -27,7 +27,7 @@ class CountyController extends Controller
      * *
      * 
      * @OA\Get(path="/api/v1/counties",
-     *   tags={"Counties"},
+     *   tags={"General: Counties"},
      *   summary="Show counties",
      *   description="Display a list of all conties",
      *   operationId="showConties",
@@ -87,7 +87,7 @@ class CountyController extends Controller
      * Display a specified county data
      **
      * @OA\Get(path="/api/v1/counties/{id}",
-     *   tags={"Counties"},
+     *   tags={"General: Counties"},
      *   summary="Get a specified county",
      *   description="Get the details of a specified county",
      *   operationId="getACounty",

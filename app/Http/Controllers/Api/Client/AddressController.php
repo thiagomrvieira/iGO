@@ -84,7 +84,7 @@ class AddressController extends Controller
         
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Endereços',
-                                 'data'    => new ClientAddressCollection(Address::where('user_id', Auth::user()->id)->get())], 200); 
+                                 'data'    => new ClientAddressCollection( Address::where('user_id', Auth::user()->id)->where('active', true)->get() )], 200); 
     }
 
     /**
@@ -256,7 +256,7 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        if ( Address::where('user_id', Auth::user()->id)->where('id', $id)->delete() ){
+        if ( Address::where('user_id', Auth::user()->id)->where('id', $id)->update(['active' => false]) ){
             $message = 'Endereço removido';
         }
             

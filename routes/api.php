@@ -108,23 +108,24 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('favorite/{partner}', [ClientController::class, 'favoritePartner']);
             
             #   ADDRESSES
-            Route::get('addresses',         [ClientAddressController::class, 'index'  ]);
-            Route::post('addresses',        [ClientAddressController::class, 'update' ]);
-            Route::delete('addresses/{id}', [ClientAddressController::class, 'destroy']);
-            
+            Route::prefix('addresses')->group(function () 
+            {
+                Route::get('/',         [ClientAddressController::class, 'index'  ]);
+                Route::post('/',        [ClientAddressController::class, 'update' ]);
+                Route::delete('{id}',   [ClientAddressController::class, 'destroy']);
+            });
+
             #   Review & Rating
             Route::post('order/{id}/orderrating',       [OrderRatingController::class,       'store']);
             Route::post('order/{id}/deliverymanrating', [DeliverymanRatingController::class, 'store']);
             Route::post('order/{id}/productrating',     [ProductRatingController::class,     'store']);
             Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
             
-
             Route::apiResources([
                 'cart'         => ClientCartController::class,
                 'partners'     => PartnerController::class,
                 'categories'   => PartnerCategoryController::class,
                 'products'     => ProductController::class,
-                // 'receipt'      => ReceiptController::class,
             ]);
 
             #   CLIENT ORDERS

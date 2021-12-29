@@ -25,6 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('locality');
             $table->string('post_code')->nullable();
             $table->string('country')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

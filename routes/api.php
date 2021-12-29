@@ -164,7 +164,7 @@ Route::group(['prefix' => 'v1'], function()
             #   DEIVERYMAN ORDERS
             Route::prefix('orders')->group(function () 
             {
-                Route::get('/',             [DeliverymanOrderController::class, 'index'                 ]);
+                Route::get('/',           [DeliverymanOrderController::class, 'index'                 ]);
                 Route::get('new',         [DeliverymanOrderController::class, 'getNewOrderList'       ]);
                 Route::get('inprogress',  [DeliverymanOrderController::class, 'getInProgressOrderList']);
                 Route::get('completed',   [DeliverymanOrderController::class, 'getCompletedOrderList' ]);

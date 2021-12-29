@@ -416,7 +416,7 @@ class OrderController extends Controller
      *   tags={"Partner: Orders"},
      *   summary="Get/Accept the specified order",
      *   description="Partner accept the specified Order",
-     *   operationId="partnermanGetOrder",
+     *   operationId="partnerGetOrder",
      *   @OA\Parameter(
      *      name="id",
      *      description="Order id",
@@ -488,7 +488,7 @@ class OrderController extends Controller
      *   tags={"Partner: Orders"},
      *   summary="Refuse the specified order",
      *   description="Partner refuse the specified Order",
-     *   operationId="partnermanRefuseOrder",
+     *   operationId="partnerRefuseOrder",
      *   @OA\Parameter(
      *      name="id",
      *      description="Order id",
@@ -559,6 +559,78 @@ class OrderController extends Controller
 
         return response()->json(['status'  => $status  ?? 'not found',
                                  'message' => $message ?? 'Não foi possível recusar o pedido especificado!',
+                                ], $statusCode ?? 404); 
+    }
+
+    /**
+     * FINISH THE SPECIFIED ORDER 
+     **
+     * 
+     * @OA\Patch(path="/api/v1/partner/orders/{id}/finish",
+     *   tags={"Partner: Orders"},
+     *   summary="Partner finish the specified order",
+     *   description="Make it visible for the Deliveryman to accept",
+     *   operationId="partnerFinishOrder",
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Order id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *               "status": "success",
+     *               "message": "Pedido submetido ao estafeta",
+     *           }
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function finishOrder(Request $request, $id)
+    {
+        #   Check if the Order has been submitted 
+        $order = $this->getPartnerOrderById($id);
+
+        if ($order->where('order_status_type_id', 4)->count() > 0 ?? null) 
+        {
+            #   Change status to 
+            $order->update([ 'order_status_type_id' => 5 ]);
+
+            $status     = "success";
+            $message    = "Pedido submetido ao estafeta"; 
+            $statusCode = 200;
+        }
+
+        return response()->json(['status'  => $status  ?? 'not found',
+                                 'message' => $message ?? 'Não foi possível submeter o pedido ao estafeta!',
                                 ], $statusCode ?? 404); 
     }
 

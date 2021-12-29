@@ -14,10 +14,12 @@ class CartProductCollection extends ResourceCollection
      */
     public function toArray($request)
     {   
+        $partner = $this->collection->first()->product->partner;
+        
         return [
             'partner' => [
-                'id'   => $this->collection->first()->product->partner->id,
-                'name' => $this->collection->first()->product->partner->name,
+                'id'   => $partner->id,
+                'name' => $partner->company_name,
             ],
             'products'       => $this->collection,
             'total_products' => $this->collection->sum('quantity'),

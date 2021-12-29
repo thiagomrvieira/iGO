@@ -3483,7 +3483,7 @@
                 ],
                 "summary": "Get/Accept the specified order",
                 "description": "Partner accept the specified Order",
-                "operationId": "partnermanGetOrder",
+                "operationId": "partnerGetOrder",
                 "parameters": [
                     {
                         "name": "id",
@@ -3534,7 +3534,7 @@
                 ],
                 "summary": "Refuse the specified order",
                 "description": "Partner refuse the specified Order",
-                "operationId": "partnermanRefuseOrder",
+                "operationId": "partnerRefuseOrder",
                 "parameters": [
                     {
                         "name": "id",
@@ -3570,6 +3570,57 @@
                                 "example": {
                                     "status": "success",
                                     "message": "Pedido aceito"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/partner/orders/{id}/finish": {
+            "patch": {
+                "tags": [
+                    "Partner: Orders"
+                ],
+                "summary": "Partner finish the specified order",
+                "description": "Make it visible for the Deliveryman to accept",
+                "operationId": "partnerFinishOrder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Pedido submetido ao estafeta"
                                 }
                             }
                         }
@@ -3698,8 +3749,7 @@
                                         "shipping_fee": "float",
                                         "total": "float",
                                         "discount": "float",
-                                        "total_final": "float",
-                                        "can_reorder": "boolean"
+                                        "total_final": "float"
                                     }
                                 }
                             }

@@ -28,7 +28,7 @@ class PassportAuthController extends Controller
      **
      *  @OA\Post(
      *      path="/api/v1/register",
-     *      tags={"Auth"},
+     *      tags={"General: Auth"},
      *      summary="Register a new user",
      *      description="Create a new user and return token",
      *      operationId="register",
@@ -141,7 +141,7 @@ class PassportAuthController extends Controller
      **
      *  @OA\Post(
      *      path="/api/v1/login",
-     *      tags={"Auth"},
+     *      tags={"General: Auth"},
      *      summary="Login",
      *      description="Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
      *      operationId="login",
@@ -241,7 +241,7 @@ class PassportAuthController extends Controller
      **
      *  @OA\Post(
      *      path="/api/v1/logout",
-     *      tags={"Auth"},
+     *      tags={"General: Auth"},
      *      summary="Logout",
      *      description="Remove api token for logged user",
      *      operationId="logout",

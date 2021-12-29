@@ -3357,7 +3357,7 @@
         "/api/v1/register": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "General: Auth"
                 ],
                 "summary": "Register a new user",
                 "description": "Create a new user and return token",
@@ -3466,7 +3466,7 @@
         "/api/v1/login": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "General: Auth"
                 ],
                 "summary": "Login",
                 "description": "Log user and return an api token - For protected routes set the authorization: Bearer {api_token}",
@@ -3543,7 +3543,7 @@
         "/api/v1/logout": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "General: Auth"
                 ],
                 "summary": "Logout",
                 "description": "Remove api token for logged user",

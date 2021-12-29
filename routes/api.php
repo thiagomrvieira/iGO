@@ -117,13 +117,14 @@ Route::group(['prefix' => 'v1'], function()
             Route::post('order/{id}/deliverymanrating', [DeliverymanRatingController::class, 'store']);
             Route::post('order/{id}/productrating',     [ProductRatingController::class,     'store']);
             Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
+            
 
             Route::apiResources([
                 'cart'         => ClientCartController::class,
                 'partners'     => PartnerController::class,
                 'categories'   => PartnerCategoryController::class,
                 'products'     => ProductController::class,
-                'receipt'      => ReceiptController::class,
+                // 'receipt'      => ReceiptController::class,
             ]);
 
             #   CLIENT ORDERS
@@ -138,6 +139,8 @@ Route::group(['prefix' => 'v1'], function()
                 Route::get('{id}',            [ClientOrderController::class, 'show'      ]);
                 Route::post('{id}/replicate', [ClientOrderController::class, 'replicate' ]);
                 Route::patch('{id}/cancel',   [ClientOrderController::class, 'cancel'    ]);
+                Route::get('{id}/receipt',    [ReceiptController::class,     'show' ]);
+
             });
             #   Show Main and Sub categories
             Route::get('maincategories', [PartnerCategoryController::class,  'showMain']);

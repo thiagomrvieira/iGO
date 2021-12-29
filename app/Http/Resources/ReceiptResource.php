@@ -16,6 +16,7 @@ class ReceiptResource extends JsonResource
     {
         return [
             'order_id'     => $this->order->id,
+            'order_number' => '#' . str_pad($this->order->id, 8, 0, STR_PAD_LEFT),
             'partner'      => [
                 'name'    => $this->partner->name,
                 'address' => $this->partner->address->line_1,

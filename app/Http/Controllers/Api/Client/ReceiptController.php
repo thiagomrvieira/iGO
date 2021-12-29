@@ -15,8 +15,8 @@ class ReceiptController extends Controller
     /**
      * GET THE SPECIFIED ORDER
      * *
-     * @OA\Get(path="/api/v1/client/receipt/{id}",
-     *   tags={"Client: Order Receipt"},
+     * @OA\Get(path="/api/v1/client/orders/{id}/receipt",
+     *   tags={"Client: Orders"},
      *   summary="Get the specified receipt",
      *   description="Return data of the specified order",
      *   operationId="getOrderReceipt",

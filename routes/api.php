@@ -159,11 +159,11 @@ Route::group(['prefix' => 'v1'], function()
         {
             #   ORDERS
             Route::get('orders',               [PartnerOrderController::class, 'index'                 ]);
-            Route::get('orders/{id}',          [PartnerOrderController::class, 'show'                  ]);
             Route::get('orders/new',           [PartnerOrderController::class, 'getNewOrderList'       ]);
             Route::get('orders/inprogress',    [PartnerOrderController::class, 'getInProgressOrderList']);
             Route::get('orders/completed',     [PartnerOrderController::class, 'getCompletedOrderList' ]);
             Route::get('orders/refused',       [PartnerOrderController::class, 'getRefusedOrderList'   ]);
+            Route::get('orders/{id}',          [PartnerOrderController::class, 'show'                  ]);
             Route::get('orders/{id}/accept',   [PartnerOrderController::class, 'acceptOrder'           ]);
             Route::patch('orders/{id}/refuse', [PartnerOrderController::class, 'refuseOrder'           ]);
             Route::patch('orders/{id}/finish', [PartnerOrderController::class, 'finishOrder'           ]);

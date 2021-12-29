@@ -463,7 +463,7 @@ class OrderController extends Controller
     public function acceptOrder($id)
     {
         #   Check if the Order has been submitted 
-        $order = $this->getPartnerOderById($id);
+        $order = $this->getPartnerOrderById($id);
 
         if ($order->whereIn('order_status_type_id', array(2, 3))->count() > 0 ?? null) 
         {

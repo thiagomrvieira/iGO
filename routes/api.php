@@ -21,10 +21,10 @@ use App\Http\Controllers\Api\Client\PartnerCategoryController;
 use App\Http\Controllers\Api\Client\PartnerController;
 use App\Http\Controllers\Api\Client\ProductController;
 
-
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
 
-use App\Http\Controllers\Api\Partner\OrderController as PartnerOrderController;
+use App\Http\Controllers\Api\Partner\OrderController   as PartnerOrderController;
+use App\Http\Controllers\Api\Partner\PartnerController as PartnerProfileController;
 
 
 /*
@@ -196,6 +196,13 @@ Route::group(['prefix' => 'v1'], function()
                 Route::patch('{id}/finish', [PartnerOrderController::class, 'finishOrder'           ]);
             });
         
+            #   PARTNER PROFILE
+            Route::prefix('profile')->group(function () 
+            {
+                #   Get/Update Partner data
+                Route::get('/',   [PartnerProfileController::class, 'getPartnerData'   ]);
+                Route::patch('/', [PartnerProfileController::class, 'updatePartnerData']);
+            });
 
         });
 

@@ -20,10 +20,17 @@ trait PartnerTrait {
         $canActivate = $partner->products->count() < 1      ? false : true;
         #   Check if the partner has schedule
         $canActivate = $partner->schedule->count() < 1      ? false : true;
-                   
+        
         return $canActivate ?? false;
     }
+    
+    #   Update Partner data - API
+    public function updatePartner($request)
+    {
+        return Partner::updateOrCreate(['user_id' => Auth::user()->id], $request->all());
+        
+    }
+    
 
-   
     
 }

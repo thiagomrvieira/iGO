@@ -4479,6 +4479,121 @@
                         "api_key": []
                     }
                 ]
+            },
+            "patch": {
+                "tags": [
+                    "Partner: Partner data"
+                ],
+                "summary": "Change client password",
+                "description": "Update client password",
+                "operationId": "setClientProfile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "company_name": {
+                                        "type": "string",
+                                        "example": "Dolor sit ame"
+                                    },
+                                    "responsible_name": {
+                                        "type": "string",
+                                        "example": "Mussum Ipsum"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "mussum@igo.pt"
+                                    },
+                                    "phone_number": {
+                                        "type": "integer",
+                                        "example": "312 978 645"
+                                    },
+                                    "mobile_phone_number": {
+                                        "type": "integer",
+                                        "example": "978 645 312"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados atualizados",
+                                    "data": {
+                                        "company_name": "String",
+                                        "responsible_name": "String",
+                                        "email": "String",
+                                        "phone_number": "String",
+                                        "mobile_phone_number": "String",
+                                        "images": {
+                                            "image_cover": "String",
+                                            "image_01": "String",
+                                            "image_02": "String",
+                                            "image_03": "String"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "name": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "email": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "mobile_phone_number": [
+                                            [
+                                                "string"
+                                            ]
+                                        ],
+                                        "line_1": [
+                                            [
+                                                "string"
+                                            ]
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         }
     },

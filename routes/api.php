@@ -204,6 +204,9 @@ Route::group(['prefix' => 'v1'], function()
                 Route::get('/',   [PartnerProfileController::class, 'getPartnerData'   ]);
                 Route::patch('/', [PartnerProfileController::class, 'updatePartnerData']);
             });
+            
+            #   PARTNER CONTACTS
+            Route::get('/contacts',   [PartnerProfileController::class, 'getPartnerContacts']);
 
             #   PARTNER REVIEW & RATING
             Route::prefix('reviews')->group(function () 

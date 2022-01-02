@@ -4597,6 +4597,51 @@
                 ]
             }
         },
+        "/api/v1/partner/contacts": {
+            "get": {
+                "tags": [
+                    "Partner: Partner data"
+                ],
+                "summary": "Get partner contacts",
+                "description": "Get contacts from logged Partner",
+                "operationId": "getPartnerContacts",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados pessoais",
+                                    "data": {
+                                        "email": "String",
+                                        "phone_number": "String",
+                                        "mobile_phone_number": "String"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/api/v1/partner/reviews": {
             "get": {
                 "tags": [

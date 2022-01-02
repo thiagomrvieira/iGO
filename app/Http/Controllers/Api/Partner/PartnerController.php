@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PartnerContactsResource;
 use App\Http\Resources\PartnerPersonalDataResource;
 use App\Http\Traits\ImagesTrait;
 use App\Http\Traits\PartnerTrait;
@@ -194,5 +195,59 @@ class PartnerController extends Controller
                                  'message' => $message ?? 'Dados atualizados',
                                  'data'    => new PartnerPersonalDataResource( Auth::user()->partner )], 200); 
         
+    }
+
+    /**
+     * GET CLIENT CONTACTS
+     * *
+     * 
+     * @OA\Get(path="/api/v1/partner/contacts",
+     *   tags={"Partner: Partner data"},
+     *   summary="Get partner contacts",
+     *   description="Get contacts from logged Partner",
+     *   operationId="getPartnerContacts",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Dados pessoais",
+     *              "data": {
+     *                  "email": "String",
+     *                  "phone_number": "String",
+     *                  "mobile_phone_number": "String",
+     *              },
+     *          },
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function getPartnerContacts()
+    {
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Contatos do Aderente',
+                                 'data'    => new PartnerContactsResource( Auth::user()->partner )], 200); 
     }
 }

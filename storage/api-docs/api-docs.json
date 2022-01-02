@@ -4678,7 +4678,7 @@
                             "application/json": {
                                 "example": {
                                     "status": "success",
-                                    "message": "Dados pessoais",
+                                    "message": "Review do aderente",
                                     "data": {
                                         "id": "integer",
                                         "client_name": "string",

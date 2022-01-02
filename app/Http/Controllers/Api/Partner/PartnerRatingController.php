@@ -77,4 +77,73 @@ class PartnerRatingController extends Controller
                                                                         ->orderBy('created_at', 'desc')->get()  )], 200); 
 
     }
+
+
+    /**
+     * GET THE SPECIFIED PARTNER REVIEW
+     * *
+     * 
+     * @OA\Get(path="/api/v1/partner/reviews/{id}",
+     *   tags={"Partner: Review & Rating"},
+     *   summary="Get partner review",
+     *   description="Get a specific partner review by id",
+     *   operationId="getPartnerReview",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *           example= {
+     *              "status": "success",
+     *              "message": "Review do aderente",
+     *              "data": {
+     *                  "id": "integer",
+     *                  "client_name": "string",
+     *                  "client_image": "string",
+     *                  "review": "string",
+     *                  "rating": "integer",
+     *                  "date": "datetime"
+     *              },
+     *          },
+     *      ),
+     *   ),
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="Review id",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400, 
+     *      description="Bad request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Not found"
+     *   ),
+     *   @OA\Response(
+     *      response=403,
+     *      description="Forbidden"
+     *   ),
+     *   security={
+     *     {"api_key": {}}
+     *   }
+     * )
+     *
+     */
+    public function show($id)
+    {
+        return response()->json(['status'  => $status  ?? 'success',
+                                 'message' => $message ?? 'Review do aderente',
+                                 'data'    => new ReviewResource( PartnerRating::where('partner_id', Auth::user()->partner->id)
+                                                                               ->where('id', $id)->first() )], 200);    
+
+    }
 }

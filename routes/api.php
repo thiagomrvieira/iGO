@@ -209,8 +209,8 @@ Route::group(['prefix' => 'v1'], function()
             Route::prefix('reviews')->group(function () 
             {
                 #   Get Partner Reviews
-                Route::get('/',   [PartnerRatingController::class, 'index' ]);
-                Route::patch('/', [PartnerRatingController::class, 'show'  ]);
+                Route::get('/',     [PartnerRatingController::class, 'index' ]);
+                Route::get('/{id}', [PartnerRatingController::class, 'show'  ]);
             });
 
         });

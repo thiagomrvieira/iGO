@@ -73,7 +73,8 @@ class PartnerRatingController extends Controller
     {
         return response()->json(['status'  => $status  ?? 'success',
                                  'message' => $message ?? 'Reviews do aderente',
-                                 'data'    => new ReviewCollection( PartnerRating::where('partner_id', Auth::user()->partner->id)->get()  )], 200); 
+                                 'data'    => new ReviewCollection( PartnerRating::where('partner_id', Auth::user()->partner->id)
+                                                                        ->orderBy('created_at', 'desc')->get()  )], 200); 
 
     }
 }

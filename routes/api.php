@@ -8,13 +8,13 @@ use App\Http\Controllers\Api\General\ShippingFeeController;
 use App\Http\Controllers\Api\General\ProvinceController;
 use App\Http\Controllers\Api\General\PassportAuthController;
 
-use App\Http\Controllers\Api\Client\AddressController as ClientAddressController;
-use App\Http\Controllers\Api\Client\CartController    as ClientCartController;
-use App\Http\Controllers\Api\Client\OrderController   as ClientOrderController;
+use App\Http\Controllers\Api\Client\AddressController       as ClientAddressController;
+use App\Http\Controllers\Api\Client\CartController          as ClientCartController;
+use App\Http\Controllers\Api\Client\OrderController         as ClientOrderController;
 use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Client\DeliverymanRatingController;
 use App\Http\Controllers\Api\Client\OrderRatingController;
-use App\Http\Controllers\Api\Client\PartnerRatingController;
+use App\Http\Controllers\Api\Client\PartnerRatingController as ClientPartnerRatingController;
 use App\Http\Controllers\Api\Client\ProductRatingController;
 use App\Http\Controllers\Api\Client\ReceiptController;
 use App\Http\Controllers\Api\Client\PartnerCategoryController;
@@ -23,8 +23,9 @@ use App\Http\Controllers\Api\Client\ProductController;
 
 use App\Http\Controllers\Api\Deliveryman\OrderController as DeliverymanOrderController;
 
-use App\Http\Controllers\Api\Partner\OrderController   as PartnerOrderController;
-use App\Http\Controllers\Api\Partner\PartnerController as PartnerProfileController;
+use App\Http\Controllers\Api\Partner\OrderController         as PartnerOrderController;
+use App\Http\Controllers\Api\Partner\PartnerController       as PartnerProfileController;
+use App\Http\Controllers\Api\Partner\PartnerRatingController as PartnerRatingController;
 
 
 /*
@@ -113,10 +114,10 @@ Route::group(['prefix' => 'v1'], function()
             });
 
             #   Review & Rating
-            Route::post('order/{id}/orderrating',       [OrderRatingController::class,       'store']);
-            Route::post('order/{id}/deliverymanrating', [DeliverymanRatingController::class, 'store']);
-            Route::post('order/{id}/productrating',     [ProductRatingController::class,     'store']);
-            Route::post('order/{id}/partnerrating',     [PartnerRatingController::class,     'store']);
+            Route::post('order/{id}/orderrating',       [OrderRatingController::class,         'store']);
+            Route::post('order/{id}/deliverymanrating', [DeliverymanRatingController::class,   'store']);
+            Route::post('order/{id}/productrating',     [ProductRatingController::class,       'store']);
+            Route::post('order/{id}/partnerrating',     [ClientPartnerRatingController::class, 'store']);
             
             Route::apiResources([
                 'cart'         => ClientCartController::class,
@@ -202,6 +203,14 @@ Route::group(['prefix' => 'v1'], function()
                 #   Get/Update Partner data
                 Route::get('/',   [PartnerProfileController::class, 'getPartnerData'   ]);
                 Route::patch('/', [PartnerProfileController::class, 'updatePartnerData']);
+            });
+
+            #   PARTNER REVIEW & RATING
+            Route::prefix('reviews')->group(function () 
+            {
+                #   Get Partner Reviews
+                Route::get('/',   [PartnerRatingController::class, 'index' ]);
+                Route::patch('/', [PartnerRatingController::class, 'show'  ]);
             });
 
         });

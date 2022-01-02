@@ -2391,6 +2391,7 @@
                                         "partner": "string",
                                         "category_icon": "string",
                                         "total_reviews": "integer",
+                                        "rating": "float",
                                         "reviews": [
                                             {
                                                 "id": "integer",
@@ -4587,6 +4588,61 @@
                                 }
                             }
                         }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/partner/reviews": {
+            "get": {
+                "tags": [
+                    "Partner: Review & Rating"
+                ],
+                "summary": "Get partner reviews",
+                "description": "",
+                "operationId": "getPartnerReviews",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Dados pessoais",
+                                    "data": {
+                                        "partner": "string",
+                                        "category_icon": "string",
+                                        "total_reviews": "integer",
+                                        "reviews": [
+                                            {
+                                                "id": "integer",
+                                                "client_name": "string",
+                                                "client_image": "string",
+                                                "review": "string",
+                                                "rating": "integer",
+                                                "date": "datetime"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 },
                 "security": [

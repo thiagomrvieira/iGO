@@ -400,6 +400,7 @@ class PartnerController extends Controller
      *                  "partner": "string",
      *                   "category_icon": "string",
      *                   "total_reviews": "integer",
+     *                   "rating": "float",
      *                   "reviews": {
      *                      {
      *                          "id": "integer",

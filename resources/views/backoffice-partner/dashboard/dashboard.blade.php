@@ -54,7 +54,13 @@
                             {{-- Featured dishes --}}
                             <div class="dashboard-product-content">
                                 <div class="dashboard-product-count">
-                                    <p>{{ $products->count() }}</p>
+                                    <p>{{ 
+                                        $products->where('featured.active', 1)
+                                                 ->where('featured.start_date',  '<=', Carbon\Carbon::now())
+                                                 ->where('featured.finish_date', '>=', Carbon\Carbon::now())
+                                                 ->count() 
+                                        }}
+                                    </p>
                                 </div>
                                     
                                 <div class="dashboard-inserted-product-values">

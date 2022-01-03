@@ -3,23 +3,23 @@
 @php
     $partner = Auth::user()->partner ?? null;
     
-    $workTime = [
-        '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', 
-        '00:70', '08:00', '09:00', '10:00', '11:00', '12:00',  
-        '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
-        '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', 
-    ];
+    // $workTime = [
+    //     '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', 
+    //     '00:70', '08:00', '09:00', '10:00', '11:00', '12:00',  
+    //     '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
+    //     '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', 
+    // ];
     
-    $workDays = [ 
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday',
-        'sunday',
-        'holiday',
-    ];
+    // $workDays = [ 
+    //     'monday',
+    //     'tuesday',
+    //     'wednesday',
+    //     'thursday',
+    //     'friday',
+    //     'saturday',
+    //     'sunday',
+    //     'holiday',
+    // ];
 @endphp
 
 @section('content')
@@ -99,6 +99,7 @@
                                         <p>Formato jpeg/png</p>  
 
                                         <div class="form-group">
+                                            {{-- {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null,  --}}
                                             {!! Form::text('name', (isset($product) && $product->name) ? $product->name : null, 
                                                         ['class' => 'form-control', 'placeholder' => 'Nome do produto*']) !!}
                                         </div>
@@ -179,7 +180,7 @@
                                     {{--  Side Product item --}}
                                     <div class="accordion-item side-product">
                                         <button class="accordion-button" type="button">
-                                            <h3><strong>Acompanhamentos*</strong></h3>
+                                            <h3><strong>Acompanhamentos</strong></h3>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
                                                 <g id="arrow" transform="translate(282 -315) rotate(90)">
                                                 <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">
@@ -211,7 +212,7 @@
                                     {{--  Sauce item --}}
                                     <div class="accordion-item sauce-product">
                                         <button class="accordion-button" type="button">
-                                            <h3><strong>Molhos*</strong></h3>
+                                            <h3><strong>Molhos</strong></h3>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
                                                 <g id="arrow" transform="translate(282 -315) rotate(90)">
                                                 <g id="Group_10953" data-name="Group 10953" transform="translate(0 14.883)">

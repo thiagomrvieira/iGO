@@ -111,12 +111,12 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         # Get User/Partner and his main category
-        $partner = Auth::user()->partner;
+        $partner         = Auth::user()->partner;
         $partnerCategory = $partner->mainCategory;
         
         # Get Product and Partner categories
-        $productCategories = ProductCategory::where('active', true)->get();
-        $categories = PartnerCategory::where('active', 1)->where('parent_id', $partnerCategory->id )->get() ?? [];
+        $productCategories = ProductCategory::where(['active' => true, 'partner_category_id' => $partnerCategory->id ])->get();
+        $categories        = PartnerCategory::where(['active' => 1,    'parent_id'           => $partnerCategory->id ])->get() ?? [];
         
         if($partner->mainCategory->slug == 'restaurantes'){
             # Get Side products

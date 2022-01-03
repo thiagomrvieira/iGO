@@ -35,7 +35,7 @@
             <li class="nav-item">
               <a href="{{ route('partner.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-pencil-alt"></i>
-                <p> {{ __('backoffice/sidebar.preregistation') }} </p>
+                <p> {{ __('backoffice/sidebar.partners') }} </p>
               </a>
             </li>
             <li class="nav-item">

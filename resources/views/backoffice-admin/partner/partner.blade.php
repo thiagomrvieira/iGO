@@ -33,7 +33,7 @@
                 @if (isset($partners) && count($partners) > 0)
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('backoffice/partners.prePartnerList') }}</h3>
+                            <h3 class="card-title">{{ __('backoffice/partners.partnerList') }}</h3>
                         </div>
 
                         <div class="card-body table-responsive p-0">

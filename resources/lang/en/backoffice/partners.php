@@ -11,7 +11,7 @@
 
     return [ 
         'partners'          => "Aderentes",
-        'prePartnerList'    => "Lista de pré-registo de aderentes",
+        'partnerList'       => "Lista de aderentes",
         'home'              => "Início",
         'id'                => "ID",
         'company'           => "Empresa",

@@ -43,7 +43,10 @@
                             <div class="accordion" id="accordionProducts">
 
                                 {{-- Featured Products --}}
-                                @if ($products->where('featured')->count() > 0)
+                                @if ($products->where('featured.active', 1)
+                                              ->where('featured.start_date',  '<=', Carbon\Carbon::now())
+                                              ->where('featured.finish_date', '>=', Carbon\Carbon::now())
+                                              ->count() > 0)
                                     <div class="accordion-item products-cerification">
                                         <button class="accordion-button is-open" type="button">
                                             <h3><strong>Destaques</strong></h3>
@@ -68,13 +71,17 @@
                                                                 <div class="card-body-left">
                                                                     <div class="card-body-image" >
                                                                         @if ($featuredProduct->image)
-                                                                            <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" alt="Product Image" height="90px">
+                                                                            <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}" >
+                                                                                <img src="{{url('/storage/images/partner/'.$partner->id. '/products/' .$featuredProduct->image)}}" alt="Product Image" height="90px">
+                                                                            </a>
                                                                         @endif
                                                                     </div>
                                                                     <div class="card-body-values"> 
-                                                                        <h3>{{$featuredProduct->name}}</h3>
-                                                                        <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
-                                                                        <p>{{ number_format(($featuredProduct->price / 100), 2) }}AKZ</p>
+                                                                        <a href="{{ route('products.edit', ['product' => $featuredProduct] ) }}" style="text-decoration:none">
+                                                                            <h3>{{$featuredProduct->name}}</h3>
+                                                                            <p>{{ Str::limit($featuredProduct->description, 60, '...') }}</p>
+                                                                            <p>{{ number_format(($featuredProduct->price / 100), 2) }}AKZ</p>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                                 

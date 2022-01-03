@@ -108,10 +108,8 @@
                                                             ['class' => 'form-control', 'placeholder' => 'Descrição do produto*']) !!}
                                         </div>
                                         <div class="form-group product-price">
-                                            @if ((isset($product) && $product->price))
-                                                <?php $product_price =  number_format(($product->price / 100), 2) ?>
-                                            @endif
-                                            {!! Form::number('price', $product_price ?? 0.00, ['class' => 'form-control', 'placeholder' => 'Custo*', 'min' => 1, 'step' => 'any']) !!}
+                                            {!! Form::number('price', (isset($product) && $product->price) ? ($product->price / 100) : null, 
+                                                        ['class' => 'form-control', 'placeholder' => isset($product) && $product->price ? number_format(($product->price / 100), 2) :'Custo*', 'min' => 1, 'step' => 'any']) !!}
                                         </div>
                                         <div class="menu-label-radio">
                                             {!! Form::label('available', 'Produto disponível?', ['class' => 'form-check-label']) !!}

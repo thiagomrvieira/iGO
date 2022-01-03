@@ -22,8 +22,6 @@
     ];
 @endphp
 
-{{-- @dump($partner->subCategories) --}}
-{{-- @dump($partner->mainCategory->name) --}}
 
 @section('content')
     <div id="page-backoffice">

@@ -110,7 +110,8 @@ return [
     'required_with'        => 'É obrigatória a indicação de um valor para o campo :attribute quando :values está presente.',
     'required_with_all'    => 'É obrigatória a indicação de um valor para o campo :attribute quando um dos :values está presente.',
     'required_without'     => 'É obrigatória a indicação de um valor para o campo :attribute quando :values não está presente.',
-    'required_without_all' => 'É obrigatória a indicação de um valor para o campo :attribute quando nenhum dos :values está presente.',
+    // 'required_without_all' => 'É obrigatória a indicação de um valor para o campo :attribute quando nenhum dos :values está presente.',
+    'required_without_all' => 'É obrigatoria a indicação de ao menos um horário de funcionamento.',
     'same'                 => 'Os campos :attribute e :other deverão conter valores iguais.',
     'size'                 => [
         'array'   => 'O campo :attribute deverá conter :size elementos.',

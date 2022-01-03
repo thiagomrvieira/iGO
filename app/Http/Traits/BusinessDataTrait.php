@@ -49,7 +49,7 @@ trait BusinessDataTrait {
      */
     public function storeSchedule($request)
     {
-
+        // dd($request->all());
         $workDays = [ 
             'monday',
             'tuesday',

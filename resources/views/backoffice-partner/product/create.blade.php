@@ -95,7 +95,7 @@
                                             </div> 
      
                                         </div>
-                                        <h3>Inserir foto*</h3>
+                                        <h3>{{ isset($product->image) ? 'Alterar foto' : 'Inserir foto*' }}</h3>
                                         <p>Formato jpeg/png</p>  
 
                                         <div class="form-group">

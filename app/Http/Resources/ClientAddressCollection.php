@@ -18,8 +18,8 @@ class ClientAddressCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'addresses' => AddressResource::collection($this->collection),
             'user'      => $this->collection[0]->user->name,
+            'addresses' => AddressResource::collection($this->collection),
         ];    
         
     }

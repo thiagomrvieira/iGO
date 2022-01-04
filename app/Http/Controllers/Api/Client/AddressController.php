@@ -80,11 +80,19 @@ class AddressController extends Controller
      *
      */
     public function index()
-    {
-        
+    {   
+        $addresses  = Address::where('user_id', Auth::user()->id)->where('active', true)->get();
+
+        if ($addresses != null && $addresses->count() > 0) {
+            $data       = new ClientAddressCollection( $addresses );
+            $status     = "success";
+            $message    = "Endereços"; 
+            $statusCode = 200;
+        }
+    
         return response()->json(['status'  => $status  ?? 'success',
-                                 'message' => $message ?? 'Endereços',
-                                 'data'    => new ClientAddressCollection( Address::where('user_id', Auth::user()->id)->where('active', true)->get() )], 200); 
+                                 'message' => $message ?? 'Não há endereços cadastados',
+                                 'data'    => $data    ?? [] ], $statusCode ?? 404); 
     }
 
     /**

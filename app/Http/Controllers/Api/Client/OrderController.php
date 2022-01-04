@@ -940,7 +940,7 @@ class OrderController extends Controller
             {
                 $this->checkoutOrderData($request, $cartItems); 
                 
-                $status      = 'Success';
+                $status      = 'success';
                 $message     = 'Desconto adicionado';
                 $statusCode  = 200;
             }

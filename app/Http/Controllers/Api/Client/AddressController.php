@@ -34,6 +34,7 @@ class AddressController extends Controller
      *              "status": "success",
      *              "message": "Endereços",
      *              "data": { 
+     *                  "user": "string",
      *                  "addresses": {
      *                      { 
      *                          "id": "integer",
@@ -48,8 +49,8 @@ class AddressController extends Controller
      *                          "locality": "string",
      *                          "post_code": "string",
      *                          "country": "string",
-     *                          "tax_name": "string",
-     *                          "tax_number": "string"
+     *                          "tax_name": "string - NULLABLE",
+     *                          "tax_number": "string - NULLABLE",
      *                      }, 
      *                  },
      *              },

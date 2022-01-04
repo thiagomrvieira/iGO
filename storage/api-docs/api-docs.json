@@ -22,6 +22,7 @@
                                     "status": "success",
                                     "message": "Endereços",
                                     "data": {
+                                        "user": "string",
                                         "addresses": [
                                             {
                                                 "id": "integer",
@@ -36,8 +37,8 @@
                                                 "locality": "string",
                                                 "post_code": "string",
                                                 "country": "string",
-                                                "tax_name": "string",
-                                                "tax_number": "string"
+                                                "tax_name": "string - NULLABLE",
+                                                "tax_number": "string - NULLABLE"
                                             }
                                         ]
                                     }

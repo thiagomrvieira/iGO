@@ -13,6 +13,7 @@ use App\Http\Controllers\Web\BackofficePartner\PartnerController as BackofficePa
 use App\Http\Controllers\Web\FeaturedController;
 use App\Http\Controllers\Web\ShippingFeeController;
 use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 
 #   ROUTES FOR AUTH
@@ -36,6 +37,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function()
     Route::resource('/campaign',    CampaignController::class);
     Route::resource('/featured',    FeaturedController::class);
     Route::resource('/shippingfee', ShippingFeeController::class);
+
+    #   REMOVE WHEN DEPLOY IN PRODUCTION - ONLY FOR DEVELOPMENT
+    Route::get('/migrate-fresh', function() {
+        
+        Artisan::call('migrate:fresh', ['--seed' => true]);
+        Artisan::call('migrate',       ['--path' => 'vendor/laravel/passport/database/migrations','--force' => true]);
+        
+        shell_exec('php ../artisan passport:install');
+        
+        return redirect()->route('admin');
+    });
+    #   REMOVE WHEN DEPLOY IN PRODUCTION - ONLY FOR DEVELOPMENT
 
 });
 
